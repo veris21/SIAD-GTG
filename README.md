@@ -6,6 +6,4 @@ Sistem ini dibuat untuk proyek **SIAD Desa Gantung tahun 2018**, dengan fitur - 
 3. PDF Export dengan menggunakan Libraries dari domPDF
 4. Fitur Alternatif Akses Data dan input Lewat SMS Center dengan format khusus
 
-
-
-sistem ini dibuat oleh : [@veris_juniardi] (https://twitter.com/veris_juniardi "veris_juniardi")
+sistem ini dibuat oleh : **[Veris Juniardi]** https://twitter.com/veris_juniardi

@@ -5,6 +5,11 @@ $route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+// TODO: root system master
+$route['import/excel']              = 'excel/upload';
+
+$route['test_sms']                  = 'sms/notifikasi_cek';
+
 // TODO: Route AUTH
 $route['login']                     = 'auth/login';
 $route['logout']                    = 'auth/logout';

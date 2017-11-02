@@ -11,7 +11,9 @@ class Office extends CI_Controller{
 
   function index()
   {
-
+    $data['title']    = TITLE . 'Office SIA-Desa';
+    $data['main_content']   = 'dashboard';
+    $this->load->view('template', $data);
   }
 
 }
