@@ -23,15 +23,23 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
-define('TITLE',            "GTG-SKT SYSTEM | ");
+define('TITLE',            "SI-Gantung | ");
 define('SCHEMA',            ( @$_SERVER["HTTPS"] == "on" ) ? "https://" : "http://");
 define('BASE_URL',          SCHEMA . $_SERVER["SERVER_NAME"] . '/SIA-GTG.github/');
 define('ROOTPATH',          rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/');
 
 
-define('APPS',        BASE_URL. 'assets/apps/');
+define('APPS',            BASE_URL. 'assets/apps/');
+define('THEME',           BASE_URL . 'assets/theme/');
 define('ASSETS',          BASE_URL . 'assets/');
-define('UPLOADER',        BASE_URL. 'uploader/');
+define('UPLOADER',        BASE_URL. 'assets/uploader/');
+
+define('OFFICE',          'office/');
+define('PUBLIC',          'public/');
+define('PRINT',           'print/');
+
+define('MASTER',          'master/');
+
 
 /*-------------------------------*/
 /*|

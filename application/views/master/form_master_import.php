@@ -7,6 +7,7 @@
       </div>
     </div>
     <div class="col-md-4">
+      <?php echo form_open_multipart(); ?>
       <div class="form-group">
         <label>Import Master Data Penduduk</label>
         <input type="file" name="file" class="form-control">
@@ -14,6 +15,7 @@
       <div class="form-group">
         <button type="submit" name="import" class="btn btn-block btn-default">Import Data Ke Database</button>
       </div>
+    </form>
     </div>
   </div>
 </div>

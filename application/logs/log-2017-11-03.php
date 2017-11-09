@@ -71,3 +71,14 @@ ERROR - 2017-11-03 03:14:47 --> Severity: Notice --> Undefined variable: element
 ERROR - 2017-11-03 03:15:28 --> Severity: Notice --> Undefined variable: elementapi C:\wampp\apache2\htdocs\SIA-GTG.github\application\helpers\sms_helper.php 10
 ERROR - 2017-11-03 03:15:56 --> Severity: Notice --> Undefined variable: elementapi C:\wampp\apache2\htdocs\SIA-GTG.github\application\helpers\sms_helper.php 10
 ERROR - 2017-11-03 03:17:29 --> Severity: Notice --> Undefined variable: elementapi C:\wampp\apache2\htdocs\SIA-GTG.github\application\helpers\sms_helper.php 10
+ERROR - 2017-11-03 03:58:42 --> The upload path does not appear to be valid.
+ERROR - 2017-11-03 03:59:57 --> Severity: Warning --> file_get_contents(./assets/uploader/import/): failed to open stream: No such file or directory C:\wampp\apache2\htdocs\SIA-GTG.github\application\libraries\PHPExcel\Shared\OLERead.php 85
+ERROR - 2017-11-03 03:59:57 --> Severity: Warning --> fopen(./assets/uploader/import/): failed to open stream: No such file or directory C:\wampp\apache2\htdocs\SIA-GTG.github\application\libraries\PHPExcel\Reader\Abstract.php 200
+ERROR - 2017-11-03 04:00:16 --> Severity: Warning --> file_get_contents(./assets/uploader/import/): failed to open stream: No such file or directory C:\wampp\apache2\htdocs\SIA-GTG.github\application\libraries\PHPExcel\Shared\OLERead.php 85
+ERROR - 2017-11-03 04:00:16 --> Severity: Warning --> fopen(./assets/uploader/import/): failed to open stream: No such file or directory C:\wampp\apache2\htdocs\SIA-GTG.github\application\libraries\PHPExcel\Reader\Abstract.php 200
+ERROR - 2017-11-03 04:02:35 --> Severity: Warning --> file_get_contents(./assets/uploader/import/): failed to open stream: No such file or directory C:\wampp\apache2\htdocs\SIA-GTG.github\application\libraries\PHPExcel\Shared\OLERead.php 85
+ERROR - 2017-11-03 04:02:35 --> Severity: Warning --> fopen(./assets/uploader/import/): failed to open stream: No such file or directory C:\wampp\apache2\htdocs\SIA-GTG.github\application\libraries\PHPExcel\Reader\Abstract.php 200
+ERROR - 2017-11-03 04:11:57 --> Severity: Notice --> Undefined index: database C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Excel.php 13
+ERROR - 2017-11-03 04:12:41 --> Severity: Notice --> Undefined index: database C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Excel.php 13
+ERROR - 2017-11-03 04:13:24 --> Severity: Notice --> Undefined index: database C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Excel.php 15
+ERROR - 2017-11-03 04:13:37 --> Severity: Notice --> Undefined index: database C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Excel.php 15
