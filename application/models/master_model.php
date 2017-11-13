@@ -8,6 +8,44 @@ class Master_model extends CI_Model{
     parent::__construct();
     //Codeigniter : Write Less Do More
   }
+
+  public function get_user_1()
+  {
+    $this->db->where('type', '1');
+    return $this->db->get('sig_users');
+  }
+  public function input_kecamatan($input_k)
+  {
+    return $this->db->insert('sig_kecamatan', $input_k);
+  }
+
+  public function input_desa($input_desa)
+  {
+    return $this->db->insert('sig_desa', $input_k);
+  }
+
+  public function input_koor($input_koor)
+  {
+    return $this->db->insert('sig_data_map', $input_koor);
+  }
+  public function get_kecamatan()
+  {
+    return $this->db->get('sig_kecamatan');
+  }
+  public function get_desa()
+  {
+    return $this->db->get('sig_desa');
+  }
+  public function list_user()
+  {
+    return $this->db->get('sig_users');
+  }
+  public function user_one($id)
+  {
+    $this->db->where('id', $id);
+    return $this->db->get('sig_users');
+  }
+
   public function upload_data($file){
           ini_set('memory_limit', '-1');
           $inputFileName = './assets/uploader/import/'.$file;

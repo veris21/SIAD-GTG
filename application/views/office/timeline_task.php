@@ -48,8 +48,8 @@
                     </div>
                   </div>
                   <div class="timeline-footer pull-right">
-                    <a class="btn btn-success btn-sm">Terima dan Proses</a>
-                    <a class="btn btn-warning btn-sm">Tandai Telah Dibaca</a>
+                    <a href="<?php echo BASE_URL.'disposisi/teruskan/'.$item->id; ?>" class="btn btn-success btn-sm">Terima dan Teruskan Disposisi</a>
+                    <a href="<?php echo BASE_URL.'disposisi/tandai_baca/'.$item->id; ?>" class="btn btn-warning btn-sm">Tandai Telah Dibaca</a>
                   </div>
                 </div>
               </li>

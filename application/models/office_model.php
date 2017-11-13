@@ -54,7 +54,7 @@ class Office_model extends CI_Model{
   }
   public function get_timeline_notif($id)
   {
-    $query = "SELECT timeline.disposisi_tgl as disposisi_tgl,
+    $query = "SELECT timeline.id as id, timeline.disposisi_tgl as disposisi_tgl,
     timeline.status as status, timeline.type as type,
     timeline.memo as memo, d.user_fullname as dari,
     k.user_fullname as kepada, arsip.surat_path_scan as surat_path_scan,
@@ -70,6 +70,22 @@ class Office_model extends CI_Model{
     k.user_fullname as kepada, arsip.surat_path_scan as surat_path_scan,
     arsip.nomor as nomor, arsip.surat_tgl as surat_tgl, arsip.surat_pengirim as surat_pengirim, arsip.surat_perihal as surat_perihal FROM sig_timeline_disposisi as timeline, sig_surat_arsip as arsip, sig_users as d, sig_users as k WHERE arsip.id = timeline.id_arsip AND d.id = timeline.dari_id AND k.id = timeline.kepada_id AND timeline.id_arsip = $id";
     return $this->db->query($query);
+  }
+
+  public function get_all_user()
+  {
+    return $this->db->get('sig_users');
+  }
+
+  public function get_arsip_disposisi($id)
+  {
+    $query = "SELECT a.surat_path_scan as surat_path_scan, t.disposisi_tgl as disposisi_tgl FROM sig_timeline_disposisi as t, sig_surat_arsip as a WHERE t.id_arsip = a.id AND t.id = $id";
+    return $this->db->query($query);
+  }
+
+  public function diposisi_terus_input($insert)
+  {
+    return $this->db->insert('sig_timeline_disposisi',$insert);
   }
 
 }

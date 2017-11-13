@@ -60,7 +60,8 @@
       </div>
     </div>
     <div class="box-footer">
-
+      <button type="button" name="cetakArsip" class="btn btn-flat btn-primary">Cetak Ulang Arsip</button>
+      <button type="button" name="downloadArsip" class="btn btn-flat btn-info">Download Scan Arsip</button>
     </div>
   </div>
 </section>

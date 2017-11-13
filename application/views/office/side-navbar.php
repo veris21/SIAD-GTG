@@ -171,7 +171,8 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Master User</a></li>
+            <li><a href="<?php echo BASE_URL.'master/user'; ?>"><i class="fa fa-circle-o"></i> Master User</a></li>
+            <li><a href="<?php echo BASE_URL.'master/desa'; ?>"><i class="fa fa-circle-o"></i> Master Desa</a></li>
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Akses History</a></li>
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> System Cron Jobs</a></li>
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> System Option</a></li>

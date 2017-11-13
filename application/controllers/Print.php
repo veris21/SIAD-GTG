@@ -5,6 +5,7 @@ class Print extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
+    
   }
   // TODO: Routing untuk convert PDF Surat Pernyataan SKT
   function pernyataan($id)

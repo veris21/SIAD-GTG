@@ -116,6 +116,9 @@
       $("#dataTables-pra").DataTable({responsive: true });
       $("#dataTables-arsip").DataTable({responsive: true });
       $("#dataTables-disposisi").DataTable({responsive: true });
+      $("#dataTables-user").DataTable({responsive: true });
+      $("#dataTables-mDesa").DataTable({responsive: true });
+      $("#dataTables-mKecamatan").DataTable({responsive: true });
     </script>
   </body>
 </html>

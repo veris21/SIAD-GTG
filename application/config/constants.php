@@ -37,7 +37,6 @@ define('UPLOADER',        BASE_URL. 'assets/uploader/');
 define('OFFICE',          'office/');
 define('PUBLIC',          'public/');
 define('PRINT',           'print/');
-
 define('MASTER',          'master/');
 
 

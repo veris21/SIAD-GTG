@@ -75,6 +75,18 @@ class Office extends CI_Controller{
     }
   }
 
+  function disposisi_teruskan($id){
+    if(isset($_POST['postTerus'])){
+      $this->office_model->diposisi_terus_input($insert);
+    }else{
+      $data['title']          = TITLE. 'Teruskan Disposisi';
+      $data['kepada']         = $this->office_model->get_all_user()->result();
+      $data['data']           = $this->office_model->get_arsip_disposisi($id)->row_array();
+      $data['main_content']   = OFFICE.'disposisi_terus_input';
+      $this->load->view('template', $data);
+    }
+  }
+
   function arsip_list(){
       $data['title']          = TITLE . 'Arsip Surat';
       $data['main_content']   = OFFICE . 'arsip_list';

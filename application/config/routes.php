@@ -6,8 +6,14 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // TODO: root system master
-$route['sysadmin']                           = 'master';
-$route['sysadmin/list/data_penduduk']        = 'master/data_penduduk';
+$route['master']                             = 'master';
+$route['master/user']                        = 'master/user_list';
+$route['user/input']                         = 'master/user_input';
+$route['user/lihat/(:num)']                  = 'master/user_view/$1';
+$route['user/edit/(:num)']                   = 'master/user_edit/$1';
+$route['master/desa']                        ='master/list_desa';
+$route['desa/input']                         ='master/desa_input';
+$route['kecamatan/input']                    ='master/kecamatan_input';
 
 // TODO: OFFICE PELAYANAN
 $route['pelayanan']                 = 'office/pelayanan_dashboard';
@@ -25,6 +31,7 @@ $route['arsip/edit/(:num)']         = 'office/arsip_edit/$1';
 // TODO: Disposisi
 $route['disposisi']                 = 'office/disposisi_list';
 $route['disposisi/input/(:any)']    = 'office/disposisi_input/$1';
+$route['disposisi/teruskan/(:num)'] = 'office/disposisi_teruskan/$1';
 
 // TODO: debug
 $route['debug']                     = 'master/debug';
