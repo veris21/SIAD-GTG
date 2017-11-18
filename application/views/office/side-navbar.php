@@ -4,7 +4,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="<?php echo THEME; ?>dist/img/avatar5.png" class="img-circle" alt="User Image">
+        <img src="<?php echo UPLOADER.'avatar/'.$this->session->userdata('avatar'); ?>" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
         <p><?php echo $this->session->userdata('full_name'); ?></p>
@@ -34,6 +34,20 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Chars &amp; Grafik</a></li>
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i>Laporan Pelayanan</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Layanan Pertanahan Desa</span>
+            <small class="label pull-right bg-green">new</small>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo BASE_URL.'permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
+            <li><a href="<?php echo BASE_URL.'berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
+            <li><a href="<?php echo BASE_URL.'pra_skt'; ?>"><i class="fa fa-circle-o"></i> Data Pra SKT</a></li>
+            <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -84,6 +98,20 @@
         </li>
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Layanan Pertanahan Desa</span>
+            <small class="label pull-right bg-green">new</small>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo BASE_URL.'permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
+            <li><a href="<?php echo BASE_URL.'berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
+            <li><a href="<?php echo BASE_URL.'pra_skt'; ?>"><i class="fa fa-circle-o"></i> Data Pra SKT</a></li>
+            <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-table"></i> <span>Laporan</span>
              <small class="label pull-right bg-green">new</small>
             <i class="fa fa-angle-left pull-right"></i>
@@ -104,6 +132,17 @@
           break;
         case 3:
         ?>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-map-o"></i> <span>Data Koordinat</span>
+             <small class="label pull-right bg-green">new</small>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo BASE_URL.'koordinat'; ?>"><i class="fa fa-circle-o"></i> Tabel Koordinat</a></li>
+            <li><a href="<?php echo BASE_URL.'grafik'; ?>"><i class="fa fa-circle-o"></i> Grafik Kinerja</a></li>
+          </ul>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
@@ -132,6 +171,7 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Chars &amp; Grafik</a></li>
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i>Laporan Pelayanan</a></li>
+            <li><a href="<?php echo BASE_URL.'koordinat'; ?>"><i class="fa fa-circle-o"></i>List Record Koordinat</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -175,7 +215,7 @@
             <li><a href="<?php echo BASE_URL.'master/desa'; ?>"><i class="fa fa-circle-o"></i> Master Desa</a></li>
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Akses History</a></li>
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> System Cron Jobs</a></li>
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> System Option</a></li>
+            <li><a href="<?php echo BASE_URL.'master/sms'; ?>"><i class="fa fa-circle-o"></i> SMS Option</a></li>
           </ul>
         </li>
         <?php
@@ -186,7 +226,7 @@
       }
        ?>
       <li class="header">ACCOUNT CONTROL</li>
-      <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-user"></i> <span>Profile User</span></a></li>
+      <li><a href="<?php echo BASE_URL.'setting/akun'; ?>"><i class="fa fa-user"></i> <span>Setting Akun</span></a></li>
       <li><a href="<?php echo BASE_URL.'logout'; ?>"><i class="fa fa-circle-o text-red"></i> <span>Logout</span></a></li>
     </ul>
   </section>

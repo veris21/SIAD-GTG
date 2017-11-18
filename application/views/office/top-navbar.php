@@ -18,7 +18,9 @@
            ?>
           <a href="<?php echo BASE_URL.'timeline'; ?>">
             <i class="fa fa-bell-o"></i>
-            <span class="label label-warning"><?php echo $notif->num_rows(); ?></span>
+            <?php if ($notif->num_rows()!=0): ?>
+              <span class="label label-danger"><?php echo $notif->num_rows(); ?></span>
+            <?php endif; ?>
           </a>
         </li>
       </ul>

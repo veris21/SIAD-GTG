@@ -33,11 +33,11 @@
                         <td align='center'>$d->disposisi_tgl</td>
                         <td align='center'>";
                         $dari = $this->db->get_where('sig_users', array('id'=>$d->dari_id))->row_array();
-                        echo $dari['user_fullname']."/<i>".$dari['user_status']."</i>";
+                        echo $dari['user_fullname']."<br>(<b><i>".$dari['user_status']."</i></b>)";
                         echo "</td>
                         <td align='center'>";
                         $kepada = $this->db->get_where('sig_users', array('id'=>$d->kepada_id))->row_array();
-                        echo $kepada['user_fullname']."/<i>".$kepada['user_status']."</i>";
+                        echo $kepada['user_fullname']."<br>(<b><i>".$kepada['user_status']."</i></b>)";
                         echo "</td>
                         <td><i>$d->memo</i><br>";
                         if ($d->id_arsip !='') {

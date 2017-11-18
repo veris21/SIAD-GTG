@@ -16,7 +16,7 @@
         <h3 class="box-title">Rekap Data Arsip </h3>
       </div><!-- /.box-header -->
       <div class="box-body">
-        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-arsip">
+        <table style="font-size:11px;" width="100%" class="table table-striped table-bordered table-hover" id="dataTables-arsip">
           <thead>
             <tr valign="center" align="center">
               <td>Tanggal Terima</td>
@@ -36,12 +36,10 @@
               <td>".$arsip->surat_pengirim."</td>
               <td>".$arsip->surat_perihal."</td>";
             echo "<td align='center'>";
-              // $status = ($arsip->surat_disposisi_type == 1 ? 'DI Disposisikan' : 'Arsip');
-            // echo "<br><b>".$status."</b>";
-            echo "<a class='btn btn-sm btn-success btn-circle' href='".BASE_URL."arsip/lihat/$arsip->id'>
+            echo "<a class='btn btn-xs btn-success' href='".BASE_URL."arsip/lihat/$arsip->id'>
                 <i class='fa fa-eye fa-fw'></i>
               </a>
-              <a class='btn btn-sm btn-warning btn-circle' href='".BASE_URL."arsip/edit/$arsip->id'>
+              <a class='btn btn-xs btn-warning' href='".BASE_URL."arsip/edit/$arsip->id'>
                 <i class='fa fa-edit fa-fw'></i>
               </a>
               </td>

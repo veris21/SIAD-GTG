@@ -40,21 +40,20 @@
       <div class="box-body">
         <div class="form-group">
           <label>Koordinat Batas</label>
-          <textarea class="form-control" name="koordinat" rows="4" cols="40"></textarea>
-        </div>
-        <div class="form-group">
-          <label>keterangan</label>
-          <textarea class="form-control" name="keterangan" rows="4" cols="20"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Luas</label>
-          <input class="form-control" type="text" name="luas" >
+          <select class="form-control" name="koordinat">
+            <?php
+            foreach ($koordinat as $k) {
+              echo "<option value='$k->id'>$k->keterangan<br>Luas : $k->luas  meter<sup>2</sup></option>";
+            }
+             ?>
+          </select>
         </div>
       </div>
       <div class="box-footer">
         <button type="reset" name="reset" class="btn btn-flat btn-warning">Reset</button>
         <span class="pull-right">
-          <button type="submit" name="simpan" class="btn btn-flat btn-info">Simpan</button>
+          <a class="btn btn-flat btn-info" href="<?php echo BASE_URL.'koordinat/input'; ?> ">Input Master Koordinat</a>
+          <button type="submit" name="simpan" class="btn btn-flat btn-success">Simpan</button>
         </span>
       </div>
     </div>

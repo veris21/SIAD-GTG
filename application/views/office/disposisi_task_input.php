@@ -20,16 +20,10 @@
            echo $note;
           ?>
           </h3>
-          <?php $type = ($arsip!='' ?
-          '<input type="hidden" name="id_arsip" value="'.$arsip['id'].'">
-           <input type="hidden" name="type" value="1">' :
-          '<input type="hidden" name="id_arsip" value="">
-           <input type="hidden" name="type" value="0">');
-           echo $type;
-           ?>
         </div>
         <div class="box-body">
           <?php if ($arsip!=''): ?>
+            <input type="hidden" name="id_arsip" value="<?php echo $arsip['id']; ?>">
             <blockquote>
               <small>Nomor : <?php echo $arsip['nomor']; ?>/ tanggal <?php echo $arsip['surat_tgl']; ?>
               </small>

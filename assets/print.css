@@ -1,0 +1,73 @@
+::selection { background-color: #E13300; color: white; }
+::-moz-selection { background-color: #E13300; color: white; }
+
+body {
+  background-color: #fff;
+  font: 12px normal DejaVu Sans, Arial, sans-serif;
+  color: #000000;
+}
+
+code {
+  font-family: Consolas, Monaco, Courier New, Courier, monospace;
+  font-size: 12px;
+  background-color: #f9f9f9;
+  border: 1px solid #D0D0D0;
+  /*color: #002166;*/
+  color: #000000;
+  display: block;
+  margin: 10px 0 10px 0;
+  padding: 10px 8px 10px 8px;
+}
+
+#logo-back{
+    /*background-image: url('../logo-beltim.png');
+  	background-size: 20%;
+    background-position: center;
+  	background-repeat: no-repeat;*/
+}
+
+#container {
+
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 0;
+  box-shadow: 0 0 8px #D0D0D0;
+
+}
+img{
+  align: center;
+}
+
+h1{
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+}
+
+h3{
+  text-align: center;
+  padding-top: 5px;
+}
+
+h4{
+  padding-top: 0;
+  margin-top: 0;
+  text-align: center;
+}
+
+table {
+  padding-left: 10px;
+  padding-right: : 10px;
+  padding-bottom: : 5px;
+  width: 100%;
+}
+
+td .header-surat{
+  padding-left: 0;
+  margin-left: 0;
+
+}

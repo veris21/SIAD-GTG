@@ -18,7 +18,7 @@
       <div class="box-body">
         <div class="row">
           <div class="col-md-3">
-            <?php $img = ($user['avatar']!='' || $user['avatar']!= NULL ? $user['img'] : 'logo-gtg.png'); ?>
+            <?php $img = ($user['avatar']!='' || $user['avatar'] != NULL ? $user['avatar'] : 'logo-gtg.png'); ?>
             <div class="box box-green">
               <div class="box-body">
                 <img class="img img-rounded" width="100%" src="<?php echo UPLOADER.'avatar/'.$img; ?>" alt="">

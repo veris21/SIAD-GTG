@@ -11,7 +11,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo THEME; ?>Font_Awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="<?php echo THEME; ?>ionicon/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?php echo THEME; ?>ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo THEME; ?>dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -20,15 +20,18 @@
     <link rel="stylesheet" href="<?php echo THEME;?>plugins/datatables-plugins/dataTables.bootstrap.css">
     <link rel="stylesheet" href="<?php echo THEME;?>plugins/datatables-responsive/dataTables.responsive.css">
     <!-- iCheck -->
-    <link rel="stylesheet" href="<?php echo THEME; ?>plugins/iCheck/flat/blue.css">
+    <!-- <link rel="stylesheet" href="<?php echo THEME; ?>plugins/iCheck/flat/blue.css"> -->
     <!-- Morris chart -->
-    <link rel="stylesheet" href="<?php echo THEME; ?>plugins/morris/morris.css">
+    <!-- <link rel="stylesheet" href="<?php echo THEME; ?>plugins/morris/morris.css"> -->
     <!-- jvectormap -->
-    <link rel="stylesheet" href="<?php echo THEME; ?>plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- <link rel="stylesheet" href="<?php echo THEME; ?>plugins/jvectormap/jquery-jvectormap-1.2.2.css"> -->
     <!-- Date Picker -->
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/datepicker/datepicker3.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/daterangepicker/daterangepicker-bs3.css">
+    <!--  -->
+    <link rel="stylesheet" href="<?php echo THEME; ?>plugins/select2/select2.min.css">
+
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -37,20 +40,6 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-      .example-modal .modal {
-        position: relative;
-        top: auto;
-        bottom: auto;
-        right: auto;
-        left: auto;
-        display: block;
-        z-index: 1;
-      }
-      .example-modal .modal {
-        background: transparent !important;
-      }
-    </style>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -70,13 +59,13 @@
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo THEME; ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="<?php echo THEME; ?>plugins/jQueryUI/jquery-ui.min.js"></script>
+    <script src="<?php echo THEME; ?>plugins/jQueryUI/jquery-ui2.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
       $.widget.bridge('uibutton', $.ui.button);
     </script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo THEME; ?>bootstrap/js/bootstrap.min.js"></script>
     <!-- DataTables -->
     <script src="<?php echo THEME; ?>plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo THEME; ?>plugins/datatables-plugins/dataTables.bootstrap.js"></script>
@@ -84,12 +73,12 @@
 
     <!-- Morris.js charts -->
     <script src="<?php echo THEME; ?>raphael-min.js"></script>
-    <script src="<?php echo THEME; ?>plugins/morris/morris.js"></script>
+    <!-- <script src="<?php echo THEME; ?>plugins/morris/morris.js"></script> -->
     <!-- Sparkline -->
     <script src="<?php echo THEME; ?>plugins/sparkline/jquery.sparkline.min.js"></script>
     <!-- jvectormap -->
-    <script src="<?php echo THEME; ?>plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="<?php echo THEME; ?>plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- <script src="<?php echo THEME; ?>plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script> -->
+    <!-- <script src="<?php echo THEME; ?>plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script> -->
     <!-- jQuery Knob Chart -->
     <script src="<?php echo THEME; ?>plugins/knob/jquery.knob.js"></script>
     <!-- daterangepicker -->
@@ -97,6 +86,10 @@
     <script src="<?php echo THEME; ?>plugins/daterangepicker/daterangepicker.js"></script>
     <!-- datepicker -->
     <script src="<?php echo THEME; ?>plugins/datepicker/bootstrap-datepicker.js"></script>
+
+    <!--  -->
+    <script src="<?php echo THEME; ?>plugins/select2/select2.min.js"></script>
+
     <!-- Bootstrap WYSIHTML5 -->
     <script src="<?php echo THEME; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
     <!-- Slimscroll -->
@@ -105,10 +98,6 @@
     <script src="<?php echo THEME; ?>plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo THEME; ?>dist/js/app.min.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo THEME; ?>dist/js/pages/dashboard.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo THEME; ?>dist/js/demo.js"></script>
     <script type="text/javascript">
       $("#dataTables-data").DataTable({responsive: true});
       $("#dataTables-permohonan").DataTable({responsive: true});
@@ -119,6 +108,22 @@
       $("#dataTables-user").DataTable({responsive: true });
       $("#dataTables-mDesa").DataTable({responsive: true });
       $("#dataTables-mKecamatan").DataTable({responsive: true });
+      $("#dataTables-koordinat").DataTable({responsive: true });
+
+      // fast_search system load
+      $('#fast_search').select2({
+        ajax: {
+          url: 'lookup',
+          dataType: 'json',
+          processResults: function (data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        }
+      });
+      // MAPS
     </script>
-  </body>
+    </body>
 </html>

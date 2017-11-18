@@ -36,10 +36,6 @@
   <div class="box box-info">
     <div class="box-body">
       <div class="form-group">
-        <label>Tanggal Terima Surat</label>
-        <input type="text" name="surat_tgl_terima" class="form-control">
-      </div>
-      <div class="form-group">
         <label>Pilihan</label>
         <select class="form-control" name="surat_disposisi_type">
           <option value="1">Teruskan Ke Disposisi</option>

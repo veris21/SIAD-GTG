@@ -1,63 +1,47 @@
 <section class="content-header">
   <h1>
-    Timeline Task Sceduler
+    Timeline
     <small>Control panel</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Timeline Notifikasi</li>
+    <li class="active">Notifikasi</li>
   </ol>
 </section>
 <section class="content">
   <div class="row">
     <div class="col-md-12 col-xs-12">
-      <div class="box box-info">
-        <div class="box-header with-border">
-          <h3 class="box-title">Timeline Task</h3>
-        </div>
-        <div class="box-body">
-            <!-- The timeline -->
-            <ul class="timeline timeline-inverse">
-              <?php if ($item!=''): ?>
+              <?php if ($item!=''||$item!=NULL): ?>
               <?php foreach ($item as $item): ?>
-              <!-- timeline time label -->
-              <li class="time-label">
-                <span class="bg-warning">
-                  <?php echo $item->disposisi_tgl; ?>
-                </span>
-              </li>
-              <!-- /.timeline-label -->
-              <!-- timeline item -->
-              <li>
-                <i class="fa fa-envelope bg-aqua"></i>
-                <div class="timeline-item">
-                  <h3 class="timeline-header"><a href="#"><?php echo $item->dari; ?></a></h3>
-                  <div class="timeline-body">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <img class="img img-rouded" width="100%" src="<?php echo UPLOADER.'arsip/'.$item->surat_path_scan; ?>" alt="">
-                      </div>
-                      <div class="col-md-8">
-                        <ul>
-                          <li>Pengirim : <?php echo $item->surat_pengirim; ?> </li>
-                          <li>Nomor : <?php echo $item->nomor; ?>/<?php echo $item->surat_tgl; ?>  </li>
-                          <li>Perihal : <?php echo $item->surat_perihal; ?> </li>
-                        </ul>
-                        <blockquote>Memo :<small> <?php echo $item->memo; ?></small></blockquote>
-                      </div>
-                    </div>
+                <?php if ($item->is_type == 1){ ?>
+                  <div class="alert alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-bell"></i>Disposisi Dari <?php echo $item->dari." (".$item->dari_status.")"; ?></h4>
+                        <b>Waktu </b>:<?php echo $item->disposisi_tgl; ?> <br>
+                        <b>Memo </b>:<?php echo $item->memo; ?><br><br>
+                        <?php if ($item->id_arsip!=''): ?>
+                          <div class="pull-right">
+                            <a href="<?php echo BASE_URL.'timeline/details/'.$item->id; ?>" class="btn btn-info btn-flat ">Lihat &amp; Teruskan Disposisi</a>
+                          </div>
+                          <a href="<?php echo BASE_URL.'arsip/lihat/'.$item->id_arsip; ?>" class="btn btn-flat btn-warning">Lihat Detail</a>
+                        <?php endif; ?>
                   </div>
-                  <div class="timeline-footer pull-right">
-                    <a href="<?php echo BASE_URL.'disposisi/teruskan/'.$item->id; ?>" class="btn btn-success btn-sm">Terima dan Teruskan Disposisi</a>
-                    <a href="<?php echo BASE_URL.'disposisi/tandai_baca/'.$item->id; ?>" class="btn btn-warning btn-sm">Tandai Telah Dibaca</a>
+                <?php }elseif ($item->is_type == 0){ ?>
+                  <div class="alert alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-bell"></i>Perintah Langsung Dari <?php echo $item->dari." (".$item->dari_status.")"; ?></h4>
+                    <b>Waktu </b>:<?php echo $item->disposisi_tgl; ?> <br>
+                    <b>Memo </b>:<?php echo $item->memo; ?><br><br>
+                    <?php if ($item->id_arsip!=''): ?>
+                      <div class="pull-right">
+                        <a href="<?php echo BASE_URL.'timeline/details/'.$item->id; ?>" class="btn btn-info btn-flat ">Lihat &amp; Teruskan Disposisi</a>
+                      </div>
+                      <a href="<?php echo BASE_URL.'arsip/lihat/'.$item->id_arsip; ?>" class="btn btn-flat btn-warning">Lihat Detail</a>
+                    <?php endif; ?>
                   </div>
-                </div>
-              </li>
+                <?php } ?>
             <?php endforeach; ?>
             <?php endif; ?>
-              <!-- END timeline item -->
-            </ul>
-        </div>
       </div>
     </div>
 </section>

@@ -16,13 +16,14 @@
         <h3 class="box-title">Rekap Data KK &amp; NIK </h3>
       </div><!-- /.box-header -->
       <div class="box-body">
-        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-data">
+        <table width="100%" style="font-size:11px;" class="table table-striped table-bordered table-hover" id="dataTables-data">
           <thead>
             <tr align="center">
-              <td>NIK</td>
+              <td>No. KK</td>
+              <td>No. NIK</td>
               <td>Nama</td>
-              <td>Nama/No.KK</td>
-              <td>Alamat Lengkap</td>
+              <td>Alamat</td>
+              <td>Dusun</td>
               <td>Pilihan</td>
             </tr>
           </thead>
@@ -31,15 +32,16 @@
             foreach ($data_penduduk->result() as $penduduk) {
             echo "
             <tr>
-              <td>".$penduduk->nik_no."</td>
-              <td>".$penduduk->nik_nama."</td>
-              <td>".$penduduk->kk_nama."<br>".$penduduk->kk_no."</td>
+              <td>".$penduduk->no_kk."</td>
+              <td>".$penduduk->no_nik."</td>
+              <td>".$penduduk->nama."</td>
               <td>".$penduduk->alamat."</td>
+              <td>".$penduduk->dusun."</td>
               <td align='center'>
-                <a class='btn btn-sm btn-success btn-circle' href='#'>
+                <a class='btn btn-flat btn-success btn-xs' href='#'>
                   <i class='fa fa-eye fa-fw'></i>
                 </a>
-                <a class='btn btn-sm btn-primary btn-circle' href='#'>
+                <a class='btn btn-flat btn-primary btn-xs' href='#'>
                   <i class='fa fa-edit fa-fw'></i>
                 </a>
               </td>
@@ -48,6 +50,13 @@
           </tbody>
         </table>
       </div><!-- /.box-body -->
+      <?php if ($this->session->userdata('type') == 2): ?>
+        <div class="box-footer">
+          <div class="pull-right">
+            <a class="btn btn-sm btn-flat btn-success" href="<?php echo BASE_URL.'input/data_penduduk'; ?>">Input Data Penduduk <i class="fa fa-arrow-right"></i></a>
+          </div>
+        </div>
+      <?php endif; ?>
     </div><!-- /.box -->
     <?php if ($this->session->userdata('type')==99) {
     ?>
@@ -58,7 +67,7 @@
       <div class="box-body">
         <?php echo form_open_multipart(); ?>
         <div class="input-group input-group-sm">
-          <input type="file" name="import_kk_excel" class="form-group">
+          <input type="file" name="import_xls" class="form-group">
           <span class="input-group-btn">
             <button type="submit" name="import" class="btn btn-info btn-flat">Import !!!</button>
           </span>

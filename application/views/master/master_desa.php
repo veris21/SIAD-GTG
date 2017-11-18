@@ -32,12 +32,12 @@
           <tbody>
             <?php
             foreach ($desa as $desa) {
-              # code...
+            $kec = $this->db->get_where('sig_kecamatan', array('id'=>$desa->kecamatan_uid))->row_array();
             echo "<tr>";
-            echo "<td>".$desa->kecamatan_uid."</td>";
+            echo "<td>".$kec['kecamatan_uid']."</td>";
             echo "<td>";
             ?>
-            <a href="<?php echo BASE_URL.'desa/view/';?>">
+            <a href="<?php echo BASE_URL.'desa/edit/'.$desa->id;?>">
             <?php
             echo $desa->desa_uid."</a></td>";
             echo "<td>".$desa->desa_nama."</td>";
@@ -67,7 +67,7 @@
           <thead>
             <tr valign="center" align="center">
               <td>Kecamatan UID</td>
-              <td>Nama Desa</td>
+              <td>Nama Kecamatan</td>
               <td>Alamat</td>
               <td>Pj UID</td>
               <td>Point Batas Kecamatan</td>
@@ -79,9 +79,9 @@
             foreach ($kecamatan as $kecamatan) {
               # code...
             echo "<tr>";
-            echo "<td>";
+            echo "<td align='center'>";
             ?>
-            <a href="<?php echo BASE_URL.'kecamatan/view/'.$kecamatan->id;?>"><?php echo $kecamatan->kecamatan_uid; ?></a>
+            <a href="<?php echo BASE_URL.'kecamatan/edit/'.$kecamatan->id;?>"><?php echo $kecamatan->kecamatan_uid; ?></a>
             <?php
             echo "</td>";
             echo "<td>".$kecamatan->kecamatan_nama."</td>";

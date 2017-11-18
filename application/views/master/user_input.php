@@ -31,12 +31,16 @@
                 <td><input type="text" class="form-control" name="user_fullname" ></td>
               </tr>
               <tr>
-                <td>UID</td>
-                <td><input type="text" class="form-control" name="user_uid" ></td>
-              </tr>
-              <tr>
                 <td>Desa</td>
-                <td><input type="text" class="form-control" name="desa_uid" ></td>
+                <td>
+                  <select class="form-control" name="desa_uid">
+                    <?php
+                    foreach ($desa as $desa) {
+                      echo "<option value='$desa->id'>$desa->desa_nama</option>";
+                    }
+                     ?>
+                  </select>
+                </td>
               </tr>
               <tr>
                 <td>Jabatan</td>
@@ -56,13 +60,23 @@
                 <td>Rule Access</td>
                 <td>
                   <select class="form-control" name="type">
-
                       <option value='1'>Pemegang Jabatan</option>
                       <option value='2'>Operator Umum</option>
                       <option value='3'>Petugas Layanan Tanah</option>
-
                   </select>
                 </td>
+              </tr>
+              <tr>
+                <td>UID</td>
+                <td><input type="text" class="form-control" name="user_uid" ></td>
+              </tr>
+              <tr>
+                <td>Password</td>
+                <td><input type="password" class="form-control" name="user_pass" ></td>
+              </tr>
+              <tr>
+                <td>Confirm Password</td>
+                <td><input type="password" class="form-control" name="user_pass_confirm" ></td>
               </tr>
             </table>
           </div>

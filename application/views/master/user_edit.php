@@ -16,7 +16,7 @@
       <div class="box-body">
         <div class="row">
           <div class="col-md-4">
-            <?php $img = ($user['avatar']!='' || $user['avatar']!= NULL ? $user['img'] : 'logo-gtg.png'); ?>
+            <?php $img = ($user['avatar']!='' || $user['avatar']!= NULL ? $user['avatar'] : 'logo-gtg.png'); ?>
             <div class="box box-warning">
               <div class="box-body">
                 <img class="img img-rounded" width="100%" src="<?php echo UPLOADER.'avatar/'.$img; ?>" alt="">
@@ -38,7 +38,17 @@
               </tr>
               <tr>
                 <td>Desa</td>
-                <td><input type="text" class="form-control" name="desa_uid" value="<?php echo $user['desa_uid']; ?>" ></td>
+                <td>
+                  <select class="form-control" name="desa_uid">
+                    <?php
+                    $d = $this->db->get_where('sig_desa', array('id'=>$user['desa_uid']))->row_array();
+                    echo "<option value='".$d['id']."'>".$d['desa_nama']."</option>";
+                    foreach ($desa as $desa) {
+                      echo "<option value='$desa->id'>$desa->desa_nama</option>";
+                    }
+                     ?>
+                  </select>
+                </td>
               </tr>
               <tr>
                 <td>Jabatan</td>

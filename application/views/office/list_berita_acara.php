@@ -16,7 +16,7 @@
         <h3 class="box-title">Rekap Data Berita Acara Pemeriksaan </h3>
       </div><!-- /.box-header -->
       <div class="box-body">
-        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-bap">
+        <table style="font-size:11px;" width="100%" class="table table-striped table-bordered table-hover" id="dataTables-bap">
           <thead>
             <tr align="center">
               <td>NIK</td>

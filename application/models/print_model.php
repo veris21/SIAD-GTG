@@ -8,5 +8,9 @@ class Print_model extends CI_Model{
     parent::__construct();
     //Codeigniter : Write Less Do More
   }
+  public function pernyataan_data($id)
+  {
+    return;
+  }
 
 }
