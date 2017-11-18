@@ -1,66 +1,48 @@
 <div class="box box-warning">
   <div class="box-body">
-    <div style="height: 360px;" id="map_desa"></div>
+    <div style="height: 360px;" id="map_canvas"></div>
   </div>
 </div>
-<script>
-      var map;
-      var infoWindow;
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map_desa'), {
-          zoom: 5,
-          center: {lat: 24.886, lng: -70.268},
-          mapTypeId: 'terrain'
-        });
-
-        // Define the LatLng coordinates for the polygon.
-        var triangleCoords = [
-            {lat: 25.774, lng: -80.190},
-            {lat: 18.466, lng: -66.118},
-            {lat: 32.321, lng: -64.757}
-        ];
-
-        // Construct the polygon.
-        var bermudaTriangle = new google.maps.Polygon({
-          paths: triangleCoords,
-          strokeColor: '#FF0000',
-          strokeOpacity: 0.8,
-          strokeWeight: 3,
-          fillColor: '#FF0000',
-          fillOpacity: 0.35
-        });
-        bermudaTriangle.setMap(map);
-
-        // Add a listener for the click event.
-        bermudaTriangle.addListener('click', showArrays);
-
-        infoWindow = new google.maps.InfoWindow;
-      }
-
-      /** @this {google.maps.Polygon} */
-      function showArrays(event) {
-        // Since this polygon has only one path, we can call getPath() to return the
-        // MVCArray of LatLngs.
-        var vertices = this.getPath();
-
-        var contentString = '<b>Bermuda Triangle polygon</b><br>' +
-            'Clicked location: <br>' + event.latLng.lat() + ',' + event.latLng.lng() +
-            '<br>';
-
-        // Iterate over the vertices.
-        for (var i =0; i < vertices.getLength(); i++) {
-          var xy = vertices.getAt(i);
-          contentString += '<br>' + 'Coordinate ' + i + ':<br>' + xy.lat() + ',' +
-              xy.lng();
-        }
-
-        // Replace the info window's content and position.
-        infoWindow.setContent(contentString);
-        infoWindow.setPosition(event.latLng);
-
-        infoWindow.open(map);
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdDPLGOGgKoP19RqjyLQS2AUxS6jPWOvA&callback=initMap">
-    </script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyAQZ5juJWnQk7IjkS1xtzSzor1bChd_L3A&libraries=drawing,geometry,distance"></script>
+<script type="text/javascript">
+  <?php $id = 1; $koor = $this->tanah_model->get_data_koordinat_all()->result(); ?>
+  function initialize() {
+    map = new google.maps.Map(document.getElementById('map_canvas'), {
+      zoom: 14,
+      center: new google.maps.LatLng(-2.975289, 108.158662),
+      mapTypeId: 'terrain'
+    });
+    <?php foreach ($koor as $koor) { ?>
+    var datalist = '<?php echo $koor->koordinat;?>';
+    var dataSplit = datalist.split(/\s/);
+    var text = [];
+    for (var i = 0; i < dataSplit.length; i++) {
+      var arr = dataSplit[i].split(",");
+      text.push(new google.maps.LatLng(parseFloat(arr[0]), parseFloat(arr[1])));
+      console.log("lat :"+arr[0]+" Lng : "+arr[1]);
+    }
+    var color = '#'+Math.random().toString(16).substr(-6);
+    var area = google.maps.geometry.spherical.computeArea(text);
+    var contentString = '<b><?php echo $koor->keterangan;?></b><br><br>Luas :  '+(area).toFixed(2)+' meter<sup>2</sup>';
+    polygon = new google.maps.Polygon({
+        paths: [text],
+        strokeColor:'#FF0000',
+        strokeOpacity: 0,
+        strokeWeight: 2,
+        fillColor:color,
+        fillOpacity: 0.9,
+        html: contentString
+    });
+    var text=[];
+  polygon.setMap(map);
+  infoWindow = new google.maps.InfoWindow();
+  google.maps.event.addListener(polygon, 'click', function(e) {
+    infoWindow.setContent(this.html);
+    infoWindow.setPosition(e.latLng);
+    infoWindow.open(map);
+  });
+  <?php
+  }?>
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+  </script>

@@ -26,8 +26,6 @@ class Master extends CI_Controller{
 
   function sms_api()
   {
-    $data['map']  = array('js'=>'');
-
     $id = 1;
     $data['title']    = TITLE.'Root Master';
     $data['data']     = $this->option_model->sms_opt($id)->row_array();
@@ -39,8 +37,6 @@ class Master extends CI_Controller{
 
   function proses()
   {
-    $data['map']  = array('js'=>'');
-
     $id = $this->input->post('id');
     $data['title']    = TITLE.'Root Master';
     $data['data']     = $this->master_model->get_proses($id)->row_array();
@@ -50,8 +46,6 @@ class Master extends CI_Controller{
 
   function koordinat_list()
   {
-    $data['map']  = array('js'=>'');
-
     $data['title']    = TITLE.'Root Master';
     $data['main_content']   = MASTER.'koordinat_list';
     $data['koordinat']      = $this->tanah_model->list_koordinat()->result();
@@ -59,8 +53,6 @@ class Master extends CI_Controller{
   }
   function koordinat_input()
   {
-    $data['map']  = array('js'=>'');
-
     if (isset($_POST['simpan'])) {
       $keterangan = strip_tags($this->input->post('keterangan'));
       $save = array(
@@ -81,8 +73,6 @@ class Master extends CI_Controller{
 
   function koordinat_edit($id)
   {
-    $data['map']  = array('js'=>'');
-
     if (isset($_POST['simpan'])) {
 
 
@@ -100,8 +90,6 @@ class Master extends CI_Controller{
 
   function user_list()
   {
-    $data['map']  = array('js'=>'');
-
     $data['title']    = TITLE.'Root Master';
     $data['main_content']   = MASTER.'user_list';
     $data['user_list']      = $this->master_model->list_user()->result();
@@ -110,8 +98,6 @@ class Master extends CI_Controller{
 
   function user_view($id)
   {
-    $data['map']  = array('js'=>'');
-
     $data['title']    = TITLE.'Root Master';
     $data['main_content']   = MASTER.'user_view';
     $data['user']           = $this->master_model->user_one($id)->row_array();
@@ -120,8 +106,6 @@ class Master extends CI_Controller{
 
   function user_edit($id)
   {
-    $data['map']  = array('js'=>'');
-
     if (isset($_POST['simpan'])) {
       if(!empty($_FILES['avatar'])){
         $fileName = time().$_FILES['avatar']['name'];

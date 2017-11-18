@@ -49,6 +49,10 @@ class Tanah_model extends CI_Model{
     return $this->db->get('sig_data_map');
   }
 
+  public function get_data_koordinat_all()
+  {
+    return $this->db->get('sig_data_map');
+  }
   public function get_data_koordinat($id)
   {
     return $this->db->get_where('sig_data_map', array('id'=>$id));

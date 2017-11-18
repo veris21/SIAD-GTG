@@ -15,11 +15,10 @@ class Office extends CI_Controller{
           $data['title']          = TITLE . 'Dashboard';
           $data['main_content']   = OFFICE . 'dashboard';
           $this->load->view('template', $data);
-
   }
   // TODO: Controller Handler Database Kependudukan
   function data_penduduk(){
-    $data['map']  = array('js'=>'');
+    
     if (isset($_POST['import'])) {
       if (!empty($_FILES['import_xls'])) {
         $config['upload_path'] = './assets/uploader/import/'; //buat folder dengan nama assets di root folder
@@ -46,7 +45,7 @@ class Office extends CI_Controller{
   }
   // TODO: Controller Handler Database Disposisi Surat
   function timeline_list(){
-    $data['map']  = array('js'=>'');
+    
     $data['title']          = TITLE . 'Data Penduduk';
     $data['main_content']   = OFFICE . 'timeline_task';
     $id = $this->session->userdata('id');
@@ -67,7 +66,7 @@ class Office extends CI_Controller{
   }
 
   function disposisi_list(){
-    $data['map']  = array('js'=>'');
+    
     $data['title']          = TITLE . 'History Disposisi';
     $data['main_content']   = OFFICE . 'disposisi_history';
     $data['history']   = $this->office_model->get_timeline()->result();
@@ -112,7 +111,7 @@ class Office extends CI_Controller{
       }
       return;
     }else{
-      $data['map']  = array('js'=>'');
+      
       $data['title']          = TITLE . 'Disposisi';
       $data['kepada']         = $this->office_model->get_user_disposisi()->result();
       $data['arsip']          = $this->office_model->get_arsip_image($id)->row_array();
@@ -162,7 +161,7 @@ class Office extends CI_Controller{
       }
       die;
     }else{
-      $data['map']  = array('js'=>'');
+      
       $data['title']          = TITLE. 'Teruskan Disposisi';
       $data['kepada']         = $this->office_model->get_all_user()->result();
       $data['data']           = $this->office_model->get_arsip_disposisi($id)->row_array();
@@ -172,7 +171,7 @@ class Office extends CI_Controller{
   }
 
   function arsip_list(){
-      $data['map']  = array('js'=>'');
+      
       $data['title']          = TITLE . 'Arsip Surat';
       $data['main_content']   = OFFICE . 'arsip_list';
       $data['arsip_surat']    = $this->office_model->get_arsip_list();
@@ -182,14 +181,14 @@ class Office extends CI_Controller{
   function arsip_view($id)
   {
 
-    $data['map']  = array('js'=>'');
+    
     $data['title']          = TITLE . 'Arsip Surat';
     $data['main_content']   = OFFICE . 'arsip_view';
     $data['arsip_surat']    = $this->office_model->get_arsip_one($id)->row_array();
     $this->load->view('template', $data);
   }
   function arsip_input(){
-    $data['map']  = array('js'=>'');
+    
     if (isset($_POST['upload'])) {
       if (!empty($_FILES['arsip_surat'])) {
         $fileName = time().$_FILES['arsip_surat']['name'];
@@ -242,7 +241,7 @@ class Office extends CI_Controller{
   }
   // TODO: Controller Handler input Permohonan
   function permohonan_input($id){
-    $data['map']  = array('js'=>'');
+    
     if (isset($_POST['simpan'])) {
       if(!empty($_FILES['ktp'])){
         $fileName = time().$_FILES['ktp']['name'];
@@ -306,7 +305,7 @@ class Office extends CI_Controller{
 
   function permohonan_view($id)
   {
-    $data['map']  = array('js'=>'');
+    
     $data['title']          = TITLE. 'View Data Permohonana';
     $data['dusun']          = $this->db->get('sig_dusun')->result();
     $data['data']           = $this->office_model->get_nik_one($id)->row_array();
@@ -315,7 +314,7 @@ class Office extends CI_Controller{
   }
   // TODO: Controller Handler Database Permohonan Layanan SKT
   function permohonan_list(){
-    $data['map']  = array('js'=>'');
+    
     $data['title']          = TITLE. 'Data Permohonana Layanan Tanah';
     $data['data']           = $this->office_model->get_permohonan()->result();
     $data['main_content']   = OFFICE . 'list_permohonan';
@@ -323,7 +322,7 @@ class Office extends CI_Controller{
   }
   // TODO: Controller Handler Database BAP Layanan SKT
   function berita_acara_list(){
-    $data['map']  = array('js'=>'');
+    
 
     $data['title']          = TITLE. 'Data Berita Acara Layanan Tanah';
     $data['main_content']   = OFFICE . 'list_berita_acara';
@@ -331,7 +330,7 @@ class Office extends CI_Controller{
   }
   // TODO: Controller Handler Database Pra Layanan SKT
   function pra_skt_list(){
-    $data['map']  = array('js'=>'');
+    
 
     $data['title']          = TITLE. 'Data Pra SKT Layanan Tanah';
     $data['main_content']   = OFFICE . 'list_pra_skt';
@@ -339,7 +338,7 @@ class Office extends CI_Controller{
   }
   // TODO: Controller Handler Database Release Final Layanan SKT
   function skt_release_list(){
-    $data['map']  = array('js'=>'');
+    
 
     $data['title']          = TITLE. 'Data Release Layanan Tanah';
     $data['main_content']   = OFFICE . 'list_skt';

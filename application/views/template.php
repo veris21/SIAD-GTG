@@ -125,5 +125,5 @@
       });
       // MAPS
     </script>
-    </body>
+  </body>
 </html>
