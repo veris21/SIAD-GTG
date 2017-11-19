@@ -6,7 +6,7 @@ class Master extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('Master_model', 'Office_model','Tanah_model','Option_model','Sms_model');
+    $this->load->model('master_model', 'Office_model','Tanah_model','Option_model','Sms_model');
   }
 
   public function lookup()
@@ -40,7 +40,7 @@ class Master extends CI_Controller{
   {
     $id = $this->input->post('id');
     $data['title']    = TITLE.'Root Master';
-    $data['data']     = $this->Master_model->get_proses($id)->row_array();
+    $data['data']     = $this->master_model->get_proses($id)->row_array();
     $data['main_content']   = MASTER.'proses_form';
     $this->load->view('template', $data);
   }
@@ -93,7 +93,7 @@ class Master extends CI_Controller{
   {
     $data['title']    = TITLE.'Root Master';
     $data['main_content']   = MASTER.'user_list';
-    $data['user_list']      = $this->Master_model->list_user()->result();
+    $data['user_list']      = $this->master_model->list_user()->result();
     $this->load->view('template', $data);
   }
 
@@ -101,7 +101,7 @@ class Master extends CI_Controller{
   {
     $data['title']    = TITLE.'Root Master';
     $data['main_content']   = MASTER.'user_view';
-    $data['user']           = $this->Master_model->user_one($id)->row_array();
+    $data['user']           = $this->master_model->user_one($id)->row_array();
     $this->load->view('template', $data);
   }
 
@@ -141,7 +141,7 @@ class Master extends CI_Controller{
           'desa_uid'=>$desa_uid,
           'type'=>$type
         );
-        $check = $this->Master_model->update_user($input_user_data, $id);
+        $check = $this->master_model->update_user($input_user_data, $id);
         if ($check) {
           redirect('user/lihat/'.$id);
           exit;
@@ -154,8 +154,8 @@ class Master extends CI_Controller{
     }else {
       $data['title']    = TITLE.'Root Master';
       $data['main_content']   = MASTER.'user_edit';
-      $data['desa']           = $this->Master_model->get_desa()->result();
-      $data['user']           = $this->Master_model->user_one($id)->row_array();
+      $data['desa']           = $this->master_model->get_desa()->result();
+      $data['user']           = $this->master_model->user_one($id)->row_array();
       $this->load->view('template', $data);
     }
   }
@@ -193,7 +193,7 @@ class Master extends CI_Controller{
           'desa_uid'=>$desa_uid,
           'type'=>$type
         );
-        $check = $this->Master_model->insert_user($input_user_data);
+        $check = $this->master_model->insert_user($input_user_data);
         if ($check) {
           redirect('master/user');
           exit;
@@ -205,7 +205,7 @@ class Master extends CI_Controller{
       die;
     }else {
       $data['title']          = TITLE.'Root Master';
-      $data['desa']           = $this->Master_model->get_desa()->result();
+      $data['desa']           = $this->master_model->get_desa()->result();
       $data['main_content']   = MASTER.'user_input';
       $this->load->view('template', $data);
     }
@@ -215,8 +215,8 @@ class Master extends CI_Controller{
   {
     $data['title']          = TITLE.'Root Master';
     $data['main_content']   = MASTER.'master_desa';
-    $data['desa']           = $this->Master_model->get_desa()->result();
-    $data['kecamatan']      = $this->Master_model->get_kecamatan()->result();
+    $data['desa']           = $this->master_model->get_desa()->result();
+    $data['kecamatan']      = $this->master_model->get_kecamatan()->result();
     $this->load->view('template', $data);
   }
 
@@ -240,7 +240,7 @@ class Master extends CI_Controller{
         'kecamatan_uid'=>$kecamatan_uid,
         'data_map_uid'=>$koordinat
       );
-        $check_desa_input = $this->Master_model->input_desa($input_desa);
+        $check_desa_input = $this->master_model->input_desa($input_desa);
         if ($check_desa_input) {
           redirect('master/desa');
         }else {
@@ -250,9 +250,9 @@ class Master extends CI_Controller{
       die;
     }else {
       $data['title']          = TITLE.'Root Master';
-      $data['koordinat']      = $this->Master_model->list_koordinat()->result();
-      $data['pj']             = $this->Master_model->get_user_1()->result();
-      $data['kecamatan']      = $this->Master_model->get_kecamatan()->result();
+      $data['koordinat']      = $this->master_model->list_koordinat()->result();
+      $data['pj']             = $this->master_model->get_user_1()->result();
+      $data['kecamatan']      = $this->master_model->get_kecamatan()->result();
       $data['main_content']   = MASTER.'desa_input';
       $this->load->view('template', $data);
     }
@@ -276,7 +276,7 @@ class Master extends CI_Controller{
         'kecamatan_uid'=>$kecamatan_uid,
         'data_map_uid'=> $koordinat
       );
-        $check_desa_input = $this->Master_model->update_desa($input_desa, $id);
+        $check_desa_input = $this->master_model->update_desa($input_desa, $id);
         if ($check_desa_input) {
           redirect('master/desa');
         }else {
@@ -287,9 +287,9 @@ class Master extends CI_Controller{
     }else {
       $data['title']          = TITLE.'Root Master';
       $data['koordinat']      = $this->Tanah_model->list_koordinat()->result();
-      $data['pj']             = $this->Master_model->get_user_1()->result();
+      $data['pj']             = $this->master_model->get_user_1()->result();
       $data['desa']           = $this->db->get_where('sig_desa', array('id'=>$id))->row_array();
-      $data['kecamatan']      = $this->Master_model->get_kecamatan()->result();
+      $data['kecamatan']      = $this->master_model->get_kecamatan()->result();
       $data['main_content']   = MASTER.'desa_edit';
       $this->load->view('template', $data);
     }
@@ -313,7 +313,7 @@ class Master extends CI_Controller{
         'data_map_uid'=>$koordinat
       );
 
-        $check_kecamatan_input = $this->Master_model->input_kecamatan($input_k);
+        $check_kecamatan_input = $this->master_model->input_kecamatan($input_k);
         if ($check_kecamatan_input) {
           redirect('master/desa');
         }else {
@@ -324,7 +324,7 @@ class Master extends CI_Controller{
     }else {
       $data['title']          = TITLE.'Root Master';
       $data['koordinat']      = $this->Tanah_model->list_koordinat()->result();
-      $data['pj']             = $this->Master_model->get_user_1()->result();
+      $data['pj']             = $this->master_model->get_user_1()->result();
       $data['main_content']   = MASTER.'kecamatan_input';
       $this->load->view('template', $data);
     }
@@ -347,7 +347,7 @@ class Master extends CI_Controller{
         'kecamatan_kepala_uid'=>$kecamatan_kepala_uid,
         'data_map_uid'=> $koordinat
       );
-        $check_kecamatan_input = $this->Master_model->update_kecamatan($input_kecamatan, $id);
+        $check_kecamatan_input = $this->master_model->update_kecamatan($input_kecamatan, $id);
         if ($check_kecamatan_input) {
           redirect('master/desa');
         }else {
@@ -359,7 +359,7 @@ class Master extends CI_Controller{
       $data['title']          = TITLE.'Root Master';
       $data['kecamatan']       = $this->db->get_where('sig_kecamatan', array('id'=>$id))->row_array();
       $data['koordinat']      = $this->Tanah_model->list_koordinat()->result();
-      $data['pj']             = $this->Master_model->get_user_1()->result();
+      $data['pj']             = $this->master_model->get_user_1()->result();
       $data['main_content']   = MASTER.'kecamatan_edit';
       $this->load->view('template', $data);
     }

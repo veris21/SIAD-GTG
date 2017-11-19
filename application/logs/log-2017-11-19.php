@@ -57,3 +57,5 @@ ERROR - 2017-11-19 07:53:05 --> Unable to connect to the database
 ERROR - 2017-11-19 07:53:08 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: YES) C:\wampp\apache2\htdocs\SIA-GTG.github\system\database\drivers\mysqli\mysqli_driver.php 201
 ERROR - 2017-11-19 07:53:08 --> Unable to connect to the database
 ERROR - 2017-11-19 07:54:00 --> Severity: Notice --> Undefined index: type C:\wampp\apache2\htdocs\SIA-GTG.github\application\views\office\side-navbar.php 23
+ERROR - 2017-11-19 14:24:06 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: YES) C:\wampp\apache2\htdocs\SIA-GTG.github\system\database\drivers\mysqli\mysqli_driver.php 201
+ERROR - 2017-11-19 14:24:06 --> Unable to connect to the database
