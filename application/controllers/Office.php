@@ -7,7 +7,7 @@ class Office extends CI_Controller{
   {
     parent::__construct();
     $this->load->library("PHPExcel");
-    $this->load->model('Master_model', 'office_model','Tanah_model','Option_model','sms_model');
+    $this->load->model('master_model', 'office_model','tanah_model','option_model','sms_model');
   }
 
   function index()
