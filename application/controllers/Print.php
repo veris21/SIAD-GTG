@@ -13,7 +13,7 @@ class Print extends CI_Controller{
     $data['data'] = $this->print_model->pernyataan_data($id)->row_array();
     // $this->load->view('print_template/pernyataan', $data);
     $html = $this->load->view('print/pernyataan', $data, true);
-    $this->pdfGenerator->generate($html, $data['data']['nama']." - SURAT PERNYATAAN (".date('d-M-Y').")");
+    // $this->pdfGenerator->generate($html, $data['data']['nama']." - SURAT PERNYATAAN (".date('d-M-Y').")");
   }
   // TODO: Routing untuk convert PDF Surat Berita Acara Pemeriksaan
   function berita_acara($id)
