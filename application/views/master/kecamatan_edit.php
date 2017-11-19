@@ -62,7 +62,7 @@
       <div class="box-footer">
         <button type="reset" name="reset" class="btn btn-flat btn-warning">Reset</button>
         <span class="pull-right">
-          <a class="btn btn-flat btn-info" href="<?php echo BASE_URL.'koordinat/input'; ?> ">Input Master Koordinat</a>
+          <a class="btn btn-flat btn-info" href="<?php echo base_url().'koordinat/input'; ?> ">Input Master Koordinat</a>
           <button type="submit" name="simpan" class="btn btn-flat btn-success">Simpan</button>
         </span>
       </div>
