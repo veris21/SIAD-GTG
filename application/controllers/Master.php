@@ -6,6 +6,7 @@ class Master extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
+    $this->load->model('master_model', 'office_model','tanah_model','option_model','sms_model');
   }
 
   public function lookup()
