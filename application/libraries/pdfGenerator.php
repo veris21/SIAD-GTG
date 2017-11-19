@@ -1,5 +1,5 @@
 <?php
-class Sig_pdf
+class pdfGenerator
 {
   public function generate($html, $filename='', $stream=TRUE, $paper = 'legal', $orientation = "portrait")
   {
