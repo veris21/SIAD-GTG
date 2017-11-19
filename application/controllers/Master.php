@@ -6,7 +6,7 @@ class Master extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('master_model', 'office_model','tanah_model','option_model','sms_model');
+    $this->load->model('Master_model', 'Office_model','Tanah_model','Option_model','Sms_model');
   }
 
   public function lookup()
@@ -29,7 +29,7 @@ class Master extends CI_Controller{
   {
     $id = 1;
     $data['title']    = TITLE.'Root Master';
-    $data['data']     = $this->option_model->sms_opt($id)->row_array();
+    $data['data']     = $this->Option_model->sms_opt($id)->row_array();
     $data['main_content']   = MASTER.'sms_api';
     $this->load->view('template', $data);
   }
@@ -40,7 +40,7 @@ class Master extends CI_Controller{
   {
     $id = $this->input->post('id');
     $data['title']    = TITLE.'Root Master';
-    $data['data']     = $this->master_model->get_proses($id)->row_array();
+    $data['data']     = $this->Master_model->get_proses($id)->row_array();
     $data['main_content']   = MASTER.'proses_form';
     $this->load->view('template', $data);
   }
@@ -49,7 +49,7 @@ class Master extends CI_Controller{
   {
     $data['title']    = TITLE.'Root Master';
     $data['main_content']   = MASTER.'koordinat_list';
-    $data['koordinat']      = $this->tanah_model->list_koordinat()->result();
+    $data['koordinat']      = $this->Tanah_model->list_koordinat()->result();
     $this->load->view('template', $data);
   }
   function koordinat_input()
@@ -59,7 +59,7 @@ class Master extends CI_Controller{
       $save = array(
         'keterangan' => $keterangan
       );
-      $check = $this->tanah_model->input_koordinat($save);
+      $check = $this->Tanah_model->input_koordinat($save);
       if ($check) {
         redirect('koordinat');
         exit;
@@ -84,7 +84,7 @@ class Master extends CI_Controller{
     }else {
       $data['title']    = TITLE.'Root Master';
       $data['main_content']   = MASTER.'koordinat_edit';
-      $data['koordinat']      = $this->tanah_model->get_data_koordinat($id)->row_array();
+      $data['koordinat']      = $this->Tanah_model->get_data_koordinat($id)->row_array();
       $this->load->view('template', $data);
     }
   }
@@ -93,7 +93,7 @@ class Master extends CI_Controller{
   {
     $data['title']    = TITLE.'Root Master';
     $data['main_content']   = MASTER.'user_list';
-    $data['user_list']      = $this->master_model->list_user()->result();
+    $data['user_list']      = $this->Master_model->list_user()->result();
     $this->load->view('template', $data);
   }
 
@@ -101,7 +101,7 @@ class Master extends CI_Controller{
   {
     $data['title']    = TITLE.'Root Master';
     $data['main_content']   = MASTER.'user_view';
-    $data['user']           = $this->master_model->user_one($id)->row_array();
+    $data['user']           = $this->Master_model->user_one($id)->row_array();
     $this->load->view('template', $data);
   }
 
@@ -141,7 +141,7 @@ class Master extends CI_Controller{
           'desa_uid'=>$desa_uid,
           'type'=>$type
         );
-        $check = $this->master_model->update_user($input_user_data, $id);
+        $check = $this->Master_model->update_user($input_user_data, $id);
         if ($check) {
           redirect('user/lihat/'.$id);
           exit;
@@ -154,8 +154,8 @@ class Master extends CI_Controller{
     }else {
       $data['title']    = TITLE.'Root Master';
       $data['main_content']   = MASTER.'user_edit';
-      $data['desa']           = $this->master_model->get_desa()->result();
-      $data['user']           = $this->master_model->user_one($id)->row_array();
+      $data['desa']           = $this->Master_model->get_desa()->result();
+      $data['user']           = $this->Master_model->user_one($id)->row_array();
       $this->load->view('template', $data);
     }
   }
@@ -193,7 +193,7 @@ class Master extends CI_Controller{
           'desa_uid'=>$desa_uid,
           'type'=>$type
         );
-        $check = $this->master_model->insert_user($input_user_data);
+        $check = $this->Master_model->insert_user($input_user_data);
         if ($check) {
           redirect('master/user');
           exit;
@@ -205,7 +205,7 @@ class Master extends CI_Controller{
       die;
     }else {
       $data['title']          = TITLE.'Root Master';
-      $data['desa']           = $this->master_model->get_desa()->result();
+      $data['desa']           = $this->Master_model->get_desa()->result();
       $data['main_content']   = MASTER.'user_input';
       $this->load->view('template', $data);
     }
@@ -215,8 +215,8 @@ class Master extends CI_Controller{
   {
     $data['title']          = TITLE.'Root Master';
     $data['main_content']   = MASTER.'master_desa';
-    $data['desa']           = $this->master_model->get_desa()->result();
-    $data['kecamatan']      = $this->master_model->get_kecamatan()->result();
+    $data['desa']           = $this->Master_model->get_desa()->result();
+    $data['kecamatan']      = $this->Master_model->get_kecamatan()->result();
     $this->load->view('template', $data);
   }
 
@@ -240,7 +240,7 @@ class Master extends CI_Controller{
         'kecamatan_uid'=>$kecamatan_uid,
         'data_map_uid'=>$koordinat
       );
-        $check_desa_input = $this->master_model->input_desa($input_desa);
+        $check_desa_input = $this->Master_model->input_desa($input_desa);
         if ($check_desa_input) {
           redirect('master/desa');
         }else {
@@ -250,9 +250,9 @@ class Master extends CI_Controller{
       die;
     }else {
       $data['title']          = TITLE.'Root Master';
-      $data['koordinat']      = $this->master_model->list_koordinat()->result();
-      $data['pj']             = $this->master_model->get_user_1()->result();
-      $data['kecamatan']      = $this->master_model->get_kecamatan()->result();
+      $data['koordinat']      = $this->Master_model->list_koordinat()->result();
+      $data['pj']             = $this->Master_model->get_user_1()->result();
+      $data['kecamatan']      = $this->Master_model->get_kecamatan()->result();
       $data['main_content']   = MASTER.'desa_input';
       $this->load->view('template', $data);
     }
@@ -276,7 +276,7 @@ class Master extends CI_Controller{
         'kecamatan_uid'=>$kecamatan_uid,
         'data_map_uid'=> $koordinat
       );
-        $check_desa_input = $this->master_model->update_desa($input_desa, $id);
+        $check_desa_input = $this->Master_model->update_desa($input_desa, $id);
         if ($check_desa_input) {
           redirect('master/desa');
         }else {
@@ -286,10 +286,10 @@ class Master extends CI_Controller{
       die;
     }else {
       $data['title']          = TITLE.'Root Master';
-      $data['koordinat']      = $this->tanah_model->list_koordinat()->result();
-      $data['pj']             = $this->master_model->get_user_1()->result();
+      $data['koordinat']      = $this->Tanah_model->list_koordinat()->result();
+      $data['pj']             = $this->Master_model->get_user_1()->result();
       $data['desa']           = $this->db->get_where('sig_desa', array('id'=>$id))->row_array();
-      $data['kecamatan']      = $this->master_model->get_kecamatan()->result();
+      $data['kecamatan']      = $this->Master_model->get_kecamatan()->result();
       $data['main_content']   = MASTER.'desa_edit';
       $this->load->view('template', $data);
     }
@@ -313,7 +313,7 @@ class Master extends CI_Controller{
         'data_map_uid'=>$koordinat
       );
 
-        $check_kecamatan_input = $this->master_model->input_kecamatan($input_k);
+        $check_kecamatan_input = $this->Master_model->input_kecamatan($input_k);
         if ($check_kecamatan_input) {
           redirect('master/desa');
         }else {
@@ -323,8 +323,8 @@ class Master extends CI_Controller{
         die;
     }else {
       $data['title']          = TITLE.'Root Master';
-      $data['koordinat']      = $this->tanah_model->list_koordinat()->result();
-      $data['pj']             = $this->master_model->get_user_1()->result();
+      $data['koordinat']      = $this->Tanah_model->list_koordinat()->result();
+      $data['pj']             = $this->Master_model->get_user_1()->result();
       $data['main_content']   = MASTER.'kecamatan_input';
       $this->load->view('template', $data);
     }
@@ -347,7 +347,7 @@ class Master extends CI_Controller{
         'kecamatan_kepala_uid'=>$kecamatan_kepala_uid,
         'data_map_uid'=> $koordinat
       );
-        $check_kecamatan_input = $this->master_model->update_kecamatan($input_kecamatan, $id);
+        $check_kecamatan_input = $this->Master_model->update_kecamatan($input_kecamatan, $id);
         if ($check_kecamatan_input) {
           redirect('master/desa');
         }else {
@@ -358,8 +358,8 @@ class Master extends CI_Controller{
     }else {
       $data['title']          = TITLE.'Root Master';
       $data['kecamatan']       = $this->db->get_where('sig_kecamatan', array('id'=>$id))->row_array();
-      $data['koordinat']      = $this->tanah_model->list_koordinat()->result();
-      $data['pj']             = $this->master_model->get_user_1()->result();
+      $data['koordinat']      = $this->Tanah_model->list_koordinat()->result();
+      $data['pj']             = $this->Master_model->get_user_1()->result();
       $data['main_content']   = MASTER.'kecamatan_edit';
       $this->load->view('template', $data);
     }
@@ -368,7 +368,7 @@ class Master extends CI_Controller{
   function patok_list()
   {
     $data['title']          = TITLE.'List Patok';
-    $data['patok']          = $this->tanah_model->list_patok()->result();
+    $data['patok']          = $this->Tanah_model->list_patok()->result();
     $data['main_content']   = MAPS.'patok_tabel';
     $this->load->view('template', $data);
   }
@@ -393,18 +393,18 @@ class Master extends CI_Controller{
 
       $data_patok = array('data_map_uid'=>$id, 'patok_foto'=>$fileName, 'patok_lat'=>$patok_lat, 'patok_lng'=>$patok_lng);
 
-      $pool = $this->tanah_model->get_data_koordinat($id)->row_array();
+      $pool = $this->Tanah_model->get_data_koordinat($id)->row_array();
 
-      $post_patok = $this->tanah_model->insert_patok($data_patok);
+      $post_patok = $this->Tanah_model->insert_patok($data_patok);
       if ($post_patok) {
         $updatePool = array('koordinat' => $pool['koordinat']." ".$patok_lat.",".$patok_lng);
-        $updateMap_pool = $this->tanah_model->update_data_maps($id, $updatePool);
+        $updateMap_pool = $this->Tanah_model->update_data_maps($id, $updatePool);
         redirect('patok/input/'.$id);
         exit;
       }
     }else {
       $data['title']          = TITLE.'Detail Patok';
-      $data['patok']          = $this->tanah_model->get_data_patok($id)->result();
+      $data['patok']          = $this->Tanah_model->get_data_patok($id)->result();
       $data['main_content']   = MAPS.'patok_input';
       $this->load->view('template', $data);
     }

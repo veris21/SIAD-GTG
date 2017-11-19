@@ -150,15 +150,15 @@ class Auth extends CI_Controller{
         'status'=>$status,
         'type'=>$type
       );
-      $check = $this->office_model->post_disposisi($post);
+      $check = $this->Office_model->post_disposisi($post);
       if ($check) {
         redirect('disposisi');
         exit;
       }
     }else{
       $data['title']          = TITLE . 'Setting';
-      $data['kepada']         = $this->office_model->get_user_all_disposisi()->result();
-      $data['item']           = $this->office_model->get_timeline_notif($id)->result();
+      $data['kepada']         = $this->Office_model->get_user_all_disposisi()->result();
+      $data['item']           = $this->Office_model->get_timeline_notif($id)->result();
       $data['user']           = $this->option_model->get_user_data($id)->row_array();
       $data['main_content']   = UMUM .'setting';
       $this->load->view('template', $data);

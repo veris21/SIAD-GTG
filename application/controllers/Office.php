@@ -7,7 +7,7 @@ class Office extends CI_Controller{
   {
     parent::__construct();
     $this->load->library("PHPExcel");
-    $this->load->model('master_model', 'office_model','tanah_model','option_model','sms_model');
+    $this->load->model('Master_model', 'Office_model','Tanah_model','Option_model','sms_model');
   }
 
   function index()
@@ -32,7 +32,7 @@ class Office extends CI_Controller{
           // $data = array('upload_data' => $this->upload->data());
           $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
           $filename = $upload_data['file_name'];
-          $this->office_model->upload_data($filename);
+          $this->Office_model->upload_data($filename);
           unlink('./assets/uploader/import/'.$filename);
           redirect('data_penduduk','refresh');
         }
@@ -40,7 +40,7 @@ class Office extends CI_Controller{
     }else {
       $data['title']          = TITLE . 'Data Penduduk';
       $data['main_content']   = OFFICE . 'data_penduduk';
-      $data['data_penduduk']  = $this->office_model->data_penduduk();
+      $data['data_penduduk']  = $this->Office_model->data_penduduk();
       $this->load->view('template', $data);
     }
   }
@@ -50,7 +50,7 @@ class Office extends CI_Controller{
     $data['title']          = TITLE . 'Data Penduduk';
     $data['main_content']   = OFFICE . 'timeline_task';
     $id = $this->session->userdata('id');
-    $data['item']           = $this->office_model->get_timeline_notif_dismiss($id)->result();
+    $data['item']           = $this->Office_model->get_timeline_notif_dismiss($id)->result();
     $this->load->view('template', $data);
   }
 
@@ -61,7 +61,7 @@ class Office extends CI_Controller{
     if ($check) {
       $data['title']          = TITLE . 'Data Penduduk';
       $data['main_content']   = OFFICE . 'timeline_view';
-      $data['item']           = $this->office_model->get_timeline_one($id)->row_array();
+      $data['item']           = $this->Office_model->get_timeline_one($id)->row_array();
       $this->load->view('template', $data);
     }
   }
@@ -70,7 +70,7 @@ class Office extends CI_Controller{
 
     $data['title']          = TITLE . 'History Disposisi';
     $data['main_content']   = OFFICE . 'disposisi_history';
-    $data['history']   = $this->office_model->get_timeline()->result();
+    $data['history']   = $this->Office_model->get_timeline()->result();
     $this->load->view('template', $data);
   }
 
@@ -96,7 +96,7 @@ class Office extends CI_Controller{
         'status'=>$status,
         'type'=>$type
       );
-      $check = $this->office_model->post_disposisi($post);
+      $check = $this->Office_model->post_disposisi($post);
       if ($check) {
         // =================SMS Notifikasi Push====================
         $disposisi = ($type == 0 ? 'Perintah Langsung' : 'Disposisi');
@@ -114,8 +114,8 @@ class Office extends CI_Controller{
     }else{
 
       $data['title']          = TITLE . 'Disposisi';
-      $data['kepada']         = $this->office_model->get_user_disposisi()->result();
-      $data['arsip']          = $this->office_model->get_arsip_image($id)->row_array();
+      $data['kepada']         = $this->Office_model->get_user_disposisi()->result();
+      $data['arsip']          = $this->Office_model->get_arsip_image($id)->row_array();
       $data['main_content']   = OFFICE . 'disposisi_task_input';
       $this->load->view('template', $data);
     }
@@ -150,7 +150,7 @@ class Office extends CI_Controller{
       $message = $disposisi." Dari :".$dari." Memo :".$memo."(SMS Ini dari Si-Desa System)";
       sms_notifikasi($to, $message);
       // ========================================================
-      $check = $this->office_model->diposisi_terus_input($insert);
+      $check = $this->Office_model->diposisi_terus_input($insert);
       if ($check) {
 
         echo "<div class='alert alert-success alert-dismissable'>
@@ -164,8 +164,8 @@ class Office extends CI_Controller{
     }else{
 
       $data['title']          = TITLE. 'Teruskan Disposisi';
-      $data['kepada']         = $this->office_model->get_all_user()->result();
-      $data['data']           = $this->office_model->get_arsip_disposisi($id)->row_array();
+      $data['kepada']         = $this->Office_model->get_all_user()->result();
+      $data['data']           = $this->Office_model->get_arsip_disposisi($id)->row_array();
       $data['main_content']   = OFFICE.'disposisi_terus_input';
       $this->load->view('template', $data);
     }
@@ -175,7 +175,7 @@ class Office extends CI_Controller{
 
       $data['title']          = TITLE . 'Arsip Surat';
       $data['main_content']   = OFFICE . 'arsip_list';
-      $data['arsip_surat']    = $this->office_model->get_arsip_list();
+      $data['arsip_surat']    = $this->Office_model->get_arsip_list();
       $this->load->view('template', $data);
   }
 
@@ -185,7 +185,7 @@ class Office extends CI_Controller{
 
     $data['title']          = TITLE . 'Arsip Surat';
     $data['main_content']   = OFFICE . 'arsip_view';
-    $data['arsip_surat']    = $this->office_model->get_arsip_one($id)->row_array();
+    $data['arsip_surat']    = $this->Office_model->get_arsip_one($id)->row_array();
     $this->load->view('template', $data);
   }
   function arsip_input(){
@@ -222,7 +222,7 @@ class Office extends CI_Controller{
           'surat_perihal'    => $surat_perihal,
           'surat_disposisi_type'=> $surat_disposisi_type
          );
-        $check = $this->office_model->arsip_data($simpan_data);
+        $check = $this->Office_model->arsip_data($simpan_data);
         if ($check) {
           if ($surat_disposisi_type==1) {
             redirect('disposisi/input/'.$fileName);
@@ -236,7 +236,7 @@ class Office extends CI_Controller{
     }else {
       $data['title']          = TITLE . 'Input Arsip';
       $data['main_content']   = OFFICE . 'arsip_input_form';
-      // $data['arsip_surat']    = $this->office_model->get_arsip_list();
+      // $data['arsip_surat']    = $this->Office_model->get_arsip_list();
       $this->load->view('template', $data);
     }
   }
@@ -291,14 +291,14 @@ class Office extends CI_Controller{
         'ktp_path'=>$fileName,
         'type'=>0
       );
-      $push_data = $this->office_model->posting_permohonan($insert);
+      $push_data = $this->Office_model->posting_permohonan($insert);
       if ($push_data) {
         redirect('permohonan');
       }
     }else{
       $data['title']          = TITLE. 'Permohonana Layanan Tanah';
       $data['dusun']          = $this->db->get('sig_dusun')->result();
-      $data['data']           = $this->office_model->get_nik_one($id)->row_array();
+      $data['data']           = $this->Office_model->get_nik_one($id)->row_array();
       $data['main_content']   = OFFICE . 'form_permohonan';
       $this->load->view('template', $data);
     }
@@ -309,7 +309,7 @@ class Office extends CI_Controller{
 
     $data['title']          = TITLE. 'View Data Permohonana';
     $data['dusun']          = $this->db->get('sig_dusun')->result();
-    $data['data']           = $this->office_model->get_nik_one($id)->row_array();
+    $data['data']           = $this->Office_model->get_nik_one($id)->row_array();
     $data['main_content']   = OFFICE . 'view_permohonan';
     $this->load->view('template', $data);
   }
@@ -317,7 +317,7 @@ class Office extends CI_Controller{
   function permohonan_list(){
 
     $data['title']          = TITLE. 'Data Permohonana Layanan Tanah';
-    $data['data']           = $this->office_model->get_permohonan()->result();
+    $data['data']           = $this->Office_model->get_permohonan()->result();
     $data['main_content']   = OFFICE . 'list_permohonan';
     $this->load->view('template', $data);
   }
