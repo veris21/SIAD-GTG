@@ -94,11 +94,11 @@
     var contentString = '<b><?php echo $koor->keterangan;?></b><br><br>Luas :  '+(area).toFixed(2)+' meter<sup>2</sup>';
     polygon = new google.maps.Polygon({
         paths: [text],
-        strokeColor:'#FF0000',
-        strokeOpacity: 0,
-        strokeWeight: 2,
-        fillColor:color,
-        fillOpacity: 0.9,
+        strokeColor:'#000000',
+        strokeOpacity: 0.9,
+        strokeWeight: 4,
+        // fillColor:color,
+        // fillOpacity: 0.9,
         html: contentString
     });
     var text=[];
