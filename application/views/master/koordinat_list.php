@@ -95,8 +95,8 @@
     polygon = new google.maps.Polygon({
         paths: [text],
         strokeColor:'#000000',
-        strokeOpacity: 0.9,
-        strokeWeight: 4,
+        strokeOpacity: 0,
+        strokeWeight: 2,
         // fillColor:color,
         // fillOpacity: 0.9,
         html: contentString
