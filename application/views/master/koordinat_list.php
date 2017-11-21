@@ -96,7 +96,7 @@
         paths: [text],
         strokeColor:'#000000',
         strokeOpacity: 1,
-        strokeWeight: 2,
+        strokeWeight: 0.5,
         // fillColor:color,
         // fillOpacity: 0.9,
         html: contentString
