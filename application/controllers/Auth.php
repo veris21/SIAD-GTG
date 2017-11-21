@@ -50,7 +50,7 @@ class Auth extends CI_Controller{
             exit;
         }else {
           $this->session->sess_destroy();
-          redirect('login');
+          redirect(BASE_URL);
           exit;
         }
       }
@@ -64,7 +64,7 @@ class Auth extends CI_Controller{
   public function logout()
   {
     $this->session->sess_destroy();
-    redirect('login');
+    redirect('public');
     die;
   }
 

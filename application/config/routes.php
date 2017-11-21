@@ -5,9 +5,10 @@ $route['default_controller'] = 'office';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['public']                            = 'stream';
+
 $route['lookup']                            = 'master/lookup';
 $route['proses']                            = 'master/proses';
-
 // TODO: root system master
 $route['master']                             = 'master';
 $route['master/sms']                         = 'master/sms_api';
@@ -23,7 +24,6 @@ $route['desa/edit/(:num)']                   = 'master/desa_edit/$1';
 $route['kecamatan/input']                    = 'master/kecamatan_input';
 $route['kecamatan/edit/(:num)']              = 'master/kecamatan_edit/$1';
 
-
 // TODO: Koordinat route
 $route['koordinat']                 = 'master/koordinat_list';
 $route['koordinat/input']           = 'master/koordinat_input';
@@ -35,7 +35,6 @@ $route['patok/input/(:num)']        = 'master/patok_input/$1';
 // TODO: OFFICE PELAYANAN
 $route['pelayanan']                 = 'office/pelayanan_dashboard';
 $route['data_penduduk']             = 'office/data_penduduk';
-$route['public']                    = 'public_c';
 $route['timeline']                  = 'office/timeline_list';
 $route['timeline/details/(:num)']   = 'office/timeline_view/$1';
 

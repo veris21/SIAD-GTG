@@ -34,6 +34,7 @@
 
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyAQZ5juJWnQk7IjkS1xtzSzor1bChd_L3A&libraries=drawing,geometry,distance"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -98,6 +99,7 @@
     <script src="<?php echo THEME; ?>plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo THEME; ?>dist/js/app.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
       $("#dataTables-data").DataTable({responsive: true});
       $("#dataTables-permohonan").DataTable({responsive: true});

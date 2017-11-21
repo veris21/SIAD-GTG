@@ -222,7 +222,7 @@
           break;
         default:
           redirect('logout');
-          break;
+        break;
       }
        ?>
       <li class="header">ACCOUNT CONTROL</li>

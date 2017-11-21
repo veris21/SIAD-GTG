@@ -3,7 +3,6 @@
     <div style="height: 360px;" id="map_canvas"></div>
   </div>
 </div>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyAQZ5juJWnQk7IjkS1xtzSzor1bChd_L3A&libraries=drawing,geometry,distance"></script>
 <script type="text/javascript">
   <?php $id = 1; $koor = $this->tanah_model->get_data_koordinat_all()->result(); ?>
   function initialize() {

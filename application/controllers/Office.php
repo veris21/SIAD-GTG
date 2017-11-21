@@ -8,14 +8,14 @@ class Office extends CI_Controller{
     parent::__construct();
     $this->load->library("PHPExcel");
     $this->load->model('master_model', 'office_model','tanah_model','option_model','sms_model');
+    // cek_login();
   }
 
   function index()
   {
-      // MAPS
-          $data['title']          = TITLE . 'Dashboard';
-          $data['main_content']   = OFFICE . 'dashboard';
-          $this->load->view('template', $data);
+      $data['title']          = TITLE . 'Dashboard';
+      $data['main_content']   = OFFICE . 'dashboard';
+      $this->load->view('template', $data);
   }
   // TODO: Controller Handler Database Kependudukan
   function data_penduduk(){
