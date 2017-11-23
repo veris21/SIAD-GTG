@@ -10,7 +10,7 @@ class Google_url extends CI_Controller {
 
     function index()
     {
-        $url = 'validate/view/';
+        $url = BASE_URL.'validate/view/';
         /* if you want switch debug mode, please replace FALSE with TRUE*/
         $this->google_url_api->enable_debug(FALSE);
 
@@ -27,7 +27,7 @@ class Google_url extends CI_Controller {
          * expand example
          */
 
-        $url = 'http://goo.gl/fbsS';
+        $url = 'https://goo.gl/xrv9Wg';
         echo '<h2>Expand Example</h2>';
         $expand_url = $this->google_url_api->expand($url);
         echo $url . " => " . $expand_url->longUrl . "<br />";
@@ -38,7 +38,7 @@ class Google_url extends CI_Controller {
          * analytics example
          */
 
-        $url = "http://goo.gl/fbsS";
+        $url = "https://goo.gl/xrv9Wg";
         echo '<h2>Analytics Example</h2>';
         $analytics_url = $this->google_url_api->analytics($url);
         echo 'Response code: ' . $this->google_url_api->get_http_status() . "<br />";

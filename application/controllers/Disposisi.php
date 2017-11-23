@@ -6,7 +6,8 @@ class Disposisi extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
-    //Codeigniter : Write Less Do More
+    require_once (APPPATH.'controllers/Notifikasi.php');
+    $notifikasi = new Notifikasi();
   }
 
   function index()

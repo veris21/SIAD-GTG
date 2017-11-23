@@ -34,10 +34,14 @@ define('THEME',           BASE_URL . 'assets/theme/');
 define('UPLOADER',        BASE_URL . 'assets/uploader/');
 
 define('OFFICE',          'office/');
-define('UMUM',            'public/');
 define('PRINT',           'print/');
 define('MASTER',          'master/');
 define('MAPS',            'peta/');
+
+define('UMUM',            'public/');
+define('ARSIP',            'arsip_layout/');
+define('DISPOSISI',        'disposisi_layout/');
+define('PERTANAHAN',       'pertanahan_layout/');
 
 
 /*-------------------------------*/
