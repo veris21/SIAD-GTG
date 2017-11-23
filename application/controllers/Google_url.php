@@ -10,7 +10,7 @@ class Google_url extends CI_Controller {
 
     function index()
     {
-        $url = '/validate/view/';
+        $url = 'validate/view/';
         /* if you want switch debug mode, please replace FALSE with TRUE*/
         $this->google_url_api->enable_debug(FALSE);
 
