@@ -21,6 +21,7 @@
        position: relative;
       }
     </style>
+    <link rel="shortcut icon" href="<?php echo BASE_URL.'assets/';?>favicon.ico" type="image/x-icon">
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -50,14 +51,6 @@
       </header>
       <aside class="main-sidebar">
         <section class="sidebar">
-          <div class="user-panel">
-            <div class="pull-left image">
-              <img src="<?php echo UPLOADER.'avatar/logo-gtg.png'; ?>" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-              <p>Nama</p>
-            </div>
-          </div>
           <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
               <input type="text" name="q" class="form-control" placeholder="Cari Data Peta...">
@@ -67,7 +60,8 @@
             </div>
           </form>
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">RESULT</li>
+            <li></li>
           </ul>
         </section>
       </aside>
@@ -75,18 +69,19 @@
       <section class="content">
         <div class="row">
           <div class="col-sm-12 col-xs-12">
-            <div id="map_stream"></div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12 col-xs-12">
-        <div class="box box-warning">
-          <div class="box-body">
-            <div class="well">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <div class="box box-warning">
+                <div class="box-body">
+                  <div class="well">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+
+        <div class="row">
+          <div class="col-sm-12 col-xs-12">
+            <div id="map_stream"></div>
           </div>
         </div>
       </section>
@@ -101,7 +96,7 @@
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="<?php echo THEME; ?>dist/js/app.min.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyAQZ5juJWnQk7IjkS1xtzSzor1bChd_L3A&libraries=drawing,geometry,distance"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&libraries=drawing,geometry,distance"></script>
     <script type="text/javascript" src="<?php echo APPS.'maps.js'; ?>"></script>
   </body>
 </html>

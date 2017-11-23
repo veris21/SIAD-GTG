@@ -41,9 +41,6 @@
           <li class="active"><a href="#timeline" data-toggle="tab">Timeline</a></li>
           <li><a href="#datauser" data-toggle="tab">Profile</a></li>
           <li><a href="#settings" data-toggle="tab">Ganti Password</a></li>
-          <?php if ($this->session->userdata('type')==1): ?>
-            <!-- <li><a href="#memo" data-toggle="tab">Memo</a></li> -->
-          <?php endif; ?>
         </ul>
         <div class="tab-content">
 
@@ -144,31 +141,9 @@
             </div>
             <div class="form-group">
               <div class="col-sm-offset-4 col-sm-8">
-                <button type="submit" name="updateProfile" class="btn btn-danger btn-flat btn-sm">Update Profile <i class="fa fa-ban"></i></button>
+                <button onclick="return confirmDialog();" type="submit" name="updateProfile" class="btn btn-danger btn-flat btn-sm confirm_update">Update Profile <i class="fa fa-ban"></i></button>
               </div>
             </div>
-            </form>
-          </div><!-- /.tab-pane -->
-
-          <div class="tab-pane" id="memo">
-            <?php echo form_open(); ?>
-              <div class="form-group">
-                <label>Kepada</label>
-                <select class="form-control" name="kepada_id">
-                  <?php foreach ($kepada as $k) {
-                    echo "<option value='$k->id'>$k->user_fullname ( <b>$k->user_status</b> )</option>";
-                  } ?>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Memo</label>
-                <textarea class="form-control" name="memo" rows="4" cols="40"></textarea>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-4 col-sm-8">
-                <button type="submit" name="memoPerintah" class="btn btn-flat btn-sm btn-danger">Kirim Perintah Langsung <i class="fa fa-ban"></i></button>
-              </div>
-              </div>
             </form>
           </div><!-- /.tab-pane -->
 
@@ -178,3 +153,9 @@
   </div><!-- /.row -->
 
 </section><!-- /.content -->
+
+<script>
+function confirmDialog() {
+ return swal('Selamat!', 'Data Berhasil Diupdate!', 'success');
+}
+</script>

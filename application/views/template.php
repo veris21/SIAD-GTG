@@ -34,13 +34,17 @@
 
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyAQZ5juJWnQk7IjkS1xtzSzor1bChd_L3A&libraries=drawing,geometry,distance"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&libraries=drawing,geometry,distance"></script>
+    <script src="<?php echo THEME; ?>sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo THEME; ?>sweetalert.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="shortcut icon" href="<?php echo BASE_URL.'assets/';?>new-logo.png" type="image/x-icon">
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -99,7 +103,7 @@
     <script src="<?php echo THEME; ?>plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo THEME; ?>dist/js/app.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
     <script type="text/javascript">
       $("#dataTables-data").DataTable({responsive: true});
       $("#dataTables-permohonan").DataTable({responsive: true});

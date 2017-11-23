@@ -5,7 +5,9 @@ class Auth extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
+    $this->load->helper('sms_helper');
   }
+
 
   public function login()
   {
@@ -38,6 +40,7 @@ class Auth extends CI_Controller{
                 'type'        =>$data['type'],
                 'jabatan'     =>$data['user_status'],
                 'avatar'      =>$data['avatar'],
+                'hp'          =>$data['hp'],
                 'last_login'  =>$data['last_login']
             )
             );
@@ -93,8 +96,12 @@ class Auth extends CI_Controller{
       $update = array('user_fullname'=>$user_fullname, 'hp'=>$hp);
       $check = $this->option_model->update_user_data($id, $update);
       if ($check) {
+        $to = $this->session->userdata('hp');
+        // Script Kirim SMS Api Zenziva
+        $message="Username: $user_fullname Data Kontak Anda telah diganti dengan : $hp (Si-Desa Gantung).";
+        sms_notifikasi($to, $message);
         redirect('setting/akun');
-        exit;
+        // exit;
       }else {
         $data['title'] = 'ERROR';
         $data['main_content'] = UMUM.'error';
@@ -129,32 +136,6 @@ class Auth extends CI_Controller{
         $this->load->view('template', $data);
       }
       die;
-    }elseif (isset($_POST['memoPerintah'])) {
-      $id_arsip   = 0;
-      $type       = 0; //DISPOSISI KEY = 1, PERINTAH LANGSUNG = 0
-      $kepada_id  = strip_tags($this->input->post('kepada_id'));
-      $memo       = strip_tags($this->input->post('memo'));
-      $dari_id    = $this->session->userdata('id');
-      $status     = 0;
-      $datestring = '%d %M %Y - %h:%i %a';
-      $time = time();
-      $sekarang = mdate($datestring, $time);
-      $disposisi_tgl = $sekarang;
-
-      $post = array(
-        'id_arsip'=>$id_arsip,
-        'kepada_id'=>$kepada_id,
-        'dari_id'=>$dari_id,
-        'memo'=>$memo,
-        'disposisi_tgl'=>$disposisi_tgl,
-        'status'=>$status,
-        'type'=>$type
-      );
-      $check = $this->office_model->post_disposisi($post);
-      if ($check) {
-        redirect('disposisi');
-        exit;
-      }
     }else{
       $data['title']          = TITLE . 'Setting';
       $data['kepada']         = $this->office_model->get_user_all_disposisi()->result();

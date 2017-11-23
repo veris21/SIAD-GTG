@@ -2,12 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Office extends CI_Controller{
-
   public function __construct()
   {
     parent::__construct();
-    $this->load->library("PHPExcel");
-    $this->load->model('master_model', 'office_model','tanah_model','option_model','sms_model');
+    // $this->load->library("PHPExcel");
     // cek_login();
   }
 
@@ -103,11 +101,11 @@ class Office extends CI_Controller{
         $kepada = $this->db->get_where('sig_users', array('id'=>$kepada_id))->row_array();
         $dari = $this->session->userdata('full_name');
         $to = $kepada['hp'];
-        $message = $disposisi." Dari :".$dari." Memo :".$memo."(SMS Ini dari Si-Desa System)";
+        $untuk = $kepada['user_fullname'];
+        $message = "Kepada $untuk - $disposisi Dari : $dari / Memo : $memo (Si-Desa System)";
         sms_notifikasi($to, $message);
         // ========================================================
         redirect('disposisi');
-
         exit;
       }
       return;
@@ -143,11 +141,12 @@ class Office extends CI_Controller{
         'status' => $status
       );
       // =================SMS Notifikasi Push====================
-      $disposisi = ($type==0 ? 'Perintah Langsung' : 'Disposisi');
+      $disposisi = ($type == 0 ? 'Perintah Langsung' : 'Disposisi');
       $kepada = $this->db->get_where('sig_users', array('id'=>$kepada_id))->row_array();
       $dari = $this->session->userdata('full_name');
       $to = $kepada['hp'];
-      $message = $disposisi." Dari :".$dari." Memo :".$memo."(SMS Ini dari Si-Desa System)";
+      $untuk = $kepada['user_fullname'];
+      $message = "Kepada $untuk - $disposisi Dari : $dari / Memo : $memo (Si-Desa System)";
       sms_notifikasi($to, $message);
       // ========================================================
       $check = $this->office_model->diposisi_terus_input($insert);

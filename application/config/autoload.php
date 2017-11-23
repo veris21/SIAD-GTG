@@ -58,7 +58,19 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','email','session','parser','form_validation','encryption','upload');
+$autoload['libraries'] = array(
+  'database',
+  'email',
+  'session',
+  'parser',
+  'form_validation',
+  'encryption',
+  'upload',
+  'ciqrcode',
+  'PHPExcel',
+  'PdfGenerator',
+  'google_url_api'
+);
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +144,14 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('office_model', 'sms_model', 'print_model','option_model', 'master_model','tanah_model');
+$autoload['model'] = array(
+    'master_model',
+    'office_model',
+    'print_model',
+    'option_model',
+    'tanah_model',
+    'arsip_model',
+    'disposisi_model',
+    'notifikasi_model',
+    'pertanahan_model'
+  );
