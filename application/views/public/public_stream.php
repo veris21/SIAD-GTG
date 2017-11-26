@@ -51,17 +51,18 @@
       </header>
       <aside class="main-sidebar">
         <section class="sidebar">
-          <form action="#" method="get" class="sidebar-form">
+          <!-- <form action="#" method="get" class="sidebar-form"> -->
+          <div class="sidebar-form">
             <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Cari Data Peta...">
+              <input type="text"  id="search" onkeyup="autofill()" name="search" class="form-control" placeholder="Cari Data Peta...">
               <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                <button type="button" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
             </div>
-          </form>
-          <ul class="sidebar-menu">
+          </div>
+          <!-- </form> -->
+          <ul id="details_nik" class="sidebar-menu">
             <li class="header">RESULT</li>
-            <li></li>
           </ul>
         </section>
       </aside>
@@ -98,5 +99,38 @@
     <script src="<?php echo THEME; ?>dist/js/app.min.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&libraries=drawing,geometry,distance"></script>
     <script type="text/javascript" src="<?php echo APPS.'maps.js'; ?>"></script>
+
+    <script type="text/javascript">
+    function autofill() {
+      var nik = $('#search').val();
+      if (nik!='') {
+        $('#details_nik').prop('disabled',false);
+        console.log(nik);
+      }else{
+        $('#details_nik').prop('disabled',true);
+        // $.ajax({
+        //   url:'search',
+        //   dataType: 'json',
+        // }).success(function(data){
+        //   obj = JSON.parse(data);
+        //   $('#nik').val(obj.nik);
+        //   $('#kk').val(obj.kk);
+        //   $('#nama').val(obj.nama);
+        //   $('#tempat_lahir').val(obj.tempat_lahir);
+        //   $('#tanggal_lahir').val(obj.tanggal_lahir);
+        //   $('#pendidikan').val(obj.pendidikan);
+        //   $('#agama').val(obj.agama);
+        //   $('#pekerjaan').val(obj.pekerjaan);
+        //   $('#status_kawin').val(obj.status_kawin);
+        //   $('#status_dalam_keluarga').val(obj.status_dalam_keluarga);
+        //   $('#jumlah_anggota_keluarga').val(obj.jumlah_anggota_keluarga);
+        //   $('#rt').val(obj.rt);
+        //   $('#dusun').val(obj.dusun);
+        //   $('#desa').val(obj.desa);
+        //   $('#alamat').val(obj.alamat);
+        // });
+      }
+    }
+    </script>
   </body>
 </html>

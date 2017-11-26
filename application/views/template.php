@@ -129,6 +129,36 @@
           cache: true
         }
       });
+
+      function autofill() {
+        var nik = $('#search').val();
+        if (nik='') {
+          $('#details_nik').prop('disabled',true);
+        }else{
+          $('#details_nik').prop('disabled',false);
+          $.ajax({
+            url:'search',
+            dataType: 'json',
+          }).success(function(data){
+            obj = JSON.parse(data);
+            $('#nik').val(obj.nik);
+            $('#kk').val(obj.kk);
+            $('#nama').val(obj.nama);
+            $('#tempat_lahir').val(obj.tempat_lahir);
+            $('#tanggal_lahir').val(obj.tanggal_lahir);
+            $('#pendidikan').val(obj.pendidikan);
+            $('#agama').val(obj.agama);
+            $('#pekerjaan').val(obj.pekerjaan);
+            $('#status_kawin').val(obj.status_kawin);
+            $('#status_dalam_keluarga').val(obj.status_dalam_keluarga);
+            $('#jumlah_anggota_keluarga').val(obj.jumlah_anggota_keluarga);
+            $('#rt').val(obj.rt);
+            $('#dusun').val(obj.dusun);
+            $('#desa').val(obj.desa);
+            $('#alamat').val(obj.alamat);
+          });
+        }
+      }
       // MAPS
     </script>
   </body>

@@ -67,8 +67,7 @@ $autoload['libraries'] = array(
   'encryption',
   'upload',
   'ciqrcode',
-  'PHPExcel',
-  'PdfGenerator',
+  'phpexcel',
   'google_url_api'
 );
 

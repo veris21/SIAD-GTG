@@ -31,6 +31,10 @@ define('ROOTPATH',          rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/');
 define('APPS',            BASE_URL . 'assets/apps/');
 define('THEME',           BASE_URL . 'assets/theme/');
 define('UPLOADER',        BASE_URL . 'assets/uploader/');
+define('KTP',             UPLOADER . 'ktp/');
+define('PATOK',           UPLOADER . 'patok/');
+define('SCAN_ARSIP',      UPLOADER . 'arsip/');
+define('QRCODE',          UPLOADER . 'qr_code/');
 
 define('OFFICE',          'office/');
 define('PRINT',           'print/');
@@ -38,9 +42,9 @@ define('MASTER',          'master/');
 define('MAPS',            'peta/');
 
 define('UMUM',            'public/');
-define('ARSIP',            'arsip_layout/');
-define('DISPOSISI',        'disposisi_layout/');
-define('PERTANAHAN',       'pertanahan_layout/');
+define('ARSIP',           'arsip_layout/');
+define('DISPOSISI',       'disposisi_layout/');
+define('PERTANAHAN',      'pertanahan_layout/');
 
 
 /*-------------------------------*/

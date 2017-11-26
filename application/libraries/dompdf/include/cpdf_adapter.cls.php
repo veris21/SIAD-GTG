@@ -1,14 +1,58 @@
 <?php
 /**
+ * DOMPDF - PHP5 HTML to PDF renderer
+ *
+ * File: $RCSfile: cpdf_adapter.cls.php,v $
+ * Created on: 2004-08-04
+ * Modified on: 2008-01-05
+ *
+ * Copyright (c) 2004 - Benj Carson <benjcarson@digitaljunkies.ca>
+ * Portions copyright (c) 2008 - Orion Richardson <orionr@yahoo.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library in the file LICENSE.LGPL; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+ * 02111-1307 USA
+ *
+ * Alternatively, you may distribute this software under the terms of the
+ * PHP License, version 3.0 or later.  A copy of this license should have
+ * been distributed with this file in the file LICENSE.PHP .  If this is not
+ * the case, you can obtain a copy at http://www.php.net/license/3_0.txt.
+ *
+ * The latest version of DOMPDF might be available at:
+ * http://www.dompdf.com/
+ *
+ * @link http://www.dompdf.com/
+ * @copyright 2004 Benj Carson
+ * @author Benj Carson <benjcarson@digitaljunkies.ca>
+ * @contributor Orion Richardson <orionr@yahoo.com>
+ * @contributor Helmut Tischer <htischer@weihenstephan.org>
  * @package dompdf
- * @link    http://www.dompdf.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Orion Richardson <orionr@yahoo.com>
- * @author  Helmut Tischer <htischer@weihenstephan.org>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- * @version $Id: cpdf_adapter.cls.php 466 2012-02-04 13:08:38Z fabien.menager $
+ *
+ * Changes
+ * @contributor Helmut Tischer <htischer@weihenstephan.org>
+ * @version 0.5.1.htischer.20090507
+ * - On gif to png conversion tmp file creation, clarify tmp name and add to tmp deletion list only on success
+ * - On gif to png conversion, when available add direct from gd without tmp file, skip image load if already cached.
+ *   to safe CPU time and memory
+ * @contributor Helmut Tischer <htischer@weihenstephan.org>
+ * @version dompdf_trunk_with_helmut_mods.20090524
+ * - Pass temp and fontcache folders to Cpdf, to making Cpdf independent from dompdf
+ * @version dompdf_trunk_with_helmut_mods.20090528
+ * - fix text position according to glyph baseline to match background rectangle
  */
+
+/* $Id: cpdf_adapter.cls.php 356 2011-01-28 08:56:10Z fabien.menager $ */
 
 // FIXME: Need to sanity check inputs to this class
 require_once(DOMPDF_LIB_DIR . "/class.pdf.php");
@@ -178,6 +222,7 @@ class CPDF_Adapter implements Canvas {
 
     $this->_width = $size[2] - $size[0];
     $this->_height= $size[3] - $size[1];
+    $this->_pdf->openHere('Fit');
     
     $this->_page_number = $this->_page_count = 1;
     $this->_page_text = array();
@@ -199,6 +244,7 @@ class CPDF_Adapter implements Canvas {
       if (!DEBUGKEEPTEMP)
         unlink($img);
     }
+    clear_object($this);
   }
   
   /**
@@ -427,12 +473,6 @@ class CPDF_Adapter implements Canvas {
     $this->_set_fill_transparency($mode, $opacity);
   }
   
-  function set_default_view($view, $options = array()) {
-    array_unshift($options, $view);
-    $currentPage = $this->_pdf->currentPage;
-    call_user_func_array(array($this->_pdf, "openHere"), $options);
-  }
-  
   //........................................................................
 
   
@@ -462,8 +502,7 @@ class CPDF_Adapter implements Canvas {
    *
    * @return string The url of the newly converted image
    */
-  protected function _convert_gif_bmp_to_png($image_url, $type) {
-    $image_type = Image_Cache::type_to_ext($type);
+  protected function _convert_gif_bmp_to_png($image_url, $image_type) {
     $func_name = "imagecreatefrom$image_type";
     
     if ( !function_exists($func_name) ) {
@@ -474,18 +513,16 @@ class CPDF_Adapter implements Canvas {
     $im = $func_name($image_url);
 
     if ( $im ) {
-      imageinterlace($im, false);
+      imageinterlace($im, 0);
 
-      $tempname = tempnam(DOMPDF_TEMP_DIR, "{$image_type}dompdf_img_");
-      @unlink($tempname);
-      $filename = "$tempname.png";
+      $filename = tempnam(DOMPDF_TEMP_DIR, "{$image_type}dompdf_img_").'.png';
       $this->_image_cache[] = $filename;
 
       imagepng($im, $filename);
       imagedestroy($im);
-    } 
-    else {
-      $filename = Image_Cache::$broken_image;
+    } else {
+      $filename = DOMPDF_LIB_DIR . "/res/broken_image.png";
+
     }
 
     restore_error_handler();
@@ -569,33 +606,76 @@ class CPDF_Adapter implements Canvas {
   
   //........................................................................
 
-  function image($img, $x, $y, $w, $h, $resolution = "normal") {
-    list($width, $height, $type) = dompdf_getimagesize($img);
-    
+  function image($img_url, $img_type, $x, $y, $w, $h) {
     //debugpng
-    if (DEBUGPNG) print "[image:$img|$width|$height|$type]";
+    if (DEBUGPNG) print '[image:'.$img_url.'|'.$img_type.']';
 
-    switch ($type) {
-    case IMAGETYPE_JPEG:
+    $img_type = mb_strtolower($img_type);
+
+    switch ($img_type) {
+    case "jpeg":
+    case "jpg":
+      //debugpng
       if (DEBUGPNG)  print '!!!jpg!!!';
-      $this->_pdf->addJpegFromFile($img, $x, $this->y($y) - $h, $w, $h);
-      break;
-      
-    case IMAGETYPE_GIF:
-    case IMAGETYPE_BMP:
-      if (DEBUGPNG)  print '!!!bmp or gif!!!';
-      // @todo use cache for BMP and GIF
-      $img = $this->_convert_gif_bmp_to_png($img, $type);
 
-    case IMAGETYPE_PNG:
+      $this->_pdf->addJpegFromFile($img_url, $x, $this->y($y) - $h, $w, $h);
+      break;
+
+    case "png":
+      //debugpng
       if (DEBUGPNG)  print '!!!png!!!';
 
-      $this->_pdf->addPngFromFile($img, $x, $this->y($y) - $h, $w, $h);
+      $this->_pdf->addPngFromFile($img_url, $x, $this->y($y) - $h, $w, $h);
+      break;
+
+    case "gif":
+    case "bmp":
+      // Convert gifs or bmps to pngs
+      //DEBUG_IMG_TEMP
+      //if (0) {
+      if ( method_exists( $this->_pdf, "addImagePng" ) ) {
+        //debugpng
+        if (DEBUGPNG)  print "!!!$img_type addImagePng!!!";
+
+        //If optimization to direct png creation from gd object is available,
+        //don't create temp file, but place gd object directly into the pdf
+  	    if ( method_exists( $this->_pdf, "image_iscached" ) &&
+  	        $this->_pdf->image_iscached($img_url) ) {
+  	      //If same image has occured already before, no need to load because
+  	      //duplicate will anyway be eliminated.
+  	      $img = null;
+  	      unset($img);
+  	    }
+        else {
+  	      $func_name = "imagecreatefrom$img_type";
+      	  $img = @$func_name($img_url);
+      	  if ( !$img ) {
+        	return;
+      	  }
+      	  imageinterlace($img, false);
+      	}
+
+      	$this->_pdf->addImagePng($img_url, $x, $this->y($y) - $h, $w, $h, $img);
+
+        if ( $img ) {
+      	  imagedestroy($img);
+        }
+      } 
+      else {
+        //debugpng
+        if (DEBUGPNG)  print "!!!$img_type addPngFromFile!!!";
+        $img_url = $this->_convert_gif_bmp_to_png($img_url, $img_type);
+        $this->_pdf->addPngFromFile($img_url, $x, $this->y($y) - $h, $w, $h);
+      }
       break;
 
     default:
+      //debugpng
       if (DEBUGPNG) print '!!!unknown!!!';
+      break;
     }
+    
+    return;
   }
 
   //........................................................................
@@ -636,8 +716,10 @@ class CPDF_Adapter implements Canvas {
     //
     //print '<pre>['.$font.','.$size.','.$pdf->getFontHeight($size).','.$pdf->getFontDescender($size).','.$pdf->fonts[$pdf->currentFont]['FontBBox'][3].','.$pdf->fonts[$pdf->currentFont]['FontBBox'][1].','.$pdf->fonts[$pdf->currentFont]['FontHeightOffset'].','.$pdf->fonts[$pdf->currentFont]['Ascender'].','.$pdf->fonts[$pdf->currentFont]['Descender'].']</pre>';
     //
-    //$pdf->addText($x, $this->y($y) - ($pdf->fonts[$pdf->currentFont]['FontBBox'][3]*$size)/1000, $size, $text, $angle, $word_space, $char_space);
-    $pdf->addText($x, $this->y($y) - $pdf->getFontHeight($size), $size, $text, $angle, $word_space, $char_space);
+    //$pdf->addText($x, $this->y($y) - Font_Metrics::get_font_height($font, $size), $size, $text, $angle, $word_space, $char_space);
+    //$pdf->addText($x, $this->y($y) - $size, $size, $text, $angle, $word_space, $char_space);
+    //$pdf->addText($x, $this->y($y) - $pdf->getFontHeight($size)-$pdf->getFontDescender($size), $size, $text, $angle, $word_space, $char_space);
+    $pdf->addText($x, $this->y($y) - ($pdf->fonts[$pdf->currentFont]['FontBBox'][3]*$size)/1000, $size, $text, $angle, $word_space, $char_space);
   }
 
   //........................................................................
@@ -688,13 +770,9 @@ class CPDF_Adapter implements Canvas {
   function get_text_width($text, $font, $size, $word_spacing = 0, $char_spacing = 0) {
     $this->_pdf->selectFont($font);
     if (!DOMPDF_UNICODE_ENABLED) {
-      $text = mb_convert_encoding($text, 'Windows-1252', 'UTF-8');
+    	$text = mb_convert_encoding($text, 'Windows-1252', 'UTF-8');
     }
     return $this->_pdf->getTextWidth($size, $text, $word_spacing, $char_spacing);
-  }
-  
-  function register_string_subset($font, $string) {
-    return $this->_pdf->registerText($font, $string);
   }
 
   //........................................................................
@@ -702,15 +780,6 @@ class CPDF_Adapter implements Canvas {
   function get_font_height($font, $size) {
     $this->_pdf->selectFont($font);
     return $this->_pdf->getFontHeight($size) * DOMPDF_FONT_HEIGHT_RATIO;
-  }
-  
-  /*function get_font_x_height($font, $size) {
-    $this->_pdf->selectFont($font);
-    return $this->_pdf->getFontXHeight($size) * DOMPDF_FONT_HEIGHT_RATIO;
-  }*/
-  
-  function get_font_baseline($font, $size) {
-    return $this->get_font_height($font, $size) / DOMPDF_FONT_HEIGHT_RATIO;
   }
 
   //........................................................................

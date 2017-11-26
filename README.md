@@ -7,3 +7,6 @@ Sistem ini dibuat untuk proyek **SIAD Desa Gantung tahun 2018**, dengan fitur - 
 4. Fitur Alternatif Akses Data dan input Lewat SMS Center dengan format khusus
 
 sistem ini dibuat oleh : **[Veris Juniardi]** https://twitter.com/veris_juniardi
+
+hint vps setting :
+Setting localtime Server => ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime

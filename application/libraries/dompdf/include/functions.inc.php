@@ -1,18 +1,54 @@
 <?php
 /**
+ * DOMPDF - PHP5 HTML to PDF renderer
+ *
+ * File: $RCSfile: functions.inc.php,v $
+ * Created on: 2004-08-04
+ *
+ * Copyright (c) 2004 - Benj Carson <benjcarson@digitaljunkies.ca>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library in the file LICENSE.LGPL; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+ * 02111-1307 USA
+ *
+ * Alternatively, you may distribute this software under the terms of the
+ * PHP License, version 3.0 or later.  A copy of this license should have
+ * been distributed with this file in the file LICENSE.PHP .  If this is not
+ * the case, you can obtain a copy at http://www.php.net/license/3_0.txt.
+ *
+ * The latest version of DOMPDF might be available at:
+ * http://www.dompdf.com/
+ *
+ * @link http://www.dompdf.com/
+ * @copyright 2004 Benj Carson
+ * @author Benj Carson <benjcarson@digitaljunkies.ca>
+ * @contributor Helmut Tischer <htischer@weihenstephan.org>
  * @package dompdf
- * @link    http://www.dompdf.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @author  Helmut Tischer <htischer@weihenstephan.org>
- * @author  Fabien Ménager <fabien.menager@gmail.com>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- * @version $Id: functions.inc.php 448 2011-11-13 13:00:03Z fabien.menager $
+ *
+ * Changes
+ * @contributor Helmut Tischer <htischer@weihenstephan.org>
+ * @version 0.5.1.htischer.20090507
+ * - trailing slash of base_path in build_url is no longer optional when
+ *   required. This allows paths not ending in a slash, e.g. on dynamically
+ *   created sites with page id in the url parameters.
+ * @version 20090601
+ * - fix windows paths
+ * @version 20090610
+ * - relax windows path syntax, use uniform path delimiter. Used for background images.
  */
 
-if ( !defined('PHP_VERSION_ID') ) {
-  $version = explode('.', PHP_VERSION);
-  define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
-}
+/* $Id: functions.inc.php 361 2011-02-16 21:03:05Z fabien.menager $ */
 
 function def($name, $value = true) {
   if (!defined($name)) {
@@ -82,8 +118,12 @@ function d($mixed) {
     echo("<pre>");
     
   // line
-  if ($mixed instanceof Line_Box) {
-    echo $mixed;
+  if (is_array($mixed) && array_key_exists("tallest_frame", $mixed)) {
+    echo "<strong>LINE</strong>:\n";
+    foreach($mixed as $key => $value) {
+      if (is_array($value) || is_object($value)) continue;
+      echo "  $key:\t".var_export($value,true)."\n";
+    }
   }
   
   // other
@@ -114,7 +154,7 @@ function d($mixed) {
  * is appended (o.k. also for Windows)
  */
 function build_url($protocol, $host, $base_path, $url) {
-  if ( strlen($url) == 0 ) {
+  if ( mb_strlen($url) == 0 ) {
     //return $protocol . $host . rtrim($base_path, "/\\") . "/";
     return $protocol . $host . $base_path;
   }
@@ -170,7 +210,7 @@ function explode_url($url) {
 
   if ( isset($arr["scheme"]) &&
        $arr["scheme"] !== "file" &&
-       strlen($arr["scheme"]) > 1 ) // Exclude windows drive letters...
+       mb_strlen($arr["scheme"]) > 1 ) // Exclude windows drive letters...
     {
     $protocol = $arr["scheme"] . "://";
 
@@ -195,7 +235,7 @@ function explode_url($url) {
         $path = $arr["path"];
         $file = "";
       } else {
-        $path = rtrim(dirname($arr["path"]), '/\\') . "/";
+        $path = dirname($arr["path"]) . "/";
         $file = basename($arr["path"]);
       }
     }
@@ -480,7 +520,7 @@ function rle4_decode ($str, $width) {
               } else
                 $pixels[] = $c & 15;
             }
-            if ($num % 2 == 0) $i++;
+            if ($num % 2) $i++;
        }
        break;
       default:
@@ -515,8 +555,6 @@ function imagecreatefrombmp($filename) {
     return false;
   }
   
-  $bytes_read = 0;
-  
   // read file header
   $meta = unpack('vtype/Vfilesize/Vreserved/Voffset', fread($fh, 14));
   
@@ -528,13 +566,13 @@ function imagecreatefrombmp($filename) {
   
   // read image header
   $meta += unpack('Vheadersize/Vwidth/Vheight/vplanes/vbits/Vcompression/Vimagesize/Vxres/Vyres/Vcolors/Vimportant', fread($fh, 40));
-  $bytes_read += 40;
   
   // read additional bitfield header
   if ($meta['compression'] == 3) {
     $meta += unpack('VrMask/VgMask/VbMask', fread($fh, 12));
-    $bytes_read += 12;
   }
+  
+  //pre_r($filename);pre_r($meta);
   
   // set bytes and padding
   $meta['bytes'] = $meta['bits'] / 8;
@@ -569,11 +607,6 @@ function imagecreatefrombmp($filename) {
         $palette[$i] = $color + 16777216;
       }
     }
-  }
-  
-  // ignore extra bitmap headers
-  if ($meta['headersize'] > $bytes_read) {
-    fread($fh, $meta['headersize'] - $bytes_read);
   }
   
   // create gd image
@@ -663,26 +696,19 @@ function imagecreatefrombmp($filename) {
  * @return array The same format as getimagesize($filename)
  */
 function dompdf_getimagesize($filename) {
-  static $cache = array();
+  $size = getimagesize($filename);
   
-  if ( isset($cache[$filename]) ) {
-    return $cache[$filename];
-  }
-  
-  list($width, $height, $type) = getimagesize($filename);
-  
-  if ( $width == null || $height == null ) {
+  if ( $size[0] == null || $size[1] == null ) {
     $data = file_get_contents($filename, null, null, 0, 26);
     
     if ( substr($data, 0, 2) === "BM" ) {
       $meta = unpack('vtype/Vfilesize/Vreserved/Voffset/Vheadersize/Vwidth/Vheight', $data);
-      $width  = (int)$meta['width'];
-      $height = (int)$meta['height'];
-      $type   = IMAGETYPE_BMP;
+      $size[0] = (int)$meta['width'];
+      $size[1] = (int)$meta['height'];
     }
   }
   
-  return $cache[$filename] = array($width, $height, $type);
+  return $size;
 }
 
 /**
@@ -887,7 +913,7 @@ if ( function_exists("memory_get_peak_usage") ) {
     return memory_get_peak_usage(true);
   }
 }
-else if ( function_exists("memory_get_usage") ) {
+else if ( function_exists("memory_get_peak_usage") ) {
   function DOMPDF_memory_usage(){
     return memory_get_usage(true);
   }
@@ -898,50 +924,19 @@ else {
   }
 }
 
-if ( function_exists("curl_init") ) {
-  function DOMPDF_fetch_url($url, &$headers = null) {
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-    curl_setopt($ch, CURLOPT_HEADER, TRUE);
-    
-    $data = curl_exec($ch);
-    $raw_headers = substr($data, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
-    $headers = preg_split("/[\n\r]+/", trim($raw_headers));
-    $data = substr($data, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
-    curl_close($ch);
-    
-    return $data;
-  }
-}
-else {
-  function DOMPDF_fetch_url($url, &$headers = null) {
-    $data = file_get_contents($url);
-    $headers = $http_response_header;
-    
-    return $data;
-  }
-}
-
 /**
  * Affect null to the unused objects
- * @param mixed $object
+ * @param unknown_type $object
  */
-if ( PHP_VERSION_ID < 50300 ) {
-  function clear_object(&$object) {
-    if ( is_object($object) ) {
-      foreach ($object as &$value) {
-        clear_object($value);
-      }
+function clear_object(&$object) {
+  if ( is_object($object) ) {
+    foreach (array_keys((array)$object) as $key) {
+      clear_object($property);
     }
-    
-    $object = null;
-    unset($object);
+    foreach(get_class_vars(get_class($object)) as $property => $value) {
+      clear_object($property);
+    }
   }
-}
-else {
-  function clear_object(&$object) {
-    // void
-  } 
+  $object = null;
+  unset($object);
 }

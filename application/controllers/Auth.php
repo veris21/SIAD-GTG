@@ -41,7 +41,8 @@ class Auth extends CI_Controller{
                 'jabatan'     =>$data['user_status'],
                 'avatar'      =>$data['avatar'],
                 'hp'          =>$data['hp'],
-                'last_login'  =>$data['last_login']
+                'last_login'  =>$data['last_login'],
+                'desa_id'     =>$data['desa_id']
             )
             );
             $datestring = '%d %M %Y - %h:%i %a';
@@ -84,12 +85,14 @@ class Auth extends CI_Controller{
         if ($passwordBaru == $passwordBaru2) {
           $update = array('user_pass'=>sha1($passwordBaru));
           $this->option_model->update_user_data($id, $update);
+          $to = $this->session->userdata('hp');
+          $nama = $this->session->userdata('full_name');
+          $message = "INFO : $nama Password anda telah diperbaharui menjadi : $passwordBaru --Sistem Si-Desa Gantung--";
+          sms_notifikasi($to, $message);
           redirect('setting/akun');
           exit;
         }
-        exit;
       }
-      exit;
     }elseif (isset($_POST['updateProfile'])) {
       $user_fullname = strip_tags($this->input->post('user_fullname'));
       $hp = strip_tags($this->input->post('hp'));
@@ -98,17 +101,11 @@ class Auth extends CI_Controller{
       if ($check) {
         $to = $this->session->userdata('hp');
         // Script Kirim SMS Api Zenziva
-        $message="Username: $user_fullname Data Kontak Anda telah diganti dengan : $hp (Si-Desa Gantung).";
+        $message="INFO : Update a/n. $user_fullname Data Kontak Anda telah diganti dengan : $hp --Sistem Si-Desa Gantung--";
         sms_notifikasi($to, $message);
         redirect('setting/akun');
         // exit;
-      }else {
-        $data['title'] = 'ERROR';
-        $data['main_content'] = UMUM.'error';
-        $data['error']        = 'Gagal Memperbaharui Profile';
-        $this->load->view('template', $data);
       }
-      die;
     }elseif (isset($_POST['fotoUpdate'])) {
       if(!empty($_FILES['avatar'])){
         $fileName = time().$_FILES['avatar']['name'];

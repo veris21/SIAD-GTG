@@ -1,11 +1,43 @@
 <?php
 /**
+ * DOMPDF - PHP5 HTML to PDF renderer
+ *
+ * File: $RCSfile: frame.cls.php,v $
+ * Created on: 2004-06-02
+ *
+ * Copyright (c) 2004 - Benj Carson <benjcarson@digitaljunkies.ca>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library in the file LICENSE.LGPL; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+ * 02111-1307 USA
+ *
+ * Alternatively, you may distribute this software under the terms of the
+ * PHP License, version 3.0 or later.  A copy of this license should have
+ * been distributed with this file in the file LICENSE.PHP .  If this is not
+ * the case, you can obtain a copy at http://www.php.net/license/3_0.txt.
+ *
+ * The latest version of DOMPDF might be available at:
+ * http://www.dompdf.com/
+ *
+ * @link http://www.dompdf.com/
+ * @copyright 2004 Benj Carson
+ * @author Benj Carson <benjcarson@digitaljunkies.ca>
  * @package dompdf
- * @link    http://www.dompdf.com/
- * @author  Benj Carson <benjcarson@digitaljunkies.ca>
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- * @version $Id: frame.cls.php 450 2012-01-10 22:29:32Z fabien.menager $
+
  */
+
+/* $Id: frame.cls.php 359 2011-02-05 12:15:06Z fabien.menager $ */
 
 /**
  * The main Frame class
@@ -39,7 +71,7 @@ class Frame {
   /**
    * Unique id counter
    */
-  static /*protected*/ $ID_COUNTER = 0;
+  static protected $ID_COUNTER = 0;
   
   /**
    * This frame's calculated style
@@ -62,13 +94,6 @@ class Frame {
    * @var Frame
    */
   protected $_parent;
-  
-  /**
-   * This frame's children
-   *
-   * @var array
-   */
-  protected $_frame_list;
 
   /**
    * This frame's first child.  All children are handled as a
@@ -128,26 +153,13 @@ class Frame {
    */
   protected $_decorator;
   
-  /**
-   * This frame's containing line box
-   * @var Line_Box
-   */
   protected $_containing_line;
-  
-  protected $_is_cache = array();
   
   /**
    * Tells wether the frame was already pushed to the next page
    * @var bool
    */
   public $_already_pushed = false;
-  
-  public $_float_next_line = false;
-  
-  static $_ws_state = self::WS_SPACE;
-  
-  const WS_TEXT = 1;
-  const WS_SPACE = 2;
   
   /**
    * Class destructor
@@ -161,7 +173,7 @@ class Frame {
    *
    * @param DOMNode $node the DOMNode this frame represents
    */
-  function __construct(DOMNode $node) {
+  function __construct(DomNode $node) {
     $this->_node = $node;
       
     $this->_parent = null;
@@ -196,62 +208,6 @@ class Frame {
     $this->_decorator = null;
 
     $this->set_id( self::$ID_COUNTER++ );
-  }
-  
-  // WIP : preprocessing to remove all the unused whitespace
-  protected function ws_trim(){
-    if ( $this->ws_keep() ) return;
-    
-    switch(self::$_ws_state) {
-      case self::WS_SPACE: 
-        $node = $this->_node;
-        
-        if ( $node->nodeName === "#text" ) {
-          $node->data = preg_replace("/[ \t\r\n\f]+/u", " ", $text);
-          
-          // starts with a whitespace
-          if ( isset($node->data[0]) && $node->data[0] === " " ) {
-            $node->data = ltrim($node->data);
-          }
-          
-          // if not empty
-          if ( $node->data !== "" ) {
-            // change the current state (text)
-            self::$_ws_state = self::WS_TEXT;
-          
-            // ends with a whitespace
-            if ( preg_match("/[ \t\r\n\f]+$/u", $node->data) ) {
-              $node->data = ltrim($node->data);
-            }
-          }
-        }
-      break;
-      
-      case self::WS_TEXT:
-    }
-  }
-  
-  protected function ws_keep(){
-    $whitespace = $this->get_style()->white_space;
-    return in_array($whitespace, array("pre", "pre-wrap", "pre-line"));
-  }
-  
-  protected function ws_is_text(){
-    $node = $this->get_node();
-    
-    if ($node->nodeName === "img") {
-      return true;
-    }
-    
-    if ( !$this->is_in_flow() ) {
-      return false;
-    }
-    
-    if ($this->is_text_node()) {
-      return trim($node->nodeValue) !== "";
-    }
-    
-    return true;
   }
 
   /**
@@ -368,14 +324,7 @@ class Frame {
   /**
    * @return FrameList
    */
-  function get_children() { 
-    if ( isset($this->_frame_list) ) {
-      return $this->_frame_list;
-    }
-    
-    $this->_frame_list = new FrameList($this);
-    return $this->_frame_list; 
-  }
+  function get_children() { return new FrameList($this); }
   
   // Layout property accessors
   
@@ -386,9 +335,8 @@ class Frame {
    * @return array|float
    */
   function get_containing_block($i = null) {
-    if ( isset($i) ) {
-      return $this->_containing_block[$i];  
-    }  
+    if ( isset($i) )
+      return $this->_containing_block[$i];    
     return $this->_containing_block;
   }
   
@@ -536,9 +484,6 @@ class Frame {
     return $this->_opacity;
   }
   
-  /**
-   * @return Line_Box
-   */
   function &get_containing_line() {
     return $this->_containing_line;
   }
@@ -611,81 +556,12 @@ class Frame {
     $this->_opacity = $base_opacity * $opacity;
   }
   
-  function set_containing_line(Line_Box $line) {
-    $this->_containing_line = $line;
+  function set_containing_line(&$line) {
+    $this->_containing_line = &$line;
   }
 
   //........................................................................
-  
-  /**
-   * Tells if the frame is a text node
-   * @return bool 
-   */
-  function is_text_node() {
-    if ( isset($this->_is_cache["text_node"]) ) {
-      return $this->_is_cache["text_node"];
-    }
     
-    return $this->_is_cache["text_node"] = ($this->get_node()->nodeName === "#text");
-  }
-  
-  function is_positionned() {
-    if ( isset($this->_is_cache["positionned"]) ) {
-      return $this->_is_cache["positionned"];
-    }
-    
-    $position = $this->get_style()->position;
-    
-    return $this->_is_cache["positionned"] = in_array($position, Style::$POSITIONNED_TYPES);
-  }
-  
-  function is_absolute() {
-    if ( isset($this->_is_cache["absolute"]) ) {
-      return $this->_is_cache["absolute"];
-    }
-    
-    $position = $this->get_style()->position;
-   
-    return $this->_is_cache["absolute"] = ($position === "absolute" || $position === "fixed");
-  }
-  
-  function is_block() {
-    if ( isset($this->_is_cache["block"]) ) {
-      return $this->_is_cache["block"];
-    }
-    
-    return $this->_is_cache["block"] = in_array($this->get_style()->display, Style::$BLOCK_TYPES);
-  }
-  
-  function is_in_flow() {
-    if ( isset($this->_is_cache["in_flow"]) ) {
-      return $this->_is_cache["in_flow"];
-    }
-    
-    return $this->_is_cache["in_flow"] = !(DOMPDF_ENABLE_CSS_FLOAT && $this->get_style()->float !== "none" || $this->is_absolute());
-  }
-  
-  function is_pre(){
-    if ( isset($this->_is_cache["pre"]) ) {
-      return $this->_is_cache["pre"];
-    }
-    
-    $white_space = $this->get_style()->white_space;
-   
-    return $this->_is_cache["pre"] = in_array($white_space, array("pre", "pre-wrap"));
-  }
-  
-  function is_table(){
-    if ( isset($this->_is_cache["table"]) ) {
-      return $this->_is_cache["table"];
-    }
-    
-    $display = $this->get_style()->display;
-   
-    return $this->_is_cache["table"] = in_array($display, Style::$TABLE_TYPES);
-  }
-  
-  
   /**
    * Inserts a new child at the beginning of the Frame
    * 
@@ -866,7 +742,7 @@ class Frame {
   // Debugging function:
   function __toString() {
     // Skip empty text frames
-//     if ( $this->is_text_node() &&
+//     if ( $this->_node->nodeName === "#text" &&
 //          preg_replace("/\s/", "", $this->_node->data) === "" )
 //       return "";
     
@@ -876,7 +752,7 @@ class Frame {
     $str .= "Id: " .$this->get_id() . "<br/>";
     $str .= "Class: " .get_class($this) . "<br/>";
     
-    if ( $this->is_text_node() ) {
+    if ( $this->_node->nodeName === "#text" ) {
       $tmp = htmlspecialchars($this->_node->nodeValue);
       $str .= "<pre>'" .  mb_substr($tmp,0,70) .
         (mb_strlen($tmp) > 70 ? "..." : "") . "'</pre>";
@@ -915,8 +791,8 @@ class Frame {
 
     if ( $this->_decorator instanceof Block_Frame_Decorator ) {
       $str .= "Lines:<pre>";
-      foreach ($this->_decorator->get_line_boxes() as $line) {
-        foreach ($line->get_frames() as $frame) {
+      foreach ($this->_decorator->get_lines() as $line) {
+        foreach ($line["frames"] as $frame) {
           if ($frame instanceof Text_Frame_Decorator) {
             $str .= "\ntext: ";          
             $str .= "'". htmlspecialchars($frame->get_text()) ."'";
@@ -926,11 +802,12 @@ class Frame {
         }
         
         $str .=
-          "\ny => " . $line->y . "\n" .
-          "w => " . $line->w . "\n" .
-          "h => " . $line->h . "\n" .
-          "left => " . $line->left . "\n" .
-          "right => " . $line->right . "\n";
+          //"\ncount => " . $line["count"] . "\n".
+          "\ny => " . $line["y"] . "\n" .
+          "w => " . $line["w"] . "\n" .
+          "h => " . $line["h"] . "\n" .
+          "left => " . $line["left"] . "\n" .
+          "right => " . $line["right"] . "\n";
       }
       $str .= "</pre>";
     }

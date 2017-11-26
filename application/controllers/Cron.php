@@ -1,13 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Cron extends CI_Controller{
-  //
-  // public function __construct()
-  // {
-  //   parent::__construct();
-  //   //Codeigniter : Write Less Do More
-  // }
-  //
+
+  public function __construct()
+  {
+    parent::__construct();
+  }
+
   function index()
   {
     // if($this->input->is_cli_request()){
@@ -24,4 +23,22 @@ class Cron extends CI_Controller{
     // }
   }
 
+  function reminder()
+  {
+    $datestring = '%d %M %Y - %h:%i %a';
+    $time = time();
+    $sekarang = mdate($datestring, $time);
+    $reminder = $this->notifikasi_model->reminder_get()->result();
+    foreach ($reminder as $reminder) {
+      $init = explode(" ", $reminder->message);
+      if ($init[0]=='REMINDER') {
+        $to = $reminder->hp;
+        $pesan = $reminder->message;
+        $message = "$pesan (##--$sekarang--SiDesa System##)";
+        sms_notifikasi($to, $message);
+        $id = $reminder->id;
+        $this->notifikasi_model->update_status_kirim($id);
+      }
+    }
+  }
 }

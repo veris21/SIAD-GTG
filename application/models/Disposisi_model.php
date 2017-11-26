@@ -9,4 +9,14 @@ class Disposisi_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function _get_all($desa)
+  {
+    # code...
+  }
+  public function _get_all_one($id)
+  {
+    # code...
+  }
+
+
 }
