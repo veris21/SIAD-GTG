@@ -15,7 +15,7 @@ class Cron extends CI_Controller{
       $time = time();
       $sekarang = mdate($datestring, $time);
       $to = '082281469926';
-      $message = 'Ini Pesan Dari '.$server.' Cron Job jalan pada : '.$sekarang;
+      $message = 'Ini Pesan Dari '.$server.' Cron Sistem Pada : '.$sekarang;
       sms_notifikasi($to, $message);
     // }else {
     //   echo "This script can only be accessed via the command line" . PHP_EOL;
