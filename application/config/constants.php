@@ -45,7 +45,7 @@ define('UMUM',            'public/');
 define('ARSIP',           'arsip_layout/');
 define('DISPOSISI',       'disposisi_layout/');
 define('PERTANAHAN',      'pertanahan_layout/');
-define('PENDUDUK',        'penduduk_layout');
+define('PENDUDUK',        'penduduk_layout/');
 
 
 /*-------------------------------*/

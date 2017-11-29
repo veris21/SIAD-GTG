@@ -152,5 +152,6 @@ $autoload['model'] = array(
     'arsip_model',
     'disposisi_model',
     'notifikasi_model',
-    'pertanahan_model'
+    'pertanahan_model',
+    'datapenduduk_model'
   );

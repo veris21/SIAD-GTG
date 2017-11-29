@@ -11,6 +11,7 @@ $route['logout']                    = 'auth/logout';
 $route['setting/akun']              = 'auth/setting';
 
 $route['public']                            = 'stream';
+$route['data_penduduk']             = 'DataPenduduk/data_penduduk';
 
 // $route['lookup']                            = 'master/lookup';
 // $route['proses']                            = 'master/proses';

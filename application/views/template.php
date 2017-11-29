@@ -116,6 +116,20 @@
       $("#dataTables-mKecamatan").DataTable({responsive: true });
       $("#dataTables-koordinat").DataTable({responsive: true });
 
+
+      $("#master_penduduk").DataTable({
+        responsive: true, 
+        rowGroup: {
+          dataSrc: 'no_kk'
+          }
+      });
+      $("#mutasi_penduduk").DataTable({
+        responsive: true, 
+        rowGroup: {
+          dataSrc: 'no_kk'
+          }
+      });
+      
       // fast_search system load
       $('#fast_search').select2({
         ajax: {
