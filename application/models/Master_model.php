@@ -122,9 +122,17 @@ class Master_model extends CI_Model{
   {
     return $this->db->insert('jabatan', $insert);
   }
-  public function FunctionName($value='')
+
+  public function get_dusun($desa_id)
   {
-    # code...
+    return $this->db->get_where('dusun', array('desa_id'=>$desa_id));
   }
+
+  public function sms_opt()
+  {
+    return $this->db->get_where('sms_setting', array('status'=>1));
+  }
+
+
   // =========================================
 }
