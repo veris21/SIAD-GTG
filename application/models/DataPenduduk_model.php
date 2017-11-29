@@ -45,16 +45,17 @@ class DataPenduduk_model extends CI_Model{
           'shdk'              => $worksheet[$i]['I'],
           'shdrt'             => $worksheet[$i]['J'],
           'pddk_akhir'        => $worksheet[$i]['K'],
-          'pekerjaan'  => $worksheet[$i]['L'],
-          'nama_ibu'         => $worksheet[$i]['M'],
-          'nama_ayah'          => $worksheet[$i]['N'],
-          'alamat'         => $worksheet[$i]['O'],
-          'no_rt'            => $worksheet[$i]['P'],
+          'pekerjaan'         => $worksheet[$i]['L'],
+          'nama_ibu'          => $worksheet[$i]['M'],
+          'nama_ayah'         => $worksheet[$i]['N'],
+          'alamat'            => $worksheet[$i]['O'],
+          'no_rt'             => $worksheet[$i]['P'],
           'dusun'             => $worksheet[$i]['Q']
            );
 
       $this->db->insert('master_data_penduduk_', $ins);
     }
   }
+
 
 }

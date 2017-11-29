@@ -9,6 +9,12 @@ class Notifikasi_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function get_notifikasi_user($id,$status)
+  {
+    $this->db->limit('10');
+    return $this->db->get_where('notifikasi', array('kepada_id'=>$id, 'status'=>$status));
+  }
+
   public function reminder_get()
   {
     return $this->db->get_where('notifikasi', array('status'=>0));

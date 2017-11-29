@@ -48,8 +48,8 @@
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-      <?php $this->load->view(OFFICE.'top-navbar'); ?>
-      <?php $this->load->view(OFFICE.'side-navbar'); ?>
+      <?php $this->load->view('top-navbar'); ?>
+      <?php $this->load->view('side-navbar'); ?>
       <div class="content-wrapper">
         <?php $this->load->view($main_content); ?>
       </div>
