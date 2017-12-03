@@ -1,3 +1,6 @@
+<?php 
+// Controller Level Navigasi
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -105,17 +108,16 @@
     <script src="<?php echo THEME; ?>dist/js/app.min.js"></script>
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
     <script type="text/javascript">
-      $("#dataTables-data").DataTable({responsive: true});
-      $("#dataTables-permohonan").DataTable({responsive: true});
-      $("#dataTables-bap").DataTable({responsive: true });
-      $("#dataTables-pra").DataTable({responsive: true });
-      $("#dataTables-arsip").DataTable({responsive: true });
-      $("#dataTables-disposisi").DataTable({responsive: true });
-      $("#dataTables-user").DataTable({responsive: true });
-      $("#dataTables-mDesa").DataTable({responsive: true });
-      $("#dataTables-mKecamatan").DataTable({responsive: true });
-      $("#dataTables-koordinat").DataTable({responsive: true });
+      $("#table_klasifikasi_surat").DataTable({
+        responsive: true, 
+        rowGroup: {
+          dataSrc: 'tipe'
+          }
+      });
 
+      $("#select_klasifikasi_surat").Select2({
+
+      });
 
       $("#master_penduduk").DataTable({
         responsive: true, 
@@ -123,13 +125,32 @@
           dataSrc: 'no_kk'
           }
       });
+
       $("#mutasi_penduduk").DataTable({
         responsive: true, 
         rowGroup: {
           dataSrc: 'no_kk'
           }
       });
-      
+
+      $("#adm-wilayah").DataTable({
+        responsive: true, 
+        rowGroup: {
+          dataSrc: 'nama_dusun'
+          }
+      });
+      $("#adm-desa").DataTable({
+        responsive: true, 
+        rowGroup: {
+          dataSrc: 'nama_kecamatan'
+          }
+      });
+      $("#adm-dusun").DataTable({
+        responsive: true, 
+        rowGroup: {
+          dataSrc: 'nama_desa'
+        }
+      });
       // fast_search system load
       $('#fast_search').select2({
         ajax: {

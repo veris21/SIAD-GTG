@@ -2,16 +2,7 @@
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
     <!-- Sidebar user panel -->
-    <div class="user-panel">
-      <div class="pull-left image">
-        <img src="<?php echo UPLOADER.'avatar/'.$this->session->userdata('avatar'); ?>" class="img-circle" alt="User Image">
-      </div>
-      <div class="pull-left info">
-        <p><?php echo $this->session->userdata('full_name'); ?></p>
-        <a href="#"></i><?php echo $this->session->userdata('jabatan'); ?></a>
-      </div>
-    </div>
-    <!-- sidebar menu: : style can be found in sidebar.less -->
+   <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
       <li class="treeview">
@@ -20,9 +11,9 @@
         </a>
       </li>
       <?php
-      $activeNav = $this->session->userdata['type'];
+      $activeNav = $this->session->userdata['jabatan'];     
       switch ($activeNav) {
-        case 1:
+        case "KEPALA DESA":
         ?>
         <li class="treeview">
           <a href="#">
@@ -70,7 +61,7 @@
         </li>
         <?php
           break;
-        case 2:
+        case 'SEKRETARIS DESA':
         ?>
         <li>
           <a href="<?php echo BASE_URL.'data_penduduk'; ?>">
@@ -130,7 +121,7 @@
         </li>
         <?php
           break;
-        case 3:
+        case 'PETUGAS PERTANAHAN DESA':
         ?>
         <li class="treeview">
           <a href="#">
@@ -159,7 +150,7 @@
         </li>
         <?php
           break;
-        case 99:
+        case 'ROOT':
         ?>
         <li class="treeview">
           <a href="#">
@@ -211,8 +202,9 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL.'master/user'; ?>"><i class="fa fa-circle-o"></i> Master User</a></li>
-            <li><a href="<?php echo BASE_URL.'master/desa'; ?>"><i class="fa fa-circle-o"></i> Master Desa</a></li>
+            <li><a href="<?php echo BASE_URL.'user/list'; ?>"><i class="fa fa-circle-o"></i> Master User</a></li>
+            <li><a href="<?php echo BASE_URL.'user/administrasi'; ?>"><i class="fa fa-circle-o"></i> Master Wilayah</a></li>
+            <li><a href="<?php echo BASE_URL.'arsip/klasifikasi'; ?>"><i class="fa fa-circle-o"></i> Klasifikasi Arsip</a></li>
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Akses History</a></li>
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> System Cron Jobs</a></li>
             <li><a href="<?php echo BASE_URL.'master/sms'; ?>"><i class="fa fa-circle-o"></i> SMS Option</a></li>

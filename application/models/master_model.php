@@ -13,71 +13,18 @@ class Master_model extends CI_Model{
   // {
   //   return $this->db->get_where('sig_data_penduduk_dummy', array('id'=>$id));
   // }
-  // // ================================
-  // public function insert_user($input_user_data)
-  // {
-  //   return $this->db->insert('sig_users', $input_user_data);
-  // }
-  //
-  // public function update_user($input_user_data, $id)
-  // {
-  //   $this->db->where('id', $id);
-  //   return $this->db->update('sig_users', $input_user_data);
-  // }
-  // public function get_user_1()
-  // {
-  //   $this->db->where('type', '1');
-  //   return $this->db->get('sig_users');
-  // }
-  // public function input_kecamatan($input_k)
-  // {
-  //   return $this->db->insert('sig_kecamatan', $input_k);
-  // }
-  //
-  // public function update_kecamatan($input_kecamatan, $id)
-  // {
-  //   $this->db->where('id', $id);
-  //   return $this->db->update('sig_kecamatan', $input_kecamatan);
-  // }
-  //
-  // public function input_desa($input_desa)
-  // {
-  //   return $this->db->insert('sig_desa', $input_desa);
-  // }
-  //
-  // public function update_desa($input_desa, $id)
-  // {
-  //   $this->db->where('id', $id);
-  //   return $this->db->update('sig_desa', $input_desa);
-  // }
-  //
-  // public function get_kecamatan()
-  // {
-  //   return $this->db->get('sig_kecamatan');
-  // }
-  // public function get_desa()
-  // {
-  //   return $this->db->get('sig_desa');
-  // }
-  // public function list_user()
-  // {
-  //   return $this->db->get('sig_users');
-  // }
-  // public function user_one($id)
-  // {
-  //   $this->db->where('id', $id);
-  //   return $this->db->get('sig_users');
-  // }
-
 
 
   // ============ NEW DATABASE SYSTEM ========
-  public function get_user()
+  public function _get_klasifikasi_surat(){
+    return $this->db->get('klasifikasi_surat');
+  }
+  public function _get_user_list()
   {
     return $this->db->get('users');
   }
 
-  public function insert_user($insert)
+  public function _post_user($insert)
   {
     return $this->db->insert('users', $insert);
   }
@@ -112,6 +59,65 @@ class Master_model extends CI_Model{
     return $this->db->get('jabatan');
   }
 
+  public function get_desa(){
+    return $this->db->get('desa');
+  }
+
+  public function _get_administrasi_wilayah(){
+    $this->db->select('*');
+    $this->db->from('rt');
+    $this->db->join('dusun', 'dusun.id=rt.dusun_id');
+    $this->db->join('desa', 'desa.id=dusun.desa_id');
+    $this->db->join('kecamatan', 'kecamatan.id=desa.kecamatan_id');
+    $this->db->join('kabupaten', 'kabupaten.id=kecamatan.kabupaten_id');
+    return $this->db->get();
+  }
+  public function _get_dusun(){
+    $this->db->select('*');
+    $this->db->from('dusun');
+    $this->db->join('desa', 'desa.id=dusun.desa_id');
+    $this->db->join('kecamatan', 'kecamatan.id=desa.kecamatan_id');
+    $this->db->join('kabupaten', 'kabupaten.id=kecamatan.kabupaten_id');
+    return $this->db->get();
+  }
+
+  public function dusun(){
+    return $this->db->get('dusun');
+  }
+
+  public function desa(){
+    return $this->db->get('desa');
+  }
+  public function kecamatan(){
+    return $this->db->get('kecamatan');
+  }
+
+  public function _get_desa(){
+    $this->db->select('*');
+    $this->db->from('desa');
+    $this->db->join('kecamatan', 'kecamatan.id=desa.kecamatan_id');
+    $this->db->join('kabupaten', 'kabupaten.id=kecamatan.kabupaten_id');
+    return $this->db->get();
+  }
+
+  public function _get_kecamatan(){
+    $this->db->select('*');
+    $this->db->from('kecamatan');
+    $this->db->join('kabupaten', 'kabupaten.id=kecamatan.kabupaten_id');
+    return $this->db->get();
+  }
+
+  public function _post_rt($post){
+    return $this->db->insert('rt', $post);
+  }
+  public function _post_dusun($post){
+    return $this->db->insert('dusun', $post);
+  }
+  public function _post_desa($post){
+    return $this->db->insert('desa', $post);
+  }
+
+
   public function update_jabatan($id, $update)
   {
     $this->db->where('id', $id);
@@ -123,7 +129,7 @@ class Master_model extends CI_Model{
     return $this->db->insert('jabatan', $insert);
   }
 
-  public function get_dusun($desa_id)
+  public function get_dusun_desa($desa_id)
   {
     return $this->db->get_where('dusun', array('desa_id'=>$desa_id));
   }

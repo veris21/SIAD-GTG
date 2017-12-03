@@ -10,8 +10,11 @@ $route['login']                     = 'auth/login';
 $route['logout']                    = 'auth/logout';
 $route['setting/akun']              = 'auth/setting';
 
-$route['public']                            = 'stream';
+$route['public']                    = 'stream';
 $route['data_penduduk']             = 'DataPenduduk/data_penduduk';
+$route['user/list']                 = 'master/user_list'; 
+$route['user/administrasi']         = 'master/administrasi_data';
+$route['arsip/klasifikasi']         = 'master/klasifikasi_arsip';
 
 // $route['lookup']                            = 'master/lookup';
 // $route['proses']                            = 'master/proses';

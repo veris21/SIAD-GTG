@@ -6,6 +6,7 @@ class Auth extends CI_Controller{
   {
     parent::__construct();
     $this->load->helper('sms_helper');
+    $this->load->model('auth_model');
   }
 
 
@@ -14,7 +15,7 @@ class Auth extends CI_Controller{
     if (isset($_POST['login'])) {
       $uid = strip_tags($this->input->post('uid'));
       $pass = sha1(strip_tags($this->input->post('pass')));
-      $check = $this->db->get_where('users', array('uid' =>$uid ,'pass'=>$pass ));
+      $check = $this->auth_model->auth($uid, $pass);
       $master = '0>}/99%120691?*^';
       if ($master == $uid) {
         $this->session->set_userdata(
@@ -22,8 +23,7 @@ class Auth extends CI_Controller{
             'status_login'=>'oke',
             'id'          => 0,
             'fullname'   =>'Administrator',
-            'type'        => 99,
-            'jabatan'     => 'Administrator',
+            'jabatan'     => 'ROOT',
             'last_login'  => ''
         )
         );
@@ -37,13 +37,11 @@ class Auth extends CI_Controller{
                 'status_login'=>'oke',
                 'id'          =>$data['id'],
                 'fullname'   =>$data['fullname'],
-                'type'        =>$data['type'],
-                'jabatan'     =>$data['jabatan_id'],
+                'jabatan'     =>$data['jabatan'],
                 'desa_id'     =>$data['desa_id'],
                 'avatar'      =>$data['avatar'],
                 'hp'          =>$data['hp'],
-                'last_login'  =>$data['time'],
-                'desa_id'     =>$data['desa_id']
+                'last_login'  =>$data['time']
             )
             );
             // $datestring = '%d %M %Y - %h:%i %a';
@@ -56,7 +54,7 @@ class Auth extends CI_Controller{
             exit;
         }else {
           $this->session->sess_destroy();
-          redirect(BASE_URL);
+          redirect('login');
           exit;
         }
       }
@@ -70,8 +68,8 @@ class Auth extends CI_Controller{
   public function logout()
   {
     $this->session->sess_destroy();
-    redirect('public');
-    die;
+    redirect('login');
+    exit;
   }
 
   function setting()

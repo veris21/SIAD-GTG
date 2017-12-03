@@ -43,7 +43,7 @@
     <div class="box-footer">
         <div class="form-group">
            <div class="btn btn-default btn-file">
-            <i class="fa fa-paperclip"></i> File Eksensi .xls | .xlsx Max.1000 baris Data 
+            <i class="fa fa-paperclip"></i> Attachment .xls|.xlsx 
             <input type="file" name="import_xls">
            </div>
         </div>
