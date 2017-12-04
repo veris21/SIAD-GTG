@@ -24,31 +24,33 @@ class Office extends CI_Controller{
       $this->load->view('template', $data);
   }
   public function arsip_input(){
-            if(isset($_FILES['scan_link'])){
-            $config['upload_path'] = './assets/uploader/arsip/'; //buat folder dengan nama assets di root folder
-            $config['allowed_types'] = 'png|jpg|jpeg';
-            $config['max_size'] = 10000;
-            $this->load->library('upload');
-            $this->upload->initialize($config);
-            if(! $this->upload->do_upload('scan_link') )$this->upload->display_errors();
-            $media = $this->upload->data('scan_link');
-            echo json_encode(array("status" => TRUE));
+    if(isset($_FILES['scan_link'])){
+          $fileName = time()."-".$_FILES['scan_link']['name'];
+          $config['upload_path'] = './assets/uploader/arsip/'; //buat folder dengan nama assets di root folder
+          $config['allowed_types'] = 'png|jpg|jpeg';
+          $config['max_size'] = 10000;
+          $config['file_name'] = $fileName;
+          $this->load->library('upload');
+          $this->upload->initialize($config);
+          if(! $this->upload->do_upload('scan_link') );
+          $media = $this->upload->data('scan_link'); 
+          $sekarang = time();
+          $insert = array(
+                  'klasifikasi_id'=>strip_tags($this->input->post('klasifikasi_id')),
+                  'nomor_surat'=>strip_tags($this->input->post('nomor_surat')),
+                  'pengirim'=>strip_tags($this->input->post('pengirim')),
+                  'tanggal_surat'=>strip_tags($this->input->post('tanggal_surat')),
+                  'perihal'=>strip_tags($this->input->post('perihal')),
+                  'sifat'=>strip_tags($this->input->post('sifat_surat')),
+                  'scan_link'=> $fileName,
+                  'time'=> $sekarang,
+                  'penerima_id'=>'$this->session->userdata("id")',
+                  'status'=>0 );
+            $check = $this->office_model->_post_arsip($insert);
+            if($check){
+              echo json_encode(array("status" => TRUE));
             }
-            // $sekarang = time();
-            // $insert = array(
-            //           'klasifikasi_id'=>strip_tags($this->input->post('klasifikasi_id')),
-            //           'nomor_surat'=>strip_tags($this->input->post('nomor_surat')),
-            //           'pengirim'=>strip_tags($this->input->post('pengirim')),
-            //           'tanggal_surat'=>strip_tags($this->input->post('tanggal_surat')),
-            //           'perihal'=>strip_tags($this->input->post('perihal')),
-            //           'sifat'=>strip_tags($this->input->post('sifat_surat')),
-            //           'scan_link'=>$fileName,
-            //           'time'=> $sekarang,
-            //           'penerima_id'=>$this->session->userdata('id'),
-            //           'status'=>0
-            //            );
-            // $check = $this->office_model->_post_arsip($insert);
-            
+          }
   }
   // // TODO: Controller Handler Database Kependudukan
   // function data_penduduk(){

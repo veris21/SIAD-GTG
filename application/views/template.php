@@ -82,6 +82,8 @@
     <script src="<?php echo THEME; ?>plugins/input-mask/jquery.inputmask.js"></script>
     <script src="<?php echo THEME; ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
     <script src="<?php echo THEME; ?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <!-- JQUERY upload -->
+    <script src="<?php echo THEME; ?>plugins/jquery.ajaxfileupload.js"></script>
     <!-- Morris.js charts -->
     <script src="<?php echo THEME; ?>raphael-min.js"></script>
     <!-- <script src="<?php echo THEME; ?>plugins/morris/morris.js"></script> -->
@@ -225,7 +227,6 @@ var arsip_method;
     }
 
       function save_arsip(){
-        event.preventDefault();
         var url;
         switch (arsip_method) {
           case 'posting_arsip':
@@ -237,24 +238,27 @@ var arsip_method;
           default:
             break;
         }
-        $.ajax({
-          url: url,
-          type:"POST",
-          dataType:"JSON",
-          data: new FormData(this),
-          processData: false,
-          contentType: false,
-          success: function (data) {
-            swal('Good job!','Berhasil Menginput Data Arsip!','success');
-            location.reload();
-          },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
+        $('#arsip_input').submit(function(evt){
+          evt.preventDefault();
+          var formData = new FormData($(this)[0]);
+          $.ajax({
+            url:url,
+            type: "POST",
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success: function(data){
+              swal('Good job!','Berhasil Input Data Arsip!','success');
+            }, error: function (jqXHR, textStatus, errorThrown) {
               swal('Oops...','Something went wrong!','error');
-            }
+             }
+          });
+          
         });
       }
-
       function posting(){
         save_method = 'posting_klasifikasi';
         $('#klasifikasi')[0].reset(); // reset form on modals

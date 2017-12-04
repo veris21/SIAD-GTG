@@ -136,12 +136,12 @@
             </div>
             </div>
           </div>
-        </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-            <button type="button" onclick="save_arsip()" class="btn btn-primary">Save</button>
+            <button type="submit" onclick="save_arsip()" class="btn btn-primary">Save</button>
           </div>
+          </form>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
