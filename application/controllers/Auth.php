@@ -36,7 +36,7 @@ class Auth extends CI_Controller{
               array(
                 'status_login'=>'oke',
                 'id'          =>$data['id'],
-                'fullname'   =>$data['fullname'],
+                'fullname'    =>$data['fullname'],
                 'jabatan'     =>$data['jabatan'],
                 'desa_id'     =>$data['desa_id'],
                 'avatar'      =>$data['avatar'],

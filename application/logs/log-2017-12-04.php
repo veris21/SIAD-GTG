@@ -537,3 +537,120 @@ ERROR - 2017-12-04 17:09:05 --> 404 Page Not Found: Assets/theme
 ERROR - 2017-12-04 17:09:05 --> 404 Page Not Found: Assets/theme
 ERROR - 2017-12-04 17:11:06 --> 404 Page Not Found: Assets/theme
 ERROR - 2017-12-04 17:11:06 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:36:55 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:36:55 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:44:41 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:44:41 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:49:03 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:49:03 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:50:58 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:50:58 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:54:16 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:54:16 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:54:45 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:54:45 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:54:49 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 18:54:49 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:30:52 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:30:52 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:34:08 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:34:08 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:34:56 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:34:56 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:35:33 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:35:33 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:36:23 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:45:20 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:45:20 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:45:33 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:45:33 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:47:26 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:47:26 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:47:54 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 19:47:54 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:03:33 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:03:33 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:04:43 --> Severity: Notice --> Undefined index: jabatan C:\wampp\apache2\htdocs\SIA-GTG.github\application\views\side-navbar.php 14
+ERROR - 2017-12-04 20:09:54 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:09:54 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:09:58 --> Query error: Unknown column 'u.last_login' in 'field list' - Invalid query: SELECT u.id as id,
+       u.fullname as fullname, 
+       u.hp as hp, 
+       u.last_login as last_login,
+       u.avatar as avatar,
+       u.desa_id as desa_id,
+       j.jabatan as jabatan
+       FROM users as u, jabatan as j
+       WHERE u.uid=kepala_desa_gantung AND u.pass=7c4a8d09ca3762af61e59520943dc26494f8941b AND u.jabatan_id = j.id
+ERROR - 2017-12-04 20:10:34 --> Query error: Unknown column 'u.last_login' in 'field list' - Invalid query: SELECT u.id as id,
+       u.fullname as fullname, 
+       u.hp as hp, 
+       u.last_login as last_login,
+       u.avatar as avatar,
+       u.desa_id as desa_id,
+       j.jabatan as jabatan
+       FROM users as u, jabatan as j
+       WHERE u.uid=kepala_desa_gantung AND u.pass=7c4a8d09ca3762af61e59520943dc26494f8941b AND u.jabatan_id = j.id
+ERROR - 2017-12-04 20:10:40 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:10:40 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:10:44 --> Query error: Unknown column 'u.last_login' in 'field list' - Invalid query: SELECT u.id as id,
+       u.fullname as fullname, 
+       u.hp as hp, 
+       u.last_login as last_login,
+       u.avatar as avatar,
+       u.desa_id as desa_id,
+       j.jabatan as jabatan
+       FROM users as u, jabatan as j
+       WHERE u.uid=kepala_desa_gantung AND u.pass=7c4a8d09ca3762af61e59520943dc26494f8941b AND u.jabatan_id = j.id
+ERROR - 2017-12-04 20:10:51 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:10:51 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:10:56 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:10:56 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:11:00 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:11:03 --> Query error: Unknown column 'kepala_desa_gantung' in 'where clause' - Invalid query: SELECT u.id as id,
+       u.fullname as fullname, 
+       u.hp as hp, 
+       u.time as last_login,
+       u.avatar as avatar,
+       u.desa_id as desa_id,
+       j.jabatan as jabatan
+       FROM users as u, jabatan as j
+       WHERE u.uid=kepala_desa_gantung AND u.pass=7c4a8d09ca3762af61e59520943dc26494f8941b AND u.jabatan_id = j.id
+ERROR - 2017-12-04 20:14:16 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:14:16 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:14:23 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:14:28 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:14:28 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:14:33 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:15:53 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:15:53 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:15:57 --> Severity: Notice --> Undefined index: time C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Auth.php 44
+ERROR - 2017-12-04 20:17:35 --> 404 Page Not Found: Arsip/view
+ERROR - 2017-12-04 20:25:23 --> 404 Page Not Found: Arsip/view
+ERROR - 2017-12-04 20:27:09 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 20:27:09 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 21:30:09 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 21:30:09 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 21:30:13 --> Severity: Notice --> Undefined index: time C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Auth.php 44
+ERROR - 2017-12-04 22:53:05 --> 404 Page Not Found: Notifikasi/view
+ERROR - 2017-12-04 23:13:44 --> 404 Page Not Found: Notifikasi/dist
+ERROR - 2017-12-04 23:25:39 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:25:39 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:25:57 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:25:57 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:27:01 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:27:01 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:28:39 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:28:39 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:30:21 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:30:21 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:36:18 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:36:18 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:37:17 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:37:17 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:37:21 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:37:21 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:39:24 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:41:26 --> Severity: Notice --> Use of undefined constant ASSETS - assumed 'ASSETS' C:\wampp\apache2\htdocs\SIA-GTG.github\application\views\disposisi_layout\notifikasi_list.php 25
+ERROR - 2017-12-04 23:41:27 --> 404 Page Not Found: Dist/img
+ERROR - 2017-12-04 23:42:46 --> 404 Page Not Found: Dist/img

@@ -27,8 +27,7 @@
                 <tr valign="center" align="center">
                     <td>Tanggal Terima</td>
                     <td>Kode Klasifikasi</td>
-                    <td>Pengirim</td>
-                    <td>Nomor / Tanggal Surat</td>
+                    <td>Detail</td>          
                     <td>Perihal </td>
                     <td>Pilihan</td>
                 </tr>
@@ -38,11 +37,12 @@
                         foreach ($arsip_masuk as $data) {
                             echo "<tr valign='center'>";
                             echo "<td align='center'>".mdate("%d %M %Y %H:%i %a", $data->time)."</td>";
-                            echo "<td align='left'>".$data->kode."<br>".$data->klasifikasi."</td>";
-                            echo "<td align='left'>".$data->pengirim."</td>";
-                            echo "<td align='left'>".$data->nomor_surat."/".$data->tanggal_surat."</td>";
+                            echo "<td align='center'><b>".$data->kode."</b><br>";
+                            echo $data->klasifikasi."</td>";                            
+                            echo "<td align='left'>Pengirim : <b>".$data->pengirim."</b><br>";
+                            echo "No.".$data->nomor_surat."<br> tanggal ".$data->tanggal_surat."</td>";
                             echo "<td align='left'>Sifat : <b>".$data->sifat."</b><br><br>".$data->perihal."</td>";
-                            echo "<td align='center'><a class='btn btn-xs btn-flat btn-success' href='".BASE_URL."arsip/details/".$data->id."'><i class='fa fa-eye'></i></a></td>";
+                            echo "<td width='60' align='center'><a class='btn btn-xs btn-flat btn-success' href='".BASE_URL."arsip/details/".$data->id."'><i class='fa fa-eye'></i></a></td>";
                             echo "</tr>";
                         }
                     ?>

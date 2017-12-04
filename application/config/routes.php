@@ -21,3 +21,5 @@ $route['klasifikasi/edit']          = 'master/update_klasifikasi';
 $route['klasifikasi/delete/(:any)'] = 'master/delete_klasifikasi/$1';
 $route['arsip']                     = 'office/arsip';
 $route['arsip/input']               = 'office/arsip_input';
+$route['notifikasi/list']           = 'office/notifikasi_list';
+$route['notifikasi/baca/(:any)']    = 'office/notifikasi_baca/$1';

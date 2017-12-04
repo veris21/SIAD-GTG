@@ -219,6 +219,20 @@
 // ======= Posting Via Ajax 
 var save_method;
 var arsip_method;
+    
+    function lihat_notif(id){
+      $.ajax({
+        url:'<?php echo BASE_URL."notifikasi/baca/";?>'+id,
+        type:"POST",
+        dataType:"JSON",
+        success:function(data){
+          swal('Ditandai!','Ditandai Telah Di Baca !','success');
+        }, error: function (jqXHR, textStatus, errorThrown) {
+              swal('Oops...','Something went wrong!','error');
+             }
+      });
+    }
+
     function posting_arsip(){
       arsip_method = 'posting_arsip';
       // swal('Good job!','Berhasil Menginput Data Arsip!','success');

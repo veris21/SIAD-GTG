@@ -16,8 +16,17 @@ class Office extends CI_Controller{
       $this->load->view('template', $data);
   }
 
+  function notifikasi_list(){
+    $id = $this->session->userdata('id');
+    $data['title']              = TITLE . 'Notifikasi List';
+    $data['notifikasi']         = $this->notifikasi_model->get_notifikasi_user($id, 0)->result();
+    $data['history_notifikasi'] = $this->notifikasi_model->get_notifikasi_user($id, 1)->result();
+    $data['main_content']       = DISPOSISI . 'notifikasi_list';
+    $this->load->view('template', $data);
+  }
+
   function arsip(){
-      $data['title']          = TITLE . 'Dashboard';
+      $data['title']          = TITLE . 'Arsip Data';
       $data['arsip_masuk']    = $this->arsip_model->arsip_masuk()->result();
       $data['klasifikasi']    = $this->master_model->_get_klasifikasi_surat()->result();
       $data['main_content']   = ARSIP . 'arsip';
@@ -55,27 +64,36 @@ class Office extends CI_Controller{
             $kepada_id = $hp_kades['id'];
             $jabatan = $hp_kades['jabatan'];
             $nama_desa = $hp_kades['nama_desa'];
-            $message = "Yth. $jabatan $nama_desa  Notifikasi ARSIP MASUK : dari $pengirim Sifat Surat : $sifat perihal : $perihal (Si-Desa SMS Notifikasi)";
+            $message = 'NOTIFIKASI ARSIP : Yth. '.$jabatan.' '.$nama_desa.' SUrat dari '.$pengirim.', Sifat Surat : '.$sifat.', Perihal : '.$perihal.' --( Si-Desa SMS Sistem )--';
             $to = $hp_kades['hp'];
+            sms_notifikasi($to, $message); 
             $link = "arsip/view/";
             $posting = array(
-              'kepada_id'=>$kepada_id,
+              'kepada_id'=> $kepada_id,
               'hp'=> $to,
-              'message'=>$message,
-              'link'=>$link,
-              'time'=>$sekarang,
+              'message'=> $message,
+              'link'=> $link,
+              'time'=> time(),
               'status'=> 0,
               'type'=> 0
             );
+            $this->notifikasi_model->posting_notifikasi($posting);
             $check = $this->office_model->_post_arsip($insert);
-            if($check){              
-              $notif = $this->notifikasi_model->posting($posting);
-              if($notif){
-                sms_notifikasi($to, $message);
-                echo json_encode(array("status" => TRUE));
-               }
+            if($check){                           
+              echo json_encode(array("status" => TRUE));             
             }
           }
+  }
+
+  public function notifikasi_baca($id){
+    $update = array(
+      'time_read'=>time(),
+      'status'=>1
+    );
+    $check = $this->notifikasi_model->tandai_baca($id, $update);
+    if ($check) {
+      echo json_encode(array("status" => TRUE));
+    }
   }
   // // TODO: Controller Handler Database Kependudukan
   // function data_penduduk(){

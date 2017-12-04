@@ -14,11 +14,11 @@
           <?php
           $id = $this->session->userdata('id');
           $status = 0;
-          $notif = $this->notifikasi_model->get_notifikasi_user($id,$status);
+          $notif = $this->notifikasi_model->get_notifikasi_user($id, $status);
            ?>
-          <!-- <a href="<?php echo BASE_URL.'timeline'; ?>"> -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-bell-o"></i>
+
             <?php if ($notif->num_rows()!=0): ?>
               <span class="label label-danger"><?php echo $notif->num_rows(); ?></span>
             <?php endif; ?>
@@ -32,7 +32,7 @@
                 <ul class="menu">
                 <?php foreach ($notif->result() as $notifikasi) { ?>
                   <li>
-                  <a href="<?php echo $notifikasi->link;?>">
+                  <a href="<?php echo 'notifikasi/view/'.$notifikasi->id;?>">
                   <i class="fa fa-warning text-yellow"></i> <?php echo $notifikasi->message;?>
                   </a>
                   </li>
@@ -40,8 +40,9 @@
                 </ul>
              </li>
              <?php }else{ ?>
-              <li class="header">Belum ada notifikasi !!</li>
-              <?php } ?>      
+              <li class="header">Belum ada notifikasi masuk!!</li>
+              <?php } ?>
+             <li class="footer"><a href="<?php echo BASE_URL.'notifikasi/list'; ?>">Lihat Semua Notifikasi</a></li>
           </ul>
         </li>
       </ul>

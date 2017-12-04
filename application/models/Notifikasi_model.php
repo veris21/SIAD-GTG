@@ -9,9 +9,13 @@ class Notifikasi_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
-  public function get_notifikasi_user($id,$status)
+  public function tandai_baca($id, $update){
+    $this->db->where('id', $id);
+    return $this->db->update('notifikasi', $update);
+  }
+  public function get_notifikasi_user($id, $status)
   {
-    $this->db->limit('10');
+    // $this->db->limit('10');
     return $this->db->get_where('notifikasi', array('kepada_id'=>$id, 'status'=>$status));
   }
 
@@ -26,7 +30,7 @@ class Notifikasi_model extends CI_Model{
     return $this->db->update('notifikasi', array('status'=>1));
   }
 
-  public function posting($posting)
+  public function posting_notifikasi($posting)
   {
     return $this->db->insert('notifikasi', $posting);
   }
