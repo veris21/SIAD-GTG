@@ -379,3 +379,161 @@ ERROR - 2017-12-04 14:01:40 --> 404 Page Not Found: Assets/theme
 ERROR - 2017-12-04 14:01:40 --> 404 Page Not Found: Assets/theme
 ERROR - 2017-12-04 14:02:28 --> 404 Page Not Found: Assets/theme
 ERROR - 2017-12-04 14:02:28 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 15:40:29 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 15:40:29 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 16:21:14 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 16:21:14 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 16:24:53 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 16:24:53 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 16:32:40 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 16:32:40 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 16:34:04 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:34:04 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:34:13 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:34:13 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:34:14 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:34:14 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:42:10 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:42:10 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:42:11 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:42:11 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:42:13 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:42:13 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:43:15 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:43:15 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:43:17 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:43:17 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:43:18 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:43:18 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:43:19 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:43:19 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:51:06 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:51:06 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:51:07 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:51:07 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:51:09 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:51:09 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:51:10 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:51:10 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:51:11 --> Severity: Notice --> Undefined variable: desa_id C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 54
+ERROR - 2017-12-04 16:51:11 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8 - Invalid query: SELECT u.id as id,
+    u.hp as hp,
+    d.id as desa_id,
+    d.nama_desa as nama_desa,
+    u.fullname as fullname,
+    j.jabatan as jabatan
+    FROM desa as d, users as u, jabatan as j
+    WHERE u.id = d.uid AND j.id = u.jabatan_id AND d.id = 
+ERROR - 2017-12-04 16:54:00 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 16:54:00 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 16:54:40 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 16:54:40 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 17:02:37 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 17:02:37 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 17:02:56 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 17:04:33 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 17:04:33 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 17:05:27 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 17:05:27 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 17:09:05 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 17:09:05 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 17:11:06 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-04 17:11:06 --> 404 Page Not Found: Assets/theme

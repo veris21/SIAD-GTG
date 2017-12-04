@@ -35,20 +35,45 @@ class Office extends CI_Controller{
           if(! $this->upload->do_upload('scan_link') );
           $media = $this->upload->data('scan_link'); 
           $sekarang = time();
+          $tanggal_surat = str_replace("/","-", strip_tags($this->input->post('tanggal_surat')));
+          $pengirim = strip_tags($this->input->post('pengirim'));
+          $perihal = strip_tags($this->input->post('perihal'));
+          $sifat = strip_tags($this->input->post('sifat_surat'));
           $insert = array(
                   'klasifikasi_id'=>strip_tags($this->input->post('klasifikasi_id')),
                   'nomor_surat'=>strip_tags($this->input->post('nomor_surat')),
-                  'pengirim'=>strip_tags($this->input->post('pengirim')),
-                  'tanggal_surat'=>strip_tags($this->input->post('tanggal_surat')),
-                  'perihal'=>strip_tags($this->input->post('perihal')),
-                  'sifat'=>strip_tags($this->input->post('sifat_surat')),
+                  'pengirim'=> $pengirim,
+                  'tanggal_surat'=> $tanggal_surat,
+                  'perihal'=> $perihal,
+                  'sifat'=> $sifat,
                   'scan_link'=> $fileName,
                   'time'=> $sekarang,
-                  'penerima_id'=>'$this->session->userdata("id")',
-                  'status'=>0 );
+                  'penerima_id'=> $this->session->userdata("id"),
+                  'status'=> 0 );
+            $desa_id = $this->session->userdata('desa_id');
+            $hp_kades = $this->notifikasi_model->_get_data_kades($desa_id)->row_array();
+            $kepada_id = $hp_kades['id'];
+            $jabatan = $hp_kades['jabatan'];
+            $nama_desa = $hp_kades['nama_desa'];
+            $message = "Yth. $jabatan $nama_desa  Notifikasi ARSIP MASUK : dari $pengirim Sifat Surat : $sifat perihal : $perihal (Si-Desa SMS Notifikasi)";
+            $to = $hp_kades['hp'];
+            $link = "arsip/view/";
+            $posting = array(
+              'kepada_id'=>$kepada_id,
+              'hp'=> $to,
+              'message'=>$message,
+              'link'=>$link,
+              'time'=>$sekarang,
+              'status'=> 0,
+              'type'=> 0
+            );
             $check = $this->office_model->_post_arsip($insert);
-            if($check){
-              echo json_encode(array("status" => TRUE));
+            if($check){              
+              $notif = $this->notifikasi_model->posting($posting);
+              if($notif){
+                sms_notifikasi($to, $message);
+                echo json_encode(array("status" => TRUE));
+               }
             }
           }
   }

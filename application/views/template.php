@@ -252,6 +252,7 @@ var arsip_method;
             processData: false,
             success: function(data){
               swal('Good job!','Berhasil Input Data Arsip!','success');
+              location.reload();
             }, error: function (jqXHR, textStatus, errorThrown) {
               swal('Oops...','Something went wrong!','error');
              }
