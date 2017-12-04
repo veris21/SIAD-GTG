@@ -112,17 +112,42 @@ class Master extends CI_Controller{
     }
   }
 
-  function klasifikasi_arsip(){
-    if(isset($_POST['simpan'])){
+  public function posting_klasifikasi_arsip(){
+    $data = array(
+      'kode'=>strip_tags($this->input->post('kode')),
+      'klasifikasi'=>strip_tags($this->input->post('klasifikasi')),
+      'tipe'=>0
+      );
+      $this->master_model->_post_klasifikasi_surat($data);
+      echo json_encode(array("status" => TRUE)); 
+  }
 
-    }else{
-      
+  public function update_klasifikasi(){
+    $id = strip_tags($this->input->post('id'));
+    $data = array(
+      'kode'=>strip_tags($this->input->post('kode')),
+      'klasifikasi'=>strip_tags($this->input->post('klasifikasi')),
+      'tipe'=>0
+      );
+    $this->master_model->_update_klasifikasi_surat($id, $data);
+    echo json_encode(array("status" => TRUE));
+  }
+
+  public function delete_klasifikasi($id){
+    $this->master_model->_delete_klasifikasi_surat($id);
+    echo json_encode(array("status" => TRUE));
+  }
+
+  public function get_klasifikasi_one($id){
+    $data = $this->master_model->_get_klasifikasi_one($id)->row_array();
+    echo json_encode($data);
+  }
+  function klasifikasi_arsip(){
+     
       $data['title']          =  TITLE.'administrasi_data';
       $data['main_content']   =  MASTER.'klasifikasi_surat';
       $data['data']           = $this->master_model->_get_klasifikasi_surat()->result();
       $this->load->view('template',$data);
-  
-    }
   }
 
   // function user_view($id)

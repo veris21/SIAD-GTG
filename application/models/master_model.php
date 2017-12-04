@@ -16,6 +16,24 @@ class Master_model extends CI_Model{
 
 
   // ============ NEW DATABASE SYSTEM ========
+  public function _post_klasifikasi_surat($data){
+    return $this->db->insert('klasifikasi_surat', $data);
+  }
+
+  public function _update_klasifikasi_surat($id, $data){
+    $this->db->where('id', $id);
+    return $this->db->update('klasifikasi_surat', $data);
+  }
+
+  public function _delete_klasifikasi_surat($id){
+    $this->db->where('id', $id);
+    return $this->db->delete('klasifikasi_surat');
+  }
+  
+  public function _get_klasifikasi_one($id){
+    return $this->db->get_where('klasifikasi_surat', array('id'=>$id));
+  }
+
   public function _get_klasifikasi_surat(){
     return $this->db->get('klasifikasi_surat');
   }

@@ -9,6 +9,11 @@ class Office_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function _post_arsip($insert){
+    $this->db->insert('arsip_masuk', $insert);
+    return;
+  }
+
   // // TODO: Permohonan Data Tanah
   // public function get_permohonan()
   // {

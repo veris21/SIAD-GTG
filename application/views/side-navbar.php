@@ -61,7 +61,7 @@
         </li>
         <?php
           break;
-        case 'SEKRETARIS DESA':
+        case 'PETUGAS LAYANAN UMUM':
         ?>
         <li>
           <a href="<?php echo BASE_URL.'data_penduduk'; ?>">

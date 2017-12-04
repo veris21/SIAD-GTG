@@ -9,4 +9,12 @@ class Arsip_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+
+  public function arsip_masuk(){
+    $this->db->select('*');
+    $this->db->from('arsip_masuk');
+    $this->db->join('klasifikasi_surat','klasifikasi_surat.id=arsip_masuk.klasifikasi_id');
+    return $this->db->get();
+  }
+
 }

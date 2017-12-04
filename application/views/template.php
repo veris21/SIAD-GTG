@@ -78,7 +78,10 @@
     <script src="<?php echo THEME; ?>plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo THEME; ?>plugins/datatables-plugins/dataTables.bootstrap.js"></script>
     <script src="<?php echo THEME; ?>plugins/datatables-responsive/dataTables.responsive.js"></script>
-
+    <!-- Input Mask -->
+    <script src="<?php echo THEME; ?>plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="<?php echo THEME; ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="<?php echo THEME; ?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
     <!-- Morris.js charts -->
     <script src="<?php echo THEME; ?>raphael-min.js"></script>
     <!-- <script src="<?php echo THEME; ?>plugins/morris/morris.js"></script> -->
@@ -108,6 +111,18 @@
     <script src="<?php echo THEME; ?>dist/js/app.min.js"></script>
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
     <script type="text/javascript">
+      $("#table_arsip_masuk").DataTable({
+        responsive: true, 
+        order:[[ 0, "desc"]],
+        rowGroup: {
+          dataSrc: 'tipe'
+          }
+      });
+
+
+
+// ==========================
+
       $("#table_klasifikasi_surat").DataTable({
         responsive: true, 
         rowGroup: {
@@ -115,9 +130,9 @@
           }
       });
 
-      $("#select_klasifikasi_surat").Select2({
-
-      });
+      $(".select2").select2();
+      $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+      $("[data-mask]").inputmask();
 
       $("#master_penduduk").DataTable({
         responsive: true, 
@@ -196,5 +211,130 @@
       }
       // MAPS
     </script>
+
+
+<script>
+// ======= Posting Via Ajax 
+var save_method;
+var arsip_method;
+    function posting_arsip(){
+      arsip_method = 'posting_arsip';
+      // swal('Good job!','Berhasil Menginput Data Arsip!','success');
+      $('#arsip_input')[0].reset();
+      $('#modal_arsip').modal('show');
+    }
+
+      function save_arsip(){
+        event.preventDefault();
+        var url;
+        switch (arsip_method) {
+          case 'posting_arsip':
+          url = '<?php echo BASE_URL."arsip/input";?>';
+            break;
+          case 'edit_arsip':
+          url = '<?php echo BASE_URL."arsip/update";?>';
+            break;
+          default:
+            break;
+        }
+        $.ajax({
+          url: url,
+          type:"POST",
+          dataType:"JSON",
+          data: new FormData(this),
+          processData: false,
+          contentType: false,
+          success: function (data) {
+            swal('Good job!','Berhasil Menginput Data Arsip!','success');
+            location.reload();
+          },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+              swal('Oops...','Something went wrong!','error');
+            }
+        });
+      }
+
+      function posting(){
+        save_method = 'posting_klasifikasi';
+        $('#klasifikasi')[0].reset(); // reset form on modals
+        $('#modal_klasifikasi').modal('show');
+      }
+      function delete_posting(id){
+        event.preventDefault();
+        var url = '<?php echo BASE_URL."klasifikasi/delete/";?>'+id;
+        swal({
+              title: 'Apa Anda Yakin?',
+              text: "Data Akan dihapus Secara Permanen!",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Iya, Hapus Data!'              
+            }, function isConfirm(){
+              $.ajax({
+                url:url,
+                type:"POST",
+                dataType:"JSON",
+                success: function (data){
+                  swal('Good job!','Berhasil Menghapus data!','success');
+                  location.reload();
+                },
+                  error: function (jqXHR, textStatus, errorThrown)
+                  {
+                    swal('Oops...','Something went wrong!','error');
+                  }
+              });
+            });
+      }
+      function edit_posting(id){
+        save_method= 'edit_klasifikasi';
+        $('#klasifikasi')[0].reset(); // reset form on modals
+        $.ajax({
+          url:'<?php echo BASE_URL."klasifikasi/get/";?>'+id,
+          type:"GET",
+          dataType:"JSON",
+          success: function(data){
+            $('[name="id"]').val(data.id);
+            $('[name="kode"]').val(data.kode);
+            $('[name="klasifikasi"]').val(data.klasifikasi);
+            $('#modal_klasifikasi').modal('show');
+            $('.modal-title').text('Edit Data Klasifikasi');
+          },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+              swal('Oops...','Something went wrong!','error');
+            }
+        });
+      }
+      function save(){
+        var url;
+        switch (save_method) {
+          case 'posting_klasifikasi':
+            url = '<?php echo BASE_URL."klasifikasi/posting";?>';
+            break;
+          case 'edit_klasifikasi':
+            url = '<?php echo BASE_URL."klasifikasi/edit";?>';
+            break;
+          default:
+            break;
+        }
+        $.ajax({
+          url:url,
+          type:'POST',
+          data:$('#klasifikasi').serialize(),
+          dataType: 'JSON',
+          success: function (data){
+            $('#modal_klasifikasi').modal('show');
+            swal('Good job!','Berhasil menambahkan data!','success');
+            location.reload();
+          },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+              swal('Oops...','Something went wrong!','error');
+            }
+        });
+      }
+</script>
   </body>
 </html>

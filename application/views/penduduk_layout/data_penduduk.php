@@ -23,13 +23,14 @@
         </tr>
         </thead>
         <tbody>
-            <?php foreach ($data->result() as $data) {           
+            <?php foreach ($data->result() as $data) {
+            $tgl = explode("/", $data->tanggal_lahir);    
             echo "<tr>";
             echo "<td>".$data->no_nik."</td>";
             echo "<td>".$data->no_kk."</td>";
             echo "<td>".$data->nama."<br>(<i>".$data->shdk."</i>)</td>";
             echo "<td>".$data->alamat."</td>";
-            echo "<td>".$data->tempat_lahir.", ".$data->tanggal_lahir."</td>";
+            echo "<td>".$data->tempat_lahir.", ".$tgl[1]."-".$tgl[0]."-".$tgl[2]."</td>";
             echo "<td>".anchor('penduduk/detail/'.$data->id,'<i class="fa fa-eye"></i>', array('class'=>'btn btn-success btn-xs'))."</td>";
             echo "</tr>";
              } ?>

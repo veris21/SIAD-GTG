@@ -9,6 +9,9 @@ class Disposisi_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function _post_disposisi($post){
+    return $this->db->insert('disposisi', $post);
+  }
   public function _get_all($desa)
   {
     # code...
