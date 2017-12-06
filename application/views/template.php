@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/daterangepicker/daterangepicker-bs3.css">
     <!--  -->
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/select2/select2.min.css">
-
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&libraries=drawing,geometry,distance"></script>
@@ -112,7 +112,14 @@
     <!-- AdminLTE App -->
     <script src="<?php echo THEME; ?>dist/js/app.min.js"></script>
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
     <script type="text/javascript">
+      $(".fancybox").fancybox({
+        openEffect: "none",
+        closeEffect: "none"
+      });
+
       $("#table_arsip_masuk").DataTable({
         responsive: true, 
         order:[[ 0, "desc"]],
@@ -223,6 +230,41 @@
 // ======= Posting Via Ajax 
 var save_method;
 var arsip_method;
+
+    function buat_disposisi(){
+      $('#disposisi_input')[0].reset();
+      $('#modal_disposisi').modal('show');
+      // swal('Kirim!','Disposisi Dikirim !','success');
+    }
+
+    function save_disposisi(){
+        event.preventDefault();
+        swal({
+              title: 'Apa Anda Yakin?',
+              text: "Kirim dan teruskan Disposisi!",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Iya, Kirim!'              
+            }, function isConfirm(){
+              $.ajax({
+                url:'<?php echo BASE_URL."disposisi/post";?>',
+                type:"POST",
+                data:$('#disposisi_input').serialize(),
+                dataType:"JSON",            
+                success: function (data){
+                  swal('Good job!','Berhasil Posting Data Disposisi !','success');
+                  location.reload();
+                },
+                  error: function (jqXHR, textStatus, errorThrown)
+                  {
+                    swal('Oops...','Something went wrong!','error');
+                  }
+              });
+            });
+      
+    }
     
     function lihat_notif(id){
       $.ajax({

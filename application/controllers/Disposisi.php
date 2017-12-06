@@ -9,40 +9,56 @@ class Disposisi extends CI_Controller{
     $this->load->library('html2pdf');
     // require_once (APPPATH.'controllers/Notifikasi.php');
     // $notifikasi = new Notifikasi();
+    // $this->load->model('master_model');
   }
 
   public function list($id)
   {
     $data['title']        = TITLE.'Disposisi System';
     $data['main_content'] = DISPOSISI.'list';
-    $data['data']         = ;
+    // $data['data']         = ;
     $this->load->view('template', $data);
   }
 
-  public function input($id)
+  public function input()
   {
-    if (isset($_POST['input'])) {
-      // ATRIBUT INPUT
-      $kepada = strip_tags($this->input->post('kepada'));
-      $dari = $this->session->userdata('full_name')."/".$this->session->userdata('jabatan');
-      $memo = strip_tags($this->input->post('memo'));
-      $datestring = '%d %M %Y - %h:%i %a';
-      $time = time();
-      $sekarang = mdate($datestring, $time);
-      $disposisi_tgl = $sekarang;
-
-      // ATRIBUT NOTIFIKASI
-      $surat_no = '';
-      $surat_tgl ='';
-      $surat_dari = '';
-      $surat_perihal = '';
-
-      $to = "";
-      $message = "DISPOSISI dari $dari Perihal $surat_perihal Surat dr $surat_dari No. $surat_no/$surat_tgl Memo : ' $memo ' --Sistem Si-Desa Gantung--";
-      sms_notifikasi($to, $message);
-    }else {
-      # code...
-    }
+    $id = $this->input->post('kepada_id');
+    $kepada = $this->db->get_where('users', array('id'=>$id))->row_array();
+    $dari = $this->session->userdata('jabatan');
+    $isi = strip_tags($this->input->post('isi'));
+    $perihal = strip_tags($this->input->post('perihal'));
+    $pengirim = strip_tags($this->input->post('pengirim'));
+    $surat_nomor = strip_tags($this->input->post('surat_nomor'));
+    $surat_tgl = strip_tags($this->input->post('surat_tanggal'));
+    $arsip_id = strip_tags($this->input->post('arsip_id'));
+    $arsip_time = strip_tags($this->input->post('arsip_time'));
+    $sekarang = time();
+    $to = $kepada['hp'];
+    $message = "DISPOSISI : ".$dari."#SURAT: ".$pengirim."#Perihal ".$perihal."#Memo : ".$isi."! (Si-Desa Gantung)";
+    sms_notifikasi($to, $message);
+    $post = array(
+      'dari_id'=>$this->session->userdata('id'),
+      'kepada_id'=>$id,
+      'arsip_id'=>$arsip_id,
+      'isi_disposisi'=>$isi,
+      'time'=>$sekarang,
+      'type'=>0,
+      'status'=>0
+    );
+    $this->disposisi_model->_post_disposisi($post);
+    $link = "disposisi/".$arsip_time;
+    $posting = array(
+      'kepada_id'=> $id,
+      'hp'=> $to,
+      'message'=> $message,
+      'link'=> $link,
+      'time'=> $sekarang,
+      'time_read'=>'-',
+      'status'=> 0,
+      'type'=> 0
+    );
+    $this->notifikasi_model->posting_notifikasi($posting);
+    echo json_encode(array("status" => TRUE));
   }
 
   public function lanjut($id)

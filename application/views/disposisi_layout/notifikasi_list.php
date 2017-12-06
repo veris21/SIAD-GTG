@@ -55,7 +55,7 @@
                     Sifat Surat :<b><?php echo $arsipDetail['sifat'];?></b><br>
                     Perihal:<?php echo $arsipDetail['perihal'];?>
               <div class="pull-right"> 
-              <?php echo anchor('arsip/detail/'.$arsipDetail["id"],'<i class="fa fa-eye"></i> Lihat Detail Arsip',array('class'=>'btn btn-primary btn-xs'));?>        
+              <?php echo anchor('arsip/details/'.$arsipDetail["time"],'<i class="fa fa-eye"></i> Lihat Detail Arsip',array('class'=>'btn btn-primary btn-xs'));?>        
               </div>
                   </div>
                 </div>
@@ -88,7 +88,7 @@
         <?php 
         foreach ($history_notifikasi as $value) {
           $isNotif = explode(" ", $value->message);
-          $tipe_notif = ($isNotif[0]='%NOTIFIKASI%'?'<button class="btn btn-success">NOTIFIKASI</button>':'<button class="btn btn-primary">DISPOSISI</button>');
+          $tipe_notif = ($isNotif[0]!='NOTIFIKASI' ? '<button class="btn btn-warning">'.$isNotif[0].'</button>' : '<button class="btn btn-primary">NOTIFIKASI</button>');
           echo "<tr>";
           echo "<td>".$tipe_notif."</td>";
           echo "<td>".mdate("%d/%m/%Y - %H:%i %a", $value->time)."</td>";

@@ -29,7 +29,7 @@
                     <td>Kode Klasifikasi</td>
                     <td>Detail</td>          
                     <td>Perihal </td>
-                    <td>Pilihan</td>
+                    <td  width='80'>Pilihan</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,12 +37,20 @@
                         foreach ($arsip_masuk as $data) {
                             echo "<tr valign='center'>";
                             echo "<td align='center'>".mdate("%d %M %Y %H:%i %a", $data->time)."</td>";
-                            echo "<td align='center'><b>".$data->kode."</b><br>";
+                            echo "<td align='left'><b>".$data->kode."</b>-";
                             echo $data->klasifikasi."</td>";                            
                             echo "<td align='left'>Pengirim : <b>".$data->pengirim."</b><br>";
                             echo "No.".$data->nomor_surat."<br> tanggal ".$data->tanggal_surat."</td>";
                             echo "<td align='left'>Sifat : <b>".$data->sifat."</b><br><br>".$data->perihal."</td>";
-                            echo "<td width='60' align='center'><a class='btn btn-xs btn-flat btn-success' href='".BASE_URL."arsip/details/".$data->id."'><i class='fa fa-eye'></i></a></td>";
+                            echo "<td align='center'>
+                            <a data-toggle='tooltip' title='Lihat Details Arsip' class='btn btn-xs btn-flat btn-success' href='".BASE_URL."arsip/details/".$data->time."'>
+                            <i class='fa fa-eye'></i>
+                            </a>
+
+                            <a data-toggle='tooltip' title='Cetak Ulang Arsip' class='btn btn-xs btn-flat btn-default' href='".BASE_URL."arsip/cetak/".$data->time."'>
+                            <i class='fa fa-print'></i>
+                            </a>
+                            </td>";
                             echo "</tr>";
                         }
                     ?>

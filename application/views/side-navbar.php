@@ -13,7 +13,7 @@
       <?php
       $activeNav = $this->session->userdata['jabatan'];     
       switch ($activeNav) {
-        case "KEPALA DESA":
+        case "KEPALA DESA" || "SEKRETARIS DESA":
         ?>
         <li class="treeview">
           <a href="#">

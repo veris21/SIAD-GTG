@@ -9,6 +9,9 @@ class Arsip_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function _get_user_same_desa($desa_id){
+    return $this->db->get_where('users', array('desa_id'=>$desa_id));
+  }
 
   public function arsip_masuk(){
     $this->db->select('*');
@@ -19,6 +22,7 @@ class Arsip_model extends CI_Model{
 
   public function get_arsip_one($id){
     $query = "SELECT arsip.id as id,
+    klasifikasi.kode as kode,
     klasifikasi.klasifikasi as klasifikasi, 
     arsip.pengirim as pengirim,
     arsip.nomor_surat as nomor_surat,

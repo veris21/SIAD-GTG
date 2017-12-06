@@ -9,9 +9,6 @@ class Arsip extends CI_Controller{
     //Codeigniter : Write Less Do More
   }
 
-  function index()
-  {
-
-  }
+  
 
 }

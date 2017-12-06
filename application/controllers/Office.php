@@ -32,6 +32,15 @@ class Office extends CI_Controller{
       $data['main_content']   = ARSIP . 'arsip';
       $this->load->view('template', $data);
   }
+
+  public function arsip_detail($id){
+    $desa_id = $this->session->userdata('desa_id');
+    $data['title']          = TITLE . 'Arsip Data';
+    $data['data']           = $this->arsip_model->get_arsip_one($id)->row_array();
+    $data['kepada']         = $this->arsip_model->_get_user_same_desa($desa_id)->result();
+    $data['main_content']   = ARSIP . 'arsip_details';
+    $this->load->view('template', $data);
+  }
   public function arsip_input(){
     if(isset($_FILES['scan_link'])){
           $fileName = time()."-".$_FILES['scan_link']['name'];
@@ -67,7 +76,7 @@ class Office extends CI_Controller{
             $message = 'NOTIFIKASI ARSIP : Yth. '.$jabatan.' '.$nama_desa.' SUrat dari '.$pengirim.', Sifat Surat : '.$sifat.', Perihal : '.$perihal.' --( Si-Desa SMS Sistem )--';
             $to = $hp_kades['hp'];
             sms_notifikasi($to, $message); 
-            $link = "arsip/view/";
+            $link = "arsip/".$sekarang;
             $posting = array(
               'kepada_id'=> $kepada_id,
               'hp'=> $to,

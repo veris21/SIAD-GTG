@@ -29,7 +29,12 @@ $route['klasifikasi/posting']       = 'master/posting_klasifikasi_arsip';
 $route['klasifikasi/get/(:any)']    = 'master/get_klasifikasi_one/$1';
 $route['klasifikasi/edit']          = 'master/update_klasifikasi';
 $route['klasifikasi/delete/(:any)'] = 'master/delete_klasifikasi/$1';
+
 $route['arsip']                     = 'office/arsip';
 $route['arsip/input']               = 'office/arsip_input';
+$route['arsip/details/(:any)']      = 'office/arsip_detail/$1';
+
+$route['disposisi/post']            = 'disposisi/input';
+
 $route['notifikasi/list']           = 'office/notifikasi_list';
 $route['notifikasi/baca/(:any)']    = 'office/notifikasi_baca/$1';

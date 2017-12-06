@@ -13,7 +13,7 @@
   <div class="alert alert-warning alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <h4><i class="icon fa fa-ban"></i> Selamat Datang!</h4>
-    Selamat Datang di Sistem Informasi Geografis dan Administrasi Desa Gantung. Ini Merupakan aplikasi berbasis Web dan Database Sistem untuk membantu pengadministrasian pemerintahan desa dan <i>open data public</i> dengan menyediakan informasi umum terbuka terkait pelayanan yang di wewenangi pemerintah desa, serta terintegrasi dengan Visual Data Pertanahan Desa, pemberintahuan berupa SMS Notifikasi Pelayanan Desa guna menerapkan pelayanan yang cepat, teradministrasi baik dan terbuka.
+    Selamat Datang <?php echo $this->session->userdata('fullname')." - ".$this->session->userdata('jabatan'); ?> di Sistem Informasi Geografis dan Administrasi Desa Gantung. Ini Merupakan aplikasi berbasis Web dan Database Sistem untuk membantu pengadministrasian pemerintahan desa dan <i>open data public</i> dengan menyediakan informasi umum terbuka terkait pelayanan yang di wewenangi pemerintah desa, serta terintegrasi dengan Visual Data Pertanahan Desa, pemberintahuan berupa SMS Notifikasi Pelayanan Desa guna menerapkan pelayanan yang cepat, teradministrasi baik dan terbuka.
   </div>
   <!-- <?php //if ($this->session->userdata('type') == 2 ||$this->session->userdata('type') == 3 || $this->session->userdata('type') == 99 ): ?>
   <div class="row">
