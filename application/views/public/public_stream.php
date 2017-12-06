@@ -4,126 +4,59 @@
     <meta charset="utf-8">
     <title>Data Geografis Desa Gantung || Stream</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="<?php echo THEME; ?>Font_Awesome/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="<?php echo THEME; ?>ionicons/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo THEME; ?>dist/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="<?php echo THEME; ?>dist/css/skins/_all-skins.min.css">
-    <style media="screen">
-      #map_stream{
-       height: 83vh;
-       overflow: hidden;
-       padding-bottom: 22.25%;
-       padding-top: 30px;
-       position: relative;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="<?php echo APPS;?>css/reset.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo APPS;?>css/style.css">
+    
+	<!--[if lt IE 9]>
+		<script src="/js/html5shiv.min.js"></script>
+	<![endif]-->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI"></script>
+  <script language="javascript" type="text/javascript" src="<?php echo APPS;?>js/map.js"></script>
+  <script language="javascript" type="text/javascript" src="<?php echo APPS;?>js/search.js"></script>
+  
     <link rel="shortcut icon" href="<?php echo BASE_URL.'assets/';?>favicon.ico" type="image/x-icon">
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-      <header class="main-header">
-        <a href="<?php echo BASE_URL; ?>" class="logo">
-          <span class="logo-mini">Si<b>G</b></span>
-          <span class="logo-lg">Si<b>Desa Gantung</b></span>
-        </a>
-        <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <li class="notifications-menu">
-                <a href="<?php echo BASE_URL.'login'; ?>">
-                  Login
-                  <i class="fa fa-user"></i>
-                  <span class="label label-warning">New</span>
-                </a>
+  <body>
+  
+  <div id="control">
+		<center>
+		<img src="<?php echo BASE_URL.'assets/new-logo.png'; ?>" width="70%" alt="">
+		</center>
+		<!-- <h2>Temukan Data <br>Tanah Anda</h2> -->
+		<p>Kami membantu anda melihat status tanah anda melalui database Si Desa pemerintah Desa Gantung </p>
+		<form method="get" id="chooseZip">
+			<button type="submit" class="learnButton">Gunakan Lokasi</button>
+			<button type="button" id="searchZip" class="learnButton">Cari Nama/NIK</button>
+			<div class="clear"></div>
+			<div class="zipSearch">
+				<input id="textZip" type="text" name="zip" autofocus>
+				<button type="submit" class="learnButton">Search</button>
+			</div>
+			<div class="clear"></div>
+		</form>	
+		<div class="social">
+		
+			<div class="twitter">
+				<!-- <a href="https://twitter.com/share" class="twitter-share-button" data-via="pauldessert">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
+			</div>
+			
+			<div class="facebook">
+				<!-- <iframe src=""></iframe>		 -->
+			</div>
 
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <aside class="main-sidebar">
-        <section class="sidebar">
-          <!-- <form action="#" method="get" class="sidebar-form"> -->
-          <div class="sidebar-form">
-            <div class="input-group">
-              <input type="text"  id="search" onkeyup="autofill()" name="search" class="form-control" placeholder="Cari Data Peta...">
-              <span class="input-group-btn">
-                <button type="button" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-          </div>
-          <!-- </form> -->
-          <ul id="details_nik" class="sidebar-menu">
-            <li class="header">RESULT</li>
-          </ul>
-        </section>
-      </aside>
-      <div class="content-wrapper">
-      <section class="content">
-        <!-- <div class="row">
-          <div class="col-sm-12 col-xs-12">
-            </div>
-          </div> -->
+		
+		</div>
+		<div class="clear"></div>
+		<div id="results"></div>
+		<p>project by <?php echo anchor('login','Si-Desa Gantung');?></p>
+	</div>
+	
+	<!-- an empty div for the map -->
+	<div id="map-canvas"></div> 
 
-        <div class="row">
-          <div class="col-sm-12 col-xs-12">
-            <div id="map_stream"></div>
-          </div>
-        </div>
-      </section>
-      <!--  -->
-      </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="<?php echo THEME; ?>plugins/jQueryUI/jquery-ui2.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-      $.widget.bridge('uibutton', $.ui.button);
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="<?php echo THEME; ?>dist/js/app.min.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&libraries=drawing,geometry,distance"></script>
-    <script type="text/javascript" src="<?php echo APPS.'maps.js'; ?>"></script>
-
-    <script type="text/javascript">
-    function autofill() {
-      var nik = $('#search').val();
-      if (nik!='') {
-        $('#details_nik').prop('disabled',false);
-        console.log(nik);
-      }else{
-        $('#details_nik').prop('disabled',true);
-        // $.ajax({
-        //   url:'search',
-        //   dataType: 'json',
-        // }).success(function(data){
-        //   obj = JSON.parse(data);
-        //   $('#nik').val(obj.nik);
-        //   $('#kk').val(obj.kk);
-        //   $('#nama').val(obj.nama);
-        //   $('#tempat_lahir').val(obj.tempat_lahir);
-        //   $('#tanggal_lahir').val(obj.tanggal_lahir);
-        //   $('#pendidikan').val(obj.pendidikan);
-        //   $('#agama').val(obj.agama);
-        //   $('#pekerjaan').val(obj.pekerjaan);
-        //   $('#status_kawin').val(obj.status_kawin);
-        //   $('#status_dalam_keluarga').val(obj.status_dalam_keluarga);
-        //   $('#jumlah_anggota_keluarga').val(obj.jumlah_anggota_keluarga);
-        //   $('#rt').val(obj.rt);
-        //   $('#dusun').val(obj.dusun);
-        //   $('#desa').val(obj.desa);
-        //   $('#alamat').val(obj.alamat);
-        // });
-      }
-    }
-    </script>
   </body>
 </html>

@@ -2,7 +2,7 @@
 <div class="login-box">
   <div class="login-logo">
     <img class="img img-logo" src="<?php echo BASE_URL.'assets/new-logo.png'; ?>" alt="" width="120"><br>
-    <a href="#">Si<b>Desa Gantung</b></a>
+    <a href="<?php echo BASE_URL.'public';?>">Si<b>Desa Gantung</b></a>
   </div><!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Silahkan Login Dengan ID &amp; Password Untuk Masuk kedalam Sistem</p>
