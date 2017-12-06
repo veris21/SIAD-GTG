@@ -39,22 +39,33 @@
             <div class='box-body'>
               <!-- post text -->
              <p><?php echo $notif->message; ?></p>
-             <?php if($notif->link!=''||$notif->link!=NULL){?>              
+             <?php if($notif->link!=''||$notif->link!=NULL){?>
+             <?php 
+             $linkType = explode("/", $notif->link);
+             if($linkType[0]="%arsip%"){
+              $arsipDetail = $this->arsip_model->get_arsip_one($linkType[1])->row_array();
+              ?>              
               <div class="attachment-block clearfix">
-                <img class="attachment-img" src="../dist/img/photo1.png" alt="attachment image">
+                <img class="attachment-img" src="<?php echo SCAN_ARSIP.$arsipDetail['scan_link'];?>" alt="attachment image">
                 <div class="attachment-pushed">
-                  <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum text generator</a></h4>
+                  <h4 class="attachment-heading">Surat/Arsip dari : <?php echo $arsipDetail['pengirim']?></h4>
                   <div class="attachment-text">
-                    <?php echo $notif->link;?>... <a href="#">more</a>
+                    Nomor Surat :<?php echo $arsipDetail['nomor_surat'];?><br>
+                    Tanggal Surat :<?php echo $arsipDetail['tanggal_surat'];?><br>
+                    Sifat Surat :<b><?php echo $arsipDetail['sifat'];?></b><br>
+                    Perihal:<?php echo $arsipDetail['perihal'];?>
+              <div class="pull-right"> 
+              <?php echo anchor('arsip/detail/'.$arsipDetail["id"],'<i class="fa fa-eye"></i> Lihat Detail Arsip',array('class'=>'btn btn-primary btn-xs'));?>        
+              </div>
                   </div>
                 </div>
               </div>
              <?php } ?>
+             <?php } ?>
               <!-- Social sharing buttons -->
-              <div class="pull-right">           
-              <button class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> Lihat Detail</button>
-              <button class='btn btn-success btn-xs'><i class='fa fa-check'></i> Tandai Telah Dibaca</button>            
-              <?php if($judul='NOTIFIKASI'){?>
+              <div class="pull-right">
+              <button onclick='lihat_notif(<?php echo $notif->id;?>)' class='btn btn-success btn-xs'><i class='fa fa-check'></i> Tandai Telah Dibaca</button>            
+              <?php if($judul='DISPOSISI'){?>
               <button class='btn btn-warning btn-xs'> Teruskan Disposisi <i class='fa fa-arrow-right'></i></button>
              <?php } ?>
               </div>
@@ -63,7 +74,33 @@
 <?php } ?>
             </div>
             <div class="tab-pane" id="history_notifikasi">
+            <table width="100%" class="table table-striped table-bordered table-hover" id="notif_history">
+        <thead>
+        <tr valign="center" align="center" style="font-weight:bolder;">
+            <td>Tipe Notifikasi</td>
+            <td>Tanggal Kirim</td>
+            <td>Tanggal Baca</td>
+            <td>Pesan</td>
+            <td>#</td>
+        </tr>
+        </thead>
+        <tbody>
+        <?php 
+        foreach ($history_notifikasi as $value) {
+          $isNotif = explode(" ", $value->message);
+          $tipe_notif = ($isNotif[0]='%NOTIFIKASI%'?'<button class="btn btn-success">NOTIFIKASI</button>':'<button class="btn btn-primary">DISPOSISI</button>');
+          echo "<tr>";
+          echo "<td>".$tipe_notif."</td>";
+          echo "<td>".mdate("%d/%m/%Y - %H:%i %a", $value->time)."</td>";
+          echo "<td>".mdate("%d/%m/%Y - %H:%i %a", $value->time_read)."</td>";
+          echo "<td width='250'>".$value->message."</td>";
+          echo "<td width='70'>".anchor('notif/details/'.$value->id,'<i class="fa fa-eye"></i>', array('class'=>'btn btn-xs btn-success'))." ".anchor('notif/print/'.$value->id,'<i class="fa fa-print"></i>', array('class'=>'btn btn-xs btn-default'))."</td>";
+          echo "</tr>";
 
+        }
+        ?>
+        </tbody>
+        </table> 
             </div> 
         </div> 
         </div> 

@@ -168,6 +168,10 @@
           dataSrc: 'nama_desa'
         }
       });
+      $("#notif_history").DataTable({
+        responsive: true, 
+        order:[[ 1, "desc"]]
+      });
       // fast_search system load
       $('#fast_search').select2({
         ajax: {

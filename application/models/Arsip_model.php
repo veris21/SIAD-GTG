@@ -17,4 +17,17 @@ class Arsip_model extends CI_Model{
     return $this->db->get();
   }
 
+  public function get_arsip_one($id){
+    $query = "SELECT arsip.id as id,
+    klasifikasi.klasifikasi as klasifikasi, 
+    arsip.pengirim as pengirim,
+    arsip.nomor_surat as nomor_surat,
+    arsip.sifat as sifat,
+    arsip.perihal as perihal,
+    arsip.tanggal_surat as tanggal_surat,
+    arsip.time as time,
+    arsip.scan_link as scan_link
+     FROM arsip_masuk as arsip, klasifikasi_surat as klasifikasi WHERE klasifikasi.id = arsip.klasifikasi_id AND time=$id";
+    return $this->db->query($query);
+  }
 }
