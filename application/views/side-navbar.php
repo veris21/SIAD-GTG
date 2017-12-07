@@ -31,6 +31,12 @@
           break;
           case "LAYANAN":
         ?>
+         <!-- DATA KEPENDUDUKAN -->
+         <li>
+          <a href="<?php echo BASE_URL.'data_penduduk'; ?>">
+            <i class="fa fa-th"></i> <span>Data Kependudukan</span> <small class="label pull-right bg-green">new</small>
+          </a>
+        </li>
         <?php
         break;
         case 'PERTANAHAN':
