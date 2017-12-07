@@ -13,21 +13,40 @@
       <?php
       $activeNav = $this->session->userdata['jabatan'];     
       switch ($activeNav) {
-        case "KEPALA DESA":
+        case "KADES":
         ?>
         <?php
           break;
-          case "SEKRETARIS DESA":
-          ?>
+          case "SEKDES":
+        ?>
+        <?php
+          break;
+          case "KAUR":
+        ?>
+        <?php
+          break;
+          case "KASI":
+        ?>
+        <?php
+          break;
+          case "LAYANAN":
+        ?>
         <?php
         break;
-        case 'PETUGAS LAYANAN UMUM':
+        case 'PERTANAHAN':
+        ?>  
+        <?php
+        break;
+        case 'BPD':
         ?>
         <?php
-          break;
-        case 'PETUGAS PERTANAHAN DESA':
+        break;
+        case 'KADUS':
         ?>
-        
+        <?php
+        break;
+        case 'RT':
+        ?>  
         <?php
         break;
         case 'ROOT':

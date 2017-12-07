@@ -64,30 +64,30 @@ class Master extends CI_Controller{
   }
   function user_list()
   {
-    // if(isset($_POST['tambah'])){
-    //   $uid         = strip_tags($this->input->post('uid'));
-    //   $pass        = strip_tags($this->input->post('pass'));
-    //   $passConfirm = strip_tags($this->input->post('passConfirm'));
-    //   $fullname    = strip_tags($this->input->post('fullname'));
-    //   $jabatan_id  = strip_tags($this->input->post('jabatan_id'));
-    //   $hp          = strip_tags($this->input->post('hp'));
-    //   $desa_id     = strip_tags($this->input->post('desa_id'));
-    //   $type        = strip_tags($this->input->post('type'));
-    //   if($pass == $passConfirm){
-    //     $insert = array('uid'=> $uid,'pass'=>sha1($pass),'fullname'=> $fullname,'jabatan_id'=>$jabatan_id,'hp'=> $hp,'desa_id'=>$desa_id,'type'=>$type,'time'=>time());
-    //     $post = $this->master_model->_post_user($insert);
-    //     if($post){
-    //       redirect('user/list','refresh');
-    //     }
-    //   }
-    // }else{
+    if(isset($_POST['tambah'])){
+      $uid         = strip_tags($this->input->post('uid'));
+      $pass        = strip_tags($this->input->post('pass'));
+      $passConfirm = strip_tags($this->input->post('passConfirm'));
+      $fullname    = strip_tags($this->input->post('fullname'));
+      $jabatan_id  = strip_tags($this->input->post('jabatan_id'));
+      $hp          = strip_tags($this->input->post('hp'));
+      $desa_id     = strip_tags($this->input->post('desa_id'));
+      $type        = strip_tags($this->input->post('type'));
+      if($pass == $passConfirm){
+        $insert = array('uid'=> $uid,'pass'=>sha1($pass),'fullname'=> $fullname,'jabatan_id'=>$jabatan_id,'hp'=> $hp,'desa_id'=>$desa_id,'type'=>$type,'time'=>time());
+        $post = $this->master_model->_post_user($insert);
+        if($post){
+          redirect('user/list','refresh');
+        }
+      }
+    }else{
     $data['title']    = TITLE.'User Master';
     $data['main_content']   = MASTER.'user_list';
     $data['jabatan']        = $this->master_model->get_jabatan()->result();
     $data['desa']           = $this->master_model->get_desa()->result();
     $data['user_list']      = $this->master_model->get_user_detail()->result();
     $this->load->view('template', $data);
-    // }
+    }
   }
 
   function administrasi_data(){
