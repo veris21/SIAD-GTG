@@ -39,6 +39,7 @@
     </div>
 </div>
     <?php 
+    if($this->session->userdata('jabatan') == 'ROOT'|| $this->session->userdata('jabatan') == 'LAYANAN'){
     echo form_open_multipart();
     ?>
     <div class="box-footer">
@@ -52,5 +53,6 @@
       </div>
     <?php 
     echo form_close();
+    }
     ?>
 </section>
