@@ -55,4 +55,10 @@
     echo form_close();
     }
     ?>
+    <!-- ======= -->
+    <div class="progress">
+        <div class="bar"></div >
+        <div class="percent">0%</div >
+    </div>
+    <!-- ======= -->
 </section>

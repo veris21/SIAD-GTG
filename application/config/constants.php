@@ -36,7 +36,6 @@ define('PATOK',           UPLOADER . 'patok/');
 define('SCAN_ARSIP',      UPLOADER . 'arsip/');
 define('QRCODE',          UPLOADER . 'qr_code/');
 
-define('OFFICE',          'office/');
 define('PRINT',           'print/');
 define('MASTER',          'master/');
 define('MAPS',            'peta/');

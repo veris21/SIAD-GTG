@@ -34,7 +34,16 @@
          <!-- DATA KEPENDUDUKAN -->
          <li>
           <a href="<?php echo BASE_URL.'data_penduduk'; ?>">
-            <i class="fa fa-th"></i> <span>Data Kependudukan</span> <small class="label pull-right bg-green">new</small>
+            <i class="fa fa-th"></i> <span>Kependudukan</span> 
+            <!-- <small class="label pull-right bg-green">new</small> -->
+          </a>
+        </li>
+        <!-- ARSIP -->
+        <li>
+          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <i class="fa fa-book"></i>
+          <span>Arsip Surat</span>
+          <!-- <small class="label pull-right bg-green">new</small> -->
           </a>
         </li>
         <?php
@@ -93,15 +102,15 @@
         <!-- DATA KEPENDUDUKAN -->
         <li>
           <a href="<?php echo BASE_URL.'data_penduduk'; ?>">
-            <i class="fa fa-th"></i> <span>Data Kependudukan</span> <small class="label pull-right bg-green">new</small>
+            <i class="fa fa-th"></i> <span>Kependudukan</span> <small class="label pull-right bg-green">new</small>
           </a>
         </li>
         <!-- ARSIP -->
         <li>
           <a href="<?php echo BASE_URL.'arsip'; ?>">
           <i class="fa fa-book"></i>
-          <span>Data Arsip Surat</span>
-          <small class="label pull-right bg-green">new</small>
+          <span>Arsip Surat</span>
+          <!-- <small class="label pull-right bg-green">new</small> -->
           </a>
         </li>
         <!-- PERTANAHAN -->
@@ -124,6 +133,9 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
+            <li class="divider"></li>
+            <li><a href="<?php echo BASE_URL.'pertanahan/data'; ?>"><i class="fa fa-circle-o"></i> Cek Data</a></li>
+            <li class="divider"></li>
             <li><a href="<?php echo BASE_URL.'permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
             <li><a href="<?php echo BASE_URL.'berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
             <li><a href="<?php echo BASE_URL.'pra_skt'; ?>"><i class="fa fa-circle-o"></i> Data Pra SKT</a></li>

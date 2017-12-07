@@ -9,6 +9,10 @@ class Datapenduduk_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function _get_data_nik($nik){
+    return $this->db->get_where('master_data_penduduk_', array('no_nik'=>$nik));
+  }
+
   public function _get_data()
   {
     return $this->db->get('master_data_penduduk_');

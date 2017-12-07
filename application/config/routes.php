@@ -38,3 +38,8 @@ $route['disposisi/post']            = 'disposisi/input';
 
 $route['notifikasi/list']           = 'office/notifikasi_list';
 $route['notifikasi/baca/(:any)']    = 'office/notifikasi_baca/$1';
+
+$route['pertanahan/data']           = 'pertanahan/data_view';
+
+// AUTOFILL
+$route['cari/nik/(:any)']           = 'DataPenduduk/cari_nik/$1';

@@ -9,6 +9,14 @@ class Datapenduduk extends CI_Controller {
         parent::__construct();
         //Do your magic here
     }
+
+    public function cari_nik($nik){
+        $data = $this->datapenduduk_model->_get_data_nik($nik)->row_array();
+        // $data = array('no_nik'=>'no nik', 'no_kk'=>'123456789', 'nama'=>'veris');
+        echo json_encode($data);
+
+        // echo json_encode(array("status" => TRUE));
+    }
     
     public function mutasi_data()
     {
@@ -29,7 +37,7 @@ class Datapenduduk extends CI_Controller {
               // $data = array('upload_data' => $this->upload->data());
               $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
               $filename = $upload_data['file_name'];
-              $this->DataPenduduk_model->upload_data($filename);
+              $this->datapenduduk_model->upload_data($filename);
               unlink('./assets/uploader/import/'.$filename);
               redirect('data_penduduk','refresh');
             }

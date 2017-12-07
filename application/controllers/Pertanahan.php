@@ -9,9 +9,11 @@ class Pertanahan extends CI_Controller{
     $this->load->library('html2pdf');
   }
 
-  function index()
+  function data_view()
   {
-
+    $data['title']  = TITLE.'Data Pertanahan';
+    $data['main_content'] = PERTANAHAN.'view';
+    $this->load->view('template', $data);
   }
 
 }

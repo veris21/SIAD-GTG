@@ -24,6 +24,8 @@ class Auth extends CI_Controller{
             'id'          => 0,
             'fullname'   =>'Administrator',
             'jabatan'     => 'ROOT',
+            'hp'          => '082281469926',
+            'desa_id'     => '1',
             'last_login'  => ''
         )
         );
@@ -44,9 +46,6 @@ class Auth extends CI_Controller{
                 'last_login'  =>$data['time']
             )
             );
-            // $datestring = '%d %M %Y - %h:%i %a';
-            // $time = time();
-            // $sekarang = mdate($datestring, $time);
             $sekarang = time();
             $this->db->where('id', $data['id']);
             $this->db->update('users', array('time'=>$sekarang));

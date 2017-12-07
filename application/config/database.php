@@ -7,7 +7,6 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'verisjuniard1',
-	// 'database' => 'sig_database_',
 	// 'database' => 'sidesa_',
 	'database' => 'sidesa_dev',
 	'dbdriver' => 'mysqli',

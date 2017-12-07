@@ -18,6 +18,7 @@
         </ul>
         <div class="tab-content">
             <div class="active tab-pane" id="arsip_masuk">
+              
             <div class="pull-right">
             <button class="btn btn-success" onclick="posting_arsip()"> Input Arsip <i class="glyphicon glyphicon-plus"></i></button>
             </div>
@@ -146,6 +147,12 @@
           </div>
           </div>
           <div class="modal-footer">
+            <!-- ======= -->
+            <div class="progress">
+                  <div class="bar"></div >
+                  <div class="percent">0%</div >
+            </div>
+              <!-- ======= -->
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             <button type="submit" onclick="save_arsip()" class="btn btn-primary">Save</button>
           </div>

@@ -10,10 +10,25 @@
 </section>
 <section class="content">
   <!--  -->
-  <div class="alert alert-warning alert-dismissable">
+  <div class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <h4><i class="icon fa fa-ban"></i> Selamat Datang!</h4>
     Selamat Datang <?php echo $this->session->userdata('fullname')." - ".$this->session->userdata('jabatan'); ?> di Sistem Informasi Geografis dan Administrasi Desa Gantung. Ini Merupakan aplikasi berbasis Web dan Database Sistem untuk membantu pengadministrasian pemerintahan desa dan <i>open data public</i> dengan menyediakan informasi umum terbuka terkait pelayanan yang di wewenangi pemerintah desa, serta terintegrasi dengan Visual Data Pertanahan Desa, pemberintahuan berupa SMS Notifikasi Pelayanan Desa guna menerapkan pelayanan yang cepat, teradministrasi baik dan terbuka.
+  </div>
+  <div class="box box-widget collapsed-box">
+    <div class='box-header with-border'>
+    <div class='user-block'>
+    <img class='img-circle' src='<?php echo BASE_URL."assets/new-logo.png"; ?>' alt='user image'>
+    <span class='username'><h4>Informasi Penggunaan</h4></span>
+      </div>
+      <div class='box-tools'>          
+            <button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button>
+            <button onclick='tandai_mengerti(<?php echo $this->session->userdata('id');?>)' class='btn btn-box-tool' data-widget='remove'><i class='fa fa-times'></i></button>
+      </div><!-- /.box-tools -->
+    </div>
+    <div class='box-body'>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus vitae quam omnis eaque neque! Placeat quibusdam labore doloribus? Modi dolorum placeat ipsa saepe illum a ducimus facere vitae fugiat voluptatum.</p>
+    </div>
   </div>
   <!-- <?php //if ($this->session->userdata('type') == 2 ||$this->session->userdata('type') == 3 || $this->session->userdata('type') == 99 ): ?>
   <div class="row">

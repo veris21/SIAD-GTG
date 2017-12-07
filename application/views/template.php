@@ -86,6 +86,8 @@
     <script src="<?php echo THEME; ?>plugins/jquery.ajaxfileupload.js"></script>
     <!-- Morris.js charts -->
     <script src="<?php echo THEME; ?>raphael-min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="<?php echo THEME; ?>jquery.form.min.js"></script>
     <!-- <script src="<?php echo THEME; ?>plugins/morris/morris.js"></script> -->
     <!-- Sparkline -->
     <script src="<?php echo THEME; ?>plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -115,6 +117,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
     <script type="text/javascript">
+    
       $(".fancybox").fancybox({
         openEffect: "none",
         closeEffect: "none"
@@ -196,43 +199,55 @@
         }
       });
 
-      function autofill() {
-        var nik = $('#search').val();
-        if (nik='') {
-          $('#details_nik').prop('disabled',true);
-        }else{
-          $('#details_nik').prop('disabled',false);
+      function cari_data() {
+        event.preventDefault();
+        var nik = $('[name="cari_tanah_nik"]').val();
+        if(nik!=''){
+          $('#loader-icon').show();
+          $('#result_cari_data').hide();
+          $('#data_kosong').hide();
           $.ajax({
-            url:'search',
-            dataType: 'json',
-          }).success(function(data){
-            obj = JSON.parse(data);
-            $('#nik').val(obj.nik);
-            $('#kk').val(obj.kk);
-            $('#nama').val(obj.nama);
-            $('#tempat_lahir').val(obj.tempat_lahir);
-            $('#tanggal_lahir').val(obj.tanggal_lahir);
-            $('#pendidikan').val(obj.pendidikan);
-            $('#agama').val(obj.agama);
-            $('#pekerjaan').val(obj.pekerjaan);
-            $('#status_kawin').val(obj.status_kawin);
-            $('#status_dalam_keluarga').val(obj.status_dalam_keluarga);
-            $('#jumlah_anggota_keluarga').val(obj.jumlah_anggota_keluarga);
-            $('#rt').val(obj.rt);
-            $('#dusun').val(obj.dusun);
-            $('#desa').val(obj.desa);
-            $('#alamat').val(obj.alamat);
+            url:'<?php echo BASE_URL.'cari/nik/';?>'+nik,
+            type:'GET',
+            success:function(data){
+              $('#loader-icon').hide();
+              if(data!='null' ){
+                var obj = JSON.parse(data);
+                  console.log(data);
+                $('#no_nik').text("NIK "+obj.no_nik);
+                $('#no_kk').text("No. KK "+obj.no_kk);
+                $('#nama').text(obj.nama);
+                $('#ttl').text(obj.tempat_lahir+"/"+obj.tanggal_lahir);
+                $('#pddk_akhir').text(obj.pddk_akhir);
+                $('#shdk').text(obj.shdk);
+                $('#agama').text(obj.agama);
+                $('#pekerjaan').text(obj.pekerjaan);
+                $('#status').text(obj.status);
+                $('#shdrt').text(obj.shdrt+"  Orang");
+                $('#alamat').text(obj.alamat);
+                $('#no_rt').text(obj.no_rt);
+                $('#dusun').text(obj.dusun);
+
+                $('#result_cari_data').show();
+                $('#data_kosong').hide();
+              }else{
+                $('#result_cari_data').hide();
+                $('#data_kosong').show();
+              }
+             
+            }, error: function (jqXHR, textStatus, errorThrown)
+                  {
+                    swal('Oops...','Something went wrong!','error');
+                  }
           });
         }
       }
       // MAPS
-    </script>
-
-
+</script>
 <script>
 // ======= Posting Via Ajax 
-var save_method;
-var arsip_method;
+  var save_method;
+    var arsip_method; 
 
     function buat_disposisi(){
       $('#disposisi_input')[0].reset();

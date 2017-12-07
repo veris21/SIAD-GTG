@@ -12,7 +12,7 @@ class Office extends CI_Controller{
   function index()
   {
       $data['title']          = TITLE . 'Dashboard';
-      $data['main_content']   = OFFICE . 'dashboard';
+      $data['main_content']   = 'dashboard';
       $this->load->view('template', $data);
   }
 
