@@ -39,7 +39,7 @@
     </div>
 </div>
     <?php 
-    if($this->session->userdata('jabatan') == 'ROOT'|| $this->session->userdata('jabatan') == 'LAYANAN'){
+    if($this->session->userdata('jabatan') == 'ROOT'){
     echo form_open_multipart();
     ?>
     <div class="box-footer">
