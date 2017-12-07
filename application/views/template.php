@@ -128,7 +128,10 @@
           }
       });
 
-
+      $("#list-user").DataTable({
+        responsive: true, 
+        order:[[ 5, "desc"]]        
+      });
 
 // ==========================
 

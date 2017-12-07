@@ -25,7 +25,7 @@
         <div class="tab-content">
           <div class="active tab-pane" id="user_list">
           <!-- User Tab -->
-          <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-user">
+          <table width="100%" class="table table-striped table-bordered table-hover" id="list-user">
           <thead>
             <tr valign="center" align="center">
               <td>#</td>
