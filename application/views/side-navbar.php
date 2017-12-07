@@ -15,6 +15,23 @@
       switch ($activeNav) {
         case "KEPALA DESA":
         ?>
+        <?php
+          break;
+          case "SEKRETARIS DESA":
+          ?>
+        <?php
+        break;
+        case 'PETUGAS LAYANAN UMUM':
+        ?>
+        <?php
+          break;
+        case 'PETUGAS PERTANAHAN DESA':
+        ?>
+        
+        <?php
+        break;
+        case 'ROOT':
+        ?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -25,22 +42,10 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Chars &amp; Grafik</a></li>
             <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i>Laporan Pelayanan</a></li>
+            <li><a href="<?php echo BASE_URL.'koordinat'; ?>"><i class="fa fa-circle-o"></i>List Record Koordinat</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>Layanan Pertanahan Desa</span>
-            <small class="label pull-right bg-green">new</small>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL.'permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
-            <li><a href="<?php echo BASE_URL.'berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
-            <li><a href="<?php echo BASE_URL.'pra_skt'; ?>"><i class="fa fa-circle-o"></i> Data Pra SKT</a></li>
-            <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
-          </ul>
-        </li>
+        <!-- LAPORAN -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>Laporan</span>
@@ -59,75 +64,14 @@
             </li>
           </ul>
         </li>
-        <?php
-          break;
-          case "SEKRETARIS DESA":
-          ?>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-pie-chart"></i>
-              <span>Visual Data Layanan</span>
-              <small class="label pull-right bg-green">new</small>
-              <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Chars &amp; Grafik</a></li>
-              <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i>Laporan Pelayanan</a></li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-laptop"></i>
-              <span>Layanan Pertanahan Desa</span>
-              <small class="label pull-right bg-green">new</small>
-              <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="<?php echo BASE_URL.'permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
-              <li><a href="<?php echo BASE_URL.'berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
-              <li><a href="<?php echo BASE_URL.'pra_skt'; ?>"><i class="fa fa-circle-o"></i> Data Pra SKT</a></li>
-              <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-table"></i> <span>Laporan</span>
-               <small class="label pull-right bg-green">new</small>
-              <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Tabel Surat Keluar</a></li>
-              <li><a href="<?php echo BASE_URL.'disposisi'; ?>"><i class="fa fa-circle-o"></i> History Disposisi</a></li>
-              <li>
-                <a href="#"><i class="fa fa-circle-o"></i>Penerima Bantuan <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                  <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Penerima Raskin</a></li>
-                  <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Penerima Minyak</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <?php
-        break;
-        case 'PETUGAS LAYANAN UMUM':
-        ?>
+        <!-- ===== -->
+        <!-- DATA KEPENDUDUKAN -->
         <li>
           <a href="<?php echo BASE_URL.'data_penduduk'; ?>">
             <i class="fa fa-th"></i> <span>Data Kependudukan</span> <small class="label pull-right bg-green">new</small>
           </a>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Layanan Umum</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Surat Keterangan</a></li>
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Surat Pernyataan</a></li>
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Surat Pengantar</a></li>
-          </ul>
-        </li>
+        <!-- ARSIP -->
         <li>
           <a href="<?php echo BASE_URL.'arsip'; ?>">
           <i class="fa fa-book"></i>
@@ -135,42 +79,7 @@
           <small class="label pull-right bg-green">new</small>
           </a>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>Layanan Pertanahan Desa</span>
-            <small class="label pull-right bg-green">new</small>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL.'permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
-            <li><a href="<?php echo BASE_URL.'berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
-            <li><a href="<?php echo BASE_URL.'pra_skt'; ?>"><i class="fa fa-circle-o"></i> Data Pra SKT</a></li>
-            <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Laporan</span>
-             <small class="label pull-right bg-green">new</small>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Tabel Surat Keluar</a></li>
-            <li><a href="<?php echo BASE_URL.'disposisi'; ?>"><i class="fa fa-circle-o"></i> History Disposisi</a></li>
-            <li>
-              <a href="#"><i class="fa fa-circle-o"></i>Penerima Bantuan <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Penerima Raskin</a></li>
-                <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Penerima Minyak</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <?php
-          break;
-        case 'PETUGAS PERTANAHAN DESA':
-        ?>
+        <!-- PERTANAHAN -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-map-o"></i> <span>Data Koordinat</span>
@@ -196,53 +105,7 @@
             <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
           </ul>
         </li>
-        <?php
-        break;
-        case 'ROOT':
-        ?>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Visual Data Layanan</span>
-            <small class="label pull-right bg-green">new</small>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Chars &amp; Grafik</a></li>
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i>Laporan Pelayanan</a></li>
-            <li><a href="<?php echo BASE_URL.'koordinat'; ?>"><i class="fa fa-circle-o"></i>List Record Koordinat</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Laporan</span>
-             <small class="label pull-right bg-green">new</small>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Tabel Surat Keluar</a></li>
-            <li><a href="<?php echo BASE_URL.'disposisi'; ?>"><i class="fa fa-circle-o"></i> History Disposisi</a></li>
-            <li>
-              <a href="#"><i class="fa fa-circle-o"></i>Penerima Bantuan <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Penerima Raskin</a></li>
-                <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Penerima Minyak</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="<?php echo BASE_URL.'data_penduduk'; ?>">
-            <i class="fa fa-th"></i> <span>Data Kependudukan</span> <small class="label pull-right bg-green">new</small>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo BASE_URL.'arsip'; ?>">
-          <i class="fa fa-book"></i>
-          <span>Data Arsip Surat</span>
-          <small class="label pull-right bg-green">new</small>
-          </a>
-        </li>
+        <!-- MASTER SISTEM -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-gear"></i> <span>Master System</span>
