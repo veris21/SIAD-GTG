@@ -55,7 +55,7 @@ class Master_model extends CI_Model{
 
   public function get_user_detail()
   {
-    $query = "SELECT u.id as id, u.fullname as fullname, u.time as time, u.hp as hp, d.nama_desa as nama_desa, j.jabatan as jabatan
+    $query = "SELECT u.id as id, u.type as type, u.fullname as fullname, u.time as time, u.hp as hp, d.nama_desa as nama_desa, j.jabatan as jabatan
     FROM users as u, jabatan as j , desa as d WHERE j.id = u.jabatan_id AND d.id = u.desa_id";
     return $this->db->query($query);
     // $this->db->select('*');
