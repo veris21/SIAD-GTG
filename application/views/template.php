@@ -311,7 +311,7 @@
       $('#import').submit(function(evt){
           evt.preventDefault();
           var formData = new FormData($(this)[0]);
-          $.ajax({
+          $.ajax({ 
             url:'<?php echo BASE_URL."import/data";?>',
             type: "POST",
             data: formData,
