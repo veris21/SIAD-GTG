@@ -28,7 +28,7 @@ class Datapenduduk extends CI_Controller {
             $config['file_name'] = $fileName;
             $this->load->library('upload');
             $this->upload->initialize($config);
-            if(! $this->upload->do_upload('scan_link') );
+            if(! $this->upload->do_upload('import_xls') );
               $this->datapenduduk_model->upload_data($fileName);
             //   unlink('./assets/uploader/import/'.$fileName);
               echo json_encode(array("status" => TRUE));            
