@@ -306,30 +306,32 @@
       $('#arsip_input')[0].reset();
       $('#modal_arsip').modal('show');
     }
-    function import_data(){
-      $('#loader-icon').show();
-      $('#import').submit(function(evt){
-          evt.preventDefault();
-          var formData = new FormData($(this)[0]);
-          $.ajax({ 
-            url:'<?php echo BASE_URL."import/data";?>',
-            type: "POST",
-            data: formData,
-            async: false,
-            cache: false,
-            contentType: false,
-            enctype: 'multipart/form-data',
-            processData: false,
-            success: function(data){
-              $('#loader-icon').hide();
-              swal('Good job!','Berhasil Import Data Penduduk!','success');
-              location.reload();
-            }, error: function (jqXHR, textStatus, errorThrown) {
-              swal('Oops...','Something went wrong!','error');
-             }
-          });
-        });
-      }
+
+    // function import_data(){
+    //   $('#loader-icon').show();
+    //   $('#import').submit(function(evt){
+    //       evt.preventDefault();
+    //       var formData = new FormData($(this)[0]);
+    //       $.ajax({ 
+    //         url:'<?php echo BASE_URL."import/data";?>',
+    //         type: "POST",
+    //         data: formData,
+    //         async: false,
+    //         cache: false,
+    //         contentType: false,
+    //         enctype: 'multipart/form-data',
+    //         processData: false,
+    //         success: function(data){
+    //           $('#loader-icon').hide();
+    //           swal('Good job!','Berhasil Import Data Penduduk!','success');
+    //           location.reload();
+    //         }, error: function (jqXHR, textStatus, errorThrown) {
+    //           swal('Oops...','Something went wrong!','error');
+    //          }
+    //       });
+    //     });
+    //   }
+
       function save_arsip(){
         var url;
         switch (arsip_method) {
