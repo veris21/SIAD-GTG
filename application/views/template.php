@@ -40,7 +40,7 @@
     <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&libraries=drawing,geometry,distance"></script>
     <script src="<?php echo THEME; ?>sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo THEME; ?>sweetalert.css">
-
+    <link rel="stylesheet" href="<?php echo THEME;?>sidesa.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -117,6 +117,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
     <script type="text/javascript">
+      function refresh(){
+        location.reload();
+      }
     
       $(".fancybox").fancybox({
         openEffect: "none",
@@ -303,7 +306,30 @@
       $('#arsip_input')[0].reset();
       $('#modal_arsip').modal('show');
     }
-
+    function import_data(){
+      $('#loader-icon').show();
+      $('#import').submit(function(evt){
+          evt.preventDefault();
+          var formData = new FormData($(this)[0]);
+          $.ajax({
+            url:'<?php echo BASE_URL."import/data";?>',
+            type: "POST",
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success: function(data){
+              $('#loader-icon').hide();
+              swal('Good job!','Berhasil Import Data Penduduk!','success');
+              location.reload();
+            }, error: function (jqXHR, textStatus, errorThrown) {
+              swal('Oops...','Something went wrong!','error');
+             }
+          });
+        });
+      }
       function save_arsip(){
         var url;
         switch (arsip_method) {

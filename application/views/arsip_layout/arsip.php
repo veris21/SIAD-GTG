@@ -147,12 +147,6 @@
           </div>
           </div>
           <div class="modal-footer">
-            <!-- ======= -->
-            <div class="progress">
-                  <div class="bar"></div >
-                  <div class="percent">0%</div >
-            </div>
-              <!-- ======= -->
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             <button type="submit" onclick="save_arsip()" class="btn btn-primary">Save</button>
           </div>

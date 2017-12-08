@@ -45,6 +45,11 @@
              <li class="footer"><a href="<?php echo BASE_URL.'notifikasi/list'; ?>">Lihat Semua Notifikasi</a></li>
           </ul>
         </li>
+        <li class="notifications-menu">
+          <a href='javascript:;' onclick="refresh()">
+            <i class="fa fa-refresh"></i>
+          </a>
+        </li>
       </ul>
     </div>
   </nav>

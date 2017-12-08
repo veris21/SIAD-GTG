@@ -21,7 +21,10 @@ $route['logout']                    = 'auth/logout';
 $route['setting/akun']              = 'auth/setting';
 
 $route['public']                    = 'stream';
-$route['data_penduduk']             = 'DataPenduduk/data_penduduk';
+$route['data_penduduk']             = 'Datapenduduk/data_penduduk';
+$route['import/data']               = 'datapenduduk/import';
+
+
 $route['user/list']                 = 'master/user_list'; 
 $route['user/administrasi']         = 'master/administrasi_data';
 $route['arsip/klasifikasi']         = 'master/klasifikasi_arsip';

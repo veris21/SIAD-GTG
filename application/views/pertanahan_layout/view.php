@@ -10,22 +10,20 @@
 </section>
 <section class="content">
   <div class="box box-warning">
+    <div class="box-header">
+      Masukkan <b>NIK</b> atau <b>Nama Lengkap </b>untuk mencari data keterangan tanah di database
+    </div>
     <div class="box-body">
-      
       <div class="form-group">
         <input type="text" class="form-control" name="cari_tanah_nik" id="cari_tanah_nik" onkeyup="cari_data()" value="">
       </div>
-      <!-- <div class="pull-right">
-          <button onclick="cari_data()" class="btn btn-flat btn-warning" type="submit">Cari Data  <i class="fa fa-search"></i></button>
-      </div> -->
-
     </div>
   </div>
   <center id="loader-icon" style="display:none;">
     <img width="50%" class="img img-responsive" src="<?php echo BASE_URL.'assets/';?>nyapu.gif" />
   </center>
-  <div id="data_kosong" class="well" hidden>
-    <h3 class="text-center">Data Kosong !!</h3>
+  <div id="data_kosong" class="alert alert-danger" hidden>
+    <h3 class="text-center"><i class="icon fa fa-ban"></i>Data Tidak Ditemukan !!</h3>
   </div>
   <div id="result_cari_data" class="box box-info" hidden>
     <div class="box-body">
