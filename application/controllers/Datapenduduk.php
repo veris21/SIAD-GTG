@@ -30,7 +30,7 @@ class Datapenduduk extends CI_Controller {
             $this->upload->initialize($config);
             if(! $this->upload->do_upload('import_xls') );
               $this->datapenduduk_model->upload_data($fileName);
-            //   unlink('./assets/uploader/import/'.$fileName);
+              unlink('./assets/uploader/import/'.$fileName);
               echo json_encode(array("status" => TRUE));            
           }
     }
@@ -47,8 +47,8 @@ class Datapenduduk extends CI_Controller {
                 $this->upload->initialize($config);
                 if(! $this->upload->do_upload('import_xls') );
                   $this->datapenduduk_model->upload_data($fileName);
-                //   unlink('./assets/uploader/import/'.$fileName);
-                redirect('data_penduduk','refresh');
+                  unlink('./assets/uploader/import/'.$fileName);
+                  redirect('data_penduduk','refresh');
               }
         }else{
             $data['title']                   =   TITLE.'Import Master Data';

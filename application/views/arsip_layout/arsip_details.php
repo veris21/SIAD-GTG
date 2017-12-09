@@ -54,16 +54,77 @@
                 </div>
                 <div class="box-footer">
                     <div class="pull-right">
-                    <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-default'>Hanya Tandai Baca <i class='fa fa-check'></i></button>
-
-                    <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-warning'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button>
-                    </div>
+                    <button onclick='baca_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-default'>Hanya Tandai Baca <i class='fa fa-check'></i></button>
+                <?php 
+                    switch ($this->session->userdata('jabatan')) {
+                        case 'KADES':
+                        ?>
+                        <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-primary'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button>
+                        <?php
+                            break;
+                        case 'SEKDES':
+                        ?>
+                        <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-primary'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button>
+                        <?php
+                            break;
+                        case 'KAUR':
+                        ?>
+                        <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-primary'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button>
+                        <?php
+                            break;
+                         case 'KASI':
+                         ?>
+                         <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-primary'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button>
+                        <?php
+                            break;
+                        default:
+                            # code...
+                            break;
+                    }
+                 ?>
+                  </div>
                 </div>
             </div>
 
         </div>
 
     </div>
+    <?php
+             $id = $data['id']; $disposisi = $this->disposisi_model->_get_all_on_arsip_id($id);
+            if($disposisi->num_rows() != 0){
+            ?>
+            <div class="box box warning">
+                <div class="box-body">
+                    <table class="table table-bordered">
+                            <tr align="center" style="font-weight:bolder;">
+                                <td>#</td>
+                                <td>Dari</td>
+                                <td>Kepada</td>
+                                <td>Tanggal Kirim</td>
+                                <td>Isi Disposisi</td>
+                                <td>Status</td>
+                            </tr>
+                        <?php
+                        $no = 1;
+                        foreach($disposisi->result() as $disposisi){
+                            $dr = $this->db->get_where('users', array('id'=>$disposisi->dari_id))->row_array();
+                            $kpd = $this->db->get_where('users', array('id'=>$disposisi->kepada_id))->row_array();                            
+                            $status = ($disposisi->status != 0 ? '<button class="btn btn-xs btn-success">Dibaca</button>':'<button class="btn btn-xs btn-warning">Belum Dibaca</button>');
+                            echo "<tr>";
+                            echo "<td>".$no."</td>";
+                            echo "<td>".$dr['fullname']."</td>";
+                            echo "<td>".$kpd['fullname']."</td>";
+                            echo "<td>".mdate("%d %M %Y - %H:%i %a", $disposisi->time)."</td>";
+                            echo "<td>".$disposisi->isi_disposisi."</td>";
+                            echo "<td align='center'>". $status."</td>";
+                            echo "</tr>";
+                        }?>
+                    </table>
+                </div>
+            </div>
+            <?php }else{ ?>
+                <div class="well text-center">Belum Didisposisikan</div>
+            <?php } ?>
 </section>
 <!-- Modal Input Disposisi -->
 <div class="modal fade" id="modal_disposisi" role="dialog">

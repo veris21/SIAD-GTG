@@ -331,7 +331,19 @@
     //       });
     //     });
     //   }
-
+      function baca_arsip(id){
+        // swal('Good job!','Membaca Detail!'+id,'success');
+        $.ajax({
+          url:'<?php echo BASE_URL."disposisi/tandai/baca/";?>'+id,
+          dataType: "JSON",
+          type: "POST",
+          success:function(data){
+            swal('Good job!','Membaca Detail!','success');
+          }, error: function (jqXHR, textStatus, errorThrown) {
+              swal('Oops...','Something went wrong!','error');
+             }
+        });
+      }
       function save_arsip(){
         var url;
         switch (arsip_method) {

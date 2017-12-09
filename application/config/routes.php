@@ -37,7 +37,9 @@ $route['arsip']                     = 'office/arsip';
 $route['arsip/input']               = 'office/arsip_input';
 $route['arsip/details/(:any)']      = 'office/arsip_detail/$1';
 
-$route['disposisi/post']            = 'disposisi/input';
+
+$route['disposisi/tandai/baca/(:any)']  = 'disposisi/tandai_baca/$1';
+$route['disposisi/post']                = 'disposisi/input';
 
 $route['notifikasi/list']           = 'office/notifikasi_list';
 $route['notifikasi/baca/(:any)']    = 'office/notifikasi_baca/$1';

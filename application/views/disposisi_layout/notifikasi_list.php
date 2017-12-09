@@ -55,7 +55,7 @@
                     Sifat Surat :<b><?php echo $arsipDetail['sifat'];?></b><br>
                     Perihal:<?php echo $arsipDetail['perihal'];?>
               <div class="pull-right"> 
-              <?php echo anchor('arsip/details/'.$arsipDetail["time"],'<i class="fa fa-eye"></i> Lihat Detail Arsip',array('class'=>'btn btn-primary btn-xs'));?>        
+              <?php echo anchor('arsip/details/'.$arsipDetail["time"],'<i class="fa fa-eye"></i> Lihat Detail Arsip',array('class'=>'btn btn-primary btn-xs', 'onclick'=>'return baca_arsip('.$notif->time.')'));?>        
               </div>
                   </div>
                 </div>

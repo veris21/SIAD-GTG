@@ -72,7 +72,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
         if (!file_exists($pFilename)) {
             throw new PHPExcel_Reader_Exception("Could not open " . $pFilename . " for reading! File does not exist.");
         }
-
+        PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
         $zipClass = PHPExcel_Settings::getZipClass();
 
         // Check if zip class exists

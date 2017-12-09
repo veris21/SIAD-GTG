@@ -32,7 +32,7 @@
                 <ul class="menu">
                 <?php foreach ($notif->result() as $notifikasi) { ?>
                   <li>
-                  <a href="<?php echo 'notifikasi/view/'.$notifikasi->id;?>">
+                  <a href="<?php echo BASE_URL.'notifikasi/list'; ?>">
                   <i class="fa fa-warning text-yellow"></i> <?php echo $notifikasi->message;?>
                   </a>
                   </li>
