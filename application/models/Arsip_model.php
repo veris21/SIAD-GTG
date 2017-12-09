@@ -21,7 +21,8 @@ class Arsip_model extends CI_Model{
   }
 
   public function get_arsip_one($id){
-    $query = "SELECT arsip.id as id,
+    $query = "SELECT 
+    arsip.id as id,
     klasifikasi.kode as kode,
     klasifikasi.klasifikasi as klasifikasi, 
     arsip.pengirim as pengirim,

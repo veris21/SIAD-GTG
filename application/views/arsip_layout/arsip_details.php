@@ -90,7 +90,8 @@
 
     </div>
     <?php
-             $id = $data['id']; $disposisi = $this->disposisi_model->_get_all_on_arsip_id($id);
+            $id = $data['id']; 
+            $disposisi = $this->disposisi_model->_get_all_on_arsip_id($id);
             if($disposisi->num_rows() != 0){
             ?>
             <div class="box box warning">
@@ -109,7 +110,7 @@
                         foreach($disposisi->result() as $disposisi){
                             $dr = $this->db->get_where('users', array('id'=>$disposisi->dari_id))->row_array();
                             $kpd = $this->db->get_where('users', array('id'=>$disposisi->kepada_id))->row_array();                            
-                            $status = ($disposisi->status != 0 ? '<button class="btn btn-xs btn-success">Dibaca</button>':'<button class="btn btn-xs btn-warning">Belum Dibaca</button>');
+                            $status = ($disposisi->status != 0 ? '<button class="btn btn-xs btn-success">Telah Dibaca</button>':'<button class="btn btn-xs btn-warning">Belum Dibaca</button>');
                             echo "<tr>";
                             echo "<td>".$no."</td>";
                             echo "<td>".$dr['fullname']."</td>";
@@ -118,6 +119,7 @@
                             echo "<td>".$disposisi->isi_disposisi."</td>";
                             echo "<td align='center'>". $status."</td>";
                             echo "</tr>";
+                            $no++;
                         }?>
                     </table>
                 </div>

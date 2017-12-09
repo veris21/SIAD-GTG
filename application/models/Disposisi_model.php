@@ -15,7 +15,7 @@ class Disposisi_model extends CI_Model{
   }
 
   public function _get_all_on_arsip_id($id){
-    return $this->db->get_where('disposisi', array('arsip_id', $id));
+    return $this->db->get_where('disposisi', array('arsip_id'=>$id));
   }
 
   public function _post_disposisi($post){
