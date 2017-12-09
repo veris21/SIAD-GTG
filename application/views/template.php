@@ -34,12 +34,16 @@
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/daterangepicker/daterangepicker-bs3.css">
     <!--  -->
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/select2/select2.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&libraries=drawing,geometry,distance"></script>
     <script src="<?php echo THEME; ?>sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo THEME; ?>sweetalert.css">
+    <link rel="stylesheet" href="<?php echo THEME; ?>plugins/fancybox/jquery.fancybox.css">
+
+    <link rel="stylesheet" href="<?php echo THEME; ?>plugins/fancybox/helper/jquery.fancybox-button.css">
+    <link rel="stylesheet" href="<?php echo THEME; ?>plugins/fancybox/helper/jquery.fancybox-thumbs.css">
+
     <link rel="stylesheet" href="<?php echo THEME;?>sidesa.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -111,19 +115,29 @@
     <script src="<?php echo THEME; ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
     <script src="<?php echo THEME; ?>plugins/fastclick/fastclick.min.js"></script>
+    <!-- Download JS -->
     <!-- AdminLTE App -->
     <script src="<?php echo THEME; ?>dist/js/app.min.js"></script>
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script src="<?php echo THEME; ?>plugins/fancybox/jquery.mousewheel.pack.js"></script>
+
+    <script src="<?php echo THEME; ?>plugins/fancybox/jquery.fancybox.pack.js"></script>
+
+    <script src="<?php echo THEME; ?>plugins/fancybox/helper/jquery.fancybox-media.js"></script>
+    <script src="<?php echo THEME; ?>plugins/fancybox/helper/jquery.fancybox-button.js" ></script>
+    <script src="<?php echo THEME; ?>plugins/fancybox/helper/jquery.fancybox-thumbs.js" ></script>
 
     <script type="text/javascript">
+
       function refresh(){
         location.reload();
       }
     
       $(".fancybox").fancybox({
-        openEffect: "none",
-        closeEffect: "none"
+        closeBtn  : false,
+        helpers		: {
+          buttons	: {}
+        }
       });
 
       $("#table_arsip_masuk").DataTable({
@@ -258,6 +272,34 @@
       // swal('Kirim!','Disposisi Dikirim !','success');
     }
 
+    function cetak_disposisi(id){
+      event.preventDefault();
+        var url = '<?php echo BASE_URL."disposisi/cetak/";?>'+id;
+        swal({
+              title: 'Apa Anda Yakin untuk Mencetak?',
+              text: "Data Naskah Dinas Akan Di Cetak!",
+              type: 'success',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Iya, Cetak Data!'              
+            }, function isConfirm(){
+              $.ajax({
+                url:url,
+                type:"POST",
+                dataType:"JSON",
+                success: function (data){
+                  swal('Good job!','Berhasil Mencetak data!'+data.link,'success');
+                  location.reload();
+                },
+                  error: function (jqXHR, textStatus, errorThrown)
+                  {
+                    swal('Oops...','Something went wrong!','error');
+                  }
+              });
+            });
+    }
+
     function save_disposisi(){
         event.preventDefault();
         swal({
@@ -302,37 +344,11 @@
 
     function posting_arsip(){
       arsip_method = 'posting_arsip';
-      // swal('Good job!','Berhasil Menginput Data Arsip!','success');
       $('#arsip_input')[0].reset();
       $('#modal_arsip').modal('show');
     }
 
-    // function import_data(){
-    //   $('#loader-icon').show();
-    //   $('#import').submit(function(evt){
-    //       evt.preventDefault();
-    //       var formData = new FormData($(this)[0]);
-    //       $.ajax({ 
-    //         url:'<?php echo BASE_URL."import/data";?>',
-    //         type: "POST",
-    //         data: formData,
-    //         async: false,
-    //         cache: false,
-    //         contentType: false,
-    //         enctype: 'multipart/form-data',
-    //         processData: false,
-    //         success: function(data){
-    //           $('#loader-icon').hide();
-    //           swal('Good job!','Berhasil Import Data Penduduk!','success');
-    //           location.reload();
-    //         }, error: function (jqXHR, textStatus, errorThrown) {
-    //           swal('Oops...','Something went wrong!','error');
-    //          }
-    //       });
-    //     });
-    //   }
       function baca_arsip(id){
-        // swal('Good job!','Membaca Detail!'+id,'success');
         $.ajax({
           url:'<?php echo BASE_URL."disposisi/tandai/baca/";?>'+id,
           dataType: "JSON",

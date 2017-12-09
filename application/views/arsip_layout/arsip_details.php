@@ -13,7 +13,7 @@
         <div class="col-md-7">
             <div class="box box-info">
                 <div class="box-body">
-                <a class="thumbnail fancybox" rel="ligthbox" href="<?php echo SCAN_ARSIP.$data['scan_link']; ?>">
+                <a class="fancybox" rel="fancybox" href="<?php echo SCAN_ARSIP.$data['scan_link']; ?>" title="Surat dari <?php echo $data['pengirim']; ?>">
                     <img src="<?php echo SCAN_ARSIP.$data['scan_link']; ?>" width="100%" class="img img-rounded" alt="">
                 </a>
                 </div>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="box-footer">
                     <div class="pull-right">
-                    <button onclick='baca_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-default'>Hanya Tandai Baca <i class='fa fa-check'></i></button>
+                    <button onclick='cetak_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-default'>Cetak Disposisi <i class='fa fa-print'></i></button>
                 <?php 
                     switch ($this->session->userdata('jabatan')) {
                         case 'KADES':
@@ -96,7 +96,9 @@
             ?>
             <div class="box box warning">
                 <div class="box-body">
-                    <table class="table table-bordered">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
                             <tr align="center" style="font-weight:bolder;">
                                 <td>#</td>
                                 <td>Dari</td>
@@ -105,23 +107,27 @@
                                 <td>Isi Disposisi</td>
                                 <td>Status</td>
                             </tr>
+                        </thead>
+                        <tbody>
                         <?php
                         $no = 1;
                         foreach($disposisi->result() as $disposisi){
-                            $dr = $this->db->get_where('users', array('id'=>$disposisi->dari_id))->row_array();
-                            $kpd = $this->db->get_where('users', array('id'=>$disposisi->kepada_id))->row_array();                            
+                            // $dr = $this->db->get_where('users', array('id'=>$disposisi->dari_id))->row_array();
+                            // $kpd = $this->db->get_where('users', array('id'=>$disposisi->kepada_id))->row_array();                            
                             $status = ($disposisi->status != 0 ? '<button class="btn btn-xs btn-success">Telah Dibaca</button>':'<button class="btn btn-xs btn-warning">Belum Dibaca</button>');
                             echo "<tr>";
                             echo "<td>".$no."</td>";
-                            echo "<td>".$dr['fullname']."</td>";
-                            echo "<td>".$kpd['fullname']."</td>";
+                            echo "<td align='center'>".$disposisi->dari."<br><b>(".$disposisi->dari_jabatan.")</b></td>";
+                            echo "<td align='center'>".$disposisi->kepada."<br><b>(".$disposisi->kepada_jabatan.")</b></td>";
                             echo "<td>".mdate("%d %M %Y - %H:%i %a", $disposisi->time)."</td>";
                             echo "<td>".$disposisi->isi_disposisi."</td>";
                             echo "<td align='center'>". $status."</td>";
                             echo "</tr>";
                             $no++;
                         }?>
+                        </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
             <?php }else{ ?>

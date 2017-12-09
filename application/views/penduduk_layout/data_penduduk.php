@@ -19,7 +19,7 @@
         <div class="form-group">
            <div class="btn btn-default btn-file">
             <i class="fa fa-paperclip"></i> Attachment .xls|.xlsx 
-            <input type="file" name="import_xls">
+            <input id="import_xls" type="file" name="import_xls">
            </div>
         </div>
         <center id="loader-icon" style="display:none;">

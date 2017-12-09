@@ -68,11 +68,16 @@ class Disposisi extends CI_Controller{
     echo json_encode(array("status" => TRUE));
   }
 
-  public function lanjut($id)
-  {
-    $to = "";
-    $message = "--Sistem Si-Desa Gantung--";
-    sms_notifikasi($to, $message);
+  public function cetak($id){
+    $data['data'] = $this->disposisi_model->_get_all_on_arsip_id($id)->result();   
+    $this->load->library('html2pdf');
+    $this->html2pdf->folder('./assets/pdfs/');
+    $this->html2pdf->filename($id.time().'.pdf');
+    $this->html2pdf->paper('legal', 'portrait');
+    $this->html2pdf->html($this->load->view(DISPOSISI.'print/print_disposisi', $data, true));
+    if($this->html2pdf->create('download')) {
+      echo json_encode(array("status" => TRUE));
+    }
   }
 
 }
