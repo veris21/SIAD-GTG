@@ -15,18 +15,61 @@
       switch ($activeNav) {
         case "KADES":
         ?>
+        <!-- ARSIP -->
+        <li>
+          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <i class="fa fa-book"></i>
+          <span>Arsip Surat</span>
+          <!-- <small class="label pull-right bg-green">new</small> -->
+          </a>
+        </li>
+        <!-- Data Tanah -->
+        <li>
+          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+          <i class="fa fa-search"></i> Cek Data Tanah</a>
+        </li>
         <?php
           break;
           case "SEKDES":
         ?>
+        <!-- ARSIP -->
+        <li>
+          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <i class="fa fa-book"></i>
+          <span>Arsip Surat</span>
+          <!-- <small class="label pull-right bg-green">new</small> -->
+          </a>
+        </li>
+        <!-- Data Tanah -->
+        <li>
+          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+          <i class="fa fa-search"></i> Cek Data Tanah</a>
+        </li>
         <?php
           break;
           case "KAUR":
         ?>
+        <!-- ARSIP -->
+        <li>
+          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <i class="fa fa-book"></i>
+          <span>Arsip Surat</span>
+          <!-- <small class="label pull-right bg-green">new</small> -->
+          </a>
+        </li>
+        
         <?php
           break;
           case "KASI":
         ?>
+        <!-- ARSIP -->
+        <li>
+          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <i class="fa fa-book"></i>
+          <span>Arsip Surat</span>
+          <!-- <small class="label pull-right bg-green">new</small> -->
+          </a>
+        </li>
         <?php
           break;
           case "LAYANAN":
@@ -46,18 +89,47 @@
           <!-- <small class="label pull-right bg-green">new</small> -->
           </a>
         </li>
+        <!-- Data Tanah -->
+        <li>
+          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+          <i class="fa fa-search"></i> Cek Data Tanah</a>
+        </li>
         <?php
         break;
         case 'PERTANAHAN':
         ?>  
+        
+        <!-- Data Tanah -->
+        <li>
+          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+          <i class="fa fa-search"></i> Cek Data Tanah</a>
+        </li>
         <?php
         break;
         case 'BPD':
         ?>
+        <!-- ARSIP -->
+        <li>
+          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <i class="fa fa-book"></i>
+          <span>Arsip Surat</span>
+          <!-- <small class="label pull-right bg-green">new</small> -->
+          </a>
+        </li>
+        <!-- Data Tanah -->
+        <li>
+          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+          <i class="fa fa-search"></i> Cek Data Tanah</a>
+        </li>
         <?php
         break;
         case 'KADUS':
         ?>
+        <!-- Data Tanah -->
+        <li>
+          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+          <i class="fa fa-search"></i> Cek Data Tanah</a>
+        </li>
         <?php
         break;
         case 'RT':

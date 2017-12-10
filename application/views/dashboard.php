@@ -16,7 +16,7 @@
     Selamat Datang <?php echo $this->session->userdata('fullname')." - ".$this->session->userdata('jabatan'); ?> di Sistem Informasi Geografis dan Administrasi Desa Gantung. Ini Merupakan aplikasi berbasis Web dan Database Sistem untuk membantu pengadministrasian pemerintahan desa dan <i>open data public</i> dengan menyediakan informasi umum terbuka terkait pelayanan yang di wewenangi pemerintah desa, serta terintegrasi dengan Visual Data Pertanahan Desa, pemberintahuan berupa SMS Notifikasi Pelayanan Desa guna menerapkan pelayanan yang cepat, teradministrasi baik dan terbuka.
   </div>
 
-<!-- ==============SCANNER ============-->
+<!-- ==============SCANNER ============--
 <div class="box box-success">
   <div class="box-header">
     <div class="box-title">
@@ -68,6 +68,7 @@
                 <label id="flipHorizontal-value" width="100">Flip Horizontal: off</label>
                 <input id="flipHorizontal" onchange="Page.changeHorizontal();" type="checkbox">
             </div> -->
+      <!--  --
       </div>
       <div class="col-md-6">
       <div class="thumbnail" id="result">
