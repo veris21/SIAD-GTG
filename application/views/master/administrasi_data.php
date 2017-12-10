@@ -31,21 +31,33 @@
          <td>Desa</td>
          <td>Dusun</td>
          <td>RT</td>
-         <td>Pilihan</td>
+         <td>Pejabat</td>
        </tr>
      </thead>
      <tbody>
-     <?php foreach ($administrasi as $adm){
+     <?php 
+        foreach ($administrasi as $adm){
         echo "<tr>";
         echo "<td>".$adm->nama_kabupaten."</td>";
         echo "<td>".$adm->nama_kecamatan."</td>";
         echo "<td>".$adm->nama_desa."</td>";
         echo "<td>".$adm->nama_dusun."</td>";
         echo "<td>".$adm->nama_rt."</td>";
-        echo "<td></td>";
+        echo "<td align='center'><b>".$adm->fullname."</b><br>".$adm->hp."</td>";
         echo "</tr>";
-     } ?>
+        } 
+     ?>
      </tbody> 
+     <tfoot>
+     <tr valign="center" align="center">
+         <td>Kabupaten</td>
+         <td>Kecamatan</td>
+         <td>Desa</td>
+         <td>Dusun</td>
+         <td>RT</td>
+         <td>Pejabat</td>
+       </tr>
+     </tfoot>
      </table>
         <!-- User Tab -->
      </div>
@@ -102,7 +114,7 @@
          <td>Kecamatan</td>
          <td>Desa</td>
          <td>Dusun</td>
-         <td>Pilihan</td>
+         <td>Pejabat</td>
        </tr>
      </thead>
      <tbody>
@@ -112,7 +124,7 @@
             echo "<td>".$dusun->nama_kecamatan."</td>";
             echo "<td>".$dusun->nama_desa."</td>";
             echo "<td>".$dusun->nama_dusun."</td>";
-            echo "<td></td>";
+            echo "<td align='center'><b>".$dusun->fullname."</b><br>".$dusun->hp."</td>";
             echo "</tr>";
         }
         ?>

@@ -27,12 +27,12 @@
 		</center>
 		<!-- <h2>Temukan Data <br>Tanah Anda</h2> -->
 		<p>Kami membantu anda melihat status tanah anda melalui database Si Desa pemerintah Desa Gantung </p>
-		<form method="get" id="chooseZip">
-			<button type="submit" class="learnButton">Gunakan Lokasi</button>
-			<button type="button" id="searchZip" class="learnButton">Cari Nama/NIK</button>
+		<form method="get" id="chooseData">
+			<!-- <button type="submit" class="learnButton">Gunakan Lokasi</button> -->
+			<button type="button" id="searchBtn" class="learnButton">Cari Nama/NIK</button>
 			<div class="clear"></div>
-			<div class="zipSearch">
-				<input id="textZip" type="text" name="zip" autofocus>
+			<div class="dataSearch">
+				<input id="data" type="text" name="data" autofocus>
 				<button type="submit" class="learnButton">Search</button>
 			</div>
 			<div class="clear"></div>
@@ -52,7 +52,7 @@
 		</div>
 		<div class="clear"></div>
 		<div id="results"></div>
-		<p>project by <?php echo anchor('login','Si-Desa Gantung');?></p>
+		<p>A Project by <?php echo anchor('login','Si-Desa Gantung');?></p>
 	</div>
 	
 	<!-- an empty div for the map -->

@@ -78,10 +78,22 @@ class Master_model extends CI_Model{
   public function get_desa(){
     return $this->db->get('desa');
   }
-
+  public function get_adm_json(){
+    $query = "SELECT rt.nama_rt as nama_rt, dusun.nama_dusun as nama_dusun,
+    desa.nama_desa as nama_desa, kecamatan.nama_kecamatan as nama_kecamatan, 
+    kabupaten.nama_kabupaten as nama_kabupaten, users.fullname as fullname,
+    users.hp as hp, rt.id as id
+    FROM rt as rt, dusun as dusun, desa as desa,  kecamatan as kecamatan, 
+    kabupaten as kabupaten, users as users
+    WHERE rt.uid = users.id AND rt.dusun_id = dusun.id AND 
+    dusun.desa_id = desa.id AND
+    desa.kecamatan_id = kecamatan.id AND kecamatan.kabupaten_id = kabupaten.id";
+    return $this->db->query($query);
+  }
   public function _get_administrasi_wilayah(){
     $this->db->select('*');
     $this->db->from('rt');
+    $this->db->join('users', 'rt.uid=users.id');
     $this->db->join('dusun', 'dusun.id=rt.dusun_id');
     $this->db->join('desa', 'desa.id=dusun.desa_id');
     $this->db->join('kecamatan', 'kecamatan.id=desa.kecamatan_id');
@@ -91,6 +103,7 @@ class Master_model extends CI_Model{
   public function _get_dusun(){
     $this->db->select('*');
     $this->db->from('dusun');
+    $this->db->join('users', 'dusun.uid=users.id');
     $this->db->join('desa', 'desa.id=dusun.desa_id');
     $this->db->join('kecamatan', 'kecamatan.id=desa.kecamatan_id');
     $this->db->join('kabupaten', 'kabupaten.id=kecamatan.kabupaten_id');

@@ -18,7 +18,7 @@ class Disposisi_model extends CI_Model{
     $query = "SELECT dari.fullname as dari, darijab.jabatan as dari_jabatan,
     kepada.fullname as kepada, kepadajab.jabatan as kepada_jabatan,
     d.time as time, d.status as status,
-    d.id as id,
+    d.id as id, d.qr_link as qr_link,
     d.isi_disposisi as isi_disposisi
     FROM disposisi as d, users as dari,
     users as kepada, jabatan as darijab, jabatan as kepadajab 

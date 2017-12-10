@@ -1,6 +1,6 @@
 $(function() {
-	$( "#searchZip" ).click(function() {
-		$("#searchZip").hide();
-		$( ".zipSearch" ).show();
+	$( "#searchBtn" ).click(function() {
+		$("#searchBtn").hide();
+		$( ".dataSearch" ).show();
 	});
 });

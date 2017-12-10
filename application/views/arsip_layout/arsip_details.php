@@ -110,20 +110,21 @@
                         </thead>
                         <tbody>
                         <?php
-                        $no = 1;
                         foreach($disposisi->result() as $disposisi){
                             // $dr = $this->db->get_where('users', array('id'=>$disposisi->dari_id))->row_array();
                             // $kpd = $this->db->get_where('users', array('id'=>$disposisi->kepada_id))->row_array();                            
                             $status = ($disposisi->status != 0 ? '<button class="btn btn-xs btn-success">Telah Dibaca</button>':'<button class="btn btn-xs btn-warning">Belum Dibaca</button>');
                             echo "<tr>";
-                            echo "<td>".$no."</td>";
+                            echo "<td>
+                            <a class='fancybox' rel='fancybox' href='".QRCODE.$disposisi->qr_link."' title='".$disposisi->isi_disposisi."'>
+                            <img width='60' class='img img-responsive img-rounded' src='".QRCODE.$disposisi->qr_link."'>
+                            </a></td>";
                             echo "<td align='center'>".$disposisi->dari."<br><b>(".$disposisi->dari_jabatan.")</b></td>";
                             echo "<td align='center'>".$disposisi->kepada."<br><b>(".$disposisi->kepada_jabatan.")</b></td>";
                             echo "<td>".mdate("%d %M %Y - %H:%i %a", $disposisi->time)."</td>";
                             echo "<td>".$disposisi->isi_disposisi."</td>";
                             echo "<td align='center'>". $status."</td>";
                             echo "</tr>";
-                            $no++;
                         }?>
                         </tbody>
                     </table>

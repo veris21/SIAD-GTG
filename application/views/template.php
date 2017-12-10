@@ -127,6 +127,16 @@
     <script src="<?php echo THEME; ?>plugins/fancybox/helper/jquery.fancybox-button.js" ></script>
     <script src="<?php echo THEME; ?>plugins/fancybox/helper/jquery.fancybox-thumbs.js" ></script>
 
+    <script type="text/javascript" src="<?php echo THEME; ?>plugins/webcamReader/js/qrcodelib.js"></script>
+    <script type="text/javascript" src="<?php echo THEME; ?>plugins/webcamReader/js/webcodecamjquery.js"></script>
+
+    <script type="text/javascript" src="<?php echo THEME; ?>plugins/webcamReader/js/webcodecamjs.js"></script>
+    <script type="text/javascript" src="<?php echo THEME; ?>plugins/webcamReader/js/mainjquery.js"></script>
+    <script type="text/javascript" src="<?php echo THEME; ?>plugins/webcamReader/js/decoderworker.js"></script>
+<!--  -->
+    <script type="text/javascript" src="<?php echo THEME; ?>plugins/webcamReader/js/main.js"></script>
+    <!--  -->
+    
     <script type="text/javascript">
 
       function refresh(){
@@ -185,6 +195,22 @@
         rowGroup: {
           dataSrc: 'nama_dusun'
           }
+        // "processing": true,
+        // "serverSide": true,
+        // "order": [], //Initial no order.
+        //             // Load data for the table's content from an Ajax source
+        //             "ajax": {
+        //                 "url": '<?php echo BASE_URL.'adm/json';?>',
+        //                 "type": "POST"
+        //             },
+        //             //Set column definition initialisation properties.
+        //             "columnDefs": [
+        //               { 
+        //                   "targets": [ 0 ], 
+        //                   "orderable": false, 
+        //               },
+        //               ],
+       
       });
       $("#adm-desa").DataTable({
         responsive: true, 

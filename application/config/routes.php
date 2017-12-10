@@ -29,6 +29,7 @@ $route['klasifikasi/posting']       = 'master/posting_klasifikasi_arsip';
 $route['klasifikasi/get/(:any)']    = 'master/get_klasifikasi_one/$1';
 $route['klasifikasi/edit']          = 'master/update_klasifikasi';
 $route['klasifikasi/delete/(:any)'] = 'master/delete_klasifikasi/$1';
+$route['adm/json']                  = 'master/adm_json';
 
 $route['arsip']                     = 'arsip/arsip';
 $route['arsip/input']               = 'arsip/arsip_input';

@@ -128,7 +128,29 @@ class Master extends CI_Controller{
     $this->load->view('template',$data);
     }
   }
-
+// DATA TABLES Server Processing
+  public function adm_json(){
+    $list = $this->master_model->get_adm_json()->result();
+    $data = array();
+    // $no = $_POST['start'];
+    foreach($list as $list){
+      $row = array();
+      $row[] = $list->nama_kabupaten;
+      $row[] = $list->nama_kecamatan;
+      $row[] = $list->nama_desa;
+      $row[] = $list->nama_dusun;
+      $row[] = $list->nama_rt;
+      $row[] = $list->id;
+      $data[] = $row;
+    }
+    $output = array(
+      "draw" => "1",
+      "recordsTotal" => $this->master_model->get_adm_json()->num_rows(),
+      "recordsFiltered" => 10,
+      "data" => $data,
+    );
+    echo json_encode($output);
+  }
   public function posting_klasifikasi_arsip(){
     $data = array(
       'kode'=>strip_tags($this->input->post('kode')),
@@ -166,7 +188,7 @@ class Master extends CI_Controller{
       $data['data']           = $this->master_model->_get_klasifikasi_surat()->result();
       $this->load->view('template',$data);
   }
-
+ 
   // Master CI_Controller
   /*
     ================================================================

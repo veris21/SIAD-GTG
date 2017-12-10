@@ -1,5 +1,5 @@
 $(function() {
-	
+		var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1] + '/';
 		var marketId = []; //returned from the API
 		var allLatlng = []; //returned from the API
 		var allMarkers = []; //returned from the API
@@ -19,7 +19,6 @@ $(function() {
 			
 			function success(pos){
 				userCords = pos.coords;
-				
 				//return userCords;
 			}
 		
@@ -57,18 +56,18 @@ $(function() {
 	
 	//Fire up Google maps and place inside the map-canvas div
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
+	
 	//grab form data
-    $('#chooseZip').submit(function() { // bind function to submit event of form
-		
+    $('#chooseData').submit(function() { // bind function to submit event of form
+		// alert(base_url);
 		//define and set variables
-		var userZip = $("#textZip").val();
+		var userData = $("#data").val();
 		//console.log("This-> " + userCords.latitude);
 		
 		var accessURL;
 		
-		if(userZip){
-			accessURL = "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=" + userZip;
+		if(userData){
+			accessURL = "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=" + userData;
 		} else {
 			accessURL = "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/locSearch?lat=" + userCords.latitude + "&lng=" + userCords.longitude;
 		}
