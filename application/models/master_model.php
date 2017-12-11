@@ -91,25 +91,29 @@ class Master_model extends CI_Model{
     return $this->db->query($query);
   }
   public function _get_administrasi_wilayah(){
-    $this->db->select('*');
-    $this->db->from('rt');
-    $this->db->join('users', 'rt.uid=users.id');
-    $this->db->join('dusun', 'dusun.id=rt.dusun_id');
-    $this->db->join('desa', 'desa.id=dusun.desa_id');
-    $this->db->join('kecamatan', 'kecamatan.id=desa.kecamatan_id');
-    $this->db->join('kabupaten', 'kabupaten.id=kecamatan.kabupaten_id');
+    $this->db->select('r.*, d.nama_dusun, de.nama_desa, k.nama_kecamatan, kab.nama_kabupaten, u.fullname, u.hp');
+    $this->db->from('rt r, dusun d, desa de, kecamatan k, kabupaten kab, users u');
+    $this->db->where('r.dusun_id=d.id');
+    $this->db->where('d.desa_id=de.id');
+    $this->db->where('de.kecamatan_id=k.id');
+    $this->db->where('k.kabupaten_id=kab.id');
+    $this->db->where('r.uid=u.id');
     return $this->db->get();
   }
   public function _get_dusun(){
-    $this->db->select('*');
-    $this->db->from('dusun');
-    $this->db->join('users', 'dusun.uid=users.id');
-    $this->db->join('desa', 'desa.id=dusun.desa_id');
-    $this->db->join('kecamatan', 'kecamatan.id=desa.kecamatan_id');
-    $this->db->join('kabupaten', 'kabupaten.id=kecamatan.kabupaten_id');
+    $this->db->select('d.*, de.nama_desa, k.nama_kecamatan, kab.nama_kabupaten, u.fullname, u.hp');
+    $this->db->from('dusun d, desa de, kecamatan k, kabupaten kab, users u');
+    $this->db->where('d.desa_id=de.id');
+    $this->db->where('de.kecamatan_id=k.id');
+    $this->db->where('k.kabupaten_id=kab.id');
+    $this->db->where('d.uid=u.id');
+
     return $this->db->get();
   }
 
+  public function dusun_on($desa_id){
+    return $this->db->get_where('dusun', array('desa_id'=>$desa_id));
+  }
   public function dusun(){
     return $this->db->get('dusun');
   }
@@ -122,10 +126,11 @@ class Master_model extends CI_Model{
   }
 
   public function _get_desa(){
-    $this->db->select('*');
-    $this->db->from('desa');
-    $this->db->join('kecamatan', 'kecamatan.id=desa.kecamatan_id');
-    $this->db->join('kabupaten', 'kabupaten.id=kecamatan.kabupaten_id');
+    $this->db->select('de.*, k.nama_kecamatan, kab.nama_kabupaten, u.fullname, u.hp');
+    $this->db->from('desa de, kecamatan k, kabupaten kab, users u');
+    $this->db->where('de.kecamatan_id=k.id');
+    $this->db->where('k.kabupaten_id=kab.id');
+    $this->db->where('de.uid=u.id');
     return $this->db->get();
   }
 

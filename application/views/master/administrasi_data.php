@@ -32,6 +32,7 @@
          <td>Dusun</td>
          <td>RT</td>
          <td>Pejabat</td>
+         <td>#</td>
        </tr>
      </thead>
      <tbody>
@@ -43,21 +44,12 @@
         echo "<td>".$adm->nama_desa."</td>";
         echo "<td>".$adm->nama_dusun."</td>";
         echo "<td>".$adm->nama_rt."</td>";
-        echo "<td align='center'><b>".$adm->fullname."</b><br>".$adm->hp."</td>";
+        echo "<td align='center'><b>".$adm->fullname."</b> <br>".$adm->hp."</td>";
+        echo "<td align='center'><a href='".BASE_URL."rt/edit/".$adm->id."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></a></td>";
         echo "</tr>";
         } 
      ?>
      </tbody> 
-     <tfoot>
-     <tr valign="center" align="center">
-         <td>Kabupaten</td>
-         <td>Kecamatan</td>
-         <td>Desa</td>
-         <td>Dusun</td>
-         <td>RT</td>
-         <td>Pejabat</td>
-       </tr>
-     </tfoot>
      </table>
         <!-- User Tab -->
      </div>
@@ -67,7 +59,8 @@
        <tr valign="center" align="center">
          <td>Kecamatan</td>
          <td>Desa</td>
-         <td>Pilihan</td>
+         <td>Pejabat</td>
+         <td>#</td>
        </tr>
      </thead>
      <tbody>
@@ -76,7 +69,8 @@
             echo "<tr>";
             echo "<td>".$desa->nama_kecamatan."</td>";
             echo "<td>".$desa->nama_desa."</td>";
-            echo "<td></td>";
+            echo "<td align='center'><b>".$desa->fullname."</b> <br>".$desa->hp."</td>";
+            echo "<td align='center'><a href='".BASE_URL."rt/edit/".$desa->id."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></a></td>";
             echo "</tr>";
         }
         ?>
@@ -115,6 +109,7 @@
          <td>Desa</td>
          <td>Dusun</td>
          <td>Pejabat</td>
+         <td>#</td>
        </tr>
      </thead>
      <tbody>
@@ -125,6 +120,7 @@
             echo "<td>".$dusun->nama_desa."</td>";
             echo "<td>".$dusun->nama_dusun."</td>";
             echo "<td align='center'><b>".$dusun->fullname."</b><br>".$dusun->hp."</td>";
+            echo "<td  align='center'><a href='".BASE_URL."rt/edit/".$dusun->id."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></a></td>";
             echo "</tr>";
         }
         ?>

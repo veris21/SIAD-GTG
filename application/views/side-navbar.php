@@ -208,7 +208,7 @@
             <li class="divider"></li>
             <li><a href="<?php echo BASE_URL.'pertanahan/data'; ?>"><i class="fa fa-circle-o"></i> Cek Data</a></li>
             <li class="divider"></li>
-            <li><a href="<?php echo BASE_URL.'permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
+            <li><a href="<?php echo BASE_URL.'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
             <li><a href="<?php echo BASE_URL.'berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
             <li><a href="<?php echo BASE_URL.'pra_skt'; ?>"><i class="fa fa-circle-o"></i> Data Pra SKT</a></li>
             <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>

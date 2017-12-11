@@ -43,7 +43,9 @@ $route['disposisi/cetak/']              = 'disposisi/cetak/$1';
 $route['notifikasi/list']           = 'office/notifikasi_list';
 $route['notifikasi/baca/(:any)']    = 'office/notifikasi_baca/$1';
 
-$route['pertanahan/data']           = 'pertanahan/data_view';
+$route['pertanahan/data']                 = 'pertanahan/data_view';
+$route['pertanahan/permohonan']           = 'pertanahan/permohonan';
+$route['permohonan/input']                = 'pertanahan/permohonan_input';
 
 // AUTOFILL
 $route['cari/nik/(:any)']           = 'datapenduduk/cari_nik/$1';

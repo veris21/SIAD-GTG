@@ -164,7 +164,10 @@
       });
 
 // ==========================
-
+// Pertanahan
+$("#list_permohonan").DataTable({
+  responsive: true,
+});
       $("#table_klasifikasi_surat").DataTable({
         responsive: true, 
         rowGroup: {
@@ -270,6 +273,9 @@
                 $('#alamat').text(obj.alamat);
                 $('#no_rt').text(obj.no_rt);
                 $('#dusun').text(obj.dusun);
+                $('[name="kependudukan_id"]').val(obj.id);
+                $('[name="no_nik"]').val(obj.no_nik);
+                $('[name="pemohon"]').val(obj.nama);
 
                 $('#result_cari_data').show();
                 $('#data_kosong').hide();
@@ -292,6 +298,31 @@
   var save_method;
     var arsip_method; 
 
+    function posting_permohonan(){
+      $('#permohonan_form').submit(function(evt){
+        evt.preventDefault();
+        var formData = new FormData($(this)[0]);
+        var url = '<?php echo BASE_URL.'permohonan/input';?>';
+        $.ajax({
+            url:url,
+            type: "POST",
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success: function(data){
+              swal('Good job!','Berhasil Posting Permohonan!','success');
+              location.reload();
+            }, error: function (jqXHR, textStatus, errorThrown) {
+              swal('Oops...','Something went wrong!','error');
+             }
+          });
+      
+      });
+    }
+    
     function buat_disposisi(){
       $('#disposisi_input')[0].reset();
       $('#modal_disposisi').modal('show');
