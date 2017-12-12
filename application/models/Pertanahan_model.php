@@ -9,6 +9,14 @@ class Pertanahan_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function _get_details_one($id){
+    $this->db->select('mohon.*, p.no_nik, p.nama, p.alamat, p.no_kk');
+    $this->db->from('permohonan_pertanahan mohon, master_data_penduduk_ p');
+    $this->db->where('mohon.kependudukan_id=p.id');
+    $this->db->where('mohon.time', $id);
+    return $this->db->get();
+  }
+
   public function _get_permohonan(){
     $this->db->select('mohon.*, p.no_nik, p.nama, p.alamat, p.no_kk');
     $this->db->from('permohonan_pertanahan mohon, master_data_penduduk_ p');

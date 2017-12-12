@@ -43,7 +43,7 @@
             </td>";
             echo "<td>
             <a href='".BASE_URL."permohonan/edit/".$data->id."' class='btn btn-xs btn-flat btn-primary'><i class='fa fa-edit'></i></a>
-            <a href='".BASE_URL."permohonan/details/".$data->id."' class='btn btn-xs btn-flat btn-success'><i class='fa fa-eye'></i></a>
+            <a href='".BASE_URL."permohonan/view/".$data->time."' class='btn btn-xs btn-flat btn-success'><i class='fa fa-eye'></i></a>
             </td>";
             echo "</tr>";
             }
@@ -121,10 +121,14 @@
           <input type="hidden" name="pemohon">
           <input type="hidden" name="no_nik">
           <div class="form-group">
+          <label for="">Kontak (hp)</label>
+          <input type="text" name="kontak" class="form-control">
+          </div>
+          <div class="form-group">
           <label for="">Lokasi Tanah</label>
           <input type="text" name="lokasi" class="form-control">
           </div>
-          <div class="form">
+          <div class="form-group">
             <label for="">Dusun</label>
             <select name="dusun_id" class="form-control">
               <?php
@@ -185,6 +189,11 @@
           <div class="form-group">
           <label for="scan_file">Scan KTP/ Pengantar Kadus</label>
           <input type="file" name="scan_link" class="form-control">
+          </div>
+          <hr>
+          <div class="form-group">
+          <label for="scan_file">Foto Pemohon</label>
+          <input type="file" name="foto" class="form-control">
           </div>
           <hr>
           <div class="pull-right">

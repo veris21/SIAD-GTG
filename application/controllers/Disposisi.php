@@ -37,7 +37,7 @@ class Disposisi extends CI_Controller{
     $message = "DISPOSISI : ".$dari."#SURAT: ".$pengirim."#Perihal ".$perihal."#Memo : ".$isi."! (Si-Desa Gantung)";
     sms_notifikasi($to, $message);
     $params['data'] = BASE_URL.'disposisi/validasi/'.$sekarang;
-    $params['level'] = 'H';
+    $params['level'] = 'M';
     $params['size'] = 10;
     $params['savename'] = FCPATH.'assets/uploader/qr_code/'.$sekarang.'.png';
     $this->ciqrcode->generate($params);
