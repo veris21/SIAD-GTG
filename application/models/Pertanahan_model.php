@@ -10,9 +10,15 @@ class Pertanahan_model extends CI_Model{
   }
 
   public function _get_details_one($id){
-    $this->db->select('mohon.*, p.no_nik, p.nama, p.alamat, p.no_kk');
-    $this->db->from('permohonan_pertanahan mohon, master_data_penduduk_ p');
+    $this->db->select('mohon.*, p.no_nik, p.nama, p.alamat, p.agama, p.tempat_lahir, 
+    p.tanggal_lahir, p.pekerjaan, p.status, p.jenis_kelamin, dsn.nama_dusun, d.nama_desa, d.alamat_desa, u.fullname, kec.nama_kecamatan, kab.nama_kabupaten');
+    $this->db->from('permohonan_pertanahan mohon, master_data_penduduk_ p, dusun dsn, desa d, users u, kecamatan kec, kabupaten kab');
     $this->db->where('mohon.kependudukan_id=p.id');
+    $this->db->where('mohon.dusun_id=dsn.id');
+    $this->db->where('dsn.desa_id=d.id');
+    $this->db->where('d.uid=u.id');
+    $this->db->where('d.kecamatan_id=kec.id');
+    $this->db->where('kec.kabupaten_id=kab.id');
     $this->db->where('mohon.time', $id);
     return $this->db->get();
   }

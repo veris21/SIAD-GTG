@@ -78,10 +78,22 @@
                 </div>
                 <div class="box-body">
                     <div class="pull-right">
-                        <button onclick="cetak_permohonan(<?php echo $data['time'];?>)" type="button" class="btn btn-default btn-sm">Cetak Permohonan <i class="fa fa-print"></i></button>
-                        <?php if($data['status'] != 1 && $this->session->userdata['jabatan'] = 'SEKDES'){ ?>
-                        <a href="<?php echo BASE_URL.'permohonan/proses/'.$data['time'];?>" class="btn btn-sm btn-success">Proses Permohonan <i class="fa fa-arrow-right"></i></a>
-                        <?php }?>
+                        <?php if($data['status'] != 1){ 
+                            $jabatan = $this->session->userdata('jabatan');
+                            switch ($jabatan) {
+                                case 'SEKDES':
+                                ?>
+                                <button onclick="cetak_permohonan(<?php echo $data['time'];?>)" type="button" class="btn btn-default btn-sm">Cetak <i class="fa fa-print"></i></button>
+                                <a href="<?php echo BASE_URL.'permohonan/proses/'.$data['time'];?>" class="btn btn-sm btn-success">Proses Permohonan <i class="fa fa-arrow-right"></i></a>
+                                <?php
+                                    break;
+                                default:
+                                   ?>
+                                <button onclick="cetak_permohonan(<?php echo $data['time'];?>)" type="button" class="btn btn-default btn-sm">Cetak <i class="fa fa-print"></i></button>
+                                   <?php
+                                    break;
+                            }
+                         }?>
                     </div>
                 </div>            
             </div>

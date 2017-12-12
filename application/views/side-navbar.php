@@ -11,7 +11,7 @@
         </a>
       </li>
       <?php
-      $activeNav = $this->session->userdata['jabatan'];     
+      $activeNav = $this->session->userdata('jabatan');     
       switch ($activeNav) {
         case "KADES":
         ?>

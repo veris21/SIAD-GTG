@@ -47,7 +47,7 @@ $route['pertanahan/data']                 = 'pertanahan/data_view';
 $route['pertanahan/permohonan']           = 'pertanahan/permohonan';
 $route['permohonan/input']                = 'pertanahan/permohonan_input';
 $route['permohonan/view/(:any)']          = 'pertanahan/permohonan_view/$1';
-$route['permohonan/print/(:any)']         = 'pertanahan/permohonan_print/$1';
+$route['permohonan/cetak/(:any)']         = 'pertanahan/permohonan_print/$1';
 
 // AUTOFILL
 $route['cari/nik/(:any)']           = 'datapenduduk/cari_nik/$1';

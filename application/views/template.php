@@ -368,19 +368,19 @@ $("#list_permohonan").DataTable({
               cancelButtonColor: '#d33',
               confirmButtonText: 'Iya, Cetak!'              
             }, function isConfirm(){
-              // $.ajax({
-              //   url:url,
-              //   type:"POST",
-              //   dataType:"JSON",            
-              //   success: function (data){
-              //     swal('Good job!','Berhasil Posting Data Disposisi !','success');
-              //     location.reload();
-              //   },
-              //     error: function (jqXHR, textStatus, errorThrown)
-              //     {
-              //       swal('Oops...','Something went wrong!','error');
-              //     }
-              // });
+              $.ajax({
+                url:url,
+                type:"POST",
+                dataType:"JSON",            
+                success: function (data){
+                  swal('Good job!','Berhasil Generate PDF !','success');
+                  location.reload();
+                },
+                  error: function (jqXHR, textStatus, errorThrown)
+                  {
+                    swal('Oops...','Something went wrong!','error');
+                  }
+              });
             });
     }
     function save_disposisi(){
