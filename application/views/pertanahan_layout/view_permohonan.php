@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <dt>Pemohon</dt>
-                            <dd>a/n. <?php echo  $data['nama'];?><br>No. NIK : <b><?php echo  $data['no_nik'];?></b> </dd>
+                            <dd>a/n. <?php echo  $data['nama'];?><br>NIK : <b><?php echo  $data['no_nik'];?></b> </dd>
                             <br>
                             <dt>Kontak Pemohon</dt>
                             <dd><?php echo  $data['hp'];?></dd>

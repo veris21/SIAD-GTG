@@ -36,19 +36,10 @@ class Pertanahan extends CI_Controller{
   public function permohonan_print($id){
     $data['title'] = TITLE.'Cetak Permohonan';
     $data['data']  = $this->pertanahan_model->_get_details_one($id)->row_array();
-    // $this->load->view(PERTANAHAN.'print/permohonan', $data);
     $html = $this->load->view(PERTANAHAN.'print/permohonan', $data, TRUE);
     if($this->pdfgenerator->generate($html, $data['data']['nama']." - PERMOHONAN (".date('d-M-Y').")")){
       echo json_encode(array("status" => TRUE));
     }
-    
-    // $this->html2pdf->folder('./assets/pdfs/');
-    // $this->html2pdf->filename('Permohonan-'.$data['data']['nama']."-".time().'.pdf');
-    // $this->html2pdf->paper('legal', 'portrait');
-    // $this->html2pdf->html($this->load->view(PERTANAHAN.'print/permohonan', $data, true));
-    // if($this->html2pdf->create('download')) {
-    //   echo json_encode(array("status" => TRUE));
-    // }
   }
 
   public function permohonan_input(){
