@@ -53,7 +53,7 @@ class Disposisi extends CI_Controller{
       'status'=>0
     );
     $this->disposisi_model->_post_disposisi($post);
-    $link = "disposisi/".$arsip_time;
+    $link = "arsip/".$arsip_time;
     $posting = array(
       'kepada_id'=> $id,
       'hp'=> $to,

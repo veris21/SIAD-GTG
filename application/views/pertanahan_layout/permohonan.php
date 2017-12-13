@@ -33,7 +33,13 @@
           <tbody>
           <?php 
             foreach($data as $data){
-              $status = ($data->status_proses==0?'<button class="btn btn-warning">Di Prosess</button>':'<button class="btn btn-success">Di Terima</button>');
+              if($data->status_proses==0){
+                $status = '<button class="btn btn-warning">Di Prosess</button>';
+              }elseif ($data->status_proses==2) {
+                $status = '<button class="btn btn-primary">Di Setujui</button>';
+              }else{
+                $status = '<button class="btn btn-success">Di Terima</button>';
+              }              
             echo "<tr>";
             echo "<td>".$data->nama."<br>".$data->no_nik."</td>";
             echo "<td>".mdate("%d %M %Y - %H:%i %a", $data->time)."</td>";
@@ -148,9 +154,7 @@
             <option value="TANAH NEGARA">TANAH NEGARA</option>
             <option value="TANAH DESA">TANAH DESA</option>
             <option value="TANAH GIRIK">TANAH GIRIK</option>
-            <option value="TANAH PRIBADI / JUAL-BELI ">TANAH PRIBADI / JUAL-BELI</option>
-            <option value="TANAH ADAT">TANAH ADAT</option>
-            <option value="TANAH KELOLA">TANAH KELOLA</option>
+            <option value="TANAH GARAPAN">TANAH GARAPAN</option>
           </select>
           </div>
           <div class="form-group">

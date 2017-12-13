@@ -134,5 +134,84 @@ class Pertanahan extends CI_Controller{
     }
   }
 
+  public function pernyataan_input(){
+
+    $saksi1_nama      = $this->input->post('saksi1_nama');
+    $saksi1_umur      = $this->input->post('saksi1_umur');
+    $saksi1_pekerjaan = $this->input->post('saksi1_pekerjaan');
+    $saksi2_nama      = $this->input->post('saksi2_nama');
+    $saksi2_umur      = $this->input->post('saksi2_umur');
+    $saksi2_pekerjaan = $this->input->post('saksi2_pekerjaan');
+    $saksi3_nama      = $this->input->post('saksi3_nama');
+    $saksi3_umur      = $this->input->post('saksi3_umur');
+    $saksi3_pekerjaan = $this->input->post('saksi3_pekerjaan');
+    $saksi4_nama      = $this->input->post('saksi4_nama');
+    $saksi4_umur      = $this->input->post('saksi4_umur');
+    $saksi4_pekerjaan = $this->input->post('saksi4_pekerjaan');
+
+    $permohonan_id = $this->input->post('permohonan_id');
+    $sekarang = time();
+    // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
+    $desa_id = $this->session->userdata('desa_id');
+    $hp_kades = $this->notifikasi_model->_get_data_kades($desa_id)->row_array();
+    $kepada_id = $hp_kades['id'];
+    $jabatan = $hp_kades['jabatan'];
+    $nama_desa = $hp_kades['nama_desa'];
+    $message = 'NOTIFIKASI PERTANAHAN : Yth. '.$jabatan.' '.$nama_desa.' Pernyataan SKT '.$pemohon.', Lokasi : '.$lokasi.', Luas : '.$luas.' meter persegi (SiDesa Sistem)';
+    $to = $hp_kades['hp'];
+    sms_notifikasi($to, $message);
+    // ==========================
+      // QRCODE GENERATE
+      $params['data'] = BASE_URL.'pernyataan/validasi/'.$sekarang;
+      $params['level'] = 'M';
+      $params['size'] = 10;
+      $params['savename'] = FCPATH.'assets/uploader/qr_code/'.$sekarang.'.png';
+      $this->ciqrcode->generate($params);
+      // +===============+
+      // +===============+
+      $link = "pernyataan/".$sekarang;
+      $posting = array(
+        'kepada_id'=> $kepada_id,
+        'hp'=> $to,
+        'message'=> $message,
+        'link'=> $link,
+        'time'=> time(),
+        'status'=> 0,
+        'type'=> 0
+      );
+      $this->notifikasi_model->posting_notifikasi($posting);
+      $qr_link = $sekarang.'.png';
+      $insert = array(
+        'permohonan_id'=>$permohonan_id,
+        'saksi1_nama'=>$saksi1_nama,
+        'saksi1_umur'=>$saksi1_umur,
+        'saksi1_pekerjaan'=>$saksi1_pekerjaan,
+        'saksi2_nama'=>$saksi2_nama,
+        'saksi2_umur'=>$saksi2_umur,
+        'saksi2_pekerjaan'=>$saksi2_pekerjaan,
+        'saksi3_nama'=>$saksi3_nama,
+        'saksi3_umur'=>$saksi3_umur,
+        'saksi3_pekerjaan'=>$saksi3_pekerjaan,
+        'saksi4_nama'=>$saksi4_nama,
+        'saksi4_umur'=>$saksi4_umur,
+        'saksi4_pekerjaan'=>$saksi4_pekerjaan,
+        'time'=>$sekarang,
+        'qr_link'=>$qr_link,
+        'status_proses'=>0
+      );
+      $check = $this->pertanahan_model->_post_pernyataan($insert);
+      if($check){
+        echo json_encode(array("status" => TRUE));
+      }   
+  }
+
+  public function permohonan_setujui($id){
+    $setujui = array('status_proses'=>2);
+    $check = $this->pertanahan_model->_setujui_permohonan($id, $setujui);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }
+
+  }
 
 }

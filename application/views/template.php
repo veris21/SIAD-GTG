@@ -299,6 +299,34 @@
   var save_method;
     var arsip_method; 
 
+    function permohonan_setujui(id){
+      event.preventDefault();
+      var url = '<?php echo BASE_URL.'permohonan/setujui/';?>'+id;
+      swal({
+              title: 'Apa Anda Yakin untuk Menyetujui Permohonan?',
+              text: "Akses ke Form Pernyataan akan dibuka!",
+              type: 'success',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Iya, Setujui Data!'              
+            }, function isConfirm(){
+              $.ajax({
+                url:url,
+                type:"POST",
+                dataType:"JSON",
+                success: function (data){
+                  swal('Good job!','Berhasil Buka Kunci data!','success');
+                  location.reload();
+                },
+                  error: function (jqXHR, textStatus, errorThrown)
+                  {
+                    swal('Oops...','Something went wrong!','error');
+                  }
+              });
+            });
+    }
+
     function posting_permohonan(){
       $('#permohonan_form').submit(function(evt){
         evt.preventDefault();
@@ -386,7 +414,16 @@
               });
             });
     }
+    function pernyataan_input(){
+      $('#pernyataan_input')[0].reset();
+      $('#modal_pernyataan').modal('show');
+    }
 
+
+    function pernyataan_save(){
+      event.preventDefault();
+      var url = '<?php echo BASE_URL."peryataan/input/";?>';
+    }
     function cetak_pernyataan(id){
       event.preventDefault();
       var url = '<?php echo BASE_URL."peryataan/cetak/";?>'+id;

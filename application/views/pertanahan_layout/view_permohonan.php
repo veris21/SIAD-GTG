@@ -83,25 +83,33 @@
                         switch ($jabatan) {
                             case 'KADES':
                                 if($data['status_proses']==0){
-                                    ?>
-                                <a href="<?php echo BASE_URL.'permohonan/proses/'.$data['time'];?>" class="btn btn-sm btn-success">Proses Permohonan <i class="fa fa-arrow-right"></i></a>          
-                                    <?php
+                                ?>
+                                <button onclick="permohonan_setujui(<?php echo $data['id'];?>)" class="btn btn-sm btn-primary">Setujui <i class="fa fa-check"></i></button>     
+                                <?php
+                                }elseif($data['status_proses']==2){
+                                ?>
+                                <button onclick="pernyataan_input()" class="btn btn-sm btn-success">Input Pernyataan <i class="fa fa-arrow-right"></i></button>          
+                                <?php
                                 }else{
-                                    ?>
-                                <button onclick="cetak_pernyataan(<?php echo $data['time'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
-                                    <?php
+                                ?>
+                                <button onclick="cetak_pernyataan(<?php echo $data['id'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
+                                <?php
                                 }
                                 break;
                             case 'SEKDES':
-                                if($data['status_proses']==0){
-                                    ?>
-                                <a href="<?php echo BASE_URL.'permohonan/proses/'.$data['time'];?>" class="btn btn-sm btn-success">Proses Permohonan <i class="fa fa-arrow-right"></i></a>          
-                                    <?php
+                            if($data['status_proses']==0){
+                                ?>
+                                <button onclick="permohonan_setujui(<?php echo $data['id'];?>)" class="btn btn-sm btn-primary">Setujui <i class="fa fa-check"></i></button>     
+                                <?php
+                                }elseif($data['status_proses']==2){
+                                ?>
+                                <button onclick="pernyataan_input()" class="btn btn-sm btn-success">Input Pernyataan <i class="fa fa-arrow-right"></i></button>          
+                                <?php
                                 }else{
-                                    ?>
-                                <button onclick="cetak_pernyataan(<?php echo $data['time'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
-                                    <?php
-                                }
+                                ?>
+                                <button onclick="cetak_pernyataan(<?php echo $data['id'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
+                                <?php
+                                }                                
                                 break;                            
                             default:
                                 # code...
@@ -115,3 +123,56 @@
         </div>    
     </div>
 </section>
+
+<!-- Modal Input Disposisi -->
+<div class="modal fade" id="modal_pernyataan" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Lengkapi Form Pernyataan</h3>
+      </div>
+      <?php echo form_open_multipart('', array('id'=>'pernyataan_input'));?>
+      <div class="modal-body form">
+          <input type="hidden" name="permohonan_id" value="<?php echo $data['id'];?>">
+        <table class="table table-striped">
+            <tr align="center">
+                <td>Saksi</td>
+                <td>Nama Saksi</td>
+                <td>Umur <i>(Tahun)</i></td>
+                <td>Pekerjaan</td>
+            </tr>
+            <tr>
+                <td align="center">1</td>
+                <td><input placeholder="Nama Saksi" type="text" name="saksi1_nama" class="form-control"></td>
+                <td width="60"><input type="text" name="saksi1_umur" class="form-control"></td>
+                <td><input placeholder="Pekerjaan" type="text" name="saksi1_pekerjaan" class="form-control"></td>
+            </tr>
+            <tr>
+                <td align="center">2</td>
+                <td><input placeholder="Nama Saksi" type="text" name="saksi2_nama" class="form-control"></td>
+                <td width="60"><input type="text" name="saksi2_umur" class="form-control"></td>
+                <td><input placeholder="Pekerjaan" type="text" name="saksi2_pekerjaan" class="form-control"></td>
+            </tr>
+            <tr>
+                <td align="center">3</td>
+                <td><input placeholder="Nama Saksi" type="text" name="saksi3_nama" class="form-control"></td>
+                <td width="60"><input type="text" name="saksi3_umur" class="form-control"></td>
+                <td><input placeholder="Pekerjaan" type="text" name="saksi3_pekerjaan" class="form-control"></td>
+            </tr>
+            <tr>
+                <td align="center">4</td>
+                <td><input placeholder="Nama Saksi" type="text" name="saksi4_nama" class="form-control"></td>
+                <td width="60"><input type="text" name="saksi4_umur" class="form-control"></td>
+                <td><input placeholder="Pekerjaan" type="text" name="saksi4_pekerjaan" class="form-control"></td>
+            </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="submit" onclick="pernyataan_save()" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+    </div> 
+  </div> 
+</div>
