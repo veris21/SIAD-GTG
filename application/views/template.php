@@ -391,7 +391,7 @@
       event.preventDefault();
       var url = '<?php echo BASE_URL."permohonan/cetak/";?>'+id;
         swal({
-              title: 'Apa Anda Yakin?',
+              title: 'Apa Anda Yakin untuk mencetak Surat Permohonan?',
               text: "Cetak Surat Permohonan "+id+" dari Sistem!",
               type: 'warning',
               showCancelButton: true,
@@ -414,41 +414,65 @@
               });
             });
     }
+    
     function pernyataan_input(){
       $('#pernyataan_input')[0].reset();
       $('#modal_pernyataan').modal('show');
     }
 
-
     function pernyataan_save(){
       event.preventDefault();
-      var url = '<?php echo BASE_URL."peryataan/input/";?>';
+      var url = '<?php echo BASE_URL."pernyataan/input";?>';
+      swal({
+              title: 'Apa Anda Yakin?',
+              text: "Data Pernyataan Akan di Input ke Sistem!",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Iya, Simpan!'              
+            }, function isConfirm(){
+              $.ajax({
+                url:url,
+                type:"POST",
+                data:$('#pernyataan_input').serialize(),
+                dataType:"JSON",            
+                success: function (data){
+                  swal('Good job!','Berhasil Posting Data Pernyataan !','success');
+                  location.reload();
+                },
+                  error: function (jqXHR, textStatus, errorThrown)
+                  {
+                    swal('Oops...','Something went wrong!','error');
+                  }
+              });
+            });
     }
     function cetak_pernyataan(id){
       event.preventDefault();
-      var url = '<?php echo BASE_URL."peryataan/cetak/";?>'+id;
+      var url = '<?php echo BASE_URL."pernyataan/cetak/";?>'+id;
       swal({
               title: 'Apa Anda Yakin?',
-              text: "Cetak Surat Peryataan "+id+" dari Sistem!",
+              text: "Cetak Surat Peryataan dari Sistem!",
               type: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
               confirmButtonText: 'Iya, Cetak!'              
             }, function isConfirm(){
-              // $.ajax({
-              //   url:url,
-              //   type:"POST",
-              //   dataType:"JSON",            
-              //   success: function (data){
-              //     swal('Good job!','Berhasil Generate PDF !','success');
-              //     location.reload();
-              //   },
-              //     error: function (jqXHR, textStatus, errorThrown)
-              //     {
-              //       swal('Oops...','Something went wrong!','error');
-              //     }
-              // });
+              $.ajax({
+                url:url,
+                type:"POST",
+                dataType:"JSON",            
+                success: function (data){
+                  swal('Good job!','Berhasil Generate PDF !','success');
+                  location.reload();
+                },
+                  error: function (jqXHR, textStatus, errorThrown)
+                  {
+                    swal('Oops...','Something went wrong!','error');
+                  }
+              });
             });
     }
 

@@ -34,11 +34,11 @@
           <?php 
             foreach($data as $data){
               if($data->status_proses==0){
-                $status = '<button class="btn btn-warning">Di Prosess</button>';
+                $status = '<button class="btn btn-warning">Di Prosess <i class="fa fa-ban"></i></button>';
               }elseif ($data->status_proses==2) {
-                $status = '<button class="btn btn-primary">Di Setujui</button>';
+                $status = '<button class="btn btn-default">Di Setujui <i class="fa fa-paper-plane"></i></button>';
               }else{
-                $status = '<button class="btn btn-success">Di Terima</button>';
+                $status = '<button class="btn btn-success">Di Terima <i class="fa fa-check"></i></button>';
               }              
             echo "<tr>";
             echo "<td>".$data->nama."<br>".$data->no_nik."</td>";
@@ -199,13 +199,18 @@
               </tr>
           </table>
           <div class="form-group">
-          <label for="scan_file">Scan KTP/ Pengantar Kadus</label>
+          <label for="scan_file">Foto Pemohon</label>
+          <input type="file" name="foto" class="form-control">
+          </div>
+          <hr>
+          <div class="form-group">
+          <label for="">Scan KTP/ Pengantar Kadus</label>
           <input type="file" name="scan_link" class="form-control">
           </div>
           <hr>
           <div class="form-group">
-          <label for="scan_file">Foto Pemohon</label>
-          <input type="file" name="foto" class="form-control">
+          <label for="">Bukti Pembayaran PBB</label>
+          <input type="file" name="pbb" class="form-control">
           </div>
           <hr>
           <div class="pull-right">

@@ -50,6 +50,9 @@ $route['permohonan/view/(:any)']          = 'pertanahan/permohonan_view/$1';
 $route['permohonan/cetak/(:any)']         = 'pertanahan/permohonan_print/$1';
 $route['permohonan/setujui/(:any)']       = 'pertanahan/permohonan_setujui/$1';
 
+$route['pernyataan/input']                = 'pertanahan/pernyataan_input';
+$route['pernyataan/cetak/(:any)']         = 'pertanahan/pernyataan_print/$1';
+
 // AUTOFILL
 $route['cari/nik/(:any)']           = 'datapenduduk/cari_nik/$1';
 $route['data_penduduk']             = 'datapenduduk/data_penduduk';

@@ -42,6 +42,16 @@ class Pertanahan extends CI_Controller{
     }
   }
 
+  public function pernyataan_print($id){
+    $data['title'] = TITLE.'Cetak Pernyataan';
+    $data['data']  = $this->pertanahan_model->_get_pernyataan_one($id)->row_array();
+    // $this->load->view(PERTANAHAN.'print/pernyataan', $data);
+    $html = $this->load->view(PERTANAHAN.'print/pernyataan', $data, TRUE);
+    if($this->pdfgenerator->generate($html, $data['data']['nama']." - PERNYATAAN (".date('d-M-Y').")")){
+      echo json_encode(array("status" => TRUE));
+    }
+  }
+
   public function permohonan_input(){
     if(isset($_FILES['foto'])){
       $foto = time()."-".$_FILES['foto']['name'];
@@ -52,6 +62,16 @@ class Pertanahan extends CI_Controller{
       $this->load->library('upload');
       $this->upload->initialize($config);
       if(! $this->upload->do_upload('foto') );
+    }
+    if(isset($_FILES['pbb'])){
+      $pbb = time()."-".$_FILES['pbb']['name'];
+      $config['upload_path'] = './assets/uploader/pbb_pemohon/'; //buat folder dengan nama assets di root folder
+      $config['allowed_types'] = 'png|jpg|jpeg';
+      $config['max_size'] = 10000;
+      $config['file_name'] = $pbb;
+      $this->load->library('upload');
+      $this->upload->initialize($config);
+      if(! $this->upload->do_upload('pbb') );
     }
     if(isset($_FILES['scan_link'])){
       $fileName = time()."-".$_FILES['scan_link']['name'];
@@ -97,6 +117,7 @@ class Pertanahan extends CI_Controller{
         'tahun_kelola'=>$tahun_kelola,
         'hp'=>$kontak,
         'foto'=>$foto,
+        'pbb'=>$pbb,
         'status_proses'=>0
       );
       // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
@@ -134,7 +155,7 @@ class Pertanahan extends CI_Controller{
     }
   }
 
-  public function pernyataan_input(){
+  public function pernyataan_input(){ 
 
     $saksi1_nama      = $this->input->post('saksi1_nama');
     $saksi1_umur      = $this->input->post('saksi1_umur');
@@ -149,7 +170,7 @@ class Pertanahan extends CI_Controller{
     $saksi4_umur      = $this->input->post('saksi4_umur');
     $saksi4_pekerjaan = $this->input->post('saksi4_pekerjaan');
 
-    $permohonan_id = $this->input->post('permohonan_id');
+    $id    = $this->input->post('permohonan_id');
     $sekarang = time();
     // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
     $desa_id = $this->session->userdata('desa_id');
@@ -179,10 +200,12 @@ class Pertanahan extends CI_Controller{
         'status'=> 0,
         'type'=> 0
       );
+      $setujui = array('status_proses'=>1);
+      $up = $this->pertanahan_model->_setujui_permohonan($id, $setujui);
       $this->notifikasi_model->posting_notifikasi($posting);
       $qr_link = $sekarang.'.png';
       $insert = array(
-        'permohonan_id'=>$permohonan_id,
+        'permohonan_id'=>$id,
         'saksi1_nama'=>$saksi1_nama,
         'saksi1_umur'=>$saksi1_umur,
         'saksi1_pekerjaan'=>$saksi1_pekerjaan,

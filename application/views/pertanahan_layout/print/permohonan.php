@@ -111,8 +111,7 @@
         </tr>
         <tr>
         <td align="center" width="20%">
-            <img width="90" src="<?php echo QRCODE.$data['qr_link'];?>" alt="logo">
-            <!-- <img src="<?php echo BASE_URL.'assets/logo-beltim.png'; ?>" alt="Logo" width="90" > --><br>
+            <img width="90" src="<?php echo QRCODE.$data['qr_link'];?>" alt="logo"><br>
             <i style="font-size:9px;">(Dokumen ini di generate otomatis melalui sistem SiDesa untuk melihat validasi dokumen silahkan scan Kode QR secara online)</i>
         </td>
         <td colspan="2" width="40%"></td>

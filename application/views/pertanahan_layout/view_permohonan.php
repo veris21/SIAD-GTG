@@ -72,6 +72,14 @@
              <br>
             <?php } ?>
             <!--  -->
+             <!-- Scan Bukti PBB -->
+             <?php if($data['pbb']!=''||$data['pbb']!=null){ ?>
+             <a class="fancybox" rel="fancybox" href="<?php echo UPLOADER.'pbb_pemohon/'.$data['pbb'];?>" title="Lampiran Bukti PBB <?php echo $data['nama']; ?>">
+                <img class="img img-responsive img-rounded" src="<?php echo UPLOADER.'pbb_pemohon/'.$data['pbb'];?>" alt="">
+             </a>
+             <br>
+            <?php } ?>
+            <!--  -->
             <div class="box box-warning">
                 <div class="box-header">
                     <h4 class="box-title text-center">Pilihan Operasi</h4>
@@ -99,15 +107,11 @@
                             case 'SEKDES':
                             if($data['status_proses']==0){
                                 ?>
-                                <button onclick="permohonan_setujui(<?php echo $data['id'];?>)" class="btn btn-sm btn-primary">Setujui <i class="fa fa-check"></i></button>     
+                                <!-- <button onclick="permohonan_setujui(<?php //echo $data['id'];?>)" class="btn btn-sm btn-primary">Setujui <i class="fa fa-check"></i></button>      -->
                                 <?php
                                 }elseif($data['status_proses']==2){
                                 ?>
                                 <button onclick="pernyataan_input()" class="btn btn-sm btn-success">Input Pernyataan <i class="fa fa-arrow-right"></i></button>          
-                                <?php
-                                }else{
-                                ?>
-                                <button onclick="cetak_pernyataan(<?php echo $data['id'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
                                 <?php
                                 }                                
                                 break;                            
@@ -121,6 +125,103 @@
                 </div>            
             </div>
         </div>    
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <?php 
+            $isOK = $data['status_proses'];
+            switch ($isOK) {
+                case 0:
+                 ?>
+            <div class="well">
+                <h3 class="text-center">Permohonan Sedang di Proses / Belum di Setujui</h3>
+            </div>
+                 <?php
+                    break;
+                case 1:
+                $id = $data['id'];
+                $pernyataan = $this->pertanahan_model->_get_pernyataan($id)->row_array();
+                ?>
+                <div class="box box-info">
+                    <div class="box-body">
+                        <div class="row">
+                        <div class="col-md-9">
+                        <div class="well">
+                        <dt>Keterangan</dt>
+                        <dd>Objek Tanah Telah diusahakan sejak <b><?php echo $data['tahun_kelola']; ?></b> hingga sekarang.</dd>
+                        <br>
+                        <dt>Penandatanganan Pernyataan</dt>
+                        <dd>Pernyataan dibuat pada <?php echo mdate("%d - %m - %Y", $pernyataan['time']);?></dd>
+                        </div>
+                        </div>
+                        <div class="col-md-3" align="center">
+                        <img class="img img-responsive img-rounded" src="<?php echo QRCODE.$pernyataan['qr_link'];?>" alt="">
+                        </div>
+                        </div>
+                        <hr>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>
+                                Saksi 1
+                                <ul>
+                                    <li>Nama : <b><?php echo $pernyataan['saksi1_nama'];?></b></li>
+                                    <li>Umur : <b><?php echo $pernyataan['saksi1_umur'];?></b> Tahun</li>
+                                    <li>Pekerjaan : <b><?php echo $pernyataan['saksi1_pekerjaan'];?></b></li>
+                                </ul>
+                                </td>
+                                <td>
+                                Saksi 3
+                                <ul>
+                                    <li>Nama : <b><?php echo $pernyataan['saksi3_nama'];?></b></li>
+                                    <li>Umur : <b><?php echo $pernyataan['saksi3_umur'];?></b> Tahun</li>
+                                    <li>Pekerjaan : <b><?php echo $pernyataan['saksi3_pekerjaan'];?></b></li>
+                                </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                Saksi 2
+                                <ul>
+                                    <li>Nama : <b><?php echo $pernyataan['saksi2_nama'];?></b></li>
+                                    <li>Umur : <b><?php echo $pernyataan['saksi2_umur'];?></b> Tahun</li>
+                                    <li>Pekerjaan : <b><?php echo $pernyataan['saksi2_pekerjaan'];?></b></li>
+                                </ul>
+                                </td>
+                                <td>
+                                Saksi 4
+                                <ul>
+                                    <li>Nama : <b><?php echo $pernyataan['saksi4_nama'];?></b></li>
+                                    <li>Umur : <b><?php echo $pernyataan['saksi4_umur'];?></b> Tahun</li>
+                                    <li>Pekerjaan : <b><?php echo $pernyataan['saksi4_pekerjaan'];?></b></li>
+                                </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="box-footer">
+                        <div class="pull-right">
+                            <button onclick="cetak_pernyataan(<?php echo $pernyataan['id'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                    # code...
+                    break;
+                case 2:
+                ?>
+                 <div class="well">
+                    <h3 class="text-center">Data Pelengkap Pernyataan Belum di Input</h3>
+                </div>
+                <?php
+                    # code...
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+            ?>
+        </div>
     </div>
 </section>
 
