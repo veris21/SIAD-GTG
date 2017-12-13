@@ -76,11 +76,15 @@
             <td colspan="3" align="left">: <?php echo $data['peruntukan_tanah'];?></td>
         </tr>
         <tr>
-            <td colspan="4">
+            <td colspan="2">
                 <p>Dengan batas - batas sebagai berikut : </p>
                 <ul>
                     <li>Sebelah Utara berbatasan dengan <b><?php echo $data['utara'];?></b></li>
                     <li>Sebelah Timur berbatasan dengan <b><?php echo $data['timur'];?></b></li>
+                </ul>
+            </td>
+            <td colspan="2">
+                <ul>
                     <li>Sebelah Selatan berbatasan dengan <b><?php echo $data['selatan'];?></b></li>
                     <li>Sebelah Barat berbatasan dengan <b><?php echo $data['barat'];?></b></li>
                 </ul>
@@ -93,23 +97,27 @@
                 <p>Demikian Surat Permohonan ini dibuat untuk dapat dipergunakan sebagaimana mestinya.</p>
             </td>
         </tr>
+</table> 
+<table>
         <tr>
-        <td align="center" width="20%">
+        <td align="center" width="40%">
             <img width="90" src="<?php echo QRCODE.$data['qr_link'];?>" alt="logo"><br>
             <i style="font-size:9px;">(Dokumen ini di generate otomatis melalui sistem SiDesa untuk melihat validasi dokumen silahkan scan Kode QR secara online)</i>
         </td>
-        <td colspan="2" width="40%"></td>
+        <td colspan="2" width="20%"></td>
         <td align="center" width="40%">
             <p><?php echo $data['nama_desa'].", ".mdate("%d-%m-%Y", $data['time']);?>
             <br>Yang membuat pernyataan,<br><br>&nbsp;<br><br><i style="font-size:9px;text-align:left;opacity:0.5;">materai 6000</i><br><br><br>
             <b><?php echo $data['nama'];?></b></p>
         </td>
         </tr>
+</table>
+<table>
         <tr>
             <td align="left" colspan="4">Saksi - Saksi</td>
         </tr>
         <tr>
-        <td>
+        <td width="25%">
             <ul>
                 <li>Nama : <b><?php echo $data['saksi1_nama'];?></b></li>
                 <li>Umur : <b><?php echo $data['saksi1_umur'];?></b> Tahun</li>
@@ -117,12 +125,12 @@
                 <li>Tanda Tangan :</li>
             </ul>
         </td>
-        <td valign="bottom">
+        <td width="25%" valign="bottom">
             <ul>
-                <li> (.....................)</li>
+                <li> (............)</li>
             </ul>
         </td>
-        <td>
+        <td width="25%">
             <ul>
                 <li>Nama : <b><?php echo $data['saksi3_nama'];?></b></li>
                 <li>Umur : <b><?php echo $data['saksi3_umur'];?></b> Tahun</li>
@@ -130,9 +138,9 @@
                 <li>Tanda Tangan :</li>
             </ul>
         </td>
-        <td valign="bottom">
+        <td width="25%" valign="bottom">
             <ul>
-                <li> (.....................)</li>
+                <li> (............)</li>
             </ul>
         </td>
         </tr>
@@ -147,7 +155,7 @@
         </td>
         <td valign="bottom">
             <ul>
-                <li> (.....................)</li>
+                <li> (............)</li>
             </ul>
         </td>
         <td>
@@ -160,19 +168,21 @@
         </td>
         <td valign="bottom">
             <ul>
-                <li> (.....................)</li>
+                <li> (............)</li>
             </ul>
         </td>
         </tr>
+</table> 
+<table>
         <tr>
         <td width="20%"></td>
         <td width="60%" colspan="2">
-        Nomor : <b><?php echo "181/".$data['id']."-PERNYATAAN/".$data['nama_desa']."/".mdate("%m/%Y", $data['time']);?></b><br>
-        Tanggal : <b><?php echo mdate("%d - %m - %Y", $data['time']);?></b>
-        <p  align="center">
-        KEPALA DESA <?php echo $data['nama_desa'];?>
-        <br><br>&nbsp;<br><br><br><br><br><br>
-        <b><?php echo $data['fullname'];?></b>
+            Nomor : <b><?php echo "181/".$data['id']."-PERNYATAAN/".$data['nama_desa']."/".mdate("%m/%Y", $data['time']);?></b><br>
+            Tanggal : <b><?php echo mdate("%d - %m - %Y", $data['time']);?></b>
+        <p align="center">
+            KEPALA DESA <?php echo $data['nama_desa'];?>
+            <br><br>&nbsp;<br><br><br><br><br><br>
+            <b><?php echo $data['fullname'];?></b>
         </p>
         </td>
         <td width="20%"></td>
