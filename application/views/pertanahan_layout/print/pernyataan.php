@@ -170,9 +170,7 @@
 <br><br><br>
 <table>
     <tr>
-        <td width="40%">        
-        </td>
-        <td width="60%">
+        <td colspan="4" align="center">
         Nomor : <b><?php echo "181/".$data['id']."-PERNYATAAN/".$data['nama_desa']."/".mdate("%m/%Y", $data['time']);?></b><br>
         Tanggal : <b><?php echo mdate("%d - %m - %Y", $data['time']);?></b>
         </td>
