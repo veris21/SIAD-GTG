@@ -97,24 +97,16 @@
                                 }elseif($data['status_proses']==2){
                                 ?>
                                 <button onclick="pernyataan_input()" class="btn btn-sm btn-success">Input Pernyataan <i class="fa fa-arrow-right"></i></button>          
-                                <?php
-                                }else{
-                                ?>
-                                <button onclick="cetak_pernyataan(<?php echo $data['id'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
-                                <?php
+                                <?php                               
                                 }
                                 break;
-                            case 'SEKDES':
-                            if($data['status_proses']==0){
-                                ?>
-                                <!-- <button onclick="permohonan_setujui(<?php //echo $data['id'];?>)" class="btn btn-sm btn-primary">Setujui <i class="fa fa-check"></i></button>      -->
-                                <?php
-                                }elseif($data['status_proses']==2){
+                            case 'PERTANAHAN':
+                            if($data['status_proses']==2){
                                 ?>
                                 <button onclick="pernyataan_input()" class="btn btn-sm btn-success">Input Pernyataan <i class="fa fa-arrow-right"></i></button>          
                                 <?php
                                 }                                
-                                break;                            
+                                break;
                             default:
                                 # code...
                                 break;
