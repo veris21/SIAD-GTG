@@ -94,8 +94,8 @@
         </tr>
         <tr>
             <td colspan="4">
-                <p>Tanah tersebut diusahakan sejak tahun <?php echo $data['tahun_kelola'];?> Sampai sekarang ini, dan tanah tersebut tidak pernah dalam sengketa, digadaikan, ataupun tersangkut suatu perkara dipengadilan.</p>
-                <p>Surat Pernyataan ini saya buat dengan sebenarnya dengan penuh tanggungjawab, dan saya bersedia untuk mengangkat sumpah bila diperlukan, serta bersedia dituntut dihadapan pihak yang berwenang apabila pernyataan ini tidak benar dan saya tidak akan melibatkan para pihak yang mengesahkan pernyataan ini apabila dikemudian hari terjadi perbuatan hukum</p>
+                <p align="justified">Tanah tersebut diusahakan sejak tahun <?php echo $data['tahun_kelola'];?> Sampai sekarang ini, dan tanah tersebut tidak pernah dalam sengketa, digadaikan, ataupun tersangkut suatu perkara dipengadilan.</p>
+                <p align="justified">Surat Pernyataan ini saya buat dengan sebenarnya dengan penuh tanggungjawab, dan saya bersedia untuk mengangkat sumpah bila diperlukan, serta bersedia dituntut dihadapan pihak yang berwenang apabila pernyataan ini tidak benar dan saya tidak akan melibatkan para pihak yang mengesahkan pernyataan ini apabila dikemudian hari terjadi perbuatan hukum</p>
                 <p>Demikian Surat Permohonan ini dibuat untuk dapat dipergunakan sebagaimana mestinya.</p>
             </td>
         </tr>
@@ -114,7 +114,7 @@
         </td>
         </tr>
 </table>
-<br><br>
+<br>
 <table>
         <tr>
             <td align="left" colspan="4">Saksi - Saksi</td>
@@ -168,20 +168,25 @@
         </td>
         </tr>
 </table> 
-<br><br>
+<br><br><br>
+<table>
+    <tr>
+        <td width="70%"></td>
+        <td width="30%">
+        Nomor : <b><?php echo "181/".$data['id']."-PERNYATAAN/".$data['nama_desa']."/".mdate("%m/%Y", $data['time']);?></b><br>
+            Tanggal : <b><?php echo mdate("%d - %m - %Y", $data['time']);?></b>
+        </td>
+    </tr>
+</table>
 <table>
         <tr>
-        <td width="20%"></td>
-        <td width="60%" colspan="2"><br>
-            Nomor : <b><?php echo "181/".$data['id']."-PERNYATAAN/".$data['nama_desa']."/".mdate("%m/%Y", $data['time']);?></b><br>
-            Tanggal : <b><?php echo mdate("%d - %m - %Y", $data['time']);?></b>
+        <td colspan="4">
         <p align="center">
             KEPALA DESA <?php echo $data['nama_desa'];?>
             <br><br>&nbsp;<br><br><br><br><br>
             <b><?php echo $data['fullname'];?></b>
         </p>
         </td>
-        <td width="20%"></td>
         </tr>
   </table>
 </div>
