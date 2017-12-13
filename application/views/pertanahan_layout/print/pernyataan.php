@@ -114,6 +114,7 @@
         </td>
         </tr>
 </table>
+<br><br>
 <table>
         <tr>
             <td align="left" colspan="4">Saksi - Saksi</td>
@@ -167,6 +168,7 @@
         </td>
         </tr>
 </table> 
+<br><br>
 <table>
         <tr>
         <td width="20%"></td>
