@@ -76,17 +76,19 @@
             <td colspan="3" align="left">: <?php echo $data['peruntukan_tanah'];?></td>
         </tr>
         <tr>
+            <td colspan="4"><p>Dengan batas - batas sebagai berikut : </p></td>
+        </tr>
+        <tr>
             <td colspan="2">
-                <p>Dengan batas - batas sebagai berikut : </p>
                 <ul>
-                    <li>Sebelah Utara berbatasan dengan <b><?php echo $data['utara'];?></b></li>
-                    <li>Sebelah Timur berbatasan dengan <b><?php echo $data['timur'];?></b></li>
+                    <li>Utara berbatasan dengan <b><?php echo $data['utara'];?></b></li>
+                    <li>Timur berbatasan dengan <b><?php echo $data['timur'];?></b></li>
                 </ul>
             </td>
             <td colspan="2">
                 <ul>
-                    <li>Sebelah Selatan berbatasan dengan <b><?php echo $data['selatan'];?></b></li>
-                    <li>Sebelah Barat berbatasan dengan <b><?php echo $data['barat'];?></b></li>
+                    <li>Selatan berbatasan dengan <b><?php echo $data['selatan'];?></b></li>
+                    <li>Barat berbatasan dengan <b><?php echo $data['barat'];?></b></li>
                 </ul>
             </td>
         </tr>
@@ -176,12 +178,12 @@
 <table>
         <tr>
         <td width="20%"></td>
-        <td width="60%" colspan="2">
+        <td width="60%" colspan="2"><br>
             Nomor : <b><?php echo "181/".$data['id']."-PERNYATAAN/".$data['nama_desa']."/".mdate("%m/%Y", $data['time']);?></b><br>
             Tanggal : <b><?php echo mdate("%d - %m - %Y", $data['time']);?></b>
         <p align="center">
             KEPALA DESA <?php echo $data['nama_desa'];?>
-            <br><br>&nbsp;<br><br><br><br><br><br>
+            <br><br>&nbsp;<br><br><br><br><br>
             <b><?php echo $data['fullname'];?></b>
         </p>
         </td>
