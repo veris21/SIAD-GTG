@@ -21,27 +21,27 @@
      <div class="active tab-pane" id="permohonan_list">
         <table class="table table-striped table-responsive" id="list_permohonan">
           <thead>
-            <tr align="center" >
-              <th>Nik/Nama Pemohon</th>
-              <th>Tanggal Mohon</th>
-              <th>Lokasi</th>
-              <th>Luas</th>
-              <th>Status</th>
-              <th>#</th>
+            <tr>
+              <th align="center" >Nik/Nama Pemohon</th>
+              <th align="center" >Tanggal Mohon</th>
+              <th align="center" >Lokasi</th>
+              <th align="center" >Luas</th>
+              <th align="center" >Status</th>
+              <th align="center" >#</th>
             </tr>           
           </thead>
           <tbody>
           <?php 
             foreach($data as $data){
-              $status = ($data->status==0?'<button class="btn btn-warning">Di Prosess</button>':'<button class="btn btn-success">Di Terima</button>');
+              $status = ($data->status_proses==0?'<button class="btn btn-warning">Di Prosess</button>':'<button class="btn btn-success">Di Terima</button>');
             echo "<tr>";
             echo "<td>".$data->nama."<br>".$data->no_nik."</td>";
             echo "<td>".mdate("%d %M %Y - %H:%i %a", $data->time)."</td>";
             echo " <td>".$data->lokasi."</td>";
-            echo "<td align='center'><b>&plusmn; ".$data->luas." </b>meter<sup>2</sup></td>";
+            echo "<td align='center'><b>&plusmn; ".$data->luas." </b>m<sup>2</sup></td>";
             echo "<td align='center'>".$status."            
             </td>";
-            echo "<td>
+            echo "<td width='60' align='center'>
             <a href='".BASE_URL."permohonan/edit/".$data->id."' class='btn btn-xs btn-flat btn-primary'><i class='fa fa-edit'></i></a>
             <a href='".BASE_URL."permohonan/view/".$data->time."' class='btn btn-xs btn-flat btn-success'><i class='fa fa-eye'></i></a>
             </td>";
@@ -146,15 +146,23 @@
           <label for="">Status Tanah</label>
           <select name="status_tanah" id="" class="form-control">
             <option value="TANAH NEGARA">TANAH NEGARA</option>
+            <option value="TANAH DESA">TANAH DESA</option>
             <option value="TANAH GIRIK">TANAH GIRIK</option>
-            <option value="TANAH PRIBADI">TANAH PRIBADI</option>
+            <option value="TANAH PRIBADI / JUAL-BELI ">TANAH PRIBADI / JUAL-BELI</option>
             <option value="TANAH ADAT">TANAH ADAT</option>
             <option value="TANAH KELOLA">TANAH KELOLA</option>
           </select>
           </div>
           <div class="form-group">
           <label for="">Peruntukan Tanah</label>
-          <input type="text" name="peruntukan_tanah" class="form-control">
+          <select name="peruntukan_tanah" class="form-control">
+            <option value="PERUMAHAN">PERUMAHAN</option>
+            <option value="PERKEBUNAN">PERKEBUNAN</option>
+          </select>
+          </div>
+          <div class="form-group">
+          <label for="">Tahun Pengelolaan Objek Tanah</label>
+          <input type="text" name="tahun_kelola" class="form-control"  data-inputmask='"mask": "2###"' data-mask>
           </div>
           <table class="table table-striped">
               <tr>

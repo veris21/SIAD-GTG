@@ -142,6 +142,10 @@
       function refresh(){
         location.reload();
       }
+
+      $(".select2").select2();
+      $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+      $("[data-mask]").inputmask();
     
       $(".fancybox").fancybox({
         closeBtn  : false,
@@ -165,19 +169,16 @@
 
 // ==========================
 // Pertanahan
-$("#list_permohonan").DataTable({
-  responsive: true,
-});
+      $("#list_permohonan").DataTable({
+        responsive: true,
+      });
+
       $("#table_klasifikasi_surat").DataTable({
         responsive: true, 
         rowGroup: {
           dataSrc: 'tipe'
           }
       });
-
-      $(".select2").select2();
-      $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-      $("[data-mask]").inputmask();
 
       $("#master_penduduk").DataTable({
         responsive: true, 
@@ -356,6 +357,8 @@ $("#list_permohonan").DataTable({
               });
             });
     }
+
+    // ====================================== PERTANAHAN
     function cetak_permohonan(id){
       event.preventDefault();
       var url = '<?php echo BASE_URL."permohonan/cetak/";?>'+id;
@@ -383,6 +386,36 @@ $("#list_permohonan").DataTable({
               });
             });
     }
+
+    function cetak_pernyataan(id){
+      event.preventDefault();
+      var url = '<?php echo BASE_URL."peryataan/cetak/";?>'+id;
+      swal({
+              title: 'Apa Anda Yakin?',
+              text: "Cetak Surat Peryataan "+id+" dari Sistem!",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Iya, Cetak!'              
+            }, function isConfirm(){
+              // $.ajax({
+              //   url:url,
+              //   type:"POST",
+              //   dataType:"JSON",            
+              //   success: function (data){
+              //     swal('Good job!','Berhasil Generate PDF !','success');
+              //     location.reload();
+              //   },
+              //     error: function (jqXHR, textStatus, errorThrown)
+              //     {
+              //       swal('Oops...','Something went wrong!','error');
+              //     }
+              // });
+            });
+    }
+
+    // DISPOSISI
     function save_disposisi(){
         event.preventDefault();
         swal({

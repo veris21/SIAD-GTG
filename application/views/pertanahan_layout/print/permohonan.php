@@ -103,7 +103,7 @@
             <td colspan="4">
                 <p>Apabila hak garap atas sebidang tanah yang saya mohon dikemudian hari terdapat suatu perkara baik pidana maupun perdata, maka saya tidak akan melibatkan para pihak yang menerbitkan maupun pihak yang mengesahkan atas terbitnya SKT tersebut dan akan menjadi tanggung jawab saya pribadi.</p>
                 
-                <p>Demikian Surat Permohonan ini dibuat dan saya lampirkan surat pernyataan untuk menjadi bahan pertimbangan Bapak/Ibu Kepala Desa <?php echo $data['nama_desa'];?> untuk menerbitkan SKT tersebut. Atas bantuan dan perhatian Bapak/Ibu diucapkan terima kasih.</p>
+                <p>Demikian Surat Permohonan ini dibuat dan saya lampirkan surat pernyataan sesuai dengan Peraturan Desa No.02 Tahun 2015 tentang Penggunaan Tanah Negara dan Tanah Desa dalam wilayah Desa Gantung Kecamatan Gantung agar menjadi bahan pertimbangan Bapak/Ibu Kepala Desa <?php echo $data['nama_desa'];?> untuk menerbitkan SKT tersebut. Atas bantuan dan perhatian Bapak/Ibu diucapkan terima kasih.</p>
             </td>
         </tr>
         <tr>

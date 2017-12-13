@@ -58,7 +58,7 @@ public function arsip_input(){
           $kepada_id = $hp_kades['id'];
           $jabatan = $hp_kades['jabatan'];
           $nama_desa = $hp_kades['nama_desa'];
-          $message = 'NOTIFIKASI ARSIP : Yth. '.$jabatan.' '.$nama_desa.' SUrat dari '.$pengirim.', Sifat Surat : '.$sifat.', Perihal : '.$perihal.' --( Si-Desa SMS Sistem )--';
+          $message = 'NOTIFIKASI ARSIP : Yth. '.$jabatan.' '.$nama_desa.' SUrat dari '.$pengirim.', Sifat Surat : '.$sifat.', Perihal : '.$perihal.' (SiDesa Sistem)';
           $to = $hp_kades['hp'];
           sms_notifikasi($to, $message); 
           $link = "arsip/".$sekarang;

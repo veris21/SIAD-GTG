@@ -78,22 +78,37 @@
                 </div>
                 <div class="box-body">
                     <div class="pull-right">
-                        <?php if($data['status'] != 1){ 
-                            $jabatan = $this->session->userdata('jabatan');
-                            switch ($jabatan) {
-                                case 'SEKDES':
-                                ?>
-                                <button onclick="cetak_permohonan(<?php echo $data['time'];?>)" type="button" class="btn btn-default btn-sm">Cetak <i class="fa fa-print"></i></button>
-                                <a href="<?php echo BASE_URL.'permohonan/proses/'.$data['time'];?>" class="btn btn-sm btn-success">Proses Permohonan <i class="fa fa-arrow-right"></i></a>
-                                <?php
-                                    break;
-                                default:
-                                   ?>
-                                <button onclick="cetak_permohonan(<?php echo $data['time'];?>)" type="button" class="btn btn-default btn-sm">Cetak <i class="fa fa-print"></i></button>
-                                   <?php
-                                    break;
-                            }
-                         }?>
+                        <?php 
+                        $jabatan = $this->session->userdata('jabatan');
+                        switch ($jabatan) {
+                            case 'KADES':
+                                if($data['status_proses']==0){
+                                    ?>
+                                <a href="<?php echo BASE_URL.'permohonan/proses/'.$data['time'];?>" class="btn btn-sm btn-success">Proses Permohonan <i class="fa fa-arrow-right"></i></a>          
+                                    <?php
+                                }else{
+                                    ?>
+                                <button onclick="cetak_pernyataan(<?php echo $data['time'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
+                                    <?php
+                                }
+                                break;
+                            case 'SEKDES':
+                                if($data['status_proses']==0){
+                                    ?>
+                                <a href="<?php echo BASE_URL.'permohonan/proses/'.$data['time'];?>" class="btn btn-sm btn-success">Proses Permohonan <i class="fa fa-arrow-right"></i></a>          
+                                    <?php
+                                }else{
+                                    ?>
+                                <button onclick="cetak_pernyataan(<?php echo $data['time'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
+                                    <?php
+                                }
+                                break;                            
+                            default:
+                                # code...
+                                break;
+                        }
+                        ?>                        
+                         <button onclick="cetak_permohonan(<?php echo $data['time'];?>)" type="button" class="btn btn-default btn-sm">Cetak <i class="fa fa-print"></i></button>                                
                     </div>
                 </div>            
             </div>

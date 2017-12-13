@@ -34,7 +34,7 @@ class Disposisi extends CI_Controller{
     $arsip_time = strip_tags($this->input->post('arsip_time'));
     $sekarang = time();
     $to = $kepada['hp'];
-    $message = "DISPOSISI : ".$dari."#SURAT: ".$pengirim."#Perihal ".$perihal."#Memo : ".$isi."! (Si-Desa Gantung)";
+    $message = "DISPOSISI : ".$dari."#SURAT: ".$pengirim."#Perihal ".$perihal."#Memo : ".$isi."! (SiDesa Sistem)";
     sms_notifikasi($to, $message);
     $params['data'] = BASE_URL.'disposisi/validasi/'.$sekarang;
     $params['level'] = 'M';

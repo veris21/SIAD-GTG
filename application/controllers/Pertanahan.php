@@ -74,6 +74,7 @@ class Pertanahan extends CI_Controller{
       $timur = $this->input->post('timur');
       $barat = $this->input->post('barat');
       $kontak = $this->input->post('kontak');
+      $tahun_kelola = $this->input->post('tahun_kelola');
       $peruntukan_tanah = $this->input->post('peruntukan_tanah');
       $status_tanah = $this->input->post('status_tanah');
       $dusun_id = $this->input->post('dusun_id');
@@ -93,9 +94,10 @@ class Pertanahan extends CI_Controller{
         'scan_link'=>$fileName,
         'qr_link'=>$qr_link,
         'dusun_id'=>$dusun_id,
+        'tahun_kelola'=>$tahun_kelola,
         'hp'=>$kontak,
         'foto'=>$foto,
-        'status'=>0
+        'status_proses'=>0
       );
       // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
       $desa_id = $this->session->userdata('desa_id');
@@ -103,7 +105,7 @@ class Pertanahan extends CI_Controller{
       $kepada_id = $hp_kades['id'];
       $jabatan = $hp_kades['jabatan'];
       $nama_desa = $hp_kades['nama_desa'];
-      $message = 'NOTIFIKASI PERTANAHAN : Yth. '.$jabatan.' '.$nama_desa.' Permohonan SKT '.$pemohon.', Lokasi : '.$lokasi.', Luas : '.$luas.' --( Si-Desa SMS Sistem )--';
+      $message = 'NOTIFIKASI PERTANAHAN : Yth. '.$jabatan.' '.$nama_desa.' Permohonan SKT '.$pemohon.', Lokasi : '.$lokasi.', Luas : '.$luas.' meter persegi (SiDesa Sistem)';
       $to = $hp_kades['hp'];
       sms_notifikasi($to, $message);
       // ==========================

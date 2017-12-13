@@ -40,9 +40,11 @@
               <!-- post text -->
              <p><?php echo $notif->message; ?></p>
              <?php if($notif->link!=''||$notif->link!=NULL){?>
+              
              <?php 
              $linkType = explode("/", $notif->link);
-             if($linkType[0]="%arsip%"){
+            //  echo "<h1>".$linkType[0]."</h1>";
+             if($linkType[0]=="arsip"){
               $arsipDetail = $this->arsip_model->get_arsip_one($linkType[1])->row_array();
               ?>              
               <div class="attachment-block clearfix">
@@ -60,8 +62,42 @@
                   </div>
                 </div>
               </div>
-             <?php } ?>
-             <?php } ?>
+             <?php }elseif($linkType[0]=="permohonan"){
+               $permohonan = $this->pertanahan_model->_get_details_one($linkType[1])->row_array(); ?>
+               <div class="attachment-block clearfix">
+                <img class="attachment-img" src="<?php echo KTP.$permohonan['scan_link'];?>" alt="attachment image">
+                <div class="attachment-pushed">
+                  <h4 class="attachment-heading">Permohonan dari : <?php echo $permohonan['nama']?></h4>
+                  <div class="attachment-text">
+                    Lokasi :<?php echo $permohonan['lokasi'];?><br>
+                    Dusun :<?php echo $permohonan['nama_dusun'];?><br>
+                    Luas :<b><?php echo $permohonan['luas'];?>m<sup>2</sup></b>
+              <div class="pull-right"> 
+              <?php echo anchor('permohonan/view/'.$permohonan["time"],'<i class="fa fa-eye"></i> Lihat Detail Permohonan',array('class'=>'btn btn-primary btn-xs'));?>        
+              </div>
+                  </div>
+                </div>
+              </div>
+              <?php }elseif($linkType[0]=="pernyataan"){
+                ?>
+              <?php }elseif($linkType[0]=="berita_acara"){
+                ?>
+              <?php }elseif($linkType[0]=="surat_keterangan"){
+                ?>
+              <?php
+              }else{
+               ?> 
+               <div class="attachment-block clearfix">
+                 <h5 class="text-center">Tidak Ada Lampiran</h5>
+              </div>
+               <?php
+              } ?>
+             <?php }else{ ?>
+              <div class="attachment-block clearfix">
+                 <h5 class="text-center">Tidak Ada Lampiran</h5>
+              </div>
+            <?php
+             } ?>
               <!-- Social sharing buttons -->
               <div class="pull-right">
               <button onclick='lihat_notif(<?php echo $notif->id;?>)' class='btn btn-success btn-xs'><i class='fa fa-check'></i> Tandai Telah Dibaca</button>            
