@@ -119,7 +119,7 @@
             <td align="left" colspan="4">Saksi - Saksi</td>
         </tr>
         <tr>
-        <td width="25%">
+        <td width="30%">
             <ul>
                 <li>Nama : <b><?php echo $data['saksi1_nama'];?></b></li>
                 <li>Umur : <b><?php echo $data['saksi1_umur'];?></b> Tahun</li>
@@ -127,12 +127,10 @@
                 <li>Tanda Tangan :</li>
             </ul>
         </td>
-        <td width="25%" valign="bottom">
-            <ul>
-                <li> (............)</li>
-            </ul>
+        <td width="20%" valign="bottom">
+            (..............)
         </td>
-        <td width="25%">
+        <td width="30%">
             <ul>
                 <li>Nama : <b><?php echo $data['saksi3_nama'];?></b></li>
                 <li>Umur : <b><?php echo $data['saksi3_umur'];?></b> Tahun</li>
@@ -140,14 +138,12 @@
                 <li>Tanda Tangan :</li>
             </ul>
         </td>
-        <td width="25%" valign="bottom">
-            <ul>
-                <li> (............)</li>
-            </ul>
+        <td width="20%" valign="bottom">
+            (..............)
         </td>
         </tr>
         <tr>
-        <td>
+        <td width="30%">
             <ul>
                 <li>Nama : <b><?php echo $data['saksi2_nama'];?></b></li>
                 <li>Umur : <b><?php echo $data['saksi2_umur'];?></b> Tahun</li>
@@ -155,12 +151,10 @@
                 <li>Tanda Tangan :</li>
             </ul>
         </td>
-        <td valign="bottom">
-            <ul>
-                <li> (............)</li>
-            </ul>
+        <td width="20%" valign="bottom">
+            (..............)
         </td>
-        <td>
+        <td width="30%">
             <ul>
                 <li>Nama : <b><?php echo $data['saksi4_nama'];?></b></li>
                 <li>Umur : <b><?php echo $data['saksi4_umur'];?></b> Tahun</li>
@@ -168,10 +162,8 @@
                 <li>Tanda Tangan :</li>
             </ul>
         </td>
-        <td valign="bottom">
-            <ul>
-                <li> (............)</li>
-            </ul>
+        <td width="20%" valign="bottom">
+            (..............)
         </td>
         </tr>
 </table> 
