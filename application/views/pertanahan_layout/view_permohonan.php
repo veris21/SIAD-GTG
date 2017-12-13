@@ -28,7 +28,7 @@
                             <dd><?php echo  $data['alamat'];?></dd>                       
                         </div>
                         <div class="col-md-4">
-                        <img class="img img-responsive img-rounded hidden-sm" src="<?php echo QRCODE.$data['qr_link'];?>" alt="">
+                        <img class="img img-responsive img-rounded hidden-xs hidden-sm" src="<?php echo QRCODE.$data['qr_link'];?>" alt="">
                         </div>
                     </div>
                     <hr>
@@ -147,7 +147,7 @@
                         </div>
                         </div>
                         <div class="col-md-3" align="center">
-                        <img class="img img-responsive img-rounded hidden-sm" src="<?php echo QRCODE.$pernyataan['qr_link'];?>" alt="">
+                        <img class="img img-responsive img-rounded hidden-xs hidden-sm" src="<?php echo QRCODE.$pernyataan['qr_link'];?>" alt="">
                         </div>
                         </div>
                         <hr>
