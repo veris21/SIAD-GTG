@@ -113,7 +113,7 @@
                         foreach($disposisi->result() as $disposisi){
                             // $dr = $this->db->get_where('users', array('id'=>$disposisi->dari_id))->row_array();
                             // $kpd = $this->db->get_where('users', array('id'=>$disposisi->kepada_id))->row_array();                            
-                            $status = ($disposisi->status != 0 ? '<button class="btn btn-xs btn-success">Telah Dibaca</button><br>'.mdate('%d %m %Y - %H:%i %a',$disposisi->time_read):'<button class="btn btn-xs btn-warning">Belum Dibaca</button>');
+                            $status = ($disposisi->status != 0 ? '<button class="btn btn-xs btn-success">Telah Dibaca</button><br>'.mdate('%d %M %Y - %H:%i %a',$disposisi->time_read):'<button class="btn btn-xs btn-warning">Belum Dibaca</button>');
                             echo "<tr>";
                             echo "<td>
                             <a class='fancybox' rel='fancybox' href='".QRCODE.$disposisi->qr_link."' title='".$disposisi->isi_disposisi."'>
