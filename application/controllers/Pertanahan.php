@@ -173,15 +173,16 @@ class Pertanahan extends CI_Controller{
     $id    = $this->input->post('permohonan_id');
     $sekarang = time();
     // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
-    $desa_id = $this->session->userdata('desa_id');
-    $hp_kades = $this->notifikasi_model->_get_data_kades($desa_id)->row_array();
-    $kepada_id = $hp_kades['id'];
-    $jabatan = $hp_kades['jabatan'];
-    $nama_desa = $hp_kades['nama_desa'];
-    $message = 'NOTIFIKASI PERTANAHAN : Yth. '.$jabatan.' '.$nama_desa.' Pernyataan SKT '.$pemohon.', Lokasi : '.$lokasi.', Luas : '.$luas.' meter persegi (SiDesa Sistem)';
-    $to = $hp_kades['hp'];
-    sms_notifikasi($to, $message);
-    // ==========================
+    // ==============================
+    // $desa_id = $this->session->userdata('desa_id');
+    // $hp_kades = $this->notifikasi_model->_get_data_kades($desa_id)->row_array();
+    // $kepada_id = $hp_kades['id'];
+    // $jabatan = $hp_kades['jabatan'];
+    // $nama_desa = $hp_kades['nama_desa'];
+    // $message = 'NOTIFIKASI PERTANAHAN : Yth. '.$jabatan.' '.$nama_desa.' Pernyataan SKT '.$pemohon.', Lokasi : '.$lokasi.', Luas : '.$luas.' meter persegi (SiDesa Sistem)';
+    // $to = $hp_kades['hp'];
+    // sms_notifikasi($to, $message);
+    // ==============================
       // QRCODE GENERATE
       $params['data'] = BASE_URL.'pernyataan/validasi/'.$sekarang;
       $params['level'] = 'M';

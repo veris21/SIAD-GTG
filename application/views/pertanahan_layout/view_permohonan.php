@@ -94,10 +94,6 @@
                                 ?>
                                 <button onclick="permohonan_setujui(<?php echo $data['id'];?>)" class="btn btn-sm btn-primary">Setujui <i class="fa fa-check"></i></button>     
                                 <?php
-                                }elseif($data['status_proses']==2){
-                                ?>
-                                <button onclick="pernyataan_input()" class="btn btn-sm btn-success">Input Pernyataan <i class="fa fa-arrow-right"></i></button>          
-                                <?php                               
                                 }
                                 break;
                             case 'PERTANAHAN':
@@ -107,6 +103,13 @@
                                 <?php
                                 }                                
                                 break;
+                            case 'LAYANAN':
+                            if($data['status_proses']==2){
+                                    ?>
+                                    <button onclick="pernyataan_input()" class="btn btn-sm btn-success">Input Pernyataan <i class="fa fa-arrow-right"></i></button>          
+                                    <?php
+                                    }                                
+                                    break;
                             default:
                                 # code...
                                 break;

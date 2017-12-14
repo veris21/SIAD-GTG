@@ -150,8 +150,18 @@
               <select class="form-control select2" style="width: 100%;" name="kepada_id">
                 <?php 
                 foreach ($kepada as $kepada){
-                    if($kepada->id != $this->session->userdata('id')){
-                    echo "<option value='".$kepada->id."'>".$kepada->fullname."</option>";
+                    $var = $this->session->userdata('jabatan');
+                    switch ($var) {
+                        case 'KADES':
+                            if($kepada->jabatan='SEKDES'){
+                                echo "<option value='".$kepada->id."'>".$kepada->fullname."</option>";
+                            }
+                            break;
+                        default:
+                           if($kepada->id != $this->session->userdata('id')){
+                            echo "<option value='".$kepada->id."'>".$kepada->fullname."</option>";
+                           }
+                            break;
                     }
                 }
                 ?>

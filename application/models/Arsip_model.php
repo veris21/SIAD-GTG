@@ -10,7 +10,12 @@ class Arsip_model extends CI_Model{
   }
 
   public function _get_user_same_desa($desa_id){
-    return $this->db->get_where('users', array('desa_id'=>$desa_id));
+    $this->db->select('u.*, j.jabatan');
+    $this->db->from('users u, jabatan j');
+    $this->db->where('u.jabatan_id=j.id');
+    $this->db->where('u.desa_id', $desa_id);
+    return $this->db->get();
+    // return $this->db->get_where('users', array('desa_id'=>$desa_id));
   }
 
   public function arsip_masuk(){
