@@ -151,15 +151,16 @@
                 <?php 
                 $var = $this->session->userdata('jabatan');
                 foreach ($kepada as $kepada){
-                    $tujuan_id[] = $kepada->id;
-                    $tujuan_fullname[] = $kepada->fullname;
-                    $tujuan_jabatan[] = $kepada->jabatan;
-                 }
-                 if($var='KADES'){
-                    if($tujuan_jabatan='SEKDES'){
-                        echo "<option value='".$tujuan_id."'>".$tujuan_fullname."</option>";
-                    }
-                 }       
+                    if( $this->session->userdata('id') != $kepada->id){
+                        if($var='KADES'){
+                            if($kepada->jabatan='SEKDES'){
+                                echo "<option>".$kepada->fullname."</option>";
+                            }
+                        }else{
+                            echo "<option>".$kepada->fullname."</option>";
+                        }
+                    }                    
+                }        
                 ?>
               </select>
           </div>
