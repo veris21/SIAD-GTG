@@ -104,7 +104,7 @@
         <tr>
         <td align="center" width="40%">
             <img width="90" src="<?php echo QRCODE.$data['qr_link'];?>" alt="logo"><br>
-            <i style="font-size:9px;">(Dokumen ini di generate otomatis melalui sistem SiDesa untuk melihat validasi dokumen silahkan scan Kode QR secara online)</i>
+            <i style="font-size:9px;font-family: Consolas, Monaco, Courier New, Courier, monospace;">(Dokumen ini di generate otomatis melalui sistem SiDesa untuk melihat validasi dokumen silahkan scan Kode QR secara online)</i>
         </td>
         <td colspan="2" width="20%"></td>
         <td align="center" width="40%">
@@ -171,8 +171,8 @@
 <table>
     <tr>
         <td colspan="4" align="center">
-        Nomor : <b><?php echo "181/".$data['id']."-PERNYATAAN/".$data['nama_desa']."/".mdate("%m/%Y", $data['time']);?></b><br>
-        Tanggal : <b><?php echo mdate("%d - %m - %Y", $data['time']);?></b>
+        Nomor : <b style="font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo "181/".$data['id']."-PERNYATAAN/".$data['nama_desa']."/".mdate("%m/%Y", $data['time']);?></b><br>
+        Tanggal : <b style="font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo mdate("%d - %m - %Y", $data['time']);?></b>
         </td>
     </tr>
 </table>
