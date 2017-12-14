@@ -150,26 +150,20 @@
               <?php 
               $var = $this->session->userdata('jabatan');
               $desa_id = $this->session->userdata('desa_id');
-                switch ($var) {
-                    case 'KADES':
+               if($var='KADES') {                  
                     $sekdes = $this->arsip_model->_get_sekdes_same_desa($desa_id)->row_array();
                     echo "<select name='kepada_id' class='form-control'>";
                     echo "<option>".$sekdes['fullname']."</option>";
                     echo "</select>";
-                        break; 
-                    default:
-                    ?>
-              <select class="form-control select2" style="width: 100%;" name="kepada_id">
-                <?php 
-                foreach ($kepada as $kepada){
+               }else{                   
+              echo "<select class='form-control select2' style='width: 100%;' name='kepada_id'>";
+              foreach ($kepada as $kepada){
                     if( $this->session->userdata('id') != $kepada->id){
                         echo "<option value='".$kepada->id."'>".$kepada->fullname."-".$kepada->jabatan."</option>";
-                    }                                        
-                ?>
-              </select>
-              <?php 
-                        break;
-                }  ?>
+                    }
+                } 
+              echo "</select>";
+             } ?>
           </div>
           <div class="form-group">
               <label for="">Isi Disposisi</label>
