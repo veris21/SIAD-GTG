@@ -149,20 +149,20 @@
               <label for="">Diposisikan Kepada</label>
               <?php 
               $desa_id = $this->session->userdata('desa_id');
-               if($this->session->userdata('jabatan')='KADES') {                  
-                    $sekdes = $this->arsip_model->_get_sekdes_same_desa($desa_id)->row_array();
-                    echo "<select name='kepada_id' class='form-control'>";
-                    echo "<option value='".$sekdes['id']."'>".$sekdes['fullname']."</option>";
-                    echo "</select>";
+               if( $this->session->userdata('jabatan') != 'KADES') {                  
+                echo "<select class='form-control select2' style='width: 100%;' name='kepada_id'>";
+                foreach ($kepada as $kepada){
+                      if( $this->session->userdata('id') != $kepada->id){
+                          echo "<option value='".$kepada->id."'>".$kepada->fullname."-".$kepada->jabatan."</option>";
+                      }
+                  } 
+                echo "</select>";    
                }else{
-              echo "<select class='form-control select2' style='width: 100%;' name='kepada_id'>";
-              foreach ($kepada as $kepada){
-                    if( $this->session->userdata('id') != $kepada->id){
-                        echo "<option value='".$kepada->id."'>".$kepada->fullname."-".$kepada->jabatan."</option>";
-                    }
-                } 
-              echo "</select>";
-             } ?>
+                $sekdes = $this->arsip_model->_get_sekdes_same_desa($desa_id)->row_array();
+                echo "<select name='kepada_id' class='form-control'>";
+                echo "<option value='".$sekdes['id']."'>".$sekdes['fullname']."</option>";
+                echo "</select>";              
+                } ?>
           </div>
           <div class="form-group">
               <label for="">Isi Disposisi</label>
