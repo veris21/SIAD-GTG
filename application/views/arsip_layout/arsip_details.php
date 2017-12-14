@@ -154,10 +154,10 @@
                     if( $this->session->userdata('id') != $kepada->id){
                         if($var='KADES'){
                             if($kepada->jabatan='SEKDES'){
-                                echo "<option>".$kepada->fullname."</option>";
+                                echo "<option value='".$kepada->id."'>".$kepada->fullname."-".$kepada->jabatan."</option>";
                             }
                         }else{
-                            echo "<option>".$kepada->fullname."</option>";
+                            echo "<option value='".$kepada->id."'>".$kepada->fullname."-".$kepada->jabatan."</option>";
                         }
                     }                    
                 }        
