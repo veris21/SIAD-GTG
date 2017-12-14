@@ -1,18 +1,60 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+if ( ! function_exists('terbilang')){
+	function terbilang ($number) {
+		$words = "";
+		$arr_number = array(
+		"",
+		"Satu",
+		"Dua",
+		"Tiga",
+		"Empat",
+		"Lima",
+		"Enam",
+		"Tujuh",
+		"Delapan",
+		"Sembilan",
+		"Sepuluh",
+		"Sebelas");
 
-if ( ! function_exists('tgl_indo'))
-{
-	function tgl_indo($tgl)
-	{
-		$ubah = gmdate($tgl, time()+60*60*8);
-		$pecah = explode("-",$ubah);
-		$tanggal = $pecah[2];
-		$bulan = bulan($pecah[1]);
-		$tahun = $pecah[0];
-		return $tanggal.' '.$bulan.' '.$tahun;
+		if($number<12)
+		{
+			$words = " ".$arr_number[$number];
+		}
+		else if($number<20)
+		{
+			$words = terbilang($number-10)." Belas";
+		}
+		else if($number<100)
+		{
+			$words = terbilang($number/10)." Puluh ".terbilang($number%10);
+		}
+		else if($number<200)
+		{
+			$words = "Seratus ".terbilang($number-100);
+		}
+		else if($number<1000)
+		{
+			$words = terbilang($number/100)." Ratus ".terbilang($number%100);
+		}
+		else if($number<2000)
+		{
+			$words = "Seribu ".terbilang($number-1000);
+		}
+		else if($number<1000000)
+		{
+			$words = terbilang($number/1000)." Ribu ".terbilang($number%1000);
+		}
+		else if($number<1000000000)
+		{
+			$words = terbilang($number/1000000)." Juta ".terbilang($number%1000000);
+		}
+		else
+		{
+			$words = "undefined";
+		}
+		return $words;
 	}
 }
-
 if ( ! function_exists('bulan'))
 {
 	function bulan($bln)
@@ -59,64 +101,82 @@ if ( ! function_exists('bulan'))
 	}
 }
 
-if ( ! function_exists('nama_hari'))
+if ( ! function_exists('romawi'))
 {
-	function nama_hari($tanggal)
+	function romawi($rm)
 	{
-		$ubah = gmdate($tanggal, time()+60*60*8);
-		$pecah = explode("-",$ubah);
-		$tgl = $pecah[2];
-		$bln = $pecah[1];
-		$thn = $pecah[0];
-
-		$nama = date("l", mktime(0,0,0,$bln,$tgl,$thn));
-		$nama_hari = "";
-		if($nama=="Sunday") {$nama_hari="Minggu";}
-		else if($nama=="Monday") {$nama_hari="Senin";}
-		else if($nama=="Tuesday") {$nama_hari="Selasa";}
-		else if($nama=="Wednesday") {$nama_hari="Rabu";}
-		else if($nama=="Thursday") {$nama_hari="Kamis";}
-		else if($nama=="Friday") {$nama_hari="Jumat";}
-		else if($nama=="Saturday") {$nama_hari="Sabtu";}
-		return $nama_hari;
+		switch ($rm)
+		{
+			case 1:
+				return "I";
+				break;
+			case 2:
+				return "II";
+				break;
+			case 3:
+				return "III";
+				break;
+			case 4:
+				return "IV";
+				break;
+			case 5:
+				return "V";
+				break;
+			case 6:
+				return "VI";
+				break;
+			case 7:
+				return "VII";
+				break;
+			case 8:
+				return "VIII";
+				break;
+			case 9:
+				return "IX";
+				break;
+			case 10:
+				return "X";
+				break;
+			case 11:
+				return "XI";
+				break;
+			case 12:
+				return "XII";
+				break;
+		}
 	}
 }
 
-if ( ! function_exists('hitung_mundur'))
-{
-	function hitung_mundur($wkt)
-	{
-		$waktu=array(	365*24*60*60	=> "tahun",
-						30*24*60*60		=> "bulan",
-						7*24*60*60		=> "minggu",
-						24*60*60		=> "hari",
-						60*60			=> "jam",
-						60				=> "menit",
-						1				=> "detik");
 
-		$hitung = strtotime(gmdate ("Y-m-d H:i:s", time () +60 * 60 * 8))-$wkt;
-		$hasil = array();
-		if($hitung<5)
-		{
-			$hasil = 'kurang dari 5 detik yang lalu';
+if ( ! function_exists('nama_hari'))
+{
+	function nama_hari($hari)
+	{
+		switch ($hari) {
+			case 'Sun':
+				return 'Minggu';
+				break;
+			case 'Mon':
+				return 'Senin';
+				break;
+			case 'Tue':
+				return 'Selasa';
+				break;
+			case 'Wed':
+				return 'Rabu';
+				break;
+			case 'Thu':
+				return 'Kamis';
+				break;
+			case 'Fri':
+				return 'Jumat';
+				break;
+			case 'Sat':
+				return 'Sabtu';
+				break;
+			default:
+				# code...
+				break;
 		}
-		else
-		{
-			$stop = 0;
-			foreach($waktu as $periode => $satuan)
-			{
-				if($stop>=6 || ($stop>0 && $periode<60)) break;
-				$bagi = floor($hitung/$periode);
-				if($bagi > 0)
-				{
-					$hasil[] = $bagi.' '.$satuan;
-					$hitung -= $bagi*$periode;
-					$stop++;
-				}
-				else if($stop>0) $stop++;
-			}
-			$hasil=implode(' ',$hasil).' yang lalu';
-		}
-		return $hasil;
 	}
 }

@@ -423,7 +423,6 @@
 
     function pernyataan_save(){
       event.preventDefault();
-      var url = '<?php echo BASE_URL."pernyataan/input";?>';
       swal({
               title: 'Apa Anda Yakin?',
               text: "Data Pernyataan Akan di Input ke Sistem!",
@@ -434,18 +433,19 @@
               confirmButtonText: 'Iya, Simpan!'              
             }, function isConfirm(){
               $.ajax({
-                url:url,
+                url:'<?php echo BASE_URL."pernyataan/input";?>',
                 type:"POST",
                 data:$('#pernyataan_input').serialize(),
                 dataType:"JSON",            
-                success: function (data){
+                success: function(data){
                   swal('Good job!','Berhasil Posting Data Pernyataan !','success');
                   location.reload();
                 }
-                // ,error: function (jqXHR, textStatus, errorThrown)
-                //   {
-                //     swal('Oops...','Something went wrong!','error');
-                //   }
+                ,error: function (jqXHR, textStatus, errorThrown)
+                  {
+                    swal('Oops...','Something went wrong!','error');
+                    location.reload();
+                  }
               })             
             });
     }

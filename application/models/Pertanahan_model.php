@@ -61,4 +61,6 @@ class Pertanahan_model extends CI_Model{
     $this->db->where('id', $id);
     return $this->db->update('permohonan_pertanahan', $setujui);
   }
+
+  
 }

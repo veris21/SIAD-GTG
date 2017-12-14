@@ -159,17 +159,17 @@
                                 <td>
                                 Saksi 1
                                 <ul>
-                                    <li>Nama : <b><?php echo $pernyataan['saksi1_nama'];?></b></li>
-                                    <li>Umur : <b><?php echo $pernyataan['saksi1_umur'];?></b> Tahun</li>
+                                    <li>Nama : <b><?php echo $pernyataan['saksi1_nama'];?></b></li>                                    
                                     <li>Pekerjaan : <b><?php echo $pernyataan['saksi1_pekerjaan'];?></b></li>
+                                    <li>Alamat : <b><?php echo $pernyataan['saksi1_alamat'];?></b></li>
                                 </ul>
                                 </td>
                                 <td>
                                 Saksi 3
                                 <ul>
-                                    <li>Nama : <b><?php echo $pernyataan['saksi3_nama'];?></b></li>
-                                    <li>Umur : <b><?php echo $pernyataan['saksi3_umur'];?></b> Tahun</li>
+                                    <li>Nama : <b><?php echo $pernyataan['saksi3_nama'];?></b></li>                                    
                                     <li>Pekerjaan : <b><?php echo $pernyataan['saksi3_pekerjaan'];?></b></li>
+                                    <li>Alamat : <b><?php echo $pernyataan['saksi3_alamat'];?></b></li>
                                 </ul>
                                 </td>
                             </tr>
@@ -177,17 +177,17 @@
                                 <td>
                                 Saksi 2
                                 <ul>
-                                    <li>Nama : <b><?php echo $pernyataan['saksi2_nama'];?></b></li>
-                                    <li>Umur : <b><?php echo $pernyataan['saksi2_umur'];?></b> Tahun</li>
+                                    <li>Nama : <b><?php echo $pernyataan['saksi2_nama'];?></b></li>                                    
                                     <li>Pekerjaan : <b><?php echo $pernyataan['saksi2_pekerjaan'];?></b></li>
+                                    <li>Alamat : <b><?php echo $pernyataan['saksi2_alamat'];?></b></li>
                                 </ul>
                                 </td>
                                 <td>
                                 Saksi 4
                                 <ul>
-                                    <li>Nama : <b><?php echo $pernyataan['saksi4_nama'];?></b></li>
-                                    <li>Umur : <b><?php echo $pernyataan['saksi4_umur'];?></b> Tahun</li>
+                                    <li>Nama : <b><?php echo $pernyataan['saksi4_nama'];?></b></li>                                    
                                     <li>Pekerjaan : <b><?php echo $pernyataan['saksi4_pekerjaan'];?></b></li>
+                                    <li>Alamat : <b><?php echo $pernyataan['saksi4_alamat'];?></b></li>
                                 </ul>
                                 </td>
                             </tr>
@@ -231,37 +231,67 @@
       <?php echo form_open_multipart('', array('id'=>'pernyataan_input'));?>
       <div class="modal-body form">
           <input type="hidden" name="permohonan_id" value="<?php echo $data['id'];?>">
-        <table class="table table-striped">
-            <tr align="center">
-                <td>Saksi</td>
-                <td>Nama Saksi</td>
-                <td>Umur <i>(Tahun)</i></td>
-                <td>Pekerjaan</td>
+        <table class="table table-striped">            
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="">Nama Saksi 1</label>
+                        <input placeholder="Nama Saksi" type="text" name="saksi1_nama" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Pekerjaan Saksi 1</label>
+                        <input placeholder="Pekerjaan" type="text" name="saksi1_pekerjaan" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Alamat Saksi 1</label>
+                        <input placeholder="Alamat" type="text" name="saksi1_alamat" class="form-control">
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="">Nama Saksi 3</label>
+                        <input placeholder="Nama Saksi" type="text" name="saksi3_nama" class="form-control">
+                    </div> 
+                    <div class="form-group">
+                        <label for="">Pekerjaan Saksi 3</label>
+                        <input placeholder="Pekerjaan" type="text" name="saksi3_pekerjaan" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Alamat Saksi 3</label>
+                        <input placeholder="Alamat Saksi"  type="text" name="saksi3_alamat" class="form-control">
+                    </div>                   
+                </td>                
             </tr>
             <tr>
-                <td align="center">1</td>
-                <td><input placeholder="Nama Saksi" type="text" name="saksi1_nama" class="form-control"></td>
-                <td width="60"><input type="text" name="saksi1_umur" class="form-control"></td>
-                <td><input placeholder="Pekerjaan" type="text" name="saksi1_pekerjaan" class="form-control"></td>
-            </tr>
-            <tr>
-                <td align="center">2</td>
-                <td><input placeholder="Nama Saksi" type="text" name="saksi2_nama" class="form-control"></td>
-                <td width="60"><input type="text" name="saksi2_umur" class="form-control"></td>
-                <td><input placeholder="Pekerjaan" type="text" name="saksi2_pekerjaan" class="form-control"></td>
-            </tr>
-            <tr>
-                <td align="center">3</td>
-                <td><input placeholder="Nama Saksi" type="text" name="saksi3_nama" class="form-control"></td>
-                <td width="60"><input type="text" name="saksi3_umur" class="form-control"></td>
-                <td><input placeholder="Pekerjaan" type="text" name="saksi3_pekerjaan" class="form-control"></td>
-            </tr>
-            <tr>
-                <td align="center">4</td>
-                <td><input placeholder="Nama Saksi" type="text" name="saksi4_nama" class="form-control"></td>
-                <td width="60"><input type="text" name="saksi4_umur" class="form-control"></td>
-                <td><input placeholder="Pekerjaan" type="text" name="saksi4_pekerjaan" class="form-control"></td>
-            </tr>
+                <td>
+                    <div class="form-group">
+                        <label for="">Nama Saksi 2</label>
+                        <input placeholder="Nama Saksi" type="text" name="saksi2_nama" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Pekerjaan Saksi 2</label>
+                        <input placeholder="Pekerjaan" type="text" name="saksi2_pekerjaan" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Alamat Saksi 2</label>
+                        <input placeholder="Alamat Saksi" type="text" name="saksi2_alamat" class="form-control">
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="">Nama Saksi 4</label>
+                        <input placeholder="Nama Saksi" type="text" name="saksi4_nama" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Pekerjaan Saksi 4</label>
+                        <input placeholder="Pekerjaan" type="text" name="saksi4_pekerjaan" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Alamat Saksi 4</label>
+                        <input placeholder="Alamat Saksi" type="text" name="saksi4_alamat" class="form-control">
+                    </div>
+                </td>                
+            </tr>            
         </table>
       </div>
       <div class="modal-footer">

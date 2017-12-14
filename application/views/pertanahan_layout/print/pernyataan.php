@@ -108,7 +108,7 @@
         </td>
         <td colspan="2" width="20%"></td>
         <td align="center" width="40%">
-            <p><?php echo $data['nama_desa'].", ".mdate("%d-%m-%Y", $data['time']);?>
+            <p><?php echo $data['nama_desa'].", ".mdate("%d", $data['time'])." ".bulan(mdate("%m", $data['time']))." ".mdate("%Y", $data['time']);?>
             <br>Yang membuat pernyataan,<br><br>&nbsp;<br><br><i style="font-size:9px;text-align:left;opacity:0.5;">materai 6000</i><br><br><br>
             <b><?php echo $data['nama'];?></b></p>
         </td>
@@ -118,51 +118,51 @@
         <tr>
             <td align="left" colspan="4">Saksi - Saksi</td>
         </tr>
-        <tr>
+        <tr style="font-size:10px;">
         <td width="30%">
             <ul>
                 <li>Nama : <b><?php echo $data['saksi1_nama'];?></b></li>
-                <li>Umur : <b><?php echo $data['saksi1_umur'];?></b> Tahun</li>
                 <li>Pekerjaan : <b><?php echo $data['saksi1_pekerjaan'];?></b></li>
+                <li>Alamat : <b><?php echo $data['saksi1_alamat'];?></b></li>                
                 <li>Tanda Tangan :</li>
             </ul>
         </td>
-        <td width="20%" valign="bottom">
+        <td width="20%" valign="bottom" align="center">
             (..............)
         </td>
         <td width="30%">
             <ul>
-                <li>Nama : <b><?php echo $data['saksi3_nama'];?></b></li>
-                <li>Umur : <b><?php echo $data['saksi3_umur'];?></b> Tahun</li>
+                <li>Nama : <b><?php echo $data['saksi3_nama'];?></b></li>                
                 <li>Pekerjaan : <b><?php echo $data['saksi3_pekerjaan'];?></b></li>
+                <li>Alamat : <b><?php echo $data['saksi3_alamat'];?></b></li>
                 <li>Tanda Tangan :</li>
             </ul>
         </td>
-        <td width="20%" valign="bottom">
+        <td width="20%" valign="bottom" align="center">
             (..............)
         </td>
         </tr>
-        <tr>
+        <tr style="font-size:10px;">
         <td width="30%">
             <ul>
-                <li>Nama : <b><?php echo $data['saksi2_nama'];?></b></li>
-                <li>Umur : <b><?php echo $data['saksi2_umur'];?></b> Tahun</li>
+                <li>Nama : <b><?php echo $data['saksi2_nama'];?></b></li>                
                 <li>Pekerjaan : <b><?php echo $data['saksi2_pekerjaan'];?></b></li>
+                <li>Alamat : <b><?php echo $data['saksi2_alamat'];?></b></li>
                 <li>Tanda Tangan :</li>
             </ul>
         </td>
-        <td width="20%" valign="bottom">
+        <td width="20%" valign="bottom" align="center">
             (..............)
         </td>
         <td width="30%">
             <ul>
-                <li>Nama : <b><?php echo $data['saksi4_nama'];?></b></li>
-                <li>Umur : <b><?php echo $data['saksi4_umur'];?></b> Tahun</li>
+                <li>Nama : <b><?php echo $data['saksi4_nama'];?></b></li>                
                 <li>Pekerjaan : <b><?php echo $data['saksi4_pekerjaan'];?></b></li>
+                <li>Alamat : <b><?php echo $data['saksi4_alamat'];?></b></li>
                 <li>Tanda Tangan :</li>
             </ul>
         </td>
-        <td width="20%" valign="bottom">
+        <td width="20%" valign="bottom" align="center">
             (..............)
         </td>
         </tr>
@@ -170,17 +170,20 @@
 <br><br><br>
 <table>
     <tr>
-        <td colspan="4" align="center">
-        Nomor : <b style="font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo "181/".$data['id']."-PERNYATAAN/".$data['nama_desa']."/".mdate("%m/%Y", $data['time']);?></b><br>
-        Tanggal : <b style="font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo mdate("%d - %m - %Y", $data['time']);?></b>
-        </td>
+        <td align="left" width="50%">
+            <p class="backed">
+            Nomor : <b style="font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo "181/".$data['id']."-PERNYATAAN/".strtoupper($data['nama_desa'])."/".mdate("%m/%Y", $data['time']);?></b><br>
+            Tanggal : <b style="font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo mdate("%d", $data['time'])." ".bulan(mdate("%m", $data['time']))." ".mdate("%Y", $data['time']);?></b>        
+            </p>
+       </td>
+       <td width="50%" ></td>
     </tr>
 </table>
 <table>
         <tr>
         <td colspan="4">
-        <p align="center">
-            KEPALA DESA <?php echo $data['nama_desa'];?>
+        <p align="center">Mengetahui, <br>
+            KEPALA DESA <?php echo strtoupper($data['nama_desa']);?>
             <br><br>&nbsp;<br><br><br><br><br>
             <b><?php echo $data['fullname'];?></b>
         </p>

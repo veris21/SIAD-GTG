@@ -52,6 +52,8 @@ $route['permohonan/setujui/(:any)']       = 'pertanahan/permohonan_setujui/$1';
 
 $route['pernyataan/input']                = 'pertanahan/pernyataan_input';
 $route['pernyataan/cetak/(:any)']         = 'pertanahan/pernyataan_print/$1';
+$route['berita_acara/input']              = 'pertanahan/berita_acara_input';
+$route['berita_acara/cetak/(:any)']       = 'pertanahan/berita_acara_print/$1';
 
 // AUTOFILL
 $route['cari/nik/(:any)']           = 'datapenduduk/cari_nik/$1';

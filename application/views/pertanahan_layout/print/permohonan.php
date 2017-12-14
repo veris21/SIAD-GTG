@@ -13,7 +13,7 @@
         <tr>
         <td colspan="3" width="70%"></td>
         <td width="30%">
-            <p><?php echo $data['nama_desa'].",".mdate("%d-%m-%Y",$data['time']); ?></p>
+            <p><?php echo $data['nama_desa'].", ".mdate("%d", $data['time'])." ".bulan(mdate("%m", $data['time']))." ".mdate("%Y", $data['time']);?></p>
             <p>Kepada Yth : <br>
             Bapak/Ibu Kepala Desa <?php echo $data['nama_desa'];?> <br>
             di - Tempat</p>

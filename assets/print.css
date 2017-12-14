@@ -7,16 +7,14 @@ body {
   color: #000000;
 }
 
-code {
-  font-family: Consolas, Monaco, Courier New, Courier, monospace;
-  font-size: 12px;
+.backed {
   background-color: #f9f9f9;
   border: 1px solid #D0D0D0;
   /*color: #002166;*/
   color: #000000;
   display: block;
-  margin: 10px 0 10px 0;
-  padding: 10px 8px 10px 8px;
+  margin: 4px 0 4px 0;
+  padding: 4px 2px 4px 2px;
 }
 
 #container {
