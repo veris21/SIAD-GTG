@@ -153,9 +153,9 @@
                if($var='KADES') {                  
                     $sekdes = $this->arsip_model->_get_sekdes_same_desa($desa_id)->row_array();
                     echo "<select name='kepada_id' class='form-control'>";
-                    echo "<option>".$sekdes['fullname']."</option>";
+                    echo "<option value='".$sekdes['id']."'>".$sekdes['fullname']."</option>";
                     echo "</select>";
-               }else{                   
+               }else{
               echo "<select class='form-control select2' style='width: 100%;' name='kepada_id'>";
               foreach ($kepada as $kepada){
                     if( $this->session->userdata('id') != $kepada->id){
