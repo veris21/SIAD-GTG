@@ -148,9 +148,8 @@
           <div class="form-group">
               <label for="">Diposisikan Kepada</label>
               <?php 
-              $var = $this->session->userdata('jabatan');
               $desa_id = $this->session->userdata('desa_id');
-               if($var='KADES') {                  
+               if($this->session->userdata('jabatan')='KADES') {                  
                     $sekdes = $this->arsip_model->_get_sekdes_same_desa($desa_id)->row_array();
                     echo "<select name='kepada_id' class='form-control'>";
                     echo "<option value='".$sekdes['id']."'>".$sekdes['fullname']."</option>";
