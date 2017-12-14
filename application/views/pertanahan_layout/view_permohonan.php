@@ -231,9 +231,8 @@
       <?php echo form_open_multipart('', array('id'=>'pernyataan_input'));?>
       <div class="modal-body form">
           <input type="hidden" name="permohonan_id" value="<?php echo $data['id'];?>">
-        <table class="table table-striped">            
-            <tr>
-                <td>
+        <div class="row">
+            <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Nama Saksi 1</label>
                         <input placeholder="Nama Saksi" type="text" name="saksi1_nama" class="form-control">
@@ -246,24 +245,8 @@
                         <label for="">Alamat Saksi 1</label>
                         <input placeholder="Alamat" type="text" name="saksi1_alamat" class="form-control">
                     </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <label for="">Nama Saksi 3</label>
-                        <input placeholder="Nama Saksi" type="text" name="saksi3_nama" class="form-control">
-                    </div> 
-                    <div class="form-group">
-                        <label for="">Pekerjaan Saksi 3</label>
-                        <input placeholder="Pekerjaan" type="text" name="saksi3_pekerjaan" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Alamat Saksi 3</label>
-                        <input placeholder="Alamat Saksi"  type="text" name="saksi3_alamat" class="form-control">
-                    </div>                   
-                </td>                
-            </tr>
-            <tr>
-                <td>
+            </div>
+            <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Nama Saksi 2</label>
                         <input placeholder="Nama Saksi" type="text" name="saksi2_nama" class="form-control">
@@ -276,8 +259,24 @@
                         <label for="">Alamat Saksi 2</label>
                         <input placeholder="Alamat Saksi" type="text" name="saksi2_alamat" class="form-control">
                     </div>
-                </td>
-                <td>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Nama Saksi 3</label>
+                        <input placeholder="Nama Saksi" type="text" name="saksi3_nama" class="form-control">
+                    </div> 
+                    <div class="form-group">
+                        <label for="">Pekerjaan Saksi 3</label>
+                        <input placeholder="Pekerjaan" type="text" name="saksi3_pekerjaan" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Alamat Saksi 3</label>
+                        <input placeholder="Alamat Saksi"  type="text" name="saksi3_alamat" class="form-control">
+                    </div> 
+            </div>
+            <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Nama Saksi 4</label>
                         <input placeholder="Nama Saksi" type="text" name="saksi4_nama" class="form-control">
@@ -290,9 +289,8 @@
                         <label for="">Alamat Saksi 4</label>
                         <input placeholder="Alamat Saksi" type="text" name="saksi4_alamat" class="form-control">
                     </div>
-                </td>                
-            </tr>            
-        </table>
+            </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
