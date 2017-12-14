@@ -149,21 +149,17 @@
               <label for="">Diposisikan Kepada</label>
               <select class="form-control select2" style="width: 100%;" name="kepada_id">
                 <?php 
-                switch ($var) {
-                    case 'KADES':
-                        if($kepada->jabatan='SEKDES'){
-                            echo "<option value='".$kepada->id."'>".$kepada->fullname."</option>";
-                        }
-                        break;
-                    default:
-                    foreach ($kepada as $kepada){
-                        $var = $this->session->userdata('jabatan');
-                        if($kepada->id != $this->session->userdata('id')){
-                            echo "<option value='".$kepada->id."'>".$kepada->fullname."</option>";
-                           }
+                $var = $this->session->userdata('jabatan');
+                foreach ($kepada as $kepada){
+                    $tujuan_id[] = $kepada->id;
+                    $tujuan_fullname[] = $kepada->fullname;
+                    $tujuan_jabatan[] = $kepada->jabatan;
+                 }
+                 if($var='KADES'){
+                    if($tujuan_jabatan='SEKDES'){
+                        echo "<option value='".$tujuan_id."'>".$tujuan_fullname."</option>";
                     }
-                        break;
-                }        
+                 }       
                 ?>
               </select>
           </div>
