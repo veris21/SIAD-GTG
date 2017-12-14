@@ -8,7 +8,14 @@ class Arsip_model extends CI_Model{
     parent::__construct();
     //Codeigniter : Write Less Do More
   }
-
+  public function _get_sekdes_same_desa($desa_id){
+    $this->db->select('u.*, j.jabatan');
+    $this->db->from('users u, jabatan j');
+    $this->db->where('u.jabatan_id=j.id');
+    $this->db->where('j.jabatan','SEKDES');
+    $this->db->where('u.desa_id', $desa_id);
+    return $this->db->get();
+  }
   public function _get_user_same_desa($desa_id){
     $this->db->select('u.*, j.jabatan');
     $this->db->from('users u, jabatan j');

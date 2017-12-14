@@ -147,22 +147,29 @@
       <div class="modal-body form">
           <div class="form-group">
               <label for="">Diposisikan Kepada</label>
+              <?php 
+              $var = $this->session->userdata('jabatan');
+              $desa_id = $this->session->userdata('desa_id');
+                switch ($var) {
+                    case 'KADES':
+                    $sekdes = $this->arsip_model->_get_sekdes_same_desa($desa_id)->row_array();
+                    echo "<select name='kepada_id' class='form-control'>";
+                    echo "<option>".$sekdes['fullname']."</option>";
+                    echo "</select>";
+                        break; 
+                    default:
+                    ?>
               <select class="form-control select2" style="width: 100%;" name="kepada_id">
                 <?php 
-                $var = $this->session->userdata('jabatan');
                 foreach ($kepada as $kepada){
                     if( $this->session->userdata('id') != $kepada->id){
-                        if($var='KADES'){
-                            if($kepada->jabatan='SEKDES'){
-                                echo "<option value='".$kepada->id."'>".$kepada->fullname."-".$kepada->jabatan."</option>";
-                            }
-                        }else{
-                            echo "<option value='".$kepada->id."'>".$kepada->fullname."-".$kepada->jabatan."</option>";
-                        }
-                    }                    
-                }        
+                        echo "<option value='".$kepada->id."'>".$kepada->fullname."-".$kepada->jabatan."</option>";
+                    }                                        
                 ?>
               </select>
+              <?php 
+                        break;
+                }  ?>
           </div>
           <div class="form-group">
               <label for="">Isi Disposisi</label>
