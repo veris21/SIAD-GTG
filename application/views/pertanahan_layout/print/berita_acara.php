@@ -115,8 +115,8 @@
         <td width="10%"></td>
         <td colspan="2" align="left" width="60%">
             <p><?php echo $data['nama_desa'].", ".mdate("%d", $data['time'])." ".bulan(mdate("%m", $data['time']))." ".mdate("%Y", $data['time']);?>
-            <br>Pemeriksa :<br>
-            <table style="font-size:11px;font-family: Consolas, Monaco, Courier New, Courier, monospace;">
+            <br>Pemeriksa :
+            <table style="font-size:11px;font-family: Consolas, Monaco, Courier New, Courier, monospace;padding-top:0;margin-top:0;">
                 <tr>
                     <td width="70%">1. <b>Nurita </b><br> (Kasi Pemerintahan dan Pembinaan Kemasyarakatan) </td>
                     <td width="30%">(...........)</td>

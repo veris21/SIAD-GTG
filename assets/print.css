@@ -17,6 +17,10 @@ body {
   padding: 4px 2px 4px 2px;
 }
 
+sup {
+  font-size: 8px;
+}
+
 #container {
 
   margin-top: 0;
