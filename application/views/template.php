@@ -440,15 +440,13 @@
                 dataType:"JSON",            
                 success: function (data){
                   swal('Good job!','Berhasil Posting Data Pernyataan !','success');
-                  // location.reload();
+                  location.reload();
                 }
                 // ,error: function (jqXHR, textStatus, errorThrown)
                 //   {
                 //     swal('Oops...','Something went wrong!','error');
                 //   }
-              }).then(()=>{
-                location.reload();
-              });              
+              })             
             });
     }
     function cetak_pernyataan(id){
