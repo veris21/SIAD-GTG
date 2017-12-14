@@ -45,6 +45,8 @@ $route['notifikasi/baca/(:any)']    = 'office/notifikasi_baca/$1';
 
 $route['pertanahan/data']                 = 'pertanahan/data_view';
 $route['pertanahan/permohonan']           = 'pertanahan/permohonan';
+$route['pertanahan/berita_acara']         = 'pertanahan/berita_acara';
+
 $route['permohonan/input']                = 'pertanahan/permohonan_input';
 $route['permohonan/view/(:any)']          = 'pertanahan/permohonan_view/$1';
 $route['permohonan/cetak/(:any)']         = 'pertanahan/permohonan_print/$1';
@@ -52,7 +54,9 @@ $route['permohonan/setujui/(:any)']       = 'pertanahan/permohonan_setujui/$1';
 
 $route['pernyataan/input']                = 'pertanahan/pernyataan_input';
 $route['pernyataan/cetak/(:any)']         = 'pertanahan/pernyataan_print/$1';
+
 $route['berita_acara/input']              = 'pertanahan/berita_acara_input';
+$route['berita_acara/view/(:any)']        = 'pertanahan/berita_acara_view/$1';
 $route['berita_acara/cetak/(:any)']       = 'pertanahan/berita_acara_print/$1';
 
 // AUTOFILL

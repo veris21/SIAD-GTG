@@ -228,69 +228,106 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title">Lengkapi Form Pernyataan</h3>
       </div>
-      <?php echo form_open_multipart('', array('id'=>'pernyataan_input'));?>
+      <?php echo form_open_multipart('', array('id'=>'pernyataan_input','class'=>'form-horizontal'));?>
       <div class="modal-body form">
           <input type="hidden" name="permohonan_id" value="<?php echo $data['id'];?>">
-        <div class="row">
-            <div class="col-md-6">
+
+            <div class="box box-success">
+                <div class="box-body"> 
+                    <div class="box-header"> 
+                    <h4 class="box-title">Saksi 1</h4></div>
+                    <!--  -->
                     <div class="form-group">
-                        <label for="">Nama Saksi 1</label>
-                        <input placeholder="Nama Saksi" type="text" name="saksi1_nama" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Nama</label>
+                        <div class="col-sm-10"><input placeholder="Nama Saksi" type="text" name="saksi1_nama" class="form-control"> 
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Pekerjaan Saksi 1</label>
-                        <input placeholder="Pekerjaan" type="text" name="saksi1_pekerjaan" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Pekerjaan</label>
+                        <div class="col-sm-10"><input placeholder="Pekerjaan" type="text" name="saksi1_pekerjaan" class="form-control"> 
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Alamat Saksi 1</label>
-                        <input placeholder="Alamat" type="text" name="saksi1_alamat" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Alamat</label>
+                        <div class="col-sm-10"><input placeholder="Alamat" type="text" name="saksi1_alamat" class="form-control"> 
+                        </div>
                     </div>
+                    <!--  -->
+                </div>
             </div>
-            <div class="col-md-6">
+
+            <div class="box box-warning">
+                <div class="box-body"> 
+                    <div class="box-header"> 
+                    <h4 class="box-title">Saksi 2</h4></div>
+                    <!--  -->
                     <div class="form-group">
-                        <label for="">Nama Saksi 2</label>
-                        <input placeholder="Nama Saksi" type="text" name="saksi2_nama" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Nama</label>
+                        <div class="col-sm-10"><input placeholder="Nama Saksi" type="text" name="saksi2_nama" class="form-control"> 
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Pekerjaan Saksi 2</label>
-                        <input placeholder="Pekerjaan" type="text" name="saksi2_pekerjaan" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Pekerjaan</label>
+                        <div class="col-sm-10"><input placeholder="Pekerjaan" type="text" name="saksi2_pekerjaan" class="form-control"> 
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Alamat Saksi 2</label>
-                        <input placeholder="Alamat Saksi" type="text" name="saksi2_alamat" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Alamat</label>
+                        <div class="col-sm-10"><input placeholder="Alamat Saksi" type="text" name="saksi2_alamat" class="form-control"> 
+                        </div>
                     </div>
+                    <!--  -->
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
+
+            <div class="box box-info">
+                <div class="box-body"> 
+                    <div class="box-header"> 
+                    <h4 class="box-title">Saksi 3</h4></div>
+                    <!--  -->
                     <div class="form-group">
-                        <label for="">Nama Saksi 3</label>
-                        <input placeholder="Nama Saksi" type="text" name="saksi3_nama" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Nama</label>
+                        <div class="col-sm-10"><input placeholder="Nama Saksi" type="text" name="saksi3_nama" class="form-control"> 
+                        </div>
                     </div> 
                     <div class="form-group">
-                        <label for="">Pekerjaan Saksi 3</label>
-                        <input placeholder="Pekerjaan" type="text" name="saksi3_pekerjaan" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Pekerjaan</label>
+                        <div class="col-sm-10"><input placeholder="Pekerjaan" type="text" name="saksi3_pekerjaan" class="form-control"> 
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Alamat Saksi 3</label>
-                        <input placeholder="Alamat Saksi"  type="text" name="saksi3_alamat" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Alamat</label>
+                        <div class="col-sm-10"><input placeholder="Alamat Saksi"  type="text" name="saksi3_alamat" class="form-control"> 
+                        </div>
                     </div> 
+                    <!--  -->
+                </div>
             </div>
-            <div class="col-md-6">
+
+            <div class="box box-primary">
+                <div class="box-body"> 
+                    <div class="box-header"> 
+                    <h4 class="box-title">Saksi 4</h4></div>
+                    <!--  -->
                     <div class="form-group">
-                        <label for="">Nama Saksi 4</label>
-                        <input placeholder="Nama Saksi" type="text" name="saksi4_nama" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Nama</label>
+                        <div class="col-sm-10"><input placeholder="Nama Saksi" type="text" name="saksi4_nama" class="form-control"> 
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Pekerjaan Saksi 4</label>
-                        <input placeholder="Pekerjaan" type="text" name="saksi4_pekerjaan" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Pekerjaan</label>
+                        <div class="col-sm-10"><input placeholder="Pekerjaan" type="text" name="saksi4_pekerjaan" class="form-control"> 
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Alamat Saksi 4</label>
-                        <input placeholder="Alamat Saksi" type="text" name="saksi4_alamat" class="form-control">
+                        <label  class="control-label col-sm-2" for="">Alamat</label>
+                        <div class="col-sm-10"><input placeholder="Alamat Saksi" type="text" name="saksi4_alamat" class="form-control"> 
+                        </div>
                     </div>
+                    <!--  -->
+                </div>
             </div>
-        </div>
+                    
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

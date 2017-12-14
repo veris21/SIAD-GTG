@@ -174,6 +174,10 @@
         responsive: true,
       });
 
+      $("#list_bap").DataTable({
+        responsive: true,
+      });
+
       $("#table_klasifikasi_surat").DataTable({
         responsive: true, 
         rowGroup: {
@@ -317,7 +321,7 @@
                 type:"POST",
                 dataType:"JSON",
                 success: function (data){
-                  swal('Good job!','Berhasil Buka Kunci data!','success');
+                  swal('Selamat !','Berhasil Buka Kunci data!','success');
                   location.reload();
                 },
                   error: function (jqXHR, textStatus, errorThrown)
@@ -343,7 +347,7 @@
             enctype: 'multipart/form-data',
             processData: false,
             success: function(data){
-              swal('Good job!','Berhasil Posting Permohonan!','success');
+              swal('Selamat !','Berhasil Posting Permohonan!','success');
               location.reload();
             }, error: function (jqXHR, textStatus, errorThrown) {
               swal('Oops...','Something went wrong!','error');
@@ -376,7 +380,7 @@
                 type:"POST",
                 dataType:"JSON",
                 success: function (data){
-                  swal('Good job!','Berhasil Mencetak data!'+data.link,'success');
+                  swal('Selamat !','Berhasil Mencetak data!'+data.link,'success');
                   location.reload();
                 },
                   error: function (jqXHR, textStatus, errorThrown)
@@ -405,7 +409,7 @@
                 type:"POST",
                 dataType:"JSON",            
                 success: function (data){
-                  swal('Good job!','Berhasil Generate PDF !','success');
+                  swal('Selamat !','Berhasil Generate PDF !','success');
                   location.reload();
                 },
                   error: function (jqXHR, textStatus, errorThrown)
@@ -438,7 +442,7 @@
                 data:$('#pernyataan_input').serialize(),
                 dataType:"JSON",            
                 success: function(data){
-                  swal('Good job!','Berhasil Posting Data Pernyataan !','success');
+                  swal('Selamat !','Berhasil Posting Data Pernyataan !','success');
                   location.reload();
                 }
                 ,error: function (jqXHR, textStatus, errorThrown)
@@ -466,7 +470,7 @@
                 type:"POST",
                 dataType:"JSON",            
                 success: function (data){
-                  swal('Good job!','Berhasil Generate PDF !','success');
+                  swal('Selamat !','Berhasil Generate PDF !','success');
                   location.reload();
                 },
                   error: function (jqXHR, textStatus, errorThrown)
@@ -495,7 +499,7 @@
                 data:$('#disposisi_input').serialize(),
                 dataType:"JSON",            
                 success: function (data){
-                  swal('Good job!','Berhasil Posting Data Disposisi !','success');
+                  swal('Selamat !','Berhasil Posting Data Disposisi !','success');
                   location.reload();
                 },
                   error: function (jqXHR, textStatus, errorThrown)
@@ -532,7 +536,7 @@
           dataType: "JSON",
           type: "POST",
           success:function(data){
-            swal('Good job!','Membaca Detail!','success');
+            swal('Selamat !','Membaca Detail!','success');
           }, error: function (jqXHR, textStatus, errorThrown) {
               swal('Oops...','Something went wrong!','error');
              }
@@ -563,7 +567,7 @@
             enctype: 'multipart/form-data',
             processData: false,
             success: function(data){
-              swal('Good job!','Berhasil Input Data Arsip!','success');
+              swal('Selamat !','Berhasil Input Data Arsip!','success');
               location.reload();
             }, error: function (jqXHR, textStatus, errorThrown) {
               swal('Oops...','Something went wrong!','error');
@@ -594,7 +598,7 @@
                 type:"POST",
                 dataType:"JSON",
                 success: function (data){
-                  swal('Good job!','Berhasil Menghapus data!','success');
+                  swal('Selamat !','Berhasil Menghapus data!','success');
                   location.reload();
                 },
                   error: function (jqXHR, textStatus, errorThrown)
@@ -643,7 +647,7 @@
           dataType: 'JSON',
           success: function (data){
             $('#modal_klasifikasi').modal('show');
-            swal('Good job!','Berhasil menambahkan data!','success');
+            swal('Selamat !','Berhasil menambahkan data!','success');
             location.reload();
           },
             error: function (jqXHR, textStatus, errorThrown)
