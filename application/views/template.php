@@ -136,7 +136,8 @@
 <!--  -->
     <script type="text/javascript" src="<?php echo THEME; ?>plugins/webcamReader/js/main.js"></script>
     <!--  -->
-    
+    <script type="text/javascript" src="<?php echo THEME; ?>plugins/html2canvas.js"></script>
+  
     <script type="text/javascript">
 
       function refresh(){
