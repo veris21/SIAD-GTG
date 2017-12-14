@@ -70,7 +70,7 @@ class Disposisi extends CI_Controller{
 
 
   public function tandai_baca($id){
-    $baca = array('status'=>1);
+    $baca = array('status'=>1,'time_read'=>time());
     $this->disposisi_model->tandai_telah_baca($id, $baca);
     echo json_encode(array("status" => TRUE));
   }
