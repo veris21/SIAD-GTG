@@ -72,7 +72,7 @@ public function arsip_input(){
             'type'=> 0
           );
           $this->notifikasi_model->posting_notifikasi($posting);
-          $check = $this->office_model->_post_arsip($insert);
+          $check = $this->arsip_model->_post_arsip($insert);
           if($check){                           
             echo json_encode(array("status" => TRUE));             
           }

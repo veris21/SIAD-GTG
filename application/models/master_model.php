@@ -70,14 +70,22 @@ class Master_model extends CI_Model{
     return $this->db->get();
   }
 
+
   public function get_jabatan()
   {
     return $this->db->get('jabatan');
   }
 
-  public function get_desa(){
-    return $this->db->get('desa');
+  // 
+  public function _get_desa_id($id){
+    $this->db->select('de.*, k.nama_kecamatan, kab.nama_kabupaten');
+    $this->db->from('desa de, kecamatan k, kabupaten kab');
+    $this->db->where('de.kecamatan_id=k.id');
+    $this->db->where('k.kabupaten_id=kab.id');
+    $this->db->where('de.id', $id);
+    return $this->db->get();
   }
+  // 
   public function get_adm_json(){
     $query = "SELECT rt.nama_rt as nama_rt, dusun.nama_dusun as nama_dusun,
     desa.nama_desa as nama_desa, kecamatan.nama_kecamatan as nama_kecamatan, 
@@ -116,6 +124,10 @@ class Master_model extends CI_Model{
   }
   public function dusun(){
     return $this->db->get('dusun');
+  }
+
+  public function get_desa(){
+    return $this->db->get('desa');
   }
 
   public function desa(){

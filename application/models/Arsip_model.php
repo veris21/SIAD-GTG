@@ -8,6 +8,12 @@ class Arsip_model extends CI_Model{
     parent::__construct();
     //Codeigniter : Write Less Do More
   }
+
+  public function _post_arsip($insert){
+    $this->db->insert('arsip_masuk', $insert);
+    return;
+  }
+  
   public function _get_sekdes_same_desa($desa_id){
     $this->db->select('u.*, j.jabatan');
     $this->db->from('users u, jabatan j');

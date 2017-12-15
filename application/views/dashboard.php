@@ -9,13 +9,48 @@
   </ol>
 </section>
 <section class="content">
+<?php if($this->session->flashdata('status')!=NULL){?>
   <!--  -->
   <div class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <h4><i class="icon fa fa-ban"></i> Selamat Datang!</h4>
-    Selamat Datang <?php echo $this->session->userdata('fullname')." - ".$this->session->userdata('jabatan'); ?> di Sistem Informasi Geografis dan Administrasi Desa Gantung. Ini Merupakan aplikasi berbasis Web dan Database Sistem untuk membantu pengadministrasian pemerintahan desa dan <i>open data public</i> dengan menyediakan informasi umum terbuka terkait pelayanan yang di wewenangi pemerintah desa, serta terintegrasi dengan Visual Data Pertanahan Desa, pemberintahuan berupa SMS Notifikasi Pelayanan Desa guna menerapkan pelayanan yang cepat, teradministrasi baik dan terbuka.
+    Selamat Datang di Sistem Informasi Geografis dan Administrasi Desa Gantung. Ini Merupakan aplikasi berbasis Web dan Database Sistem untuk membantu pengadministrasian pemerintahan desa dan <i>open data public</i> dengan menyediakan informasi umum terbuka terkait pelayanan yang di wewenangi pemerintah desa, serta terintegrasi dengan Visual Data Pertanahan Desa, pemberintahuan berupa SMS Notifikasi Pelayanan Desa guna menerapkan pelayanan yang cepat, teradministrasi baik dan terbuka.
   </div>
 
+  <div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            Informasi Pengguna
+        </h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <center class="col-md-6 hidden-sm hidden-xs">
+            <img width="70%" src="<?php echo BASE_URL.'assets/new-logo.png';?>" alt="" class="img img-rounded img-responsive">
+           </center>
+          <div class="col-md-6">
+              <dt>Nama Lengkap</dt>
+              <dd> <?php echo $this->session->userdata('fullname'); ?></dd>
+              <br>
+              <dt>Role Akses</dt>
+              <dd><?php echo $this->session->userdata('jabatan');?></dd>
+              <br>
+              <dt>Status Jabatan Administrasi</dt>
+              <dd></dd>
+              <br>
+              <dt>Kontak yang digunakan</dt>
+              <dd><?php echo $this->session->userdata('hp');?></dd>
+              <br>
+              <dt>Administrasi Role </dt>
+              <dd><?php 
+              $desa= $this->master_model->_get_desa_id($this->session->userdata('desa_id'))->row_array();
+              echo "Desa ".$desa['nama_desa']." Kecamatan ".$desa['nama_kecamatan']." Kabupaten ".$desa['nama_kabupaten'];
+              ?></dd>
+          </div>
+        </div>
+    </div>
+  </div>
+  <?php } ?>
 <!-- ==============SCANNER ============--
 <div class="box box-success">
   <div class="box-header">
@@ -85,48 +120,15 @@
   </div>
 </div>
 <!-- ================================= -->
-  <div class="box box-widget collapsed-box">
-    <div class='box-header with-border'>
-    <div class='user-block'>
-    <img class='img-circle' src='<?php echo BASE_URL."assets/new-logo.png"; ?>' alt='user image'>
-    <span class='username'><h4>Informasi Penggunaan</h4></span>
-      </div>
-      <div class='box-tools'>          
-            <button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button>
-            <button onclick='tandai_mengerti(<?php echo $this->session->userdata('id');?>)' class='btn btn-box-tool' data-widget='remove'><i class='fa fa-times'></i></button>
-      </div><!-- /.box-tools -->
-    </div>
-    <div class='box-body'>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus vitae quam omnis eaque neque! Placeat quibusdam labore doloribus? Modi dolorum placeat ipsa saepe illum a ducimus facere vitae fugiat voluptatum.</p>
-    </div>
-  </div>
+ 
   <!-- <?php //if ($this->session->userdata('type') == 2 ||$this->session->userdata('type') == 3 || $this->session->userdata('type') == 99 ): ?>
-  <div class="row">
-    <div class="col-md-12 col-xs-12">
-      <div class="box box-info">
-        <?php //echo form_open('proses'); ?>
-        <div class="box-header with-border">
-          <h3 class="box-title">Pencarian Data NIK Cepat</h3>
-        </div>
-        <div class="box-body">
-          <div class="form-group">
-            <select class="form-control" style="width: 100%;" id="fast_search" name="id">
-            </select>
-          </div>
-        </div>
-        <div class="box-footer">
-          <button type="submit" class="btn bg-maroon btn-flat pull-right" name="proses">Proses Berdasarkan NIK <i class="fa fa-arrow-right"></i></button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div> -->
-<!-- <?php //endif; ?>
+
 
 <?php //if ($this->session->userdata('type') == 1 || $this->session->userdata('type') == 99 || $this->session->userdata('type') == 3): ?>
 <?php //$this->load->view(MAPS.'maps_desa'); ?>
 <?php //endif; ?>
 <?php //if ($this->session->userdata('type') == 1 || $this->session->userdata('type') == 2 ): ?>
+<!--  -->
   <div class="row">
     <div class="col-lg-3 col-xs-6">
       <div class="small-box bg-aqua">
@@ -177,8 +179,9 @@
       </div>
     </div>
   </div>
-<?php// endif; ?>
-<?php //if ($this->session->userdata('type') == 3): ?>
+  <!--  ================== --
+<!-- ====================== --
+
   <div class="row">
     <div class="col-lg-3 col-xs-6">
       <div class="small-box bg-aqua">

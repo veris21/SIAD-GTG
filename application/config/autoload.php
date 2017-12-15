@@ -146,7 +146,6 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array(
     'master_model',
-    'office_model',
     'option_model',
     'arsip_model',
     'disposisi_model',
