@@ -40,7 +40,7 @@
 				
 				<input id="data" type="text" name="data" autofocus>
 				<button type="submit" class="learnButton">Search</button>
-				<button class="btn" onclick="get_snap()">Test</button>
+				<!-- <button class="btn" onclick="get_snap()">Test</button> -->
 			</div>
 			<div class="clear"></div>
 		</form>	
