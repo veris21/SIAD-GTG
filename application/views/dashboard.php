@@ -133,7 +133,7 @@
     <div class="col-lg-3 col-xs-6">
       <div class="small-box bg-aqua">
         <div class="inner">
-          <h3>150</h3>
+          <h3><?php echo $pelayanan;?></h3>
           <p>Pelayanan Hari Ini</p>
         </div>
         <div class="icon">
@@ -145,7 +145,7 @@
     <div class="col-lg-3 col-xs-6">
       <div class="small-box bg-green">
         <div class="inner">
-          <h3>53</h3>
+          <h3><?php echo $surat;?></h3>
           <p>Total Surat Keluar</p>
         </div>
         <div class="icon">
@@ -157,7 +157,7 @@
     <div class="col-lg-3 col-xs-6">
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h3>44</h3>
+          <h3><?php echo $arsip;?></h3>
           <p>Total Arsip Surat</p>
         </div>
         <div class="icon">
@@ -169,7 +169,7 @@
     <div class="col-lg-3 col-xs-6">
       <div class="small-box bg-maroon">
         <div class="inner">
-          <h3>65</h3>
+          <h3><?php echo $tanah;?></h3>
           <p>Data Surat Tanah Terindeks</p>
         </div>
         <div class="icon">

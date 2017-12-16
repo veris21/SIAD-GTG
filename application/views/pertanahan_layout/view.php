@@ -15,7 +15,7 @@
     </div>
     <div class="box-body">
       <div class="form-group">
-        <input type="text" class="form-control" name="cari_tanah_nik" id="cari_tanah_nik" onkeyup="cari_data()" value="">
+        <input type="text" class="form-control" name="cari_tanah_skt" id="cari_tanah_skt" onkeyup="cari_data_skt()" value="">
       </div>
     </div>
   </div>

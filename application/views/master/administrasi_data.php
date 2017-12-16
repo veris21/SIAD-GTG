@@ -70,7 +70,7 @@
             echo "<td>".$desa->nama_kecamatan."</td>";
             echo "<td>".$desa->nama_desa."</td>";
             echo "<td align='center'><b>".$desa->fullname."</b> <br>".$desa->hp."</td>";
-            echo "<td align='center'><a href='".BASE_URL."rt/edit/".$desa->id."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></a></td>";
+            echo "<td align='center'><a href='".BASE_URL."details/desa/".$desa->id."' class='btn btn-xs btn-success'><i class='fa fa-eye'></i></a></td>";
             echo "</tr>";
         }
         ?>

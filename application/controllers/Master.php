@@ -128,6 +128,21 @@ class Master extends CI_Controller{
     $this->load->view('template',$data);
     }
   }
+
+  function detail_pejabat_desa($id){
+    $data['title'] = TITLE.'Detail &amp; Lengkapi Data Desa';
+    $data['main_content']   =  MASTER.'data_desa';
+    $data['data']           = array('nama_desa'=>'Gantung',
+                                    'alamat_desa'=>'Dusun Rasau Desa Gatung Kecamatan Gantung, 33462',
+                                    'fullname_kades'=>'SISWADI USMAN',
+                                    'fullname_sekdes'=>'Roni Riansyah',
+                                    'fullname_pertanahan'=>'Nurita'
+  );
+    $this->load->view('template',$data);
+  }
+
+
+  // ==========================
 // DATA TABLES Server Processing
   public function adm_json(){
     $list = $this->master_model->get_adm_json()->result();

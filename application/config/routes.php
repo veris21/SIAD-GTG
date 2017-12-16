@@ -24,6 +24,8 @@ $route['public']                    = 'stream';
 
 $route['user/list']                 = 'master/user_list'; 
 $route['user/administrasi']         = 'master/administrasi_data';
+$route['details/desa/(:any)']    = 'master/detail_pejabat_desa/$1';
+
 $route['arsip/klasifikasi']         = 'master/klasifikasi_arsip';
 $route['klasifikasi/posting']       = 'master/posting_klasifikasi_arsip';
 $route['klasifikasi/get/(:any)']    = 'master/get_klasifikasi_one/$1';
@@ -61,5 +63,10 @@ $route['berita_acara/cetak/(:any)']       = 'pertanahan/berita_acara_print/$1';
 
 // AUTOFILL
 $route['cari/nik/(:any)']           = 'datapenduduk/cari_nik/$1';
+
+$route['cari/skt/(:any)']           = 'pertanahan/cari_skt/$1';
+
+
+
 $route['data_penduduk']             = 'datapenduduk/data_penduduk';
 $route['import/data']               = 'datapenduduk/import';

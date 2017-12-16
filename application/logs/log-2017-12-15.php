@@ -570,3 +570,68 @@ ERROR - 2017-12-15 02:16:34 --> 404 Page Not Found: Assets/theme
 ERROR - 2017-12-15 02:16:34 --> 404 Page Not Found: Assets/theme
 ERROR - 2017-12-15 02:16:35 --> 404 Page Not Found: Assets/theme
 ERROR - 2017-12-15 02:16:35 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:26:34 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:26:53 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:26:56 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:26:59 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:27:02 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:27:05 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:27:07 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:27:11 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:27:13 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:27:15 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:27:18 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:27:21 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:27:23 --> Severity: error --> Exception: Call to undefined method CI_DB_mysqli_result::nums_row() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Office.php 16
+ERROR - 2017-12-15 19:28:24 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:28:24 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:28:36 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:28:36 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:28:36 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:28:36 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:28:36 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:28:37 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:28:37 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:28:38 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:28:39 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 19:28:39 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:15:34 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:15:34 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:15:34 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:15:34 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:15:34 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:15:35 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:15:35 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:15:36 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:15:36 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:15:36 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:26:01 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:26:01 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:26:01 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:26:01 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:26:01 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:26:01 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:26:01 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:26:02 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:26:02 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 20:26:02 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:02 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:03 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:03 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:03 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:03 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:04 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:04 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:05 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:05 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:05 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:15 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:15 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:15 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:15 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:15 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:16 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:16 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:16 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:16 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-15 22:19:16 --> 404 Page Not Found: Assets/theme

@@ -10,6 +10,11 @@ class Pertanahan extends CI_Controller{
     $this->load->library('pdfgenerator');
   }
 
+  function cari_skt($id){
+    $data = $this->datapenduduk_model->_get_data_nik($nik)->row_array();
+    echo json_encode($data);
+  }
+
   function data_view()
   {
     $data['title']  = TITLE.'Data Pertanahan';

@@ -16,7 +16,12 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI"></script>
   <script language="javascript" type="text/javascript" src="<?php echo APPS;?>js/map.js"></script>
   <script language="javascript" type="text/javascript" src="<?php echo APPS;?>js/search.js"></script>
-  
+  <style>
+		canvas {
+			width:100%;
+			height:100%;
+		}
+	</style>
     <link rel="shortcut icon" href="<?php echo BASE_URL.'assets/';?>favicon.ico" type="image/x-icon">
   </head>
   <body>
@@ -34,6 +39,7 @@
 			<div class="dataSearch">
 				<input id="data" type="text" name="data" autofocus>
 				<button type="submit" class="learnButton">Search</button>
+				<!-- <button class="btn" onclick="get_snap()">Test</button> -->
 			</div>
 			<div class="clear"></div>
 		</form>	
@@ -54,9 +60,19 @@
 		<div id="results"></div>
 		<p>A Project by <?php echo anchor('login','Si-Desa Gantung');?></p>
 	</div>
-	
-	<!-- an empty div for the map -->
+		<!-- an empty div for the map -->
 	<div id="map-canvas"></div> 
+	<div id="cap"></div>
+	<script type="text/javascript" src="<?php echo THEME; ?>plugins/html2canvas.js"></script>
+	<script type="text/javascript" src="<?php echo THEME; ?>plugins/canvas2image.js"></script>
 
+	<script type="text/javascript">
+		function get_snap(){
+			html2canvas(document.querySelector('#map-canvas')).then(canvas => {
+				Canvas2Image.saveAsPNG(canvas); 
+				document.body.appendChild(canvas);
+			});			
+		}
+	</script>
   </body>
 </html>

@@ -13,6 +13,10 @@ class Office extends CI_Controller{
   {
       $data['title']          = TITLE . 'Dashboard';
       $data['main_content']   = 'dashboard';
+      $data['arsip']          = $this->arsip_model->arsip_masuk()->num_rows();
+      $data['pelayanan']      = 0;
+      $data['surat']          = 0;
+      $data['tanah']          = 0;
       $this->load->view('template', $data);
   }
 
