@@ -35,16 +35,17 @@ $(function() {
 		var mapOptions = {
 			zoom: 11,
 			center: new google.maps.LatLng(-2.975289, 108.158662),
+			disableDefaultUI: true,
 			// mapTypeId: 'satellite',
-			panControl: false,
-			panControlOptions: {
-				position: google.maps.ControlPosition.BOTTOM_LEFT
-			},
-			zoomControl: true,
-			zoomControlOptions: {
-				style: google.maps.ZoomControlStyle.LARGE,
-				position: google.maps.ControlPosition.RIGHT_CENTER
-			},
+			// panControl: false,
+			// panControlOptions: {
+			// 	position: google.maps.ControlPosition.BOTTOM_LEFT
+			// },
+			// zoomControl: true,
+			// zoomControlOptions: {
+			// 	style: google.maps.ZoomControlStyle.LARGE,
+			// 	position: google.maps.ControlPosition.RIGHT_CENTER
+			// },
 			scaleControl: false
 
 		};

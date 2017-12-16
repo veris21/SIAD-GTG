@@ -37,9 +37,10 @@
 			<button type="button" id="searchBtn" class="learnButton">Cari Nama/NIK</button>
 			<div class="clear"></div>
 			<div class="dataSearch">
+				
 				<input id="data" type="text" name="data" autofocus>
 				<button type="submit" class="learnButton">Search</button>
-				<!-- <button class="btn" onclick="get_snap()">Test</button> -->
+				<button class="btn" onclick="get_snap()">Test</button>
 			</div>
 			<div class="clear"></div>
 		</form>	
@@ -58,20 +59,33 @@
 		</div>
 		<div class="clear"></div>
 		<div id="results"></div>
+		
 		<p>A Project by <?php echo anchor('login','Si-Desa Gantung');?></p>
 	</div>
 		<!-- an empty div for the map -->
 	<div id="map-canvas"></div> 
-	<div id="cap"></div>
-	<script type="text/javascript" src="<?php echo THEME; ?>plugins/html2canvas.js"></script>
+	<div>
+	Capture Data : <div id="cap"></div>
+	</div>
+	
+	<!-- <script type="text/javascript" src="<?php echo THEME; ?>plugins/html2canvas.js"></script> -->
 	<script type="text/javascript" src="<?php echo THEME; ?>plugins/canvas2image.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
 	<script type="text/javascript">
 		function get_snap(){
-			html2canvas(document.querySelector('#map-canvas')).then(canvas => {
+			html2canvas($("#map-canvas"),{
+				useCORS: true,
+				onrendered: function(canvas){
+				document.body.appendChild(canvas);	
+					// Convert and download as image 
 				Canvas2Image.saveAsPNG(canvas); 
-				document.body.appendChild(canvas);
-			});			
+					
+					$("#cap").append(canvas);
+					// Clean up 
+					//document.body.removeChild(canvas);
+				}
+			});
 		}
 	</script>
   </body>
