@@ -197,12 +197,12 @@
                         <div class="pull-right">
                         <?php
                         // IF DATA ID NOW = ID PEJABAT PERTANAHAN
-                        $pejabat_pertanahan = $this->master_model->_get_desa_id($this->session->userdata('desa_id'))->row_array();
-                        $id_pejabat_pertanahan = $pejabat_pertanahan['pertanahan_uid'];
-                        $id = $this->session->userdata('id');                                             
-                         if($id == $id_pejabat_pertanahan) { ?>
+                        // $pejabat_pertanahan = $this->master_model->_get_desa_id($this->session->userdata('desa_id'))->row_array();
+                        // $id_pejabat_pertanahan = $pejabat_pertanahan['pertanahan_uid'];
+                        // $id = $this->session->userdata('id');                                             
+                        //  if($id == $id_pejabat_pertanahan) { ?>
                             <button class="btn btn-primary btn-flat btn-sm" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
-                        <?php } ?>
+                        <?php //} ?>
                             <button onclick="cetak_pernyataan(<?php echo $pernyataan['id'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
                         </div>
                     </div>
@@ -340,7 +340,7 @@
       <input type="hidden" name="pemohon" value="<?php echo $data['nama'];?>">
       <input type="hidden" name="luas" value="<?php echo $data['luas'];?>">
       <input type="hidden" name="lokasi" value="<?php echo $data['lokasi'];?>">
-      <input type="hidden" name="kontak_pemohon" value="<?php echo $data['kontak_pemohon'];?>">
+      <input type="hidden" name="kontak_pemohon" value="<?php echo $data['hp'];?>">
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
         <button type="submit" onclick="pernyataan_save()" class="btn btn-primary">Save <i class="fa fa-save"></i></button>
@@ -363,7 +363,10 @@
       <?php echo form_open_multipart('', array('id'=>'bap_input','class'=>'form-horizontal'));?>
       <div class="modal-body form">
           <input type="hidden" name="permohonan_id" value="<?php echo $data['id'];?>">
-          <input type="hidden" name="pernyataan_id" value="<?php echo $pernyataan['id'];?>">        
+          <input type="hidden" name="pernyataan_id" value="<?php echo $pernyataan['id'];?>">    
+          <input type="hidden" name="pemohon" value="<?php echo $data['nama'];?>">
+          <input type="hidden" name="luas" value="<?php echo $data['luas'];?>">
+          <input type="hidden" name="lokasi" value="<?php echo $data['lokasi'];?>">    
 
             <div class="box box-warning">
                 <div class="box-header">
@@ -374,25 +377,41 @@
                    <div class="form-group">
                         <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 1</label>
                         <div class="col-sm-8">
-                        <select name="pemeriksa_1" class="form-control select2" width="100%"></select>
+                        <select name="pemeriksa_1" class="form-control select2" style="width:100%;">
+                        <?php foreach ($pemeriksa1 as $p1) {
+                           echo "<option value='".$p1->id."'>".$p1->fullname." - ".$p1->jabatan."</option>";
+                        }?>
+                        </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 2</label>
                         <div class="col-sm-8">
-                        <select name="pemeriksa_2" class="form-control select2" width="100%"></select>
+                        <select name="pemeriksa_2" class="form-control select2" style="width:100%;">
+                        <?php foreach ($pemeriksa2 as $p2) {
+                           echo "<option value='".$p2->id."'>".$p2->fullname." - ".$p2->jabatan."</option>";
+                        }?>
+                        </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 3</label>
                         <div class="col-sm-8">
-                        <select name="pemeriksa_3" class="form-control select2" width="100%"></select>
+                        <select name="pemeriksa_3" class="form-control select2" style="width:100%;">
+                        <?php foreach ($pemeriksa3 as $p3) {
+                           echo "<option value='".$p3->id."'>".$p3->fullname." - ".$p3->jabatan."</option>";
+                        }?>
+                        </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 4</label>
                         <div class="col-sm-8">
-                        <select name="pemeriksa_4" class="form-control select2" width="100%"></select>
+                        <select name="pemeriksa_4" class="form-control select2" style="width:100%;">
+                        <?php foreach ($pemeriksa4 as $p4) {
+                           echo "<option value='".$p4->id."'>".$p4->fullname." - ".$p4->jabatan."</option>";
+                        }?>
+                        </select>
                         </div>
                     </div>
                     <!--  -->

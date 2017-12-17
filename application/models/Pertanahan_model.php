@@ -66,5 +66,11 @@ class Pertanahan_model extends CI_Model{
     return $this->db->insert('berita_acara_pertanahan', $insert);
   }
 
-  
+  public function get_bap_list(){
+    $this->db->select('bap.* ,desa.nama_desa, mohon.lokasi, mohon.luas, p.no_nik, p.nama, p.alamat, p.no_kk');
+    $this->db->from('permohonan_pertanahan mohon, master_data_penduduk_ p, berita_acara_pertanahan bap, desa desa');
+    $this->db->where('mohon.kependudukan_id=p.id');
+    $this->db->where('bap.permohonan_id=mohon.id');
+    return $this->db->get();
+  }
 }

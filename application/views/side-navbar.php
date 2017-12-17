@@ -56,7 +56,7 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="<?php echo BASE_URL.'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
-          <li><a href="<?php echo BASE_URL.'berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
+          <li><a href="<?php echo BASE_URL.'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
           <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
         </ul>
       </li>        <?php
@@ -126,7 +126,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo BASE_URL.'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
-            <li><a href="<?php echo BASE_URL.'berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
+            <li><a href="<?php echo BASE_URL.'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
             <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
           </ul>
         </li>
@@ -240,7 +240,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo BASE_URL.'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
-            <li><a href="<?php echo BASE_URL.'berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
+            <li><a href="<?php echo BASE_URL.'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
             <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
           </ul>
         </li>

@@ -53,7 +53,7 @@
     <![endif]-->
     <link rel="shortcut icon" href="<?php echo BASE_URL.'assets/';?>new-logo.png" type="image/x-icon">
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
     <div class="wrapper">
       <?php $this->load->view('top-navbar'); ?>
       <?php $this->load->view('side-navbar'); ?>

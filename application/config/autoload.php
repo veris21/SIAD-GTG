@@ -145,6 +145,7 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array(
+    'auth_model',
     'master_model',
     'option_model',
     'arsip_model',

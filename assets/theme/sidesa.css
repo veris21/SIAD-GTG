@@ -28,3 +28,15 @@
     border-bottom: solid red 5px;
     border-right: solid red 5px;
 }
+
+table {
+    font-size: 11px;
+}
+
+sup{
+    font-size: 10px;
+}
+
+th {
+    text-align: center;
+}

@@ -8,6 +8,7 @@ class Pertanahan extends CI_Controller{
     parent::__construct();
     // $this->load->library('html2pdf');
     $this->load->library('pdfgenerator');
+    $this->load->model('auth_model');
   }
 
   function cari_skt($id){
@@ -34,6 +35,10 @@ class Pertanahan extends CI_Controller{
   public function permohonan_view($id){
     $data['title']    = TITLE.'Data Permohonan Tanah';
     $data['main_content'] = PERTANAHAN.'view_permohonan';
+    $data['pemeriksa1']   = $this->master_model->get_user_detail()->result();
+    $data['pemeriksa2']   = $this->master_model->get_user_detail()->result();
+    $data['pemeriksa3']   = $this->master_model->get_user_detail()->result();
+    $data['pemeriksa4']   = $this->master_model->get_user_detail()->result();
     $data['data']         = $this->pertanahan_model->_get_details_one($id)->row_array();
     $this->load->view('template', $data);
   }
@@ -258,6 +263,7 @@ class Pertanahan extends CI_Controller{
 
   public function berita_acara(){
     $data['title'] = TITLE.'List Berita Acara';
+    $data['bap_data'] = $this->pertanahan_model->get_bap_list()->result();
     $data['main_content'] = PERTANAHAN.'list_berita_acara';
     $this->load->view('template', $data);
   }
@@ -276,11 +282,34 @@ class Pertanahan extends CI_Controller{
     $sekarang = time();
     $permohonan_id = strip_tags($this->input->post('permohonan_id'));
     $pernyataan_id = strip_tags($this->input->post('pernyataan_id'));
-    $p1 = $this->session->userdata('id');
-    $p2 = strip_tags($this->input->post('pemeriksa_2'));
-    $p3 = strip_tags($this->input->post('pemeriksa_3'));
-    $p4 = strip_tags($this->input->post('pemeriksa_4'));
-    $p5 = strip_tags($this->input->post('pemeriksa_5'));
+    $pemohon =  strip_tags($this->input->post('pemohon'));
+    $lokasi =  strip_tags($this->input->post('lokasi'));
+    $luas =  strip_tags($this->input->post('luas'));
+    $p1 = 1; //$this->session->userdata('id');    
+    
+    $p2 = strip_tags($this->input->post('pemeriksa_1'));    
+    $p3 = strip_tags($this->input->post('pemeriksa_2'));
+    $p4 = strip_tags($this->input->post('pemeriksa_3'));
+    $p5 = strip_tags($this->input->post('pemeriksa_4'));
+     //========= SMS NOTIFIKASI =================
+    $message = "Notifikasi : Anda ditunjuk sebagai Tim Pemeriksa Pertanahan a/n.".$pemohon." Lokasi : ".$lokasi ." (SiDesa Sistem)";
+    $p2_data = $this->auth_model->get_user_id($p2)->row_array();
+    if($p2_data!=''){
+      sms_notifikasi($p2_data['hp'], $message);
+    }
+    $p3_data = $this->auth_model->get_user_id($p3)->row_array();
+    if($p3_data!=''){
+      sms_notifikasi($p3_data['hp'], $message);
+    }
+    $p4_data = $this->auth_model->get_user_id($p4)->row_array();
+    if($p4_data!=''){
+      sms_notifikasi($p4_data['hp'], $message);
+    }
+    $p5_data = $this->auth_model->get_user_id($p5)->row_array();
+    if($p5_data!=''){
+      sms_notifikasi($p5_data['hp'], $message);
+    }
+    // =========================================
     $insert = array(
       'permohonan_id'=>$permohonan_id,
       'pernyataan_id'=>$pernyataan_id,
@@ -301,11 +330,16 @@ class Pertanahan extends CI_Controller{
 
 
 }
-/* Pertanahan.php || Controller Handler Untuk Modul Pertanahan */ 
-/*==============================================================
+
+
+/* Pertanahan.php || Controller Handler Untuk Modul Pertanahan
+ 
+=========================================================
 |    @Author     |      Version     |     Changelog     |
-_______________________________________________________________
-| Veris Juniardi      1.0.0-alfa      November 2017     |
+_________________________________________________________
+| Veris Juniardi |    1.0.0-alfa    |   November 2017   |
 |                |                  |                   |
 |                |                  |                   |
-================================================================*/
+=========================================================
+
+*/
