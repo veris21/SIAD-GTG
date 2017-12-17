@@ -80,3 +80,12 @@ public function arsip_input(){
 }
 
 }
+
+/* Arsip.php || Controller Handler Untuk Modul Arsip */ 
+/*==============================================================
+|    @Author     |      Version     |     Changelog     |
+_______________________________________________________________
+| Veris Juniardi      1.0.0-alfa      November 2017     |
+|                |                  |                   |
+|                |                  |                   |
+================================================================*/

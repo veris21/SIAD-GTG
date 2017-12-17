@@ -43,3 +43,12 @@ class Office extends CI_Controller{
   }
 
 }
+
+/* Office.php || Controller Handler Untuk Modul Office */ 
+/*==============================================================
+|    @Author     |      Version     |     Changelog     |
+_______________________________________________________________
+| Veris Juniardi      1.0.0-alfa      November 2017     |
+|                |                  |                   |
+|                |                  |                   |
+================================================================*/

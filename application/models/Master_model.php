@@ -76,6 +76,18 @@ class Master_model extends CI_Model{
     return $this->db->get('jabatan');
   }
 
+  public function _get_desa_details($id){
+    $query = "SELECT d.id as id, d.nama_desa as nama_desa, d.alamat_desa as alamat_desa,
+    kades.fullname as fullname_kades, 
+    sekdes.fullname as fullname_sekdes,
+    pertanahan.fullname as fullname_pertanahan
+     FROM desa as d, 
+     users as kades, 
+     users as sekdes , 
+     users as pertanahan
+     WHERE d.uid = kades.id AND d.pertanahan_uid = pertanahan.id AND d.sekdes_uid = sekdes.id AND d.id = $id";
+    return $this->db->query($query);
+  }
   // 
   public function _get_desa_id($id){
     $this->db->select('de.*, k.nama_kecamatan, kab.nama_kabupaten');

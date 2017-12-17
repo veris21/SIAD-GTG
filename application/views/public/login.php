@@ -5,6 +5,12 @@
     <a href="<?php echo BASE_URL.'public';?>">Si<b>Desa Gantung</b></a>
   </div><!-- /.login-logo -->
   <div class="login-box-body">
+    <?php if($this->session->flashdata('error')!=''){?>
+    <div class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p><i class="icon fa fa-ban"></i> Maaf! <?php echo $this->session->flashdata('error');?></p>    
+    </div>
+    <?php }?>
     <p class="login-box-msg">Silahkan Login Dengan ID &amp; Password Untuk Masuk kedalam Sistem</p>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="user ID" name="uid">

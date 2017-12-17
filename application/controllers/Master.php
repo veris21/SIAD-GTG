@@ -132,12 +132,8 @@ class Master extends CI_Controller{
   function detail_pejabat_desa($id){
     $data['title'] = TITLE.'Detail &amp; Lengkapi Data Desa';
     $data['main_content']   =  MASTER.'data_desa';
-    $data['data']           = array('nama_desa'=>'Gantung',
-                                    'alamat_desa'=>'Dusun Rasau Desa Gatung Kecamatan Gantung, 33462',
-                                    'fullname_kades'=>'SISWADI USMAN',
-                                    'fullname_sekdes'=>'Roni Riansyah',
-                                    'fullname_pertanahan'=>'Nurita'
-  );
+    $data['data']           = $this->master_model->_get_desa_details($id)->row_array();
+    
     $this->load->view('template',$data);
   }
 

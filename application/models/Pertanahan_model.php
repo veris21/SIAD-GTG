@@ -62,5 +62,9 @@ class Pertanahan_model extends CI_Model{
     return $this->db->update('permohonan_pertanahan', $setujui);
   }
 
+  public function _post_berita_acara($insert){
+    return $this->db->insert('berita_acara_pertanahan', $insert);
+  }
+
   
 }

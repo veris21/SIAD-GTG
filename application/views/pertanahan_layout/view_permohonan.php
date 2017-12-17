@@ -195,6 +195,14 @@
                     </div>
                     <div class="box-footer">
                         <div class="pull-right">
+                        <?php
+                        // IF DATA ID NOW = ID PEJABAT PERTANAHAN
+                        $pejabat_pertanahan = $this->master_model->_get_desa_id($this->session->userdata('desa_id'))->row_array();
+                        $id_pejabat_pertanahan = $pejabat_pertanahan['pertanahan_uid'];
+                        $id = $this->session->userdata('id');                                             
+                         if($id == $id_pejabat_pertanahan) { ?>
+                            <button class="btn btn-primary btn-flat btn-sm" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
+                        <?php } ?>
                             <button onclick="cetak_pernyataan(<?php echo $pernyataan['id'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
                         </div>
                     </div>
@@ -220,7 +228,7 @@
     </div>
 </section>
 
-<!-- Modal Input Disposisi -->
+<!-- Modal Input Pernyataan -->
 <div class="modal fade" id="modal_pernyataan" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -329,9 +337,73 @@
             </div>
                     
       </div>
+      <input type="hidden" name="pemohon" value="<?php echo $data['nama'];?>">
+      <input type="hidden" name="luas" value="<?php echo $data['luas'];?>">
+      <input type="hidden" name="lokasi" value="<?php echo $data['lokasi'];?>">
+      <input type="hidden" name="kontak_pemohon" value="<?php echo $data['kontak_pemohon'];?>">
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <button type="submit" onclick="pernyataan_save()" class="btn btn-primary">Save</button>
+        <button type="submit" onclick="pernyataan_save()" class="btn btn-primary">Save <i class="fa fa-save"></i></button>
+      </div>
+    </form>
+    </div> 
+  </div> 
+</div>
+
+<!-- ==== -->
+
+<!-- Modal Input BAP -->
+<div class="modal fade" id="modal_bap" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Setujui Pernyataan &amp; Proses Pertanahan</h3>
+      </div>
+      <?php echo form_open_multipart('', array('id'=>'bap_input','class'=>'form-horizontal'));?>
+      <div class="modal-body form">
+          <input type="hidden" name="permohonan_id" value="<?php echo $data['id'];?>">
+          <input type="hidden" name="pernyataan_id" value="<?php echo $pernyataan['id'];?>">        
+
+            <div class="box box-warning">
+                <div class="box-header">
+                    <h3>Input Pemeriksa &amp; Petugas Verifikasi Tanah</h3>
+                </div>
+                <div class="box-body"> 
+                   <!--  -->
+                   <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 1</label>
+                        <div class="col-sm-8">
+                        <select name="pemeriksa_1" class="form-control select2" width="100%"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 2</label>
+                        <div class="col-sm-8">
+                        <select name="pemeriksa_2" class="form-control select2" width="100%"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 3</label>
+                        <div class="col-sm-8">
+                        <select name="pemeriksa_3" class="form-control select2" width="100%"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 4</label>
+                        <div class="col-sm-8">
+                        <select name="pemeriksa_4" class="form-control select2" width="100%"></select>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+                    
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="submit" onclick="bap_save()" class="btn btn-primary">Save <i class="fa fa-save"></i></button>
       </div>
     </form>
     </div> 

@@ -350,6 +350,12 @@
   var save_method;
     var arsip_method; 
 
+
+    function desa_edit(){
+      $('#data_desa_form')[0].reset();
+      $('#modal_data_desa').modal('show');
+    }
+    
     function permohonan_setujui(id){
       event.preventDefault();
       var url = '<?php echo BASE_URL.'permohonan/setujui/';?>'+id;
@@ -471,6 +477,40 @@
       $('#modal_pernyataan').modal('show');
     }
 
+    function input_tim_verifikasi(){
+      $('#bap_input')[0].reset();
+      $('#modal_bap').modal('show');
+    }
+
+    function bap_save(){
+      event.preventDefault();
+      swal({
+        title: 'Apa Anda Yakin?',
+              text: "Data Tim Verifikasi Akan di Input ke Sistem!",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Iya, Simpan!'              
+            }, function isConfirm(){
+              $.ajax({
+                url:'<?php echo BASE_URL."berita_acara/input";?>',
+                type:"POST",
+                data:$('#bap_input').serialize(),
+                dataType:"JSON",            
+                success: function(data){
+                  swal('Selamat !','Berhasil Posting Data Tim Verifikasi Tanah !','success');
+                  location.reload();
+                }
+                ,error: function (jqXHR, textStatus, errorThrown)
+                  {
+                    swal('Oops...','Something went wrong!','error');
+                    location.reload();
+                  }
+              });
+      });
+    }
+
     function pernyataan_save(){
       event.preventDefault();
       swal({
@@ -496,7 +536,7 @@
                     swal('Oops...','Something went wrong!','error');
                     location.reload();
                   }
-              })             
+              });           
             });
     }
     function cetak_pernyataan(id){

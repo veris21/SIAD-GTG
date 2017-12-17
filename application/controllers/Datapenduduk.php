@@ -60,3 +60,12 @@ class Datapenduduk extends CI_Controller {
 
 }
 /* End of file DataPenduduk.php */
+
+/* Datapenduduk.php || Controller Handler Untuk Modul Datapenduduk */ 
+/*==============================================================
+|    @Author     |      Version     |     Changelog     |
+_______________________________________________________________
+| Veris Juniardi      1.0.0-alfa      November 2017     |
+|                |                  |                   |
+|                |                  |                   |
+================================================================*/

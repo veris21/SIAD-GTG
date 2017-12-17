@@ -13,3 +13,12 @@ class Stream extends CI_Controller{
   }
 
 }
+
+/* Stream.php || Controller Handler Untuk Modul Stream */ 
+/*==============================================================
+|    @Author     |      Version     |     Changelog     |
+_______________________________________________________________
+| Veris Juniardi      1.0.0-alfa      November 2017     |
+|                |                  |                   |
+|                |                  |                   |
+================================================================*/

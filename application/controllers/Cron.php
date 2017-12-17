@@ -42,3 +42,12 @@ class Cron extends CI_Controller{
     }
   }
 }
+
+/* Cron.php || Controller Handler Untuk Modul Cron */ 
+/*==============================================================
+|    @Author     |      Version     |     Changelog     |
+_______________________________________________________________
+| Veris Juniardi      1.0.0-alfa      November 2017     |
+|                |                  |                   |
+|                |                  |                   |
+================================================================*/

@@ -84,3 +84,12 @@ class Disposisi extends CI_Controller{
   }
 
 }
+
+/* Disposisi.php || Controller Handler Untuk Modul Disposisi */ 
+/*==============================================================
+|    @Author     |      Version     |     Changelog     |
+_______________________________________________________________
+| Veris Juniardi      1.0.0-alfa      November 2017     |
+|                |                  |                   |
+|                |                  |                   |
+================================================================*/

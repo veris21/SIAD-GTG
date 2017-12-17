@@ -53,9 +53,10 @@ class Auth extends CI_Controller{
             $this->db->update('users', array('time'=>$sekarang));
             redirect(BASE_URL);
             exit;
-        }else {
-          $this->session->sess_destroy();
-          redirect('login');
+        }else {          
+          $this->session->set_flashdata(array('error'=>'Data User Tidak ditemukan!!'));
+          // $this->session->sess_destroy();
+          redirect('login');         
           exit;
         }
       }

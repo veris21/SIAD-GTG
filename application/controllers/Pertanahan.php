@@ -176,18 +176,27 @@ class Pertanahan extends CI_Controller{
     $saksi4_pekerjaan = strip_tags($this->input->post('saksi4_pekerjaan'));
 
     $id    = $this->input->post('permohonan_id');
+    $pemohon =  strip_tags($this->input->post('pemohon'));
+    $lokasi =  strip_tags($this->input->post('lokasi'));
+    $luas =  strip_tags($this->input->post('luas'));
+
+    // $kontak_pemohon =  strip_tags($this->input->post('kontak_pemohon'));
+
     $sekarang = time();
+
     // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
     // ==============================
-    // $desa_id = $this->session->userdata('desa_id');
-    // $hp_kades = $this->notifikasi_model->_get_data_kades($desa_id)->row_array();
-    // $kepada_id = $hp_kades['id'];
-    // $jabatan = $hp_kades['jabatan'];
-    // $nama_desa = $hp_kades['nama_desa'];
-    // $message = 'NOTIFIKASI PERTANAHAN : Yth. '.$jabatan.' '.$nama_desa.' Pernyataan SKT '.$pemohon.', Lokasi : '.$lokasi.', Luas : '.$luas.' meter persegi (SiDesa Sistem)';
-    // $to = $hp_kades['hp'];
-    // sms_notifikasi($to, $message);
-    // ==============================
+
+    $desa_id = $this->session->userdata('desa_id');
+    $hp_pertanahan = $this->notifikasi_model->_get_data_kasi_pertanahan($desa_id)->row_array();
+    $kepada_id = $hp_pertanahan['id'];
+    $jabatan = $hp_pertanahan['jabatan'];
+    $nama_desa = $hp_pertanahan['nama_desa'];
+    $message = 'NOTIFIKASI : Yth. '.$jabatan.' '.$nama_desa.' Pernyataan SKT '.$pemohon.', Lokasi : '.$lokasi.', Luas : '.$luas.' meter persegi Telah disetujui dan menunggu Data Tim Verifikasi (SiDesa Sistem)';
+    $to = $hp_kades['hp'];
+    sms_notifikasi($to, $message);
+
+      // ==============================
       // QRCODE GENERATE
       $params['data'] = BASE_URL.'pernyataan/validasi/'.$sekarang;
       $params['level'] = 'M';
@@ -195,20 +204,22 @@ class Pertanahan extends CI_Controller{
       $params['savename'] = FCPATH.'assets/uploader/qr_code/'.$sekarang.'.png';
       $this->ciqrcode->generate($params);
       // +===============+
+
       // +===============+
-      // $link = "pernyataan/".$sekarang;
-      // $posting = array(
-      //   'kepada_id'=> $kepada_id,
-      //   'hp'=> $to,
-      //   'message'=> $message,
-      //   'link'=> $link,
-      //   'time'=> time(),
-      //   'status'=> 0,
-      //   'type'=> 0
-      // );
+      $link = "pernyataan/".$sekarang;
+      $posting = array(
+        'kepada_id'=> $kepada_id,
+        'hp'=> $to,
+        'message'=> $message,
+        'link'=> $link,
+        'time'=> time(),
+        'status'=> 0,
+        'type'=> 0
+      );
+
       $setujui = array('status_proses'=>1);
       $up = $this->pertanahan_model->_setujui_permohonan($id, $setujui);
-      // $this->notifikasi_model->posting_notifikasi($posting);
+      $this->notifikasi_model->posting_notifikasi($posting);
       $qr_link = $sekarang.'.png';
       $insert = array(
         'permohonan_id'=>$id,
@@ -234,6 +245,7 @@ class Pertanahan extends CI_Controller{
       }   
   }
 
+
   public function permohonan_setujui($id){
     $setujui = array('status_proses'=>2);
     $check = $this->pertanahan_model->_setujui_permohonan($id, $setujui);
@@ -241,6 +253,13 @@ class Pertanahan extends CI_Controller{
       echo json_encode(array("status" => TRUE));
     }
 
+  }
+
+
+  public function berita_acara(){
+    $data['title'] = TITLE.'List Berita Acara';
+    $data['main_content'] = PERTANAHAN.'list_berita_acara';
+    $this->load->view('template', $data);
   }
 
   public function berita_acara_print($id){
@@ -252,4 +271,41 @@ class Pertanahan extends CI_Controller{
       echo json_encode(array("status" => TRUE));
     }
   }
+
+  public function berita_acara_input(){
+    $sekarang = time();
+    $permohonan_id = strip_tags($this->input->post('permohonan_id'));
+    $pernyataan_id = strip_tags($this->input->post('pernyataan_id'));
+    $p1 = $this->session->userdata('id');
+    $p2 = strip_tags($this->input->post('pemeriksa_2'));
+    $p3 = strip_tags($this->input->post('pemeriksa_3'));
+    $p4 = strip_tags($this->input->post('pemeriksa_4'));
+    $p5 = strip_tags($this->input->post('pemeriksa_5'));
+    $insert = array(
+      'permohonan_id'=>$permohonan_id,
+      'pernyataan_id'=>$pernyataan_id,
+      'pemeriksa_1'=>$p1,
+      'pemeriksa_2'=>$p2,
+      'pemeriksa_3'=>$p3,
+      'pemeriksa_4'=>$p4,
+      'pemeriksa_5'=>$p5,
+      'time_input'=> $sekarang,
+      'status_bap'=> 0
+    );
+    $check = $this->pertanahan_model->_post_berita_acara($insert);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }
+    
+  }
+
+
 }
+/* Pertanahan.php || Controller Handler Untuk Modul Pertanahan */ 
+/*==============================================================
+|    @Author     |      Version     |     Changelog     |
+_______________________________________________________________
+| Veris Juniardi      1.0.0-alfa      November 2017     |
+|                |                  |                   |
+|                |                  |                   |
+================================================================*/
