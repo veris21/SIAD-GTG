@@ -36,8 +36,8 @@
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/select2/select2.min.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&libraries=drawing,geometry,distance"></script>
-    <script src="<?php echo THEME; ?>sweetalert.min.js"></script>
+    <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&libraries=drawing,geometry,distance"></script>
+    <script src="<?php echo THEME; ?>sweetalert.min.js"></script> -->
     <link rel="stylesheet" type="text/css" href="<?php echo THEME; ?>sweetalert.css">
     <link rel="stylesheet" href="<?php echo THEME; ?>plugins/fancybox/jquery.fancybox.css">
 

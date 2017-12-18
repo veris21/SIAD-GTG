@@ -16,7 +16,28 @@
     <h4><i class="icon fa fa-ban"></i> Selamat Datang!</h4>
     Selamat Datang di Sistem Informasi Geografis dan Administrasi Desa Gantung. Ini Merupakan aplikasi berbasis Web dan Database Sistem untuk membantu pengadministrasian pemerintahan desa dan <i>open data public</i> dengan menyediakan informasi umum terbuka terkait pelayanan yang di wewenangi pemerintah desa, serta terintegrasi dengan Visual Data Pertanahan Desa, pemberintahuan berupa SMS Notifikasi Pelayanan Desa guna menerapkan pelayanan yang cepat, teradministrasi baik dan terbuka.
   </div>
-
+  <?php if($this->session->userdata('jabatan')=='ROOT'||$this->session->userdata('jabatan')=='LAYANAN'){ ?>
+  <!-- SMS DATA -->
+  <div class="row">
+    <div class="col-md-12">
+    <div class="small-box bg-purple">
+          <div class="inner">
+          <h3>
+            <?php 
+              $sms = explode(' ', check_sisa_sms());
+              echo $sms[6];
+            ?>
+        </h3>
+          <p><?php  echo "Quota Sms Server Aktif s/d ".$sms[8]." ".$sms[9]." ".$sms[10]; ?></p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-server"></i>
+          </div>
+        </div>
+    </div>
+  </div>
+  <?php } ?>
+  <!-- ==+++++== -->
   <div class="box box-info">
     <div class="box-header with-border">
         <h3 class="box-title">
@@ -129,6 +150,7 @@
 <?php //endif; ?>
 <?php //if ($this->session->userdata('type') == 1 || $this->session->userdata('type') == 2 ): ?>
 <!--  -->
+
   <div class="row">
     <div class="col-lg-3 col-xs-6">
       <div class="small-box bg-aqua">

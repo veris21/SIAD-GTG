@@ -101,7 +101,16 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'file', 'form', 'date', 'login_helper','sms_helper','waktu_helper');
+$autoload['helper'] = array(
+  'url',
+  'file',
+  'form',
+  'date', 
+  'login_helper',
+  'sms_helper',
+  'waktu_helper',
+  'rand_helper'
+);
 
 /*
 | -------------------------------------------------------------------

@@ -33,6 +33,8 @@ define('APPS',            BASE_URL . 'assets/apps/');
 define('THEME',           BASE_URL . 'assets/theme/');
 define('UPLOADER',        BASE_URL . 'assets/uploader/');
 define('KTP',             UPLOADER . 'ktp/');
+define('PBB',             UPLOADER . 'pbb_pemohon/');
+define('FOTO',             UPLOADER . 'foto_pemohon/');
 define('PATOK',           UPLOADER . 'patok/');
 define('SCAN_ARSIP',      UPLOADER . 'arsip/');
 define('QRCODE',          UPLOADER . 'qr_code/');

@@ -268,6 +268,19 @@ class Pertanahan extends CI_Controller{
     $this->load->view('template', $data);
   }
 
+  public function berita_acara_view($id){
+    $data['title'] = TITLE.'Detail Berita Acara';
+    $data['data']  = $this->pertanahan_model->_get_bap_details($id)->row_array();
+    $data['ketua_pemeriksa'] = $this->auth_model->get_user_id($data['data']['ketua_pemeriksa_id'])->row_array();
+    $data['pemeriksa_1'] = $this->auth_model->get_user_id($data['data']['pemeriksa_1_id'])->row_array();
+    $data['pemeriksa_2'] = $this->auth_model->get_user_id($data['data']['pemeriksa_2_id'])->row_array();
+    $data['pemeriksa_3'] = $this->auth_model->get_user_id($data['data']['pemeriksa_3_id'])->row_array();
+    $data['pemeriksa_4'] = $this->auth_model->get_user_id($data['data']['pemeriksa_4_id'])->row_array();
+    $data['patok']       = $this->pertanahan_model->_get_data_patok($data['data']['id']); 
+    $data['main_content'] = PERTANAHAN.'detail_berita_acara';
+    $this->load->view('template', $data);
+  }
+
   public function berita_acara_print($id){
     $data['title'] = TITLE.'Cetak Berita Acara';
     $data['data']  = $this->pertanahan_model->_get_pernyataan_one($id)->row_array();
