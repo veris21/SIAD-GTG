@@ -34,11 +34,11 @@
           <?php 
             foreach($data as $data){
               if($data->status_proses==0){
-                $status = '<button class="btn btn-warning">Di Prosess <i class="fa fa-ban"></i></button>';
+                $status = '<button class="btn btn-xs btn-flat btn-warning">Di Prosess <i class="fa fa-ban"></i></button>';
               }elseif ($data->status_proses==2) {
-                $status = '<button class="btn btn-default">Di Setujui <i class="fa fa-paper-plane"></i></button>';
+                $status = '<button class="btn btn-xs btn-flat btn-default">Di Setujui <i class="fa fa-paper-plane"></i></button>';
               }else{
-                $status = '<button class="btn btn-success">Di Terima <i class="fa fa-check"></i></button>';
+                $status = '<button class="btn btn-xs btn-flat btn-success">Di Terima <i class="fa fa-check"></i></button>';
               }              
             echo "<tr>";
             echo "<td>".$data->nama."<br>".$data->no_nik."</td>";
@@ -68,8 +68,13 @@
        <center id="loader-icon" style="display:none;">
           <img width="50%" class="img img-responsive" src="<?php echo BASE_URL.'assets/';?>nyapu.gif" />
       </center>
-      <div id="data_kosong" class="alert alert-danger" hidden>
-          <h3 class="text-center"><i class="icon fa fa-ban"></i>Data Tidak Ditemukan !!</h3>
+      <div id="data_kosong" hidden>
+          <div  class="alert alert-danger">
+               <h3 class="text-center"><i class="icon fa fa-ban"></i>Data Tidak Ditemukan !!</h3>
+          </div>         
+          Apa Anda ingin menginput Data Penduduk Baru ?        
+          <button class="btn btn-sm btn-flat btn-success" onclick="input_penduduk_baru()" >Iya, Input Data <i class="fa fa-plus"></i></button>
+         
       </div>
       <!--  -->
       <div id="result_cari_data" class="box box-info" hidden>
@@ -228,3 +233,25 @@
   </div>
   </div> 
   </section>
+
+<!-- Modal Input Data Penduduk Baru -->
+<div class="modal fade" id="modal_input_data_penduduk_baru" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Input Data Penduduk ke Sistem</h3>
+      </div>
+      <?php echo form_open_multipart('', array('id'=>'input_data_penduduk_baru'));?>
+      <div class="modal-body form">
+      <!--  -->
+      <!--  -->
+      </div> 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="submit" onclick="save_data_penduduk_baru()" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+    </div> 
+  </div> 
+</div>

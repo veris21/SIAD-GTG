@@ -24,7 +24,7 @@ $route['public']                    = 'stream';
 
 $route['user/list']                 = 'master/user_list'; 
 $route['user/administrasi']         = 'master/administrasi_data';
-$route['details/desa/(:any)']    = 'master/detail_pejabat_desa/$1';
+$route['details/desa/(:any)']       = 'master/detail_pejabat_desa/$1';
 
 $route['arsip/klasifikasi']         = 'master/klasifikasi_arsip';
 $route['klasifikasi/posting']       = 'master/posting_klasifikasi_arsip';

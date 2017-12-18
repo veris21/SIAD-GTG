@@ -9,22 +9,6 @@ class Master extends CI_Controller{
 
   }
 
-  public function lookup()
-  {
-    $json = [];
-    if(!empty($this->input->get("q"))){
-      $this->db->like('no_nik', $this->input->get("q"));
-      $this->db->or_like('nama', $this->input->get("q"));
-      $query = $this->db->select('id, no_nik as text')
-            ->limit(10)
-            ->get("sig_data_penduduk_dummy");
-      $json = $query->result();
-    }
-    echo json_encode($json);
-  }
-
-  // ======MASTER SYSTEM SETTING =======
-
   function sms_api()
   {
     $id = 1;
