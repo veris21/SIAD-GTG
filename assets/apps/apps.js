@@ -120,7 +120,7 @@ function cari_data() {
         $('#result_cari_data').hide();
         $('#data_kosong').hide();
         $.ajax({
-          url:base_url+'cari/nik/'+nik,
+          url: 'cari/nik/'+nik,
           type:'GET',
           success:function(data){
             $('#loader-icon').hide();
