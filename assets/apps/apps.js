@@ -112,51 +112,7 @@ _________________________________________________
 ================================================*/
 
 // TODO: SETTING Untuk Pencarian
-function cari_data() {
-      event.preventDefault();
-      var nik = $('[name="cari_tanah_nik"]').val();
-      if(nik!=''){
-        $('#loader-icon').show();
-        $('#result_cari_data').hide();
-        $('#data_kosong').hide();
-        $.ajax({
-          url: 'cari/nik/'+nik,
-          type:'GET',
-          success:function(data){
-            $('#loader-icon').hide();
-            if(data!='null' ){
-              var obj = JSON.parse(data);
-                console.log(data);
-              $('#no_nik').text("NIK "+obj.no_nik);
-              $('#no_kk').text("No. KK "+obj.no_kk);
-              $('#nama').text(obj.nama);
-              $('#ttl').text(obj.tempat_lahir+"/"+obj.tanggal_lahir);
-              $('#pddk_akhir').text(obj.pddk_akhir);
-              $('#shdk').text(obj.shdk);
-              $('#agama').text(obj.agama);
-              $('#pekerjaan').text(obj.pekerjaan);
-              $('#status').text(obj.status);
-              $('#shdrt').text(obj.shdrt+"  Orang");
-              $('#alamat').text(obj.alamat);
-              $('#no_rt').text(obj.no_rt);
-              $('#dusun').text(obj.dusun);
-              $('[name="kependudukan_id"]').val(obj.id);
-              $('[name="no_nik"]').val(obj.no_nik);
-              $('[name="pemohon"]').val(obj.nama);
 
-              $('#result_cari_data').show();
-              $('#data_kosong').hide();
-            }else{
-              $('#result_cari_data').hide();
-              $('#data_kosong').show();
-            }             
-          }, error: function (jqXHR, textStatus, errorThrown)
-                {
-                  swal('Oops...','Something went wrong!','error');
-                }
-        });
-      }
-    }
 
 function cari_data_skt(){
       event.preventDefault();
