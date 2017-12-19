@@ -10,7 +10,8 @@ _________________________________________________
 _________________________________________________
 ================================================*/
 var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1] + '/';
-var save_method;
+var save_method = '';
+var user_method = '';
 var arsip_method;
 function refresh(){
   location.reload();
@@ -200,6 +201,12 @@ function cari_data_skt(){
     save_method = 'posting_klasifikasi';
     $('#klasifikasi')[0].reset();
     $('#modal_klasifikasi').modal('show');
+  }
+
+  function add_user(){
+    user_method = 'posting_user';
+    $('#user_data')[0].reset();
+    $('#modal_user').modal('show');
   }
 
 /* ===================================================*/
@@ -508,6 +515,37 @@ function save_disposisi(){
 
 }
 
+function save_user(){
+  // event.preventDefault();
+  var url;
+  switch (user_method) {
+    case 'posting_user':
+    url = baseUrl+'user/input';
+      break;
+    case 'update_user':
+    url = baseUrl+'user/update';
+      break;  
+    default:
+      break;
+  }     
+  $.ajax({
+    url:url,
+    type:"POST",
+    data:$('#user_data').serialize(),
+    dataType: 'JSON',
+    success: function (data){
+      swal('Selamat !','Berhasil Input data!','success');
+      location.reload();
+    },
+      error: function (jqXHR, textStatus, errorThrown)
+      {
+        swal('Oops...','Something went wrong!','error');
+      }
+
+  });
+  
+}
+
 
 function save_arsip(){
   var url;
@@ -585,7 +623,7 @@ function edit_posting(id){
     success: function(data){
       $('[name="id"]').val(data.id);
       $('[name="kode"]').val(data.kode);
-      $('[name="klasifikasi"]').val(data.klasifikasi);
+      $('[name="klasifikasi"]').val(data.klasifikasi);     
       $('#modal_klasifikasi').modal('show');
       $('.modal-title').text('Edit Data Klasifikasi');
     },
@@ -596,10 +634,65 @@ function edit_posting(id){
   });
 }
 
+function edit_user(id){
+  user_method= 'update_user';
+  $('#user_data')[0].reset();
+  $.ajax({
+    url: baseUrl+'user/get/'+id,
+    type:"GET",
+    dataType:"JSON",
+    success: function(data){
+      $('[name="id"]').val(data.id);
+      $('[name="uid"]').val(data.uid);
+      $('[name="fullname"]').val(data.fullname);
+      $('[name="keterangan_jabatan"]').val(data.keterangan_jabatan);
+      $('[name="hp"]').val(data.hp);
+      $('#desa').hide();
+      $('#jabatan').hide();
+      $('#password').hide();
+      $('#modal_user').modal('show');
+      $('.modal-title').text('Update Data User');
+    },
+      error: function (jqXHR, textStatus, errorThrown)
+      {
+        swal('Oops...','Something went wrong!','error');
+      }
+  });
+
+}
+
 /*/ Modul Delete /*/
 function delete_posting(id){
   event.preventDefault();
   var url =  baseUrl+'klasifikasi/delete/'+id;
+  swal({
+        title: 'Apa Anda Yakin?',
+        text: "Data Akan dihapus Secara Permanen!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Iya, Hapus Data!'              
+      }, function isConfirm(){
+        $.ajax({
+          url:url,
+          type:"POST",
+          dataType:"JSON",
+          success: function (data){
+            swal('Selamat !','Berhasil Menghapus data!','success');
+            location.reload();
+          },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+              swal('Oops...','Something went wrong!','error');
+            }
+        });
+      });
+}
+
+function delete_user(id){
+  event.preventDefault();
+  var url =  baseUrl+'user/delete/'+id;
   swal({
         title: 'Apa Anda Yakin?',
         text: "Data Akan dihapus Secara Permanen!",

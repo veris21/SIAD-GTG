@@ -42,23 +42,36 @@ class Master_model extends CI_Model{
     return $this->db->get('users');
   }
 
+ 
+
+  public function get_user_detail()
+  {
+    $query = "SELECT u.id as id,u.keterangan_jabatan as keterangan_jabatan, u.uid as uid, u.type as type, u.fullname as fullname, u.time as time, u.hp as hp, d.nama_desa as nama_desa, j.jabatan as jabatan
+    FROM users as u, jabatan as j , desa as d WHERE j.id = u.jabatan_id AND d.id = u.desa_id";
+    return $this->db->query($query);
+  }
+
+  // USER MODEL
   public function _post_user($insert)
   {
     return $this->db->insert('users', $insert);
   }
 
-  public function update_user($id, $update)
-  {
+  public function _get_user_id($id){
+    return $this->db->get_where('users', array('id'=>$id));
+  }
+
+  
+  public function _update_user($id, $update){
     $this->db->where('id', $id);
     return $this->db->update('users', $update);
   }
 
-  public function get_user_detail()
-  {
-    $query = "SELECT u.id as id, u.uid as uid, u.type as type, u.fullname as fullname, u.time as time, u.hp as hp, d.nama_desa as nama_desa, j.jabatan as jabatan
-    FROM users as u, jabatan as j , desa as d WHERE j.id = u.jabatan_id AND d.id = u.desa_id";
-    return $this->db->query($query);
+  public function _delete_user($id){
+    $this->db->where('id', $id);
+    return $this->db->delete('users');
   }
+  // 
 
   public function get_user_one($id)
   {

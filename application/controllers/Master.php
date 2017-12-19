@@ -29,49 +29,64 @@ class Master extends CI_Controller{
     $this->load->view('template', $data);
   }
 // =========== Master User ==========
-  public function user_add(){
+  public function user_input(){
     $uid         = strip_tags($this->input->post('uid'));
     $pass        = strip_tags($this->input->post('pass'));
     $passConfirm = strip_tags($this->input->post('passConfirm'));
     $fullname    = strip_tags($this->input->post('fullname'));
     $jabatan_id  = strip_tags($this->input->post('jabatan_id'));
+    $keterangan_jabatan  = strip_tags($this->input->post('keterangan_jabatan'));
     $hp          = strip_tags($this->input->post('hp'));
     $desa_id     = strip_tags($this->input->post('desa_id'));
-    $type        = strip_tags($this->input->post('type'));
+    $type        = 0;
     if($pass == $passConfirm){
-      $insert = array('uid'=> $uid,'pass'=>sha1($pass),'fullname'=> $fullname,'jabatan_id'=>$jabatan_id,'hp'=> $hp,'desa_id'=>$desa_id,'type'=>$type,'time'=>time());
+      $insert = array('uid'=> $uid,'pass'=>sha1($pass),
+      'fullname'=> $fullname,'jabatan_id'=>$jabatan_id,
+      'hp'=> $hp,'desa_id'=>$desa_id,'type'=>$type,
+      'keterangan_jabatan'=>$keterangan_jabatan,
+      'time'=>time());
       $post = $this->master_model->_post_user($insert);
       if($post){
         echo json_encode(array("status" => TRUE));         
       }
     }
   }
+
+  public function user_update(){
+    $id          = $this->input->post('id');
+    $update = array('uid'=> $this->input->post('uid'),
+      'fullname'=> $this->input->post('fullname'),
+      'hp'=> $this->input->post('hp'),
+      'keterangan_jabatan'=>$this->input->post('keterangan_jabatan')
+      );
+      $check = $this->master_model->_update_user($id, $update);
+      if($check){
+        echo json_encode(array("status" => TRUE));         
+      }
+  }
+
+  public function user_get($id){
+    $data = $this->master_model->_get_user_id($id)->row_array();
+    echo json_encode($data);
+  }
+
+  function user_delete($id){
+    $check = $this->master_model->_delete_user($id);
+    if($check){
+      echo json_encode(array("status" => TRUE));         
+    }
+  }
+
   function user_list()
   {
-    if(isset($_POST['tambah'])){
-      $uid         = strip_tags($this->input->post('uid'));
-      $pass        = strip_tags($this->input->post('pass'));
-      $passConfirm = strip_tags($this->input->post('passConfirm'));
-      $fullname    = strip_tags($this->input->post('fullname'));
-      $jabatan_id  = strip_tags($this->input->post('jabatan_id'));
-      $hp          = strip_tags($this->input->post('hp'));
-      $desa_id     = strip_tags($this->input->post('desa_id'));
-      $type        = strip_tags($this->input->post('type'));
-      if($pass == $passConfirm){
-        $insert = array('uid'=> $uid,'pass'=>sha1($pass),'fullname'=> $fullname,'jabatan_id'=>$jabatan_id,'hp'=> $hp,'desa_id'=>$desa_id,'type'=>$type,'time'=>time());
-        $post = $this->master_model->_post_user($insert);
-        if($post){
-          redirect('user/list','refresh');
-        }
-      }
-    }else{
+   
     $data['title']    = TITLE.'User Master';
     $data['main_content']   = MASTER.'user_list';
     $data['jabatan']        = $this->master_model->get_jabatan()->result();
     $data['desa']           = $this->master_model->get_desa()->result();
     $data['user_list']      = $this->master_model->get_user_detail()->result();
     $this->load->view('template', $data);
-    }
+    
   }
 
   function administrasi_data(){

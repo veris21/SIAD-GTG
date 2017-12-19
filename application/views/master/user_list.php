@@ -9,26 +9,16 @@
   </ol>
 </section>
 <section class="content">
-<div class="row">
-  <div class="col-xs-12">
     <div class="box box-info">
       <div class="box-header">
         <h3 class="box-title">List User </h3>
-        <p>Keterangan : <i class="fa fa-circle-o text-red"></i> Pemegang Kebijakan | <i class="fa fa-circle-o text-green"></i> Operator</p>
+        
       </div><!-- /.box-header -->
-      <div class="box-body">
-      <div class="nav-tabs-custom">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#user_list" data-toggle="tab">List User</a></li>
-          <li><a href="#post_user" data-toggle="tab">Posting User</a></li>
-        </ul>
-        <div class="tab-content">
-          <div class="active tab-pane" id="user_list">
+      <div class="box-body">      
           <!-- User Tab -->
           <table width="100%" class="table table-striped table-bordered table-hover" id="list-user">
           <thead>
             <tr valign="center" align="center">
-              <td>#</td>
               <td>UID</td>
               <td>Nama</td>
               <td>Jabatan</td>
@@ -43,9 +33,8 @@
             $type = ($user->type==1 ? '<b><i class="fa fa-circle-o text-red"></i></b>':'<b><i class="fa fa-circle-o text-green"></i></b>');
             echo "
             <tr>
-              <td>".$type."</td>
               <td align='center'>".$user->uid."</td>
-              <td>".$user->fullname."</td>
+              <td>".$user->fullname."<br>".$user->keterangan_jabatan."</td>
               <td align='center'>".$user->jabatan."<br>DESA ".$user->nama_desa."</td>
               <td>".$user->hp."</td>
               <td>".mdate('%d %M %Y - %h:%i %a', $user->time)."</td>";
@@ -53,67 +42,103 @@
             echo "<a class='btn btn-xs btn-success' href='".BASE_URL."user/lihat/$user->id'>
                 <i class='fa fa-eye fa-fw'></i>
               </a>
-              <a class='btn btn-xs btn-warning btn-circle' href='".BASE_URL."user/edit/$user->id'>
+              <a class='btn btn-xs btn-warning btn-circle' onclick='edit_user(".$user->id.")'>
                 <i class='fa fa-edit fa-fw'></i>
               </a>
+              <a class='btn btn-xs btn-danger btn-circle' onclick='delete_user(".$user->id.")'>
+              <i class='fa fa-trash'></i>
+            </a>
               </td>
             </tr>";
             } ?>
           </tbody>
         </table>
-          </div>
-          <div class="tab-pane" id="post_user">
-            <!-- Post User Tab -->
-            <?php echo form_open(); ?>
-            <div class="row">
-              <div class="col-md-6">
-              <div class="form-group">
-              <label for="">UID</label>
-              <input type="text" name="uid" class="form-control" >
+        <button onclick="add_user()" class="btn btn-flat btn-sm btn-success">Tambah User <i class="fa fa-user"></i></button>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+</section>
+
+   <!-- Bootstrap modal -->
+  <div class="modal fade" id="modal_user" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">User Data</h3>
+      </div>
+      <div class="modal-body form">
+        <?php echo form_open('#',array('class'=>'form-horizontal', 'id'=>'user_data'));?>
+          <input type="hidden" name="id" value="">
+
+          <div class="form-body">
+            <div class="form-group">
+              <label class="control-label col-md-3">User ID</label>
+              <div class="col-md-9">
+                <input type="text" name="uid" placeholder="user id" class="form-control">
+              </div>
             </div>
             <div class="form-group">
-                <label for="">Nama Lengkap</label>
+              <label class="control-label col-md-3">Nama Lengkap</label>
+              <div class="col-md-9">              
                 <input type="text" name="fullname" class="form-control" >
+              </div>
             </div>
-            <div class="form-group">
-              <label for="">Kontak User (HP)</label>
-              <input type="text" name="hp" class="form-control" >
-            </div>
-            <div class="form-group">
-                <label for="">Jabatan</label>
-                <select name="jabatan_id" class="form-control">
-                  <?php foreach ($jabatan as $jabatan) {
-                      echo "<option value='$jabatan->id'>$jabatan->jabatan</option>";
-                  } ?>
-                </select>
-             </div>
-             <div class="form-group">
-             <label for="">Desa</label>
+            <div class="form-group" id="desa">
+              <label class="control-label col-md-3">Desa</label>
+              <div class="col-md-9">              
               <select name="desa_id" class="form-control">
                 <?php foreach ($desa as $desa) {
                     echo "<option value='$desa->id'>$desa->nama_desa</option>";
                 } ?>
               </select>
-             </div>
-             </div>
-             <div class="col-md-6">
-             <div class="form-group">
-             <label for="">Password</label>
-             <input type="password" name="pass" class="form-control">           
+              </div>
+            </div>
+            <div class="form-group" id="jabatan">
+              <label class="control-label col-md-3">Jabatan</label>
+              <div class="col-md-9">              
+              <select name="jabatan_id" class="form-control">
+                  <?php foreach ($jabatan as $jabatan) {
+                      echo "<option value='$jabatan->id'>$jabatan->jabatan</option>";
+                  } ?>
+                </select>
+              </div>
             </div>
             <div class="form-group">
-              <label for="">Ulangi Password</label>
-              <input type="password" name="passConfirm" class="form-control">           
-             </div>
+              <label class="control-label col-md-3">Keterangan Jabatan</label>
+              <div class="col-md-9">              
+                <input type="text" name="keterangan_jabatan" class="form-control" >
+              </div>
             </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">Kontak</label>
+              <div class="col-md-9">              
+                <input type="text" name="hp" class="form-control" >
+              </div>
             </div>
-           <button type="submit" class="btn btn-success btn-flat" name="tambah">Simpan User <i class="fa fa-save"></i></button>
-          <?php echo form_close(); ?>
+            <div  id="password">
+                <div class="form-group">
+                  <label class="control-label col-md-3">Password</label>
+                  <div class="col-md-9">              
+                    <input type="password" name="pass" class="form-control" >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3">Ulangi Password</label>
+                  <div class="col-md-9">              
+                    <input type="password" name="passConfirm" class="form-control" >
+                  </div>
+                </div>
+            </div>
           </div>
-        </div>
-      </div>
-      </div><!-- /.box-body -->
-    </div><!-- /.box -->
-  </div>
-</div>
-</section>
+        </form>
+          </div>
+          <div class="modal-footer">
+            <div class="pull-right">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            <button type="button" id="btnSave" onclick="save_user()" class="btn btn-primary">Save <i class="fa fa-save"></i></button>
+              </div>           
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  <!-- End Bootstrap modal -->

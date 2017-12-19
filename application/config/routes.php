@@ -24,6 +24,11 @@ $route['public']                    = 'stream';
 
 $route['user/list']                 = 'master/user_list'; 
 $route['user/administrasi']         = 'master/administrasi_data';
+$route['user/input']                = 'master/user_input';
+$route['user/update']               = 'master/user_update';
+$route['user/get/(:any)']           = 'master/user_get/$1';
+$route['user/delete/(:any)']        = 'master/user_delete/$1';
+
 $route['details/desa/(:any)']       = 'master/detail_pejabat_desa/$1';
 
 $route['arsip/klasifikasi']         = 'master/klasifikasi_arsip';
