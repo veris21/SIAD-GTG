@@ -9,15 +9,12 @@ _________________________________________________
   Email   : veris.juniardi@gmail.com
 _________________________________________________
 ================================================*/
-
 var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1] + '/';
 var save_method;
-var arsip_method;      
-
+var arsip_method;
 function refresh(){
   location.reload();
 }
-
 /*===============================================
 _________________________________________________
 
@@ -122,7 +119,7 @@ function cari_data_skt(){
         $('#result_cari_data').hide();
         $('#data_kosong').hide();
         $.ajax({
-          url:base_url+'cari/skt/'+nik,
+          url: baseUrl+'cari/skt/'+nik,
           type:'GET',
           success:function(data){
             $('#loader-icon').hide();
@@ -161,6 +158,7 @@ function cari_data_skt(){
       }
     }
 
+  /*/ Modul Confirm Input /*/
   function input_penduduk_baru(){
     swal({
             title: 'Apa Anda Menginput Data Penduduk Baru?',
@@ -169,24 +167,18 @@ function cari_data_skt(){
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Iya, Setujui Data!'              
+            confirmButtonText: 'Iya, Input Data!'              
           }, function isConfirm(){
             $('#input_data_penduduk_baru')[0].reset();
             $('#modal_input_data_penduduk_baru').modal('show');
           });
            
   }
-
-  
+ 
   function buat_disposisi(){
     $('#disposisi_input')[0].reset();
     $('#modal_disposisi').modal('show');
   }
-
-  
-
-  // ====================================== PERTANAHAN
-  
   
   function pernyataan_input(){
     $('#pernyataan_input')[0].reset();
@@ -198,28 +190,17 @@ function cari_data_skt(){
     $('#modal_bap').modal('show');
   }
 
-  
- 
-
-  // DISPOSISI
-  
-  
-
   function posting_arsip(){
     arsip_method = 'posting_arsip';
     $('#arsip_input')[0].reset();
     $('#modal_arsip').modal('show');
   }
-
-  
     
-    function posting(){
-      save_method = 'posting_klasifikasi';
-      $('#klasifikasi')[0].reset(); // reset form on modals
-      $('#modal_klasifikasi').modal('show');
-    }
-    
-
+  function posting(){
+    save_method = 'posting_klasifikasi';
+    $('#klasifikasi')[0].reset();
+    $('#modal_klasifikasi').modal('show');
+  }
 
 /* ===================================================*/
 /*/ Fungsi Cari Data /*/
@@ -269,7 +250,7 @@ function cari_data() {
   }
 }
 
-
+/*/ Modul Simpan Data /*/
 function save_data_penduduk_baru(){
   $('#input_data_penduduk_baru').submit(function(evt){
     evt.preventDefault();
@@ -592,7 +573,8 @@ function save(){
       }
   });
 }
-/*Modul Edit*/
+
+/*/ Modul Edit /*/
 function edit_posting(id){
   save_method= 'edit_klasifikasi';
   $('#klasifikasi')[0].reset(); // reset form on modals
@@ -613,7 +595,8 @@ function edit_posting(id){
       }
   });
 }
-// Modul Delete
+
+/*/ Modul Delete /*/
 function delete_posting(id){
   event.preventDefault();
   var url =  baseUrl+'klasifikasi/delete/'+id;
@@ -642,7 +625,7 @@ function delete_posting(id){
       });
 }
 
-// Modul Tandai 
+/*/ Modul Tandai /*/
 function baca_arsip(id){
   $.ajax({
     url: baseUrl+'disposisi/tandai/baca/'+id,
@@ -656,7 +639,6 @@ function baca_arsip(id){
   });
 }
 
-
 function lihat_notif(id){
 $.ajax({
   url: baseUrl+'notifikasi/baca/'+id,
@@ -669,3 +651,9 @@ $.ajax({
        }
 });
 }
+
+/*/================================================/*/
+/*/                                                /*/
+/*/               DON'T BE A DICK                  /*/
+/*/                                                /*/
+/*/================================================/*/

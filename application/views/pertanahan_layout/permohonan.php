@@ -19,7 +19,7 @@
         </ul>
         <div class="tab-content">
      <div class="active tab-pane" id="permohonan_list">
-        <table class="table table-striped table-responsive" id="list_permohonan">
+        <table width="100%" class="table table-striped table-responsive" id="list_permohonan">
           <thead>
             <tr>
               <th align="center" >Nik/Nama Pemohon</th>
