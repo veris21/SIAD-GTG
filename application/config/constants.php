@@ -29,9 +29,9 @@ define('SCHEMA',            ( @$_SERVER["HTTPS"] == "on" ) ? "https://" : "http:
 define('BASE_URL',          SCHEMA . $_SERVER["SERVER_NAME"] . '/');
 define('ROOTPATH',          rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/');
 
-define('APPS',           base_url('assets/apps/'));
-define('THEME',          base_url('assets/theme/'));
-define('UPLOADER',       base_url('assets/uploader/'));
+define('APPS',           base_url().'assets/apps/');
+define('THEME',          base_url().'assets/theme/');
+define('UPLOADER',       base_url().'assets/uploader/');
 define('KTP',             UPLOADER . 'ktp/');
 define('PBB',             UPLOADER . 'pbb_pemohon/');
 define('FOTO',             UPLOADER . 'foto_pemohon/');
