@@ -30,7 +30,7 @@ class Auth extends CI_Controller{
             'last_login'  => ''
         )
         );
-        redirect(BASE_URL);
+        redirect(base_url());
         exit;
       }else {
         if ($check->num_rows()==1) {

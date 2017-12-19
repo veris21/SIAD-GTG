@@ -128,7 +128,8 @@ class Pertanahan extends CI_Controller{
         'hp'=>$kontak,
         'foto'=>$foto,
         'pbb'=>$pbb,
-        'status_proses'=>0
+        'status_proses'=>0,
+        'type_yang_disetujui'=>0
       );
       // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
       $desa_id = $this->session->userdata('desa_id');
@@ -181,26 +182,24 @@ class Pertanahan extends CI_Controller{
     $saksi4_pekerjaan = strip_tags($this->input->post('saksi4_pekerjaan'));
 
     $id    = $this->input->post('permohonan_id');
-    $pemohon =  strip_tags($this->input->post('pemohon'));
-    $lokasi =  strip_tags($this->input->post('lokasi'));
-    $luas =  strip_tags($this->input->post('luas'));
+    // $pemohon =  strip_tags($this->input->post('pemohon'));
+    // $lokasi =  strip_tags($this->input->post('lokasi'));
+    // $luas =  strip_tags($this->input->post('luas'));
 
     // $kontak_pemohon =  strip_tags($this->input->post('kontak_pemohon'));
-
     $sekarang = time();
 
     // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
     // ==============================
 
-    $desa_id = $this->session->userdata('desa_id');
-    $hp_pertanahan = $this->notifikasi_model->_get_data_kasi_pertanahan($desa_id)->row_array();
-    $kepada_id = $hp_pertanahan['id'];
-    $jabatan = $hp_pertanahan['jabatan'];
-    $nama_desa = $hp_pertanahan['nama_desa'];
-    $message = 'NOTIFIKASI : Yth. '.$jabatan.' '.$nama_desa.' Pernyataan SKT '.$pemohon.', Lokasi : '.$lokasi.', Luas : '.$luas.' meter persegi Telah disetujui dan menunggu Data Tim Verifikasi (SiDesa Sistem)';
-    $to = $hp_kades['hp'];
-    sms_notifikasi($to, $message);
-
+    // $desa_id = $this->session->userdata('desa_id');
+    // $hp_pertanahan = $this->notifikasi_model->_get_data_kasi_pertanahan($desa_id)->row_array();
+    // $kepada_id = $hp_pertanahan['id'];
+    // $jabatan = $hp_pertanahan['jabatan'];
+    // $nama_desa = $hp_pertanahan['nama_desa'];
+    // $message = 'NOTIFIKASI : Yth. '.$jabatan.' '.$nama_desa.' Pernyataan SKT '.$pemohon.', Lokasi : '.$lokasi.', Luas : '.$luas.' meter persegi Telah disetujui dan menunggu Data Tim Verifikasi (SiDesa Sistem)';
+    // $to = $hp_kades['hp'];
+    // sms_notifikasi($to, $message);
       // ==============================
       // QRCODE GENERATE
       $params['data'] = BASE_URL.'pernyataan/validasi/'.$sekarang;
@@ -211,20 +210,19 @@ class Pertanahan extends CI_Controller{
       // +===============+
 
       // +===============+
-      $link = "pernyataan/".$sekarang;
-      $posting = array(
-        'kepada_id'=> $kepada_id,
-        'hp'=> $to,
-        'message'=> $message,
-        'link'=> $link,
-        'time'=> time(),
-        'status'=> 0,
-        'type'=> 0
-      );
-
+      // $link = "pernyataan/".$sekarang;
+      // $posting = array(
+      //   'kepada_id'=> $kepada_id,
+      //   'hp'=> $to,
+      //   'message'=> $message,
+      //   'link'=> $link,
+      //   'time'=> time(),
+      //   'status'=> 0,
+      //   'type'=> 0
+      // );
       $setujui = array('status_proses'=>1);
       $up = $this->pertanahan_model->_setujui_permohonan($id, $setujui);
-      $this->notifikasi_model->posting_notifikasi($posting);
+      // $this->notifikasi_model->posting_notifikasi($posting);
       $qr_link = $sekarang.'.png';
       $insert = array(
         'permohonan_id'=>$id,
@@ -251,8 +249,11 @@ class Pertanahan extends CI_Controller{
   }
 
 
-  public function permohonan_setujui($id){
-    $setujui = array('status_proses'=>2);
+  public function permohonan_setuju(){
+    $id = $this->input->post('id');
+    $nota_kades = strip_tags($this->input->post('nota_kades'));
+    $status_persetujuan = strip_tags($this->input->post('status_persetujuan'));
+    $setujui = array('status_proses'=>2,'type_yang_disetujui'=>$status_persetujuan, 'nota_kades'=>$nota_kades);
     $check = $this->pertanahan_model->_setujui_permohonan($id, $setujui);
     if($check){
       echo json_encode(array("status" => TRUE));

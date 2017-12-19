@@ -24,7 +24,7 @@ class Pertanahan_model extends CI_Model{
   }
 
   public function _get_pernyataan_one($id){
-    $this->db->select('per.*, mohon.lokasi, mohon.utara, mohon.selatan, mohon.timur, mohon.barat, mohon.status_tanah, mohon.peruntukan_tanah, mohon.luas, mohon.tahun_kelola, p.no_nik, p.nama, p.alamat, p.agama, p.tempat_lahir, 
+    $this->db->select('per.*, mohon.type_yang_disetujui, mohon.lokasi, mohon.utara, mohon.selatan, mohon.timur, mohon.barat, mohon.status_tanah, mohon.peruntukan_tanah, mohon.luas, mohon.tahun_kelola, p.no_nik, p.nama, p.alamat, p.agama, p.tempat_lahir, 
     p.tanggal_lahir, p.pekerjaan, p.status, p.jenis_kelamin, dsn.nama_dusun, d.nama_desa, d.alamat_desa, u.fullname, kec.nama_kecamatan, kab.nama_kabupaten');
     $this->db->from('pernyataan_pertanahan per, permohonan_pertanahan mohon, master_data_penduduk_ p, dusun dsn, desa d, users u, kecamatan kec, kabupaten kab');
     $this->db->where('mohon.id=per.permohonan_id');
@@ -67,7 +67,7 @@ class Pertanahan_model extends CI_Model{
   }
 
   public function get_bap_list(){
-    $this->db->select('bap.* ,desa.nama_desa, mohon.lokasi, mohon.luas, p.no_nik, p.nama, p.alamat, p.no_kk');
+    $this->db->select('bap.* ,desa.nama_desa, mohon.type_yang_disetujui, mohon.lokasi, mohon.luas, p.no_nik, p.nama, p.alamat, p.no_kk');
     $this->db->from('permohonan_pertanahan mohon, master_data_penduduk_ p, berita_acara_pertanahan bap, desa desa');
     $this->db->where('mohon.kependudukan_id=p.id');
     $this->db->where('bap.permohonan_id=mohon.id');
@@ -83,6 +83,7 @@ class Pertanahan_model extends CI_Model{
       penduduk.alamat as alamat, mohon.lokasi as lokasi, 
       mohon.luas as luas,
       mohon.peruntukan_tanah as peruntukan_tanah,
+      mohon.type_yang_disetujui as type_yang_disetujui,
       mohon.status_tanah as status_tanah,
       mohon.lokasi as lokasi,
       mohon.tahun_kelola as tahun_kelola,

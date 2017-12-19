@@ -22,6 +22,9 @@ $route['setting/akun']              = 'auth/setting';
 
 $route['public']                    = 'stream';
 
+$route['sms/undangan']              = 'office/sms_undangan';
+$route['sms/kirim']                 = 'office/sms_kirim';
+
 $route['user/list']                 = 'master/user_list'; 
 $route['user/administrasi']         = 'master/administrasi_data';
 $route['user/input']                = 'master/user_input';
@@ -57,7 +60,7 @@ $route['pertanahan/berita_acara']         = 'pertanahan/berita_acara';
 $route['permohonan/input']                = 'pertanahan/permohonan_input';
 $route['permohonan/view/(:any)']          = 'pertanahan/permohonan_view/$1';
 $route['permohonan/cetak/(:any)']         = 'pertanahan/permohonan_print/$1';
-$route['permohonan/setujui/(:any)']       = 'pertanahan/permohonan_setujui/$1';
+$route['permohonan/setuju']              = 'pertanahan/permohonan_setuju';
 
 $route['pernyataan/input']                = 'pertanahan/pernyataan_input';
 $route['pernyataan/cetak/(:any)']         = 'pertanahan/pernyataan_print/$1';

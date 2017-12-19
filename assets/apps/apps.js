@@ -13,8 +13,17 @@ var base_url = window.location.origin + '/' + window.location.pathname.split ('/
 var save_method = '';
 var user_method = '';
 var arsip_method;
+var message = '';
+var maksimal;
+var sisa;
 function refresh(){
   location.reload();
+}
+
+function hitungkarakter(){  
+  var max = 150;
+  var message = $('[name="message"]').val().length;
+  $('[name="sisa"').val(max - message);
 }
 /*===============================================
 _________________________________________________
@@ -153,7 +162,7 @@ function cari_data_skt(){
            
           }, error: function (jqXHR, textStatus, errorThrown)
                 {
-                  swal('Oops...','Something went wrong!','error');
+                  swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
                 }
         });
       }
@@ -251,7 +260,7 @@ function cari_data() {
         }             
       }, error: function (jqXHR, textStatus, errorThrown)
             {
-              swal('Oops...','Something went wrong!','error');
+              swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
             }
     });
   }
@@ -276,7 +285,7 @@ function save_data_penduduk_baru(){
         swal('Selamat !','Berhasil Input Data Penduduk Baru Ke Sistem!','success');
         location.reload();
       }, error: function (jqXHR, textStatus, errorThrown) {
-        swal('Oops...','Something went wrong!','error');
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
        }
     });
     
@@ -288,32 +297,9 @@ $('#data_desa_form')[0].reset();
 $('#modal_data_desa').modal('show');
 }
 
-function permohonan_setujui(id){
-event.preventDefault();
-var url = baseUrl+'permohonan/setujui/'+id;
-swal({
-        title: 'Apa Anda Yakin untuk Menyetujui Permohonan?',
-        text: "Akses ke Form Pernyataan akan dibuka!",
-        type: 'success',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Iya, Setujui Data!'              
-      }, function isConfirm(){
-        $.ajax({
-          url:url,
-          type:"POST",
-          dataType:"JSON",
-          success: function (data){
-            swal('Selamat !','Berhasil Buka Kunci data!','success');
-            location.reload();
-          },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-              swal('Oops...','Something went wrong!','error');
-            }
-        });
-      });
+function permohonan_setujui(){
+  $('#setuju_input')[0].reset();
+  $('#modal_setuju').modal('show');
 }
 
 function posting_permohonan(){
@@ -334,7 +320,7 @@ $('#permohonan_form').submit(function(evt){
         swal('Selamat !','Berhasil Posting Permohonan!','success');
         location.reload();
       }, error: function (jqXHR, textStatus, errorThrown) {
-        swal('Oops...','Something went wrong!','error');
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
        }
     });
 
@@ -364,7 +350,7 @@ event.preventDefault();
           },
             error: function (jqXHR, textStatus, errorThrown)
             {
-              swal('Oops...','Something went wrong!','error');
+              swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
             }
         });
       });
@@ -375,7 +361,7 @@ event.preventDefault();
 var url = baseUrl+'permohonan/cetak/'+id;
   swal({
         title: 'Apa Anda Yakin untuk mencetak Surat Permohonan?',
-        text: "Cetak Surat Permohonan "+id+" dari Sistem!",
+        text: "Cetak Surat Permohonan dari Sistem!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -392,7 +378,7 @@ var url = baseUrl+'permohonan/cetak/'+id;
           },
             error: function (jqXHR, textStatus, errorThrown)
             {
-              swal('Oops...','Something went wrong!','error');
+              swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
             }
         });
       });
@@ -420,13 +406,70 @@ swal({
           },
             error: function (jqXHR, textStatus, errorThrown)
             {
-              swal('Oops...','Something went wrong!','error');
+              swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
             }
         });
       });
 }
 
 /* Modul Save / Simpan */
+function kirim_sms(){
+  event.preventDefault();
+  var url = baseUrl+'sms/kirim/';
+  swal({
+          title: 'Apa Anda Yakin untuk Mengirim SMS?',
+          text: "Sms Akan Dikirim Sesuai Pilihan!",
+          type: 'success',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Iya, Kirim!'              
+        }, function isConfirm(){
+          $.ajax({
+            url:url,
+            type:"POST",
+            dataType:"JSON",
+            data: $('#sms_input').serialize(),
+            success: function (data){
+              swal('Selamat !','Berhasil Kirim Sms!','success');
+              location.reload();
+            },
+              error: function (jqXHR, textStatus, errorThrown)
+              {
+                swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+              }
+          });
+        }); 
+}
+
+function persetujuan_save(){
+  event.preventDefault();
+  var url = baseUrl+'permohonan/setuju/';
+  swal({
+          title: 'Apa Anda Yakin untuk Menyetujui Permohonan?',
+          text: "Akses ke Form Pernyataan akan dibuka!",
+          type: 'success',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Iya, Setujui Data!'              
+        }, function isConfirm(){
+          $.ajax({
+            url:url,
+            type:"POST",
+            dataType:"JSON",
+            data: $('#setuju_input').serialize(),
+            success: function (data){
+              swal('Selamat !','Berhasil Buka Kunci data!','success');
+              location.reload();
+            },
+              error: function (jqXHR, textStatus, errorThrown)
+              {
+                swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+              }
+          });
+        });
+}
 
 function bap_save(){
 event.preventDefault();
@@ -450,7 +493,7 @@ swal({
           }
           ,error: function (jqXHR, textStatus, errorThrown)
             {
-              swal('Oops...','Something went wrong!','error');
+              swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
               location.reload();
             }
         });
@@ -469,17 +512,17 @@ swal({
         confirmButtonText: 'Iya, Simpan!'              
       }, function isConfirm(){
         $.ajax({
-          url:baseUrl+'pernyataan/input',
-          type:"POST",
-          data:$('#pernyataan_input').serialize(),
-          dataType:"JSON",            
+          url: baseUrl+'pernyataan/input',
+          type: "POST",
+          data: $('#pernyataan_input').serialize(),
+          dataType: "JSON",            
           success: function(data){
-            swal('Selamat !','Berhasil Posting Data Pernyataan !','success');
+            swal('Selamat !', 'Berhasil Posting Data Pernyataan !','success');
             location.reload();
           }
           ,error: function (jqXHR, textStatus, errorThrown)
             {
-              swal('Oops...','Something went wrong!','error');
+              swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
               location.reload();
             }
         });           
@@ -508,7 +551,7 @@ function save_disposisi(){
           },
             error: function (jqXHR, textStatus, errorThrown)
             {
-              swal('Oops...','Something went wrong!','error');
+              swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
             }
         });
       });
@@ -539,7 +582,7 @@ function save_user(){
     },
       error: function (jqXHR, textStatus, errorThrown)
       {
-        swal('Oops...','Something went wrong!','error');
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
       }
 
   });
@@ -575,7 +618,7 @@ function save_arsip(){
         swal('Selamat !','Berhasil Input Data Arsip!','success');
         location.reload();
       }, error: function (jqXHR, textStatus, errorThrown) {
-        swal('Oops...','Something went wrong!','error');
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
        }
     });
     
@@ -607,7 +650,7 @@ function save(){
     },
       error: function (jqXHR, textStatus, errorThrown)
       {
-        swal('Oops...','Something went wrong!','error');
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
       }
   });
 }
@@ -629,7 +672,7 @@ function edit_posting(id){
     },
       error: function (jqXHR, textStatus, errorThrown)
       {
-        swal('Oops...','Something went wrong!','error');
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
       }
   });
 }
@@ -655,7 +698,7 @@ function edit_user(id){
     },
       error: function (jqXHR, textStatus, errorThrown)
       {
-        swal('Oops...','Something went wrong!','error');
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
       }
   });
 
@@ -684,7 +727,7 @@ function delete_posting(id){
           },
             error: function (jqXHR, textStatus, errorThrown)
             {
-              swal('Oops...','Something went wrong!','error');
+              swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
             }
         });
       });
@@ -712,7 +755,7 @@ function delete_user(id){
           },
             error: function (jqXHR, textStatus, errorThrown)
             {
-              swal('Oops...','Something went wrong!','error');
+              swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
             }
         });
       });
@@ -727,7 +770,7 @@ function baca_arsip(id){
     success:function(data){
       swal('Selamat !','Membaca Detail!','success');
     }, error: function (jqXHR, textStatus, errorThrown) {
-        swal('Oops...','Something went wrong!','error');
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
        }
   });
 }
@@ -740,7 +783,7 @@ $.ajax({
   success:function(data){
     swal('Ditandai!','Ditandai Telah Di Baca !','success');
   }, error: function (jqXHR, textStatus, errorThrown) {
-        swal('Oops...','Something went wrong!','error');
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
        }
 });
 }

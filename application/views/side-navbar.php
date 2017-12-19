@@ -112,11 +112,18 @@
         break;
         case 'PERTANAHAN':
         ?>  
-        
+        <li>
+        <a href="<?php echo BASE_URL.'sms/undangan'; ?>">
+        <i class="fa fa-comments"></i>
+        <span>SMS Undangan</span>
+        </a>
+        </li>
         <!-- Data Tanah -->
         <li>
-          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
-          <i class="fa fa-search"></i> Cek Data Tanah</a>
+        <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+        <i class="fa fa-search"></i>
+        <span>Cek Data Tanah</span>
+        </a>
         </li>
         <li class="treeview">
           <a href="#">
@@ -144,22 +151,22 @@
         </li>
         <!-- Data Tanah -->
         <li>
-          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
-          <i class="fa fa-search"></i>
-          <span>Cek Data Tanah</span>
-          </a>
-        </li>
+        <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+        <i class="fa fa-search"></i>
+        <span>Cek Data Tanah</span>
+        </a>
+      </li>
         <?php
         break;
         case 'KADUS':
         ?>
         <!-- Data Tanah -->
         <li>
-          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
-          <i class="fa fa-search"></i>
-          <span>Cek Data Tanah</span>
-          </a>
-        </li>
+        <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+        <i class="fa fa-search"></i>
+        <span>Cek Data Tanah</span>
+        </a>
+      </li>
         <?php
         break;
         case 'RT':
@@ -245,6 +252,12 @@
           </ul>
         </li>
         <!-- MASTER SISTEM -->
+        <li>
+        <a href="<?php echo BASE_URL.'sms/undangan'; ?>">
+        <i class="fa fa-comments"></i>
+        <span>SMS Undangan</span>
+        </a>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-gear"></i> <span>Master System</span>

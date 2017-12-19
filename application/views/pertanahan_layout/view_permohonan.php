@@ -53,6 +53,25 @@
                     <br>
                     <dt>Status Tanah</dt>
                     <dd><?php echo  $data['status_tanah'];?></dd>
+                    <br>
+                    <dt>Status Persetujuan </dt>
+                    <dd><?php switch ($data['type_yang_disetujui']) {
+                        case 1:
+                        ?> 
+                        <button class="btn btn-flat btn-success">Surat Keterangan Tanah (SKT)</button>
+                        <?php
+                            break;
+                        case 2:
+                        ?> 
+                        <button class="btn btn-flat btn-warning">Surat Keterangan Rekomendasi</button>
+                        <?php
+                            break;                       
+                        default:
+                        ?> 
+                        <p class="well text-center">Belum Ada Keputusan Persetujuan</p>
+                        <?php
+                            break;
+                    } ?></dd>
                 </div>
             </div>        
         </div>
@@ -92,7 +111,7 @@
                             case 'KADES':
                                 if($data['status_proses']==0){
                                 ?>
-                                <button onclick="permohonan_setujui(<?php echo $data['id'];?>)" class="btn btn-sm btn-primary">Setujui <i class="fa fa-check"></i></button>     
+                                <button onclick="permohonan_setujui()" class="btn btn-sm btn-primary">Setujui <i class="fa fa-check"></i></button>     
                                 <?php
                                 }
                                 break;
@@ -136,6 +155,7 @@
                 case 1:
                 $id = $data['id'];
                 $pernyataan = $this->pertanahan_model->_get_pernyataan($id)->row_array();
+                if($pernyataan!=''||$pernyataan!=null){
                 ?>
                 <div class="box box-info">
                     <div class="box-body">
@@ -207,7 +227,91 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!--  -->
+                
+<!-- Modal Input BAP -->
+<div class="modal fade" id="modal_bap" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Setujui Pernyataan &amp; Proses Pertanahan</h3>
+      </div>
+      <?php echo form_open_multipart('', array('id'=>'bap_input','class'=>'form-horizontal'));?>
+      <div class="modal-body form">
+          <input type="hidden" name="permohonan_id" value="<?php echo $data['id'];?>">
+          <input type="hidden" name="pernyataan_id" value="<?php echo $pernyataan['id'];?>">    
+          <input type="hidden" name="pemohon" value="<?php echo $data['nama'];?>">
+          <input type="hidden" name="luas" value="<?php echo $data['luas'];?>">
+          <input type="hidden" name="lokasi" value="<?php echo $data['lokasi'];?>">    
+
+            <div class="box box-warning">
+                <div class="box-header">
+                    <h3>Input Pemeriksa &amp; Petugas Verifikasi Tanah</h3>
+                </div>
+                <div class="box-body"> 
+                   <!--  -->
+                   <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 1</label>
+                        <div class="col-sm-8">
+                        <select name="pemeriksa_1" class="form-control select2" style="width:100%;">
+                        <?php foreach ($pemeriksa1 as $p1) {
+                           echo "<option value='".$p1->id."'>".$p1->fullname." - ".$p1->jabatan."</option>";
+                        }?>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 2</label>
+                        <div class="col-sm-8">
+                        <select name="pemeriksa_2" class="form-control select2" style="width:100%;">
+                        <?php foreach ($pemeriksa2 as $p2) {
+                           echo "<option value='".$p2->id."'>".$p2->fullname." - ".$p2->jabatan."</option>";
+                        }?>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 3</label>
+                        <div class="col-sm-8">
+                        <select name="pemeriksa_3" class="form-control select2" style="width:100%;">
+                        <?php foreach ($pemeriksa3 as $p3) {
+                           echo "<option value='".$p3->id."'>".$p3->fullname." - ".$p3->jabatan."</option>";
+                        }?>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 4</label>
+                        <div class="col-sm-8">
+                        <select name="pemeriksa_4" class="form-control select2" style="width:100%;">
+                        <?php foreach ($pemeriksa4 as $p4) {
+                           echo "<option value='".$p4->id."'>".$p4->fullname." - ".$p4->jabatan."</option>";
+                        }?>
+                        </select>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+                    
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="submit" onclick="bap_save()" class="btn btn-primary">Save <i class="fa fa-save"></i></button>
+      </div>
+    </form>
+    </div> 
+  </div> 
+</div>
+
+
+                <!--  -->
                 <?php
+                }
                     # code...
                     break;
                 case 2:
@@ -239,7 +343,6 @@
       <?php echo form_open_multipart('', array('id'=>'pernyataan_input','class'=>'form-horizontal'));?>
       <div class="modal-body form">
           <input type="hidden" name="permohonan_id" value="<?php echo $data['id'];?>">
-
             <div class="box box-success">
                 <div class="box-body"> 
                     <div class="box-header"> 
@@ -352,65 +455,37 @@
 
 <!-- ==== -->
 
-<!-- Modal Input BAP -->
-<div class="modal fade" id="modal_bap" role="dialog">
+
+<!-- Modal Setuju Dan Pilihan Rekomedasi -->
+<div class="modal fade" id="modal_setuju" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title">Setujui Pernyataan &amp; Proses Pertanahan</h3>
       </div>
-      <?php echo form_open_multipart('', array('id'=>'bap_input','class'=>'form-horizontal'));?>
+      <?php echo form_open_multipart('', array('id'=>'setuju_input','class'=>'form-horizontal'));?>
       <div class="modal-body form">
-          <input type="hidden" name="permohonan_id" value="<?php echo $data['id'];?>">
-          <input type="hidden" name="pernyataan_id" value="<?php echo $pernyataan['id'];?>">    
-          <input type="hidden" name="pemohon" value="<?php echo $data['nama'];?>">
-          <input type="hidden" name="luas" value="<?php echo $data['luas'];?>">
-          <input type="hidden" name="lokasi" value="<?php echo $data['lokasi'];?>">    
+          
+          <input type="hidden" name="id" value="<?php echo $data['id'];?>">    
 
             <div class="box box-warning">
-                <div class="box-header">
-                    <h3>Input Pemeriksa &amp; Petugas Verifikasi Tanah</h3>
-                </div>
                 <div class="box-body"> 
                    <!--  -->
                    <div class="form-group">
-                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 1</label>
+                        <label  class="control-label col-sm-4" for="">Setujui Sebagai</label>
                         <div class="col-sm-8">
-                        <select name="pemeriksa_1" class="form-control select2" style="width:100%;">
-                        <?php foreach ($pemeriksa1 as $p1) {
-                           echo "<option value='".$p1->id."'>".$p1->fullname." - ".$p1->jabatan."</option>";
-                        }?>
+                        <select name="status_persetujuan" class="form-control" style="width:100%;">
+                        <option value="1">Surat Keterangan Tanah</option>
+                        <option value="2">Surat Keterangan Rekomendasi</option>
+                        <option value="99">Tolak Permohonan</option>
                         </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 2</label>
+                        <label  class="control-label col-sm-4" for="">Catatan Persetujuan</label>
                         <div class="col-sm-8">
-                        <select name="pemeriksa_2" class="form-control select2" style="width:100%;">
-                        <?php foreach ($pemeriksa2 as $p2) {
-                           echo "<option value='".$p2->id."'>".$p2->fullname." - ".$p2->jabatan."</option>";
-                        }?>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 3</label>
-                        <div class="col-sm-8">
-                        <select name="pemeriksa_3" class="form-control select2" style="width:100%;">
-                        <?php foreach ($pemeriksa3 as $p3) {
-                           echo "<option value='".$p3->id."'>".$p3->fullname." - ".$p3->jabatan."</option>";
-                        }?>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 4</label>
-                        <div class="col-sm-8">
-                        <select name="pemeriksa_4" class="form-control select2" style="width:100%;">
-                        <?php foreach ($pemeriksa4 as $p4) {
-                           echo "<option value='".$p4->id."'>".$p4->fullname." - ".$p4->jabatan."</option>";
-                        }?>
+                            <textarea name="nota_kades" class="form-control" rows="4" cols="2"></textarea>
                         </select>
                         </div>
                     </div>
@@ -422,9 +497,10 @@
       
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <button type="submit" onclick="bap_save()" class="btn btn-primary">Save <i class="fa fa-save"></i></button>
+        <button type="button" onclick="persetujuan_save()" class="btn btn-primary">Save <i class="fa fa-save"></i></button>
       </div>
     </form>
     </div> 
   </div> 
 </div>
+

@@ -144,11 +144,23 @@ class Master_model extends CI_Model{
     return $this->db->get();
   }
 
+  public function get_rt_dusun($dusun_id){
+    return $this->db->get_where('rt', array('dusun_id'=>$dusun_id));
+  }
+
+  public function get_user_on($desa_id){
+    return $this->db->get_where('users', array('desa_id'=>$desa_id));
+  }
   public function dusun_on($desa_id){
     return $this->db->get_where('dusun', array('desa_id'=>$desa_id));
   }
+
   public function dusun(){
     return $this->db->get('dusun');
+  }
+
+  public function dusun_id($id){
+    return $this->db->get_where('dusun', array('id'=>$id));
   }
 
   public function get_desa(){
