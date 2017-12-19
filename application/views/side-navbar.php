@@ -6,7 +6,7 @@
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
       <li class="treeview">
-        <a href="<?php echo BASE_URL; ?>">
+        <a href="<?php echo base_url(); ?>">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
       </li>
@@ -17,7 +17,7 @@
         ?>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip'; ?>">
           <i class="fa fa-book"></i>
           <span>Arsip Surat</span>
           <!-- <small class="label pull-right bg-green">new</small> -->
@@ -25,7 +25,7 @@
         </li>
         <!-- Data Tanah -->
         <li>
-          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+          <a href="<?php echo base_url().'pertanahan/data'; ?>">
           <i class="fa fa-search"></i>
           <span>Cek Data Tanah</span>
           </a>
@@ -36,14 +36,14 @@
         ?>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip'; ?>">
           <i class="fa fa-book"></i>
           <span>Arsip Surat</span>
           </a>
         </li>
         <!-- Data Tanah -->
         <li>
-          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+          <a href="<?php echo base_url().'pertanahan/data'; ?>">
           <i class="fa fa-search"></i> 
           <span>Cek Data Tanah</span>
           </a>
@@ -55,9 +55,9 @@
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li><a href="<?php echo BASE_URL.'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
-          <li><a href="<?php echo BASE_URL.'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
-          <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
+          <li><a href="<?php echo base_url().'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
+          <li><a href="<?php echo base_url().'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
+          <li><a href="<?php echo base_url().'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
         </ul>
       </li>        <?php
           break;
@@ -65,7 +65,7 @@
         ?>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip'; ?>">
           <i class="fa fa-book"></i>
           <span>Arsip Surat</span>
           </a>
@@ -77,7 +77,7 @@
         ?>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip'; ?>">
           <i class="fa fa-book"></i>
           <span>Arsip Surat</span>
           </a>
@@ -88,14 +88,14 @@
         ?>
          <!-- DATA KEPENDUDUKAN -->
          <li>
-          <a href="<?php echo BASE_URL.'data_penduduk'; ?>">
+          <a href="<?php echo base_url().'data_penduduk'; ?>">
             <i class="fa fa-th"></i> <span>Data Kependudukan</span> 
             <!-- <small class="label pull-right bg-green">new</small> -->
           </a>
         </li>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip'; ?>">
           <i class="fa fa-book"></i>
           <span>Arsip Surat</span>
           <!-- <small class="label pull-right bg-green">new</small> -->
@@ -103,7 +103,7 @@
         </li>
         <!-- Data Tanah -->
         <li>
-          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+          <a href="<?php echo base_url().'pertanahan/data'; ?>">
           <i class="fa fa-search"></i> 
           <span>Cek Data Tanah</span>
           </a>
@@ -113,14 +113,14 @@
         case 'PERTANAHAN':
         ?>  
         <li>
-        <a href="<?php echo BASE_URL.'sms/undangan'; ?>">
+        <a href="<?php echo base_url().'sms/undangan'; ?>">
         <i class="fa fa-comments"></i>
         <span>SMS Undangan</span>
         </a>
         </li>
         <!-- Data Tanah -->
         <li>
-        <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+        <a href="<?php echo base_url().'pertanahan/data'; ?>">
         <i class="fa fa-search"></i>
         <span>Cek Data Tanah</span>
         </a>
@@ -132,9 +132,9 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL.'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
-            <li><a href="<?php echo BASE_URL.'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
-            <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
+            <li><a href="<?php echo base_url().'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
+            <li><a href="<?php echo base_url().'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
+            <li><a href="<?php echo base_url().'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
           </ul>
         </li>
         <?php
@@ -143,7 +143,7 @@
         ?>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip'; ?>">
           <i class="fa fa-book"></i>
           <span>Arsip Surat</span>
           <!-- <small class="label pull-right bg-green">new</small> -->
@@ -151,7 +151,7 @@
         </li>
         <!-- Data Tanah -->
         <li>
-        <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+        <a href="<?php echo base_url().'pertanahan/data'; ?>">
         <i class="fa fa-search"></i>
         <span>Cek Data Tanah</span>
         </a>
@@ -162,7 +162,7 @@
         ?>
         <!-- Data Tanah -->
         <li>
-        <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+        <a href="<?php echo base_url().'pertanahan/data'; ?>">
         <i class="fa fa-search"></i>
         <span>Cek Data Tanah</span>
         </a>
@@ -182,9 +182,9 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Chars &amp; Grafik</a></li>
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i>Laporan Pelayanan</a></li>
-            <li><a href="<?php echo BASE_URL.'koordinat'; ?>"><i class="fa fa-circle-o"></i>List Record Koordinat</a></li>
+            <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i> Chars &amp; Grafik</a></li>
+            <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i>Laporan Pelayanan</a></li>
+            <li><a href="<?php echo base_url().'koordinat'; ?>"><i class="fa fa-circle-o"></i>List Record Koordinat</a></li>
           </ul>
         </li>
         <!-- LAPORAN -->
@@ -194,13 +194,13 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Tabel Surat Keluar</a></li>
-            <li><a href="<?php echo BASE_URL.'disposisi'; ?>"><i class="fa fa-circle-o"></i> History Disposisi</a></li>
+            <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i> Tabel Surat Keluar</a></li>
+            <li><a href="<?php echo base_url().'disposisi'; ?>"><i class="fa fa-circle-o"></i> History Disposisi</a></li>
             <li>
               <a href="#"><i class="fa fa-circle-o"></i>Penerima Bantuan <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Penerima Raskin</a></li>
-                <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Penerima Minyak</a></li>
+                <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i> Penerima Raskin</a></li>
+                <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i> Penerima Minyak</a></li>
               </ul>
             </li>
           </ul>
@@ -208,14 +208,14 @@
         <!-- ===== -->
         <!-- DATA KEPENDUDUKAN -->
         <li>
-          <a href="<?php echo BASE_URL.'data_penduduk'; ?>">
+          <a href="<?php echo base_url().'data_penduduk'; ?>">
             <i class="fa fa-th"></i> <span>Data Kependudukan</span> 
             <!-- <small class="label pull-right bg-green">new</small> -->
           </a>
         </li>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo BASE_URL.'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip'; ?>">
           <i class="fa fa-book"></i>
           <span>Arsip Surat</span>
           <!-- <small class="label pull-right bg-green">new</small> -->
@@ -229,12 +229,12 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL.'koordinat'; ?>"><i class="fa fa-circle-o"></i> Tabel Koordinat</a></li>
-            <li><a href="<?php echo BASE_URL.'grafik'; ?>"><i class="fa fa-circle-o"></i> Grafik Kinerja</a></li>
+            <li><a href="<?php echo base_url().'koordinat'; ?>"><i class="fa fa-circle-o"></i> Tabel Koordinat</a></li>
+            <li><a href="<?php echo base_url().'grafik'; ?>"><i class="fa fa-circle-o"></i> Grafik Kinerja</a></li>
           </ul>
         </li>
         <li>
-          <a href="<?php echo BASE_URL.'pertanahan/data'; ?>">
+          <a href="<?php echo base_url().'pertanahan/data'; ?>">
           <i class="fa fa-search"></i>
           <span>Cek Data Tanah</span>
           </a>
@@ -246,14 +246,14 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL.'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
-            <li><a href="<?php echo BASE_URL.'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
-            <li><a href="<?php echo BASE_URL.'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
+            <li><a href="<?php echo base_url().'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
+            <li><a href="<?php echo base_url().'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
+            <li><a href="<?php echo base_url().'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
           </ul>
         </li>
         <!-- MASTER SISTEM -->
         <li>
-        <a href="<?php echo BASE_URL.'sms/undangan'; ?>">
+        <a href="<?php echo base_url().'sms/undangan'; ?>">
         <i class="fa fa-comments"></i>
         <span>SMS Undangan</span>
         </a>
@@ -265,12 +265,12 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo BASE_URL.'user/list'; ?>"><i class="fa fa-circle-o"></i> Master User</a></li>
-            <li><a href="<?php echo BASE_URL.'user/administrasi'; ?>"><i class="fa fa-circle-o"></i> Master Wilayah</a></li>
-            <li><a href="<?php echo BASE_URL.'arsip/klasifikasi'; ?>"><i class="fa fa-circle-o"></i> Klasifikasi Arsip</a></li>
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> Akses History</a></li>
-            <li><a href="<?php echo BASE_URL; ?>"><i class="fa fa-circle-o"></i> System Cron Jobs</a></li>
-            <li><a href="<?php echo BASE_URL.'master/sms'; ?>"><i class="fa fa-circle-o"></i> SMS Option</a></li>
+            <li><a href="<?php echo base_url().'user/list'; ?>"><i class="fa fa-circle-o"></i> Master User</a></li>
+            <li><a href="<?php echo base_url().'user/administrasi'; ?>"><i class="fa fa-circle-o"></i> Master Wilayah</a></li>
+            <li><a href="<?php echo base_url().'arsip/klasifikasi'; ?>"><i class="fa fa-circle-o"></i> Klasifikasi Arsip</a></li>
+            <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i> Akses History</a></li>
+            <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i> System Cron Jobs</a></li>
+            <li><a href="<?php echo base_url().'master/sms'; ?>"><i class="fa fa-circle-o"></i> SMS Option</a></li>
           </ul>
         </li>
         <?php
@@ -281,7 +281,7 @@
       }
        ?>
       <li class="header">ACCOUNT CONTROL</li>
-      <!-- <li><a href="<?php echo BASE_URL.'setting/akun'; ?>"><i class="fa fa-user"></i> <span>Setting Akun</span></a></li> -->
+      <!-- <li><a href="<?php echo base_url().'setting/akun'; ?>"><i class="fa fa-user"></i> <span>Setting Akun</span></a></li> -->
       <li><a href="<?php echo base_url('logout'); ?>"><i class="fa fa-circle-o text-red"></i> <span>Logout</span></a></li>
     </ul>
   </section>

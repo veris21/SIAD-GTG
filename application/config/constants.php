@@ -29,15 +29,15 @@ define('SCHEMA',            ( @$_SERVER["HTTPS"] == "on" ) ? "https://" : "http:
 define('BASE_URL',          SCHEMA . $_SERVER["SERVER_NAME"] . '/');
 define('ROOTPATH',          rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/');
 
-define('APPS',            BASE_URL . 'assets/apps/');
-define('THEME',           BASE_URL . 'assets/theme/');
-define('UPLOADER',        BASE_URL . 'assets/uploader/');
-define('KTP',             UPLOADER . 'ktp/');
-define('PBB',             UPLOADER . 'pbb_pemohon/');
-define('FOTO',             UPLOADER . 'foto_pemohon/');
-define('PATOK',           UPLOADER . 'patok/');
-define('SCAN_ARSIP',      UPLOADER . 'arsip/');
-define('QRCODE',          UPLOADER . 'qr_code/');
+define('APPS',            'assets/apps/');
+define('THEME',           'assets/theme/');
+define('UPLOADER',        'assets/uploader/');
+define('KTP',             'assets/uploader/ktp/');
+define('PBB',             'assets/uploader/pbb_pemohon/');
+define('FOTO',            'assets/uploader/foto_pemohon/');
+define('PATOK',           'assets/uploader/patok/');
+define('SCAN_ARSIP',      'assets/uploader/arsip/');
+define('QRCODE',          'assets/uploader/qr_code/');
 
 define('PRINT',           'print/');
 define('MASTER',          'master/');

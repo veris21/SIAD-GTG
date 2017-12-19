@@ -26,7 +26,7 @@
             <div class="box box-widget collapsed-box">
             <div class='box-header with-border'>
               <div class='user-block'>
-                <img class='img-circle' src='<?php echo BASE_URL."assets/new-logo.png"; ?>' alt='user image'>
+                <img class='img-circle' src='<?php echo base_url()."assets/new-logo.png"; ?>' alt='user image'>
                 <span class='username'><a href="#"><?php echo $judul; ?></a></span>
                 <span class='description'>Dikirim pada - <?php echo mdate("%d %M %Y - %H:%i %a", $notif->time); ?></span>
               </div>
@@ -48,7 +48,7 @@
               $arsipDetail = $this->arsip_model->get_arsip_one($linkType[1])->row_array();
               ?>              
               <div class="attachment-block clearfix">
-                <img class="attachment-img" src="<?php echo SCAN_ARSIP.$arsipDetail['scan_link'];?>" alt="attachment image">
+                <img class="attachment-img" src="<?php echo base_url().SCAN_ARSIP.$arsipDetail['scan_link'];?>" alt="attachment image">
                 <div class="attachment-pushed">
                   <h4 class="attachment-heading">Surat/Arsip dari : <?php echo $arsipDetail['pengirim']?></h4>
                   <div class="attachment-text">
@@ -65,7 +65,7 @@
              <?php }elseif($linkType[0]=="permohonan"){
                $permohonan = $this->pertanahan_model->_get_details_one($linkType[1])->row_array(); ?>
                <div class="attachment-block clearfix">
-                <img class="attachment-img" src="<?php echo KTP.$permohonan['scan_link'];?>" alt="attachment image">
+                <img class="attachment-img" src="<?php echo base_url().KTP.$permohonan['scan_link'];?>" alt="attachment image">
                 <div class="attachment-pushed">
                   <h4 class="attachment-heading">Permohonan dari : <?php echo $permohonan['nama']?></h4>
                   <div class="attachment-text">

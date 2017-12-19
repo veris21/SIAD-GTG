@@ -1,8 +1,8 @@
 <?php echo form_open(); ?>
 <div class="login-box">
   <div class="login-logo">
-    <img class="img img-logo" src="<?php echo BASE_URL.'assets/new-logo.png'; ?>" alt="" width="120"><br>
-    <a href="<?php echo BASE_URL.'public';?>">Si<b>Desa Gantung</b></a>
+    <img class="img img-logo" src="<?php echo base_url().'assets/new-logo.png'; ?>" alt="" width="120"><br>
+    <a href="<?php echo base_url().'public';?>">Si<b>Desa Gantung</b></a>
   </div><!-- /.login-logo -->
   <div class="login-box-body">
     <?php if($this->session->flashdata('error')!=''){?>

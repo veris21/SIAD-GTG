@@ -167,6 +167,12 @@
           <select name="peruntukan_tanah" class="form-control">
             <option value="PERUMAHAN">PERUMAHAN</option>
             <option value="PERKEBUNAN">PERKEBUNAN</option>
+           
+            <option value="TEMPAT USAHA">TEMPAT USAHA</option>
+            <option value="RUMAH IBADAH">RUMAH IBADAH</option>
+            <option value="FASILITAS UMUM">FASILITAS UMUM</option>
+            <option value="FASILITAS KHUSUS">FASILITAS KHUSUS</option>
+
           </select>
           </div>
           <div class="form-group">

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>SKT Lampiran</title>
 	<!-- -->
-	<link rel="stylesheet" href="<?php echo BASE_URL.'assets/print.css' ?>">
+	<link rel="stylesheet" href="<?php echo base_url().'assets/print.css' ?>">
 	<!-- -->
 </head>
 <body id="logo-back">
@@ -12,7 +12,7 @@
   <table>
     <tr>
       <td align="center"  style="padding-bottom:0;margin-bottom:0;">
-				<img src="<?php echo BASE_URL.'assets/logo-beltim.png'; ?>" alt="Logo" width="80" >
+				<img src="<?php echo base_url().'assets/logo-beltim.png'; ?>" alt="Logo" width="80" >
 			</td>
       <td colspan="7" align="center" class="header-surat"  style="padding-bottom:0;margin-bottom:0;">
         <h2 style="padding-bottom:0;margin-bottom:0;">
@@ -109,7 +109,7 @@
 <table>
         <tr>
         <td align="center" width="30%">
-            <img width="90" src="<?php echo QRCODE.$data['qr_link'];?>" alt="logo"><br>
+            <img width="90" src="<?php echo base_url().QRCODE.$data['qr_link'];?>" alt="logo"><br>
             <i style="font-size:9px;font-family: Consolas, Monaco, Courier New, Courier, monospace;">(Dokumen ini di generate otomatis melalui sistem SiDesa untuk melihat validasi dokumen silahkan scan Kode QR secara online)</i>
         </td>
         <td width="10%"></td>

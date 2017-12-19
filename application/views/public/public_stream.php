@@ -16,8 +16,8 @@
 	<meta property="og:title"              content="<?php echo $title;?>" />
 	<meta property="og:description"        content="Sistem Informasi Geografis dan Perkantoran Desa Gantung, menampilkan data pertanahan dalam ruang lingkup wilayah pemerintahan desa gantung berbasis online dan terbarukan" />
 	<meta property="og:image"              content="http://gantung.sideka.id/wp-content/uploads/sites/3869/2017/11/cropped-DSC_0331.jpg" />	
-    <link rel="stylesheet" type="text/css" href="<?php echo APPS;?>css/reset.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo APPS;?>css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().APPS;?>css/reset.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().APPS;?>css/style.css">
     
 	<!--[if lt IE 9]>
 		<script src="/js/html5shiv.min.js"></script>
@@ -26,21 +26,21 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv9ymzLZLuz9x8AexGZiwd38TpN4VgNzw"></script>
-  <script language="javascript" type="text/javascript" src="<?php echo APPS;?>js/map.js"></script>
-  <script language="javascript" type="text/javascript" src="<?php echo APPS;?>js/search.js"></script>
+  <script language="javascript" type="text/javascript" src="<?php echo base_url().APPS;?>js/map.js"></script>
+  <script language="javascript" type="text/javascript" src="<?php echo base_url().APPS;?>js/search.js"></script>
   <style>
 		canvas {
 			width:100%;
 			height:100%;
 		}
 	</style>
-    <link rel="shortcut icon" href="<?php echo BASE_URL.'assets/';?>favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo base_url().'assets/';?>favicon.ico" type="image/x-icon">
   </head>
   <body>
   
   <div id="control">
 		<center>
-		<img src="<?php echo BASE_URL.'assets/new-logo.png'; ?>" width="70%" alt="">
+		<img src="<?php echo base_url().'assets/new-logo.png'; ?>" width="70%" alt="">
 		</center>
 		<!-- <h2>Temukan Data <br>Tanah Anda</h2> -->
 		<p>Kami membantu anda melihat status tanah anda melalui database Si Desa pemerintah Desa Gantung </p>
@@ -80,8 +80,8 @@
 	Capture Data : <div id="cap"></div>
 	</div>
 	
-	<!-- <script type="text/javascript" src="<?php echo THEME; ?>plugins/html2canvas.js"></script> -->
-	<script type="text/javascript" src="<?php echo THEME; ?>plugins/canvas2image.js"></script>
+	<!-- <script type="text/javascript" src="<?php echo base_url().THEME; ?>plugins/html2canvas.js"></script> -->
+	<script type="text/javascript" src="<?php echo base_url().THEME; ?>plugins/canvas2image.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
 	<script type="text/javascript">

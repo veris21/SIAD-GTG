@@ -13,8 +13,8 @@
         <div class="col-md-7">
             <div class="box box-info">
                 <div class="box-body">
-                <a class="fancybox" rel="fancybox" href="<?php echo SCAN_ARSIP.$data['scan_link']; ?>" title="Surat dari <?php echo $data['pengirim']; ?>">
-                    <img src="<?php echo SCAN_ARSIP.$data['scan_link']; ?>" width="100%" class="img img-rounded" alt="">
+                <a class="fancybox" rel="fancybox" href="<?php echo base_url().SCAN_ARSIP.$data['scan_link']; ?>" title="Surat dari <?php echo $data['pengirim']; ?>">
+                    <img src="<?php echo base_url().SCAN_ARSIP.$data['scan_link']; ?>" width="100%" class="img img-rounded" alt="">
                 </a>
                 </div>
             </div>
@@ -116,8 +116,8 @@
                             $status = ($disposisi->status != 0 ? '<button class="btn btn-xs btn-success">Telah Dibaca</button><br>'.mdate('%d %M %Y - %H:%i %a',$disposisi->time_read):'<button class="btn btn-xs btn-warning">Belum Dibaca</button>');
                             echo "<tr>";
                             echo "<td>
-                            <a class='fancybox' rel='fancybox' href='".QRCODE.$disposisi->qr_link."' title='".$disposisi->isi_disposisi."'>
-                            <img width='60' class='img img-responsive img-rounded' src='".QRCODE.$disposisi->qr_link."'>
+                            <a class='fancybox' rel='fancybox' href='".base_url().QRCODE.$disposisi->qr_link."' title='".$disposisi->isi_disposisi."'>
+                            <img width='60' class='img img-responsive img-rounded' src='".base_url().QRCODE.$disposisi->qr_link."'>
                             </a></td>";
                             echo "<td align='center'>".$disposisi->dari."<br><b>(".$disposisi->dari_jabatan.")</b></td>";
                             echo "<td align='center'>".$disposisi->kepada."<br><b>(".$disposisi->kepada_jabatan.")</b></td>";

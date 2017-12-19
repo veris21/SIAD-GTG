@@ -79,13 +79,13 @@
             <!-- Foto Pemohon -->
             <?php if($data['foto']!=''||$data['foto']!=null){ ?>
 
-            <img class="img img-responsive img-rounded" src="<?php echo UPLOADER.'foto_pemohon/'.$data['foto'];?>" alt="">
+            <img class="img img-responsive img-rounded" src="<?php echo base_url().UPLOADER.'foto_pemohon/'.$data['foto'];?>" alt="">
             <br>
             <?php } ?>
             <!--  -->
             <!-- Scan Lampiran / Fotocopy KTP atau Pengantar -->
             <?php if($data['scan_link']!=''||$data['scan_link']!=null){ ?>
-             <a class="fancybox" rel="fancybox" href="<?php echo KTP.$data['scan_link'];?>" title="Lampiran dari Pemohon <?php echo $data['nama']; ?>">
+             <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['scan_link'];?>" title="Lampiran dari Pemohon <?php echo $data['nama']; ?>">
                 <img class="img img-responsive img-rounded" src="<?php echo KTP.$data['scan_link'];?>" alt="">
              </a>
              <br>
@@ -93,8 +93,8 @@
             <!--  -->
              <!-- Scan Bukti PBB -->
              <?php if($data['pbb']!=''||$data['pbb']!=null){ ?>
-             <a class="fancybox" rel="fancybox" href="<?php echo UPLOADER.'pbb_pemohon/'.$data['pbb'];?>" title="Lampiran Bukti PBB <?php echo $data['nama']; ?>">
-                <img class="img img-responsive img-rounded" src="<?php echo UPLOADER.'pbb_pemohon/'.$data['pbb'];?>" alt="">
+             <a class="fancybox" rel="fancybox" href="<?php echo base_url().UPLOADER.'pbb_pemohon/'.$data['pbb'];?>" title="Lampiran Bukti PBB <?php echo $data['nama']; ?>">
+                <img class="img img-responsive img-rounded" src="<?php echo base_url().UPLOADER.'pbb_pemohon/'.$data['pbb'];?>" alt="">
              </a>
              <br>
             <?php } ?>
