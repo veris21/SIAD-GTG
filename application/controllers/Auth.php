@@ -51,7 +51,7 @@ class Auth extends CI_Controller{
             $sekarang = time();
             $this->db->where('id', $data['id']);
             $this->db->update('users', array('time'=>$sekarang));
-            redirect(base_url(),'location');
+            redirect(base_url());
             exit;
         }else {          
           $this->session->set_flashdata(array('error'=>'Data User Tidak ditemukan!!'));
