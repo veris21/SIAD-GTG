@@ -51,12 +51,12 @@ class Auth extends CI_Controller{
             $sekarang = time();
             $this->db->where('id', $data['id']);
             $this->db->update('users', array('time'=>$sekarang));
-            redirect(base_url());
+            redirect(base_url(),'location');
             exit;
         }else {          
           $this->session->set_flashdata(array('error'=>'Data User Tidak ditemukan!!'));
           // $this->session->sess_destroy();
-          redirect('login');         
+          redirect(base_url('login'));         
           exit;
         }
       }
@@ -70,7 +70,7 @@ class Auth extends CI_Controller{
   public function logout()
   {
     $this->session->sess_destroy();
-    redirect('public');
+    redirect(base_url('public'));
     exit;
   }
 
