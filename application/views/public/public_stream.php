@@ -2,8 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Data Geografis Desa Gantung || Stream</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><?php echo $title;?></title>
+	<meta content='desa, sistem informasi desa, si desa, sidesa, geografis, geologi, pertanahan, rekomendasi, skt, surat tanah, desa gantung, belitung, laskar pelangi, belitung timur, pulau belitung, indah, pantai, bumdes, karang taruna, gantung makmur sejahtera, data desa, dana desa, pades, perdes, teknologi tepat guna, pemdes, pemerintah desa' name='KEYWORDS'/> 
+	<meta http-equiv='Content-Type' content='Type=text/html; charset=utf-8'/>
+	<meta name='geo.placename' content='Indonesia'/>
+	<meta name="language" content="id" />
+	<meta name='description' content='Sistem Informasi Geografis dan Perkantoran Desa Gantung, menampilkan data pertanahan dalam ruang lingkup wilayah pemerintahan desa gantung berbasis online dan terbarukan'/>
+	<meta name='author' content='SiDesa Sistem'/>	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta property="og:url"                content="<?php echo base_url('public');?>" />
+	<meta property="og:type"               content="article" />
+	<meta property="og:title"              content="<?php echo $title;?>" />
+	<meta property="og:description"        content="Sistem Informasi Geografis dan Perkantoran Desa Gantung, menampilkan data pertanahan dalam ruang lingkup wilayah pemerintahan desa gantung berbasis online dan terbarukan" />
+	<meta property="og:image"              content="http://gantung.sideka.id/wp-content/uploads/sites/3869/2017/11/cropped-DSC_0331.jpg" />	
     <link rel="stylesheet" type="text/css" href="<?php echo APPS;?>css/reset.css">
     <link rel="stylesheet" type="text/css" href="<?php echo APPS;?>css/style.css">
     

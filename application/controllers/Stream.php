@@ -8,7 +8,7 @@ class Stream extends CI_Controller{
 
   function index()
   {
-      $data['title']          = TITLE . 'Stream Data Maps';
+      $data['title']          = TITLE . 'Open Data Pertanahan Publik';
       $this->load->view(UMUM. 'public_stream', $data);
   }
 
