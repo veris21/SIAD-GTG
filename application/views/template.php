@@ -135,7 +135,7 @@ $.widget.bridge('uibutton', $.ui.button);
 <script type="text/javascript" src="<?php echo base_url(). THEME; ?>plugins/webcamReader/js/decoderworker.js"></script>
 <script type="text/javascript" src="<?php echo base_url().THEME; ?>plugins/webcamReader/js/main.js"></script> -->
 <!--  -->
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCv9ymzLZLuz9x8AexGZiwd38TpN4VgNzw"></script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCv9ymzLZLuz9x8AexGZiwd38TpN4VgNzw"></script>
 <script type="text/javascript" src="<?php echo base_url().THEME; ?>plugins/html2canvas.js"></script>
 <script type="text/javascript" src="<?php echo base_url().APPS.'apps.js';?>"></script>
 </body>
