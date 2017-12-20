@@ -143,7 +143,7 @@ class Pertanahan extends CI_Controller{
       sms_notifikasi($to, $message);
       // ==========================
       // QRCODE GENERATE
-      $params['data'] = BASE_URL.'permohonan/validasi/'.$sekarang;
+      $params['data'] = base_url().'permohonan/validasi/'.$sekarang;
       $params['level'] = 'M';
       $params['size'] = 10;
       $params['savename'] = FCPATH.'assets/uploader/qr_code/'.$sekarang.'.png';
@@ -203,7 +203,7 @@ class Pertanahan extends CI_Controller{
     // sms_notifikasi($to, $message);
       // ==============================
       // QRCODE GENERATE
-      $params['data'] = BASE_URL.'pernyataan/validasi/'.$sekarang;
+      $params['data'] = base_url().'pernyataan/validasi/'.$sekarang;
       $params['level'] = 'M';
       $params['size'] = 10;
       $params['savename'] = FCPATH.'assets/uploader/qr_code/'.$sekarang.'.png';
