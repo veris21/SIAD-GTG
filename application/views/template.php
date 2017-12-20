@@ -121,7 +121,7 @@ $.widget.bridge('uibutton', $.ui.button);
 <script src="<?php echo base_url().THEME; ?>dist/js/app.min.js"></script>
 <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 <script src="<?php echo base_url().THEME; ?>plugins/fancybox/jquery.mousewheel.pack.js"></script>
-<script type="text/javascript" >/*/ Base Setting /*/ var baseUrl = '<?php echo BASE_URL;?>';</script>
+<script type="text/javascript" >/*/ Base Setting /*/ var baseUrl = '<?php echo base_url();?>';</script>
 <script src="<?php echo base_url().THEME; ?>plugins/fancybox/jquery.fancybox.pack.js"></script>
 <!--  -->
 <script src="<?php echo base_url().THEME; ?>plugins/fancybox/helpers/jquery.fancybox-media.js"></script>
