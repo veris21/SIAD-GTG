@@ -63,6 +63,14 @@ class Pertanahan extends CI_Controller{
     }
   }
 
+  // ALTERNATIF PRINT MASALAH SSL 
+  public function permohonan_print_alternatif($id){
+    $data['title'] = TITLE.'Cetak Permohonan';
+    $data['data']  = $this->pertanahan_model->_get_details_one($id)->row_array();
+    $html = $this->load->view(PERTANAHAN.'print/permohonan', $data, TRUE);
+    $this->pdfgenerator->generate($html, $data['data']['nama']." - PERMOHONAN (".date('d-M-Y').")");
+  }
+
   public function permohonan_input(){
     if(isset($_FILES['foto'])){
       $foto = time()."-".$_FILES['foto']['name'];
@@ -143,6 +151,7 @@ class Pertanahan extends CI_Controller{
       sms_notifikasi($to, $message);
       // ==========================
       // QRCODE GENERATE
+      // $apiQr = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example';
       $params['data'] = base_url('permohonan/validasi/').$sekarang;
       $params['level'] = 'M';
       $params['size'] = 10;

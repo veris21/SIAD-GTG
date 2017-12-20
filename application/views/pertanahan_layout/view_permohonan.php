@@ -28,7 +28,7 @@
                             <dd><?php echo  $data['alamat'];?></dd>                       
                         </div>
                         <div class="col-md-4">
-                        <img class="img img-responsive img-rounded hidden-xs hidden-sm" src="<?php echo QRCODE.$data['qr_link'];?>" alt="">
+                        <img class="img img-responsive img-rounded hidden-xs hidden-sm" src="<?php echo base_url().QRCODE.$data['qr_link'];?>" alt="">
                         </div>
                     </div>
                     <hr>
@@ -134,7 +134,10 @@
                                 break;
                         }
                         ?>                        
-                         <button onclick="cetak_permohonan(<?php echo $data['time'];?>)" type="button" class="btn btn-default btn-sm">Cetak <i class="fa fa-print"></i></button>                                
+                         <!-- --
+                             <button onclick="cetak_permohonan(<?php echo $data['time'];?>)" type="button" class="btn btn-default btn-sm">Cetak <i class="fa fa-print"></i></button> 
+                          <!-- -->
+                          <?php echo anchor('cetak/permohonan/'.$data['time'], 'Cetak <i class="fa fa-print"></i>', array('class'=>'btn btn-default btn-sm')); ?>
                     </div>
                 </div>            
             </div>
