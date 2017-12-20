@@ -71,6 +71,16 @@ class Pertanahan extends CI_Controller{
     $this->pdfgenerator->generate($html, $data['data']['nama']." - PERMOHONAN (".date('d-M-Y').")");
   }
 
+  public function pernyataan_print_alternatif($id){
+    $data['title'] = TITLE.'Cetak Pernyataan';
+    $data['data']  = $this->pertanahan_model->_get_pernyataan_one($id)->row_array();
+    // $this->load->view(PERTANAHAN.'print/pernyataan', $data);
+    $html = $this->load->view(PERTANAHAN.'print/pernyataan', $data, TRUE);
+    $this->pdfgenerator->generate($html, $data['data']['nama']." - PERNYATAAN (".date('d-M-Y').")");
+  }
+
+  // ===============
+
   public function permohonan_input(){
     if(isset($_FILES['foto'])){
       $foto = time()."-".$_FILES['foto']['name'];

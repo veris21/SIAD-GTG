@@ -137,7 +137,7 @@
                          <!-- --
                              <button onclick="cetak_permohonan(<?php echo $data['time'];?>)" type="button" class="btn btn-default btn-sm">Cetak <i class="fa fa-print"></i></button> 
                           <!-- -->
-                          <?php echo anchor('cetak/permohonan/'.$data['time'], 'Cetak <i class="fa fa-print"></i>', array('class'=>'btn btn-default btn-sm')); ?>
+                          <?php echo anchor('cetak/permohonan/'.$data['time'], 'Cetak <i class="fa fa-print"></i>', array('class'=>'btn btn-default btn-sm','target'=>'__blank')); ?>
                     </div>
                 </div>            
             </div>
@@ -226,7 +226,9 @@
                         //  if($id == $id_pejabat_pertanahan) { ?>
                             <button class="btn btn-primary btn-flat btn-sm" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
                         <?php //} ?>
-                            <button onclick="cetak_pernyataan(<?php echo $pernyataan['id'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button>
+                        <?php echo anchor('cetak/pernyataan/'.$pernyataan['id'], 'Cetak Pernyataan <i class="fa fa-print"></i>', array('class'=>'btn btn-warning btn-sm','target'=>'__blank')); ?>
+
+                            <!-- <button onclick="cetak_pernyataan(<?php echo $pernyataan['id'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button> -->
                         </div>
                     </div>
                 </div>
