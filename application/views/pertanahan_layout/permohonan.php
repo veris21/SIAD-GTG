@@ -48,8 +48,8 @@
             echo "<td align='center'>".$status."            
             </td>";
             echo "<td width='60' align='center'>
-            <a href='".BASE_URL."permohonan/edit/".$data->id."' class='btn btn-xs btn-flat btn-primary'><i class='fa fa-edit'></i></a>
-            <a href='".BASE_URL."permohonan/view/".$data->time."' class='btn btn-xs btn-flat btn-success'><i class='fa fa-eye'></i></a>
+            <a href='".base_url("permohonan/edit/".$data->id)."' class='btn btn-xs btn-flat btn-primary'><i class='fa fa-edit'></i></a>
+            <a href='".base_url("permohonan/view/".$data->time)."' class='btn btn-xs btn-flat btn-success'><i class='fa fa-eye'></i></a>
             </td>";
             echo "</tr>";
             }
@@ -66,7 +66,7 @@
        </div>
        <hr> 
        <center id="loader-icon" style="display:none;">
-          <img width="50%" class="img img-responsive" src="<?php echo BASE_URL.'assets/';?>nyapu.gif" />
+          <img width="50%" class="img img-responsive" src="<?php echo base_url().'assets/';?>nyapu.gif" />
       </center>
       <div id="data_kosong" hidden>
           <div  class="alert alert-danger">

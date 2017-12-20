@@ -86,7 +86,7 @@
             <!-- Scan Lampiran / Fotocopy KTP atau Pengantar -->
             <?php if($data['scan_link']!=''||$data['scan_link']!=null){ ?>
              <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['scan_link'];?>" title="Lampiran dari Pemohon <?php echo $data['nama']; ?>">
-                <img class="img img-responsive img-rounded" src="<?php echo KTP.$data['scan_link'];?>" alt="">
+                <img class="img img-responsive img-rounded" src="<?php echo base_url().KTP.$data['scan_link'];?>" alt="">
              </a>
              <br>
             <?php } ?>
