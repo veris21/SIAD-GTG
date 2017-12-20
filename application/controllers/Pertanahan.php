@@ -44,10 +44,22 @@ class Pertanahan extends CI_Controller{
   }
 
   public function permohonan_print($id){
+    $this->output->set_header( "Access-Control-Allow-Origin: *" );
+    $this->output->set_header( "Access-Control-Allow-Credentials: true" );
+    $this->output->set_header( "Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS" );
+    $this->output->set_header( "Access-Control-Max-Age: 604800" );
+    $this->output->set_header( "Access-Control-Request-Headers: x-requested-with" );
+    $this->output->set_header( "Access-Control-Allow-Headers: x-requested-with, x-requested-by" );
     $data['title'] = TITLE.'Cetak Permohonan';
     $data['data']  = $this->pertanahan_model->_get_details_one($id)->row_array();
     $html = $this->load->view(PERTANAHAN.'print/permohonan', $data, TRUE);
     if($this->pdfgenerator->generate($html, $data['data']['nama']." - PERMOHONAN (".date('d-M-Y').")")){
+      $this->output->set_header( "Access-Control-Allow-Origin: *" );
+$this->output->set_header( "Access-Control-Allow-Credentials: true" );
+$this->output->set_header( "Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS" );
+$this->output->set_header( "Access-Control-Max-Age: 604800" );
+$this->output->set_header( "Access-Control-Request-Headers: x-requested-with" );
+$this->output->set_header( "Access-Control-Allow-Headers: x-requested-with, x-requested-by" );
       echo json_encode(array("status" => TRUE));
     }
   }
