@@ -73,13 +73,19 @@
                    echo "<tr>";
                    echo "<td>".$dusun->nama_dusun."</td>";
                    echo "<td align='center'><b>".$dusun->fullname."</b><br>".$dusun->hp."</td>";
-                   echo "<td  align='center'><a href='".base_url("rt/edit/".$dusun->id)."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></a></td>";
+                   echo "<td  align='center'>
+                   <button onclick='edit_dusun(".$dusun->id.")' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></button>
+                   <button onclick='hapus_dusun(".$dusun->id.")' class='btn btn-xs btn-danger'><i class='fa fa-trash'></i></button>                  
+                   </td>";
                    echo "</tr>";
                }
                ?>
             </tbody> 
      </table> 
         </div> 
+        <div class="box-footer">
+            <button onclick="tambah_dusun()" class="btn btn-flat btn-success">Tambah Dusun <i class="fa fa-plus"></i></button>
+        </div>
     </div>
     <div class="box box-warning">
         <div class="box-body">
@@ -99,13 +105,18 @@
         echo "<td>".$adm->nama_dusun."</td>";
         echo "<td>RT ".$adm->nama_rt."</td>";
         echo "<td align='center'><b>".$adm->fullname."</b> <br>".$adm->hp."</td>";
-        echo "<td align='center'><a href='".base_url("rt/edit/".$adm->id)."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></a></td>";
+        echo "<td align='center'>
+        <button onclick='edit_rt(".$adm->id.")' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></button>
+        <button onclick='hapus_rt(".$adm->id.")' class='btn btn-xs btn-danger'><i class='fa fa-trash'></i></button></td>";
         echo "</tr>";
         } 
      ?>
      </tbody> 
      </table>
             </div>
+        <div class="box-footer">
+            <button onclick="tambah_rt()" class="btn btn-flat btn-success">Tambah RT <i class="fa fa-plus"></i></button>
+        </div>
         </div>
         </div>
     </div>
@@ -313,7 +324,7 @@
       </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <button class="btn btn-primary" onclick="save_edit_data_desa()">Save <i class="fa fa-save"></i></button>
+        <button class="btn btn-primary" onclick="save_data_desa()">Save <i class="fa fa-save"></i></button>
       </div>
     </div> 
   </div> 
@@ -325,7 +336,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">Edit Data dusun</h3>
+        <h3 class="modal-title">Tambah Data dusun</h3>
       </div>
       <?php echo form_open_multipart('', array('id'=>'data_dusun_form','class'=>'form-horizontal'));?>
       <div class="modal-body form">
@@ -335,19 +346,88 @@
                             <input type="text" name="nama_dusun" value="" class="form-control"> 
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label  class="control-label col-sm-4" for="">Alamat dusun</label>
                         <div class="col-sm-8">
                             <textarea  name="alamat_dusun" rows="2" cols="4"  class="form-control"></textarea>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Kepala Dusun</label>
+                        <div class="col-sm-8">
+                            <select name="dusun_uid" class="form-control select2" style="width:100%;" id="">
+                                <?php 
+                                foreach ($kadus as $kadus) {
+                                    echo "<option value='".$kadus->id."'>".$kadus->fullname." - ".$kadus->keterangan_jabatan."</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>                    
                
       </div>
+      <input type="hidden" name="desa_id" value="<?php echo $data['id'];?>">
       <input type="hidden" name="dusun_id" value="">
       </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <button class="btn btn-primary" onclick="save_edit_data_dusun()">Save <i class="fa fa-save"></i></button>
+        <button class="btn btn-primary" onclick="save_data_dusun()">Save <i class="fa fa-save"></i></button>
+      </div>
+    </div> 
+  </div> 
+</div>
+
+
+
+<!-- Modal Edit Data Desa -->
+<div class="modal fade" id="modal_data_rt" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Tambah Data RT</h3>
+      </div>
+      <?php echo form_open_multipart('', array('id'=>'data_rt_form','class'=>'form-horizontal'));?>
+      <div class="modal-body form">
+                <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Dusun</label>
+                        <div class="col-sm-8">
+                            <select name="dusun_id" class="form-control select2" style="width:100%;" id="">
+                            <?php 
+                                foreach ($dusun_id as $dusun_id) {
+                                    echo "<option value='".$dusun_id->id."'>".$dusun_id->nama_dusun."</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Nama RT</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="nama_rt" value="" class="form-control"> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Ketua RT</label>
+                        <div class="col-sm-8">
+                            <select name="rt_uid" class="form-control select2" style="width:100%;" id="">
+                            <?php 
+                                foreach ($ketua_rt as $ketua_rt) {
+                                    echo "<option value='".$ketua_rt->id."'>".$ketua_rt->fullname." - ".$ketua_rt->keterangan_jabatan."</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+               
+      </div>
+      <input type="hidden" name="rt_id" value="">      
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="save_data_rt()">Save <i class="fa fa-save"></i></button>
       </div>
     </div> 
   </div> 

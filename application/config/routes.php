@@ -36,6 +36,15 @@ $route['details/desa/(:any)']       = 'master/detail_pejabat_desa/$1';
 $route['desa/input']                = 'master/desa_input';
 $route['desa/update']               = 'master/desa_update';
 
+$route['dusun/get/(:any)']          = 'master/get_dusun/$1';
+$route['rt/get/(:any)']             = 'master/get_rt/$1';
+$route['dusun/input']               = 'master/input_dusun';
+$route['dusun/update']              = 'master/update_dusun';
+$route['dusun/delete/(:any)']       = 'master/delete_dusun/$1';
+$route['rt/input']                  = 'master/input_rt';
+$route['rt/update']                 = 'master/update_rt';
+$route['rt/delete/(:any)']          = 'master/delete_rt/$1';
+
 $route['arsip/klasifikasi']         = 'master/klasifikasi_arsip';
 $route['klasifikasi/posting']       = 'master/posting_klasifikasi_arsip';
 $route['klasifikasi/get/(:any)']    = 'master/get_klasifikasi_one/$1';

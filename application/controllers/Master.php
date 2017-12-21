@@ -181,12 +181,86 @@ class Master extends CI_Controller{
     $data['bendahara']          = $this->master_model->get_user_on($id)->result();
     $data['pertanahan']          = $this->master_model->get_user_on($id)->result();
     $data['bpd']          = $this->master_model->get_user_on($id)->result();
+    $data['kadus']          = $this->master_model->get_user_on($id)->result();
+    $data['ketua_rt']          = $this->master_model->get_user_on($id)->result();
     $data['dusun']          =  $this->master_model->_get_dusun()->result();
+    $data['dusun_id']          =  $this->master_model->_get_dusun()->result();
     $data['administrasi']   =  $this->master_model->_get_administrasi_wilayah()->result();
     $data['data']           = $this->master_model->_get_desa_details($id)->row_array();
     $this->load->view('template',$data);
   }
 
+  public function get_dusun($id){
+    $data = $this->master_model->get_dusun_id($id)->row_array();
+    echo json_encode($data);
+  }
+
+  public function input_dusun(){
+    $desa_id = strip_tags($this->input->post('desa_id'));
+    $nama_dusun =strip_tags($this->input->post('nama_dusun'));
+    $alamat_dusun =strip_tags($this->input->post('alamat_dusun'));
+    $uid =strip_tags($this->input->post('dusun_uid'));
+    $post = array('desa_id'=>$desa_id,'nama_dusun'=>$nama_dusun, 'alamat_dusun'=>$alamat_dusun, 'uid'=>$uid);
+    $check = $this->master_model->_post_dusun($post);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }   
+  }
+
+  public function update_dusun(){
+    $id = strip_tags($this->input->post('dusun_id'));
+    $desa_id = strip_tags($this->input->post('desa_id'));
+    $nama_dusun =strip_tags($this->input->post('nama_dusun'));
+    $alamat_dusun =strip_tags($this->input->post('alamat_dusun'));
+    $uid =strip_tags($this->input->post('dusun_uid'));
+    $post = array('desa_id'=>$desa_id,'nama_dusun'=>$nama_dusun, 'alamat_dusun'=>$alamat_dusun, 'uid'=>$uid);
+    $check = $this->master_model->_update_dusun($id, $post);
+    if($check){
+      echo json_encode(array("status" => TRUE)); 
+    }       
+  }
+
+  public function delete_dusun($id){
+    $check = $this->master_model->_delete_dusun($id);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }
+  }
+
+  public function input_rt(){
+    $dusun_id = strip_tags($this->input->post('dusun_id'));
+    $nama_rt = strip_tags($this->input->post('nama_rt'));
+    $rt_uid = strip_tags($this->input->post('rt_uid'));
+    $post = array('dusun_id'=>$dusun_id,'nama_rt'=>$nama_rt,'uid'=>$rt_uid);
+    $check = $this->master_model->_post_rt($post);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }    
+  }
+    
+  public function update_rt(){
+    $id = strip_tags($this->input->post('rt_id'));
+    $dusun_id = strip_tags($this->input->post('dusun_id'));
+    $nama_rt = strip_tags($this->input->post('nama_rt'));
+    $rt_uid = strip_tags($this->input->post('rt_uid'));
+    $post = array('dusun_id'=>$dusun_id,'nama_rt'=>$nama_rt,'uid'=>$rt_uid);
+    $check = $this->master_model->_update_rt($id, $post);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }    
+  }
+
+  public function delete_rt($id){
+    $check = $this->master_model->_delete_rt($id);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }
+  }
+
+  public function get_rt($id){
+    $data = $this->master_model->get_rt_id($id)->row_array();
+    echo json_encode($data);
+  }
 
   // ==========================
 // DATA TABLES Server Processing

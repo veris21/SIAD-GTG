@@ -149,7 +149,7 @@ class Master_model extends CI_Model{
      users as keuangan,
      users as bendahara,
      users as bpd
-     
+
      WHERE 
      d.uid = kades.id AND
      d.ketua_bpd = bpd.id AND
@@ -260,9 +260,31 @@ class Master_model extends CI_Model{
   public function _post_rt($post){
     return $this->db->insert('rt', $post);
   }
+
+  public function _update_rt($id, $post){
+    $this->db->where('id', $id);
+    return $this->db->update('rt', $post);
+  }
+
+  public function _delete_rt($id){
+    $this->db->where('id', $id);
+    return $this->db->delete('rt');
+  }
+
   public function _post_dusun($post){
     return $this->db->insert('dusun', $post);
   }
+
+  public function _update_dusun($id, $post){
+    $this->db->where('id', $id);
+    return $this->db->update('dusun', $post);
+  }
+
+  public function _delete_dusun($id){
+    $this->db->where('id', $id);
+    return $this->db->delete('dusun');
+  }
+
   public function _post_desa($post){
     return $this->db->insert('desa', $post);
   }
@@ -286,6 +308,16 @@ class Master_model extends CI_Model{
   public function get_dusun_desa($desa_id)
   {
     return $this->db->get_where('dusun', array('desa_id'=>$desa_id));
+  }
+
+  public function get_dusun_id($id)
+  {
+    return $this->db->get_where('dusun', array('id'=>$id));
+  }
+
+  public function get_rt_id($id)
+  {
+    return $this->db->get_where('rt', array('id'=>$id));
   }
 
   public function sms_opt()

@@ -12,6 +12,8 @@ _________________________________________________
 var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1] + '/';
 var save_method = '';
 var user_method = '';
+var rt_method = '';
+var dusun_method = '';
 var arsip_method;
 var message = '';
 var maksimal;
@@ -185,9 +187,20 @@ function cari_data_skt(){
            
   }
 
+  function tambah_dusun(){
+    dusun_method = 'posting_dusun';
+    $('#data_dusun_form')[0].reset();
+    $('#modal_data_dusun').modal('show');
+  }
+
+  function tambah_rt(){
+    rt_method = 'posting_rt';
+    $('#data_rt_form')[0].reset();
+    $('#modal_data_rt').modal('show');
+  }
+
   function button_input_desa(){
-    // swal('Di Klik','Tombol dipencet!','error');
-    // $('#desa_baru')[0].reset();
+    $('#desa_baru')[0].reset();
     $('#modal_desabaru').modal('show');
   }
  
@@ -302,7 +315,65 @@ function save_desa_baru(){
   });
 }
 
-function save_edit_data_desa(){
+function save_data_rt(){
+  var url;
+  switch (rt_method) {
+    case 'posting_rt':
+    url = baseUrl+'rt/input';
+      break;
+    case 'edit_rt':
+    url = baseUrl+'rt/update'; 
+      break;  
+    default:
+      break;
+  }
+  $.ajax({
+    url:url,
+    type:"POST",
+    data:$('#data_rt_form').serialize(),
+    dataType: 'JSON',
+    success: function (data){
+      swal('Selamat !','Berhasil Input data!','success');
+      location.reload();
+    },
+      error: function (jqXHR, textStatus, errorThrown)
+      {
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+      }
+
+  });
+}
+
+function save_data_dusun(){
+  var url;
+  switch (dusun_method) {
+    case 'posting_dusun':
+    url = baseUrl+'dusun/input'; 
+      break;
+    case 'edit_dusun':
+    url = baseUrl+'dusun/update';  
+      break;  
+    default:
+      break;
+  }
+  $.ajax({
+    url:url,
+    type:"POST",
+    data:$('#data_dusun_form').serialize(),
+    dataType: 'JSON',
+    success: function (data){
+      swal('Selamat !','Berhasil Input data!','success');
+      location.reload();
+    },
+      error: function (jqXHR, textStatus, errorThrown)
+      {
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+      }
+
+  });
+}
+
+function save_data_desa(){
   swal({
     title: 'Apa Anda Yakin?',
           text: "Data Desa Akan di Perbaharui ke Sistem!",
@@ -719,6 +790,50 @@ function save(){
 }
 
 /*/ Modul Edit /*/
+function edit_dusun(id){
+  dusun_method = 'edit_dusun';
+  $('#data_dusun_form')[0].reset();
+  $.ajax({
+    url: baseUrl+'dusun/get/'+id,
+    type: "GET",
+    dataType:"JSON",
+    success: function(data){
+      $('[name="dusun_id"]').val(data.id);
+      $('[name="nama_dusun"]').val(data.nama_dusun);
+      $('[name="alamat_dusun"]').val(data.alamat_dusun);
+      $('[name="dusun_uid"]').val(data.uid);
+      $('#modal_data_dusun').modal('show');
+      $('.modal-title').text('Edit Data RT');
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+      swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+    }    
+  });
+}
+
+function edit_rt(id){
+  rt_method = 'edit_rt';
+  $('#data_rt_form')[0].reset();
+  $.ajax({
+    url: baseUrl+'rt/get/'+id,
+    type: "GET",
+    dataType:"JSON",
+    success: function(data){
+      $('[name="rt_id"]').val(data.id);
+      $('[name="nama_rt"]').val(data.nama_rt);
+      $('[name="rt_uid"]').val(data.uid);
+      $('[name="dusun_id"]').val(data.dusun_id);
+      $('#modal_data_rt').modal('show');
+      $('.modal-title').text('Edit Data RT');
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+      swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+    }    
+  });
+}
+
 function edit_posting(id){
   save_method= 'edit_klasifikasi';
   $('#klasifikasi')[0].reset(); // reset form on modals
@@ -771,6 +886,62 @@ function edit_user(id){
 function delete_posting(id){
   event.preventDefault();
   var url =  baseUrl+'klasifikasi/delete/'+id;
+  swal({
+        title: 'Apa Anda Yakin?',
+        text: "Data Akan dihapus Secara Permanen!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Iya, Hapus Data!'              
+      }, function isConfirm(){
+        $.ajax({
+          url:url,
+          type:"POST",
+          dataType:"JSON",
+          success: function (data){
+            swal('Selamat !','Berhasil Menghapus data!','success');
+            location.reload();
+          },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+              swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+            }
+        });
+      });
+}
+
+function hapus_rt(id){
+  event.preventDefault();
+  var url =  baseUrl+'rt/delete/'+id;
+  swal({
+        title: 'Apa Anda Yakin?',
+        text: "Data Akan dihapus Secara Permanen!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Iya, Hapus Data!'              
+      }, function isConfirm(){
+        $.ajax({
+          url:url,
+          type:"POST",
+          dataType:"JSON",
+          success: function (data){
+            swal('Selamat !','Berhasil Menghapus data!','success');
+            location.reload();
+          },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+              swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+            }
+        });
+      });
+}
+
+function hapus_dusun(id){
+  event.preventDefault();
+  var url =  baseUrl+'dusun/delete/'+id;
   swal({
         title: 'Apa Anda Yakin?',
         text: "Data Akan dihapus Secara Permanen!",
