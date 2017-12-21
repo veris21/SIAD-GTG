@@ -33,6 +33,8 @@ $route['user/get/(:any)']           = 'master/user_get/$1';
 $route['user/delete/(:any)']        = 'master/user_delete/$1';
 
 $route['details/desa/(:any)']       = 'master/detail_pejabat_desa/$1';
+$route['desa/input']                = 'master/desa_input';
+$route['desa/update']               = 'master/desa_update';
 
 $route['arsip/klasifikasi']         = 'master/klasifikasi_arsip';
 $route['klasifikasi/posting']       = 'master/posting_klasifikasi_arsip';

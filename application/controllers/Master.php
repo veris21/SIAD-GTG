@@ -89,48 +89,100 @@ class Master extends CI_Controller{
     
   }
 
-  function administrasi_data(){
-    if (isset($_POST['posting_rt'])) {
-      $nama_rt = strip_tags($this->input->post('nama_rt'));
-      $dusun_id = strip_tags($this->input->post('dusun_id'));
-      $post = array('nama_rt'=>$nama_rt, 'dusun_id'=>$dusun_id);
-      $push = $this->master_model->_post_rt($post);
-      if($push){
-        redirect('user/administrasi', 'refresh');
-      }
-    } elseif(isset($_POST['posting_dusun'])) {
-      $nama_dusun = strip_tags($this->input->post('nama_dusun'));
-      $desa_id = strip_tags($this->input->post('desa_id'));
-      $post = array('nama_dusun'=>$nama_dusun,'desa_id'=>$desa_id);     
-      $push = $this->master_model->_post_dusun($post);
-      if($push){
-        redirect('user/administrasi', 'refresh');
-      }
-    } elseif(isset($_POST['posting_desa'])){
-      $nama_desa = strip_tags($this->input->post('nama_desa'));
-      $kecamatan_id = strip_tags($this->input->post('kecamatan_id'));
-      $post = array('nama_desa'=>$nama_desa,'kecamatan_id'=>$kecamatan_id);
-      $push = $this->master_model->_post_desa($post);
-      if($push){
-        redirect('user/administrasi', 'refresh');
-      }
-    }else{
+  public function administrasi_data(){
     $data['title']          =  TITLE.'administrasi_data';
     $data['main_content']   =  MASTER.'administrasi_data';
-    $data['administrasi']   =  $this->master_model->_get_administrasi_wilayah()->result();
     $data['kecamatan']      =  $this->master_model->kecamatan()->result();
     $data['desa']           =  $this->master_model->_get_desa()->result();
-    $data['dusun']          =  $this->master_model->_get_dusun()->result();
-    $data['desa_opt']           =  $this->master_model->desa()->result();
-    $data['dusun_opt']          =  $this->master_model->dusun()->result();
-
-    $this->load->view('template',$data);
-    }
+    $data['users']          = $this->master_model->get_user_detail()->result();
+    $data['pertanahan']     = $this->master_model->get_user_detail()->result();
+    $data['sekdes']         = $this->master_model->get_user_detail()->result();
+    $data['kasi_pemerintahan']  = $this->master_model->get_user_detail()->result();
+    $data['kabupaten']      = $this->master_model->_get_kabupaten()->result();
+    $this->load->view('template',$data);    
   }
 
-  function detail_pejabat_desa($id){
+  public function desa_input(){
+    $uid = strip_tags($this->input->post('uid'));
+    $kabupaten_id = strip_tags($this->input->post('kabupaten_id'));
+    $kecamatan_id = strip_tags($this->input->post('kecamatan_id'));
+    $nama_desa = strip_tags($this->input->post('nama_desa'));
+    $alamat_desa = strip_tags($this->input->post('alamat_desa'));
+    $sekdes =  strip_tags($this->input->post('sekdes_uid'));
+    $kasi_pemerintahan =  strip_tags($this->input->post('kasi_pemerintahan'));
+    $pertanahan_uid =  strip_tags($this->input->post('pertanahan_uid'));
+    
+    $post = array('uid'=>$uid, 
+    'nama_desa'=>$nama_desa, 
+    'alamat_desa'=>$alamat_desa,
+    'kabupaten_id'=>$kabupaten_id,'kecamatan_id'=>$kecamatan_id,
+    'status_desa'=>0,
+    'sekdes_uid'=>$sekdes_uid,
+    'kasi_pemerintahan'=>$kasi_pemerintahan,
+    'pertanahan_uid'=>$pertanahan_uid
+  );
+
+  $check = $this->master_model->_post_desa($post);
+    if($check){
+      echo json_encode(array("status" => TRUE)); 
+    }      
+  }
+
+  public function desa_update(){
+    $id = strip_tags($this->input->post('desa_id'));
+    $uid = strip_tags($this->input->post('kepala_desa'));
+    $nama_desa = strip_tags($this->input->post('nama_desa'));
+    $alamat_desa = strip_tags($this->input->post('alamat_desa'));
+    $sekdes =  strip_tags($this->input->post('sekretaris_desa'));
+    $kasi_pemerintahan =  strip_tags($this->input->post('kasi_pemerintahan'));
+    $kasi_pembangunan =  strip_tags($this->input->post('kasi_pembangunan'));
+    $kasi_pemberdayaan =  strip_tags($this->input->post('kasi_pemberdayaan'));
+    $kaur_umum =  strip_tags($this->input->post('kaur_umum'));
+    $kaur_pelayanan =  strip_tags($this->input->post('kaur_pelayanan'));
+    $kaur_keuangan =  strip_tags($this->input->post('kaur_keuangan'));
+    $pertanahan =  strip_tags($this->input->post('pertanahan'));
+    $bendahara =  strip_tags($this->input->post('bendahara'));
+    $ketua_bpd =  strip_tags($this->input->post('ketua_bpd'));
+    
+    $update = array(
+    'uid'=>$uid, 
+    'nama_desa'=>$nama_desa, 
+    'alamat_desa'=>$alamat_desa,
+    'sekdes_uid'=>$sekdes,
+    'kasi_pemerintahan'=>$kasi_pemerintahan,
+    'kasi_pembangunan'=>$kasi_pembangunan,
+    'kasi_pemberdayaan'=>$kasi_pemberdayaan,
+    'kaur_umum'=>$kaur_umum,
+    'kaur_pelayanan'=>$kaur_pelayanan,
+    'kaur_keuangan'=>$kaur_keuangan,
+    'bendahara'=>$bendahara,
+    'ketua_bpd'=>$ketua_bpd,
+    'pertanahan_uid'=>$pertanahan
+  );
+
+  $check = $this->master_model->_update_desa($id, $update);
+    if($check){
+      echo json_encode(array("status" => TRUE)); 
+    }      
+  }
+
+
+  public function detail_pejabat_desa($id){
     $data['title'] = TITLE.'Detail &amp; Lengkapi Data Desa';
     $data['main_content']   =  MASTER.'data_desa';
+    $data['kades']          = $this->master_model->get_user_on($id)->result();
+    $data['sekdes']          = $this->master_model->get_user_on($id)->result();
+    $data['kasi_pemerintahan']          = $this->master_model->get_user_on($id)->result();
+    $data['kasi_pembangunan']          = $this->master_model->get_user_on($id)->result();
+    $data['kasi_pemberdayaan']          = $this->master_model->get_user_on($id)->result();
+    $data['kaur_umum']          = $this->master_model->get_user_on($id)->result();
+    $data['kaur_pelayanan']          = $this->master_model->get_user_on($id)->result();
+    $data['kaur_keuangan']          = $this->master_model->get_user_on($id)->result();
+    $data['bendahara']          = $this->master_model->get_user_on($id)->result();
+    $data['pertanahan']          = $this->master_model->get_user_on($id)->result();
+    $data['bpd']          = $this->master_model->get_user_on($id)->result();
+    $data['dusun']          =  $this->master_model->_get_dusun()->result();
+    $data['administrasi']   =  $this->master_model->_get_administrasi_wilayah()->result();
     $data['data']           = $this->master_model->_get_desa_details($id)->row_array();
     
     $this->load->view('template',$data);

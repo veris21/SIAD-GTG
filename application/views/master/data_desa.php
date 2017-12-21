@@ -25,7 +25,28 @@
                 <dt>Sekretaris Desa</dt>
                 <dd><?php echo $data['fullname_sekdes'];?></dd>
                 <br>
-                <dt>Kasi Pemerintahan &amp; Pertanahan</dt>
+                <dt>Kasi Pemerintahan</dt>
+                <dd><?php echo $data['fullname_pemerintahan'];?></dd>
+                <br>
+                <dt>Kasi Pembangunan</dt>
+                <dd><?php echo $data['fullname_pembangunan'];?></dd>
+                <br>
+                <dt>Kasi Pemberdayaan</dt>
+                <dd><?php echo $data['fullname_pemberdayaan'];?></dd>
+                <br>
+                <dt>Kaur Umum</dt>
+                <dd><?php echo $data['fullname_umum'];?></dd>
+                <br>
+                <dt>Kaur Pelayanan</dt>
+                <dd><?php echo $data['fullname_pelayanan'];?></dd>
+                <br>
+                <dt>Kaur Keuangan</dt>
+                <dd><?php echo $data['fullname_keuangan'];?></dd>
+                <br>
+                <dt>Bendahara</dt>
+                <dd><?php echo $data['fullname_bendahara'];?></dd>
+                <br>
+                <dt>Petugas Pertanahan</dt>
                 <dd><?php echo $data['fullname_pertanahan'];?></dd>                
             </div>
             <div class="box-footer">
@@ -38,44 +59,49 @@
         <div class="col-md-7">
         <div class="box box-warning">
             <div class="box-body">
-                <table class="table  table-responsive" >
-                    <thead>
-                        <tr>
-                            <th>Dusun</th>
-                            <th>Kepala Dusun</th>
-                            <th>Kontak</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>  
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>                 
-                </table>
-                <table class="table table-responsive" >
-                    <thead>
-                        <tr>
-                            <th>Dusun</th>
-                            <th>No. RT</th>
-                            <th>Kepala RT</th>
-                            <th>Kontak</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>                   
-                </table>
+            <table width="100%" class="table table-striped table-bordered table-hover" id="adm-dusun">
+            <thead>
+              <tr valign="center" align="center">
+                <td>Dusun</td>
+                <td>Pejabat</td>
+                <td>#</td>
+              </tr>
+            </thead>
+            <tbody>
+               <?php
+               foreach ($dusun as $dusun){
+                   echo "<tr>";
+                   echo "<td>".$dusun->nama_dusun."</td>";
+                   echo "<td align='center'><b>".$dusun->fullname."</b><br>".$dusun->hp."</td>";
+                   echo "<td  align='center'><a href='".base_url("rt/edit/".$dusun->id)."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></a></td>";
+                   echo "</tr>";
+               }
+               ?>
+            </tbody> 
+     </table> 
+               
+    <table width="100%" class="table table-striped table-bordered table-hover" id="adm-wilayah">
+     <thead>
+       <tr valign="center" align="center">
+         <td>Dusun</td>
+         <td>RT</td>
+         <td>Pejabat</td>
+         <td>#</td>
+       </tr>
+     </thead>
+     <tbody>
+     <?php 
+        foreach ($administrasi as $adm){
+        echo "<tr>";
+        echo "<td>".$adm->nama_dusun."</td>";
+        echo "<td>RT ".$adm->nama_rt."</td>";
+        echo "<td align='center'><b>".$adm->fullname."</b> <br>".$adm->hp."</td>";
+        echo "<td align='center'><a href='".base_url("rt/edit/".$adm->id)."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></a></td>";
+        echo "</tr>";
+        } 
+     ?>
+     </tbody> 
+     </table>
             </div>
         </div>
         </div>
@@ -83,7 +109,7 @@
     
 </section>
 
-<!-- Modal Edit Disposisi -->
+<!-- Modal Edit Data Desa -->
 <div class="modal fade" id="modal_data_desa" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -110,7 +136,9 @@
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="kepala_desa">
                             <?php 
-                            echo "<option></option>";
+                            foreach ($kades as $kades) {
+                                echo "<option value='".$kades->id."'>".$kades->fullname."</option>";
+                            }                           
                             ?>
                             </select> 
                         </div>
@@ -120,28 +148,137 @@
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="sekretaris_desa">
                             <?php 
-                            echo "<option></option>";
+                            foreach ($sekdes as $sekdes) {
+                                echo "<option value='".$sekdes->id."'>".$sekdes->fullname."</option>";
+                            }                           
                             ?>
                             </select> 
                         </div>
                     </div>
+                    
                     <div class="form-group">
-                        <label  class="control-label col-sm-4" for="">Kasi Pertanahan</label>
+                        <label  class="control-label col-sm-4" for="">Kasi Pemerintahan</label>
                         <div class="col-sm-8">
-                            <select  style='width: 100%;'  class="form-control select2" name="kasi_pertanahan_desa">
+                            <select style='width: 100%;'  class="form-control select2" name="kasi_pemerintahan">
                             <?php 
-                            echo "<option></option>";
+                            foreach ($kasi_pemerintahan as $kasi_pemerintahan) {
+                                echo "<option value='".$kasi_pemerintahan->id."'>".$kasi_pemerintahan->fullname."</option>";
+                            }                           
+                            ?>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Kasi Pembangunan</label>
+                        <div class="col-sm-8">
+                            <select style='width: 100%;'  class="form-control select2" name="kasi_pembangunan">
+                            <?php 
+                            foreach ($kasi_pembangunan as $kasi_pembangunan) {
+                                echo "<option value='".$kasi_pembangunan->id."'>".$kasi_pembangunan->fullname."</option>";
+                            }                           
+                            ?>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Kasi Pemberdayaan</label>
+                        <div class="col-sm-8">
+                            <select style='width: 100%;'  class="form-control select2" name="kasi_pemberdayaan">
+                            <?php 
+                            foreach ($kasi_pemberdayaan as $kasi_pemberdayaan) {
+                                echo "<option value='".$kasi_pemberdayaan->id."'>".$kasi_pemberdayaan->fullname."</option>";
+                            }                           
+                            ?>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Kaur Umum</label>
+                        <div class="col-sm-8">
+                            <select style='width: 100%;'  class="form-control select2" name="kaur_umum">
+                            <?php 
+                            foreach ($kaur_umum as $kaur_umum) {
+                                echo "<option  value='".$kaur_umum->id."'>".$kaur_umum->fullname."</option>";
+                            }                           
+                            ?>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Kaur Keuangan</label>
+                        <div class="col-sm-8">
+                            <select style='width: 100%;'  class="form-control select2" name="kaur_keuangan">
+                            <?php 
+                            foreach ($kaur_keuangan as $kaur_keuangan) {
+                                echo "<option value='".$kaur_keuangan->id."'>".$kaur_keuangan->fullname."</option>";
+                            }                           
+                            ?>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Kaur Pelayanan</label>
+                        <div class="col-sm-8">
+                            <select style='width: 100%;'  class="form-control select2" name="kaur_pelayanan">
+                            <?php 
+                            foreach ($kaur_pelayanan as $kaur_pelayanan) {
+                                echo "<option value='".$kaur_pelayanan->id."'>".$kaur_pelayanan->fullname."</option>";
+                            }                           
+                            ?>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Bendahara</label>
+                        <div class="col-sm-8">
+                            <select style='width: 100%;'  class="form-control select2" name="kaur_pelayanan">
+                            <?php 
+                            foreach ($bendahara as $bendahara) {
+                                echo "<option value='".$bendahara->id."'>".$bendahara->fullname."</option>";
+                            }                           
+                            ?>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Petugas Pertanahan</label>
+                        <div class="col-sm-8">
+                            <select style='width: 100%;'  class="form-control select2" name="pertanahan">
+                            <?php 
+                            foreach ($pertanahan as $pertanahan) {
+                                echo "<option value='".$pertanahan->id."'>".$pertanahan->fullname."</option>";
+                            }                           
+                            ?>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Ketua BPD</label>
+                        <div class="col-sm-8">
+                            <select style='width: 100%;'  class="form-control select2" name="ketua_bpd">
+                            <?php 
+                            foreach ($bpd as $bpd) {
+                                echo "<option value='".$bpd->id."'>".$bpd->fullname."</option>";
+                            }                           
                             ?>
                             </select> 
                         </div>
                     </div>
       </div>
       <input type="hidden" name="desa_id" value="<?php echo $data['id'];?>">
+      </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <button type="submit" onclick="save_edit_data_desa()" class="btn btn-primary">Save <i class="fa fa-save"></i></button>
+        <button class="btn btn-primary" onclick="save_edit_data_desa()">Save <i class="fa fa-save"></i></button>
       </div>
-    </form>
     </div> 
   </div> 
 </div>

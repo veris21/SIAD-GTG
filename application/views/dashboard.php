@@ -47,7 +47,7 @@
     <div class="box-body">
         <div class="row">
             <center class="col-md-6 hidden-sm hidden-xs">
-            <img width="70%" src="<?php echo BASE_URL.'assets/new-logo.png';?>" alt="" class="img img-rounded img-responsive">
+            <img width="70%" src="<?php echo base_url('assets/new-logo.png');?>" alt="" class="img img-rounded img-responsive">
            </center>
           <div class="col-md-6">
               <dt>Nama Lengkap</dt>

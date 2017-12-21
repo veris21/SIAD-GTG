@@ -184,6 +184,12 @@ function cari_data_skt(){
           });
            
   }
+
+  function button_input_desa(){
+    // swal('Di Klik','Tombol dipencet!','error');
+    // $('#desa_baru')[0].reset();
+    $('#modal_desabaru').modal('show');
+  }
  
   function buat_disposisi(){
     $('#disposisi_input')[0].reset();
@@ -267,6 +273,63 @@ function cari_data() {
 }
 
 /*/ Modul Simpan Data /*/
+
+function save_desa_baru(){
+  swal({
+    title: 'Apa Anda Yakin?',
+          text: "Data Desa Akan di Input ke Sistem!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Iya, Simpan!'              
+        }, function isConfirm(){
+          $.ajax({
+            url:baseUrl+'desa/input',
+            type:"POST",
+            data:$('#desa_baru').serialize(),
+            dataType:"JSON",            
+            success: function(data){
+              swal('Selamat !','Berhasil Posting Data Desa !','success');
+              location.reload();
+            }
+            ,error: function (jqXHR, textStatus, errorThrown)
+              {
+                swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+                location.reload();
+              }
+          });
+  });
+}
+
+function save_edit_data_desa(){
+  swal({
+    title: 'Apa Anda Yakin?',
+          text: "Data Desa Akan di Perbaharui ke Sistem!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Iya, Simpan!'              
+        }, function isConfirm(){
+          $.ajax({
+            url:baseUrl+'desa/update',
+            type:"POST",
+            data:$('#data_desa_form').serialize(),
+            dataType:"JSON",            
+            success: function(data){
+              swal('Selamat !','Berhasil Posting Data Desa !','success');
+              location.reload();
+            }
+            ,error: function (jqXHR, textStatus, errorThrown)
+              {
+                swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+                location.reload();
+              }
+          });
+  });
+}
+
 function save_data_penduduk_baru(){
   $('#input_data_penduduk_baru').submit(function(evt){
     evt.preventDefault();

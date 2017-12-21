@@ -93,12 +93,36 @@ class Master_model extends CI_Model{
     $query = "SELECT d.id as id, d.nama_desa as nama_desa, d.alamat_desa as alamat_desa,
     kades.fullname as fullname_kades, 
     sekdes.fullname as fullname_sekdes,
-    pertanahan.fullname as fullname_pertanahan
+    pertanahan.fullname as fullname_pertanahan,
+    pemerintahan.fullname as fullname_pemerintahan,
+    pembangunan.fullname as fullname_pembangunan,
+    pemberdayaan.fullname as fullname_pemberdayaan,
+    umum.fullname as fullname_umum,
+    pelayanan.fullname as fullname_pelayanan,
+    keuangan.fullname as fullname_keuangan,
+    bendahara.fullname as fullname_bendahara
      FROM desa as d, 
      users as kades, 
-     users as sekdes , 
-     users as pertanahan
-     WHERE d.uid = kades.id AND d.pertanahan_uid = pertanahan.id AND d.sekdes_uid = sekdes.id AND d.id = $id";
+     users as sekdes, 
+     users as pertanahan,
+     users as pemerintahan,
+     users as pembangunan,
+     users as pemberdayaan,
+     users as umum,
+     users as pelayanan,
+     users as keuangan,
+     users as bendahara
+     WHERE 
+     d.uid = kades.id AND
+     d.pertanahan_uid = pertanahan.id AND 
+     d.kasi_pemerintahan = pemerintahan.id AND 
+     d.kasi_pembangunan = pembangunan.id AND 
+     d.kasi_pemberdayaan = pemberdayaan.id AND
+     d.kaur_umum = umum.id AND
+     d.kaur_pelayanan = pelayanan.id AND
+     d.kaur_keuangan = keuangan.id AND 
+     d.bendahara = bendahara.id AND
+     d.sekdes_uid = sekdes.id AND d.id = $id";
     return $this->db->query($query);
   }
   // 
@@ -183,6 +207,10 @@ class Master_model extends CI_Model{
     return $this->db->get();
   }
 
+  public function _get_kabupaten(){
+    return $this->db->get('kabupaten');
+  }
+
   public function _get_kecamatan(){
     $this->db->select('*');
     $this->db->from('kecamatan');
@@ -200,6 +228,10 @@ class Master_model extends CI_Model{
     return $this->db->insert('desa', $post);
   }
 
+  public function _update_desa($id, $update){
+    $this->db->where('id', $id);
+    return $this->db->update('desa', $update);
+  }
 
   public function update_jabatan($id, $update)
   {

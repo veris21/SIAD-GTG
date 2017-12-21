@@ -14,52 +14,13 @@
   <div class="col-xs-12">
     <div class="box box-info">
       <div class="box-body">
-      <div class="nav-tabs-custom">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#wilayah_list" data-toggle="tab">List Wilayah User</a></li>
-          <li><a href="#post_desa" data-toggle="tab">Posting Desa</a></li>
-          <li><a href="#post_dusun" data-toggle="tab">Posting Dusun</a></li>
-          <li><a href="#post_rt" data-toggle="tab">Posting RT</a></li>
-        </ul>
-        <div class="tab-content">
-     <div class="active tab-pane" id="wilayah_list">
-     <table width="100%" class="table table-striped table-bordered table-hover" id="adm-wilayah">
+     <table width="100%" class="table table-striped table-bordered table-hover" id="adm-desa">
      <thead>
        <tr valign="center" align="center">
          <td>Kabupaten</td>
          <td>Kecamatan</td>
          <td>Desa</td>
-         <td>Dusun</td>
-         <td>RT</td>
-         <td>Pejabat</td>
-         <td>#</td>
-       </tr>
-     </thead>
-     <tbody>
-     <?php 
-        foreach ($administrasi as $adm){
-        echo "<tr>";
-        echo "<td>".$adm->nama_kabupaten."</td>";
-        echo "<td>".$adm->nama_kecamatan."</td>";
-        echo "<td>".$adm->nama_desa."</td>";
-        echo "<td>".$adm->nama_dusun."</td>";
-        echo "<td>".$adm->nama_rt."</td>";
-        echo "<td align='center'><b>".$adm->fullname."</b> <br>".$adm->hp."</td>";
-        echo "<td align='center'><a href='".BASE_URL."rt/edit/".$adm->id."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></a></td>";
-        echo "</tr>";
-        } 
-     ?>
-     </tbody> 
-     </table>
-        <!-- User Tab -->
-     </div>
-     <div class="tab-pane" id="post_desa">
-     <table width="100%" class="table table-striped table-bordered table-hover" id="adm-desa">
-     <thead>
-       <tr valign="center" align="center">
-         <td>Kecamatan</td>
-         <td>Desa</td>
-         <td>Pejabat</td>
+         <td> Kepala Desa </td>
          <td>#</td>
        </tr>
      </thead>
@@ -67,121 +28,145 @@
         <?php
         foreach ($desa as $desa){
             echo "<tr>";
+            echo "<td>".$desa->nama_kabupaten."</td>";
             echo "<td>".$desa->nama_kecamatan."</td>";
             echo "<td>".$desa->nama_desa."</td>";
             echo "<td align='center'><b>".$desa->fullname."</b> <br>".$desa->hp."</td>";
-            echo "<td align='center'><a  data-toggle='tooltip' title='Lihat Details Desa'  href='".BASE_URL."details/desa/".$desa->id."' class='btn btn-xs btn-success'><i class='fa fa-eye'></i></a></td>";
+            echo "<td align='center'><a  data-toggle='tooltip' title='Lihat Details Desa'  href='".base_url("details/desa/".$desa->id)."' class='btn btn-xs btn-success'><i class='fa fa-eye'></i></a></td>";
             echo "</tr>";
         }
         ?>
      </tbody> 
      </table>
-        <!-- User Tab -->
-        <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="">Kecamatan</label>
-                <select name="kecamatan_id" class="form-control">
-                <?php foreach($kecamatan as $kecamatan){
-                    echo "<option value='".$kecamatan->id."'>Kec.".$kecamatan->nama_kecamatan."</option>";
-                } ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">Nama Desa</label>
-                <input type="text" name="nama_desa" class="form-control">
-            </div>            
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-            <label for="">Alamat</label>
-            <textarea name="alamat" class="form-control" cols="20" rows="3"></textarea>
-            </div>
-            <button type="submit" name="posting_desa" class="btn btn-sm btn-flat btn-success">Posting Desa</button>
-        </div>
-     </div>
-     </div>
-     <div class="tab-pane" id="post_dusun">
-     <table width="100%" class="table table-striped table-bordered table-hover" id="adm-dusun">
-     <thead>
-       <tr valign="center" align="center">
-         <td>Kecamatan</td>
-         <td>Desa</td>
-         <td>Dusun</td>
-         <td>Pejabat</td>
-         <td>#</td>
-       </tr>
-     </thead>
-     <tbody>
-        <?php
-        foreach ($dusun as $dusun){
-            echo "<tr>";
-            echo "<td>".$dusun->nama_kecamatan."</td>";
-            echo "<td>".$dusun->nama_desa."</td>";
-            echo "<td>".$dusun->nama_dusun."</td>";
-            echo "<td align='center'><b>".$dusun->fullname."</b><br>".$dusun->hp."</td>";
-            echo "<td  align='center'><a href='".BASE_URL."rt/edit/".$dusun->id."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i></a></td>";
-            echo "</tr>";
-        }
-        ?>
-     </tbody> 
-     </table> 
-     <!-- User Tab -->
-     <div class="row">
-     <div class="col-md-6">
-         <div class="form-group">
-             <label for="">Desa</label>
-             <select name="desa_id" class="form-control">
-             <?php foreach($desa_opt as $ds){
-                 echo "<option value='".$ds->id."'>DESA ".$ds->nama_desa."</option>";
-             } ?>
-             </select>
-         </div>
-         <div class="form-group">
-             <label for="">Nama Dusun</label>
-             <input type="text" name="nama_dusun" class="form-control">
-         </div>            
-     </div>
-     <div class="col-md-6">
-         <div class="form-group">
-         <label for="">Alamat</label>
-         <textarea name="alamat" class="form-control" cols="20" rows="3"></textarea>
-         </div>
-         <button type="submit" name="posting_dusun" class="btn btn-sm btn-flat btn-success">Posting DUSUN</button>
-     </div>
-  </div>
-  </div>
-     <div class="tab-pane" id="post_rt">
-     <div class="row">
-     <div class="col-md-6">
-         <div class="form-group">
-             <label for="">Dusun</label>
-             <select name="dusun_id" class="form-control">
-             <?php foreach($dusun_opt as $dsn){
-                 $nama_desa = $this->db->get_where('desa', array('id'=>$dsn->desa_id))->row_array();
-                 echo "<option value='".$dsn->id."'>DSN.".$dsn->nama_dusun." DESA ".$nama_desa['nama_desa']."</option>";
-             } ?>
-             </select>
-         </div>
-         <div class="form-group">
-             <label for="">Nama/ No RT</label>
-             <input type="text" name="nama_rt" class="form-control">
-         </div>            
-     </div>
-     <div class="col-md-6">
-         <div class="form-group">
-         <label for="">Alamat</label>
-         <textarea name="alamat" class="form-control" cols="20" rows="3"></textarea>
-         </div>
-         <button type="submit" name="posting_rt" class="btn btn-sm btn-flat btn-success">Posting RT</button>
-     </div>
-  </div>
-  </div>
-    </div>
-     </div>
      </div> 
-    </div> 
-  </div>
-<?php echo form_close();?>
+     <div class="box-footer">
+        <div class="pull-right">
+            <a class="btn btn-success btn-flat btn-sm" onclick="button_input_desa()" >Input Desa Baru <i class="fa fa-plus"></i></a>
+        </div>
+     </div>
+   </div> 
+  </div> 
+</div>
 </section>
-    
+
+
+<!-- Bootstrap modal -->
+<div class="modal fade" id="modal_desabaru" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Input Desa</h3>
+      </div>
+
+      <div class="modal-body form">
+        <!--  -->
+        <form action="#" id="desa_baru" class="form-horizontal">
+        <div class="form-body">
+            <div class="row form-group">
+              <label class="control-label col-sm-3">Kabupaten</label>
+              <div class="col-sm-9">
+              <select name="kabupaten_id" class="form-control select2" style="width:100%" id="">
+              <?php 
+              foreach ($kabupaten as $kab) {
+                 echo "<option value='".$kab->id."'>".$kab->nama_kabupaten."</option>";
+              }
+              ?>
+              </select>
+              </div>
+            </div>
+        </div>
+            
+            
+            <div class="row form-group">
+              <label class="control-label col-sm-3">Kecamatan</label>
+              <div class="col-sm-9">
+                <select name="kecamatan_id" class="form-control select2" style="width:100%" id="">
+                <?php 
+              foreach ($kecamatan as $kec) {
+                echo "<option value='".$kec->id."'>".$kec->nama_kecamatan."</option>";
+              }
+              ?>
+                </select>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label class="control-label col-sm-3">Nama Desa</label>
+              <div class="col-sm-9">
+                <input name="nama_desa" placeholder="nama desa" class="form-control" type="text">
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label class="control-label col-sm-3">Alamat</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" name="alamat_desa" id="" cols="8" rows="4"></textarea>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label class="control-label col-sm-3">Nama Kepala Desa</label>
+              <div class="col-sm-9">
+                <select name="uid" class="form-control select2" style="width:100%" id="">
+                <?php 
+              foreach ($users as $user) {
+                 echo "<option value='".$user->id."'>".$user->fullname." - ".$user->keterangan_jabatan."</option>";
+              }
+              ?>
+                </select>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label class="control-label col-sm-3">Nama Sekretaris Desa</label>
+              <div class="col-sm-9">
+                <select name="uid" class="form-control select2" style="width:100%" id="">
+                <?php 
+              foreach ($sekdes as $sekdes) {
+                 echo "<option value='".$sekdes->id."'>".$sekdes->fullname." - ".$sekdes->keterangan_jabatan."</option>";
+              }
+              ?>
+                </select>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label class="control-label col-sm-3">Nama Kasi Pemerintahan</label>
+              <div class="col-sm-9">
+                <select name="uid" class="form-control select2" style="width:100%" id="">
+                <?php 
+              foreach ($kasi_pemerintahan as $kasi) {
+                 echo "<option value='".$kasi->id."'>".$kasi->fullname." - ".$kasi->keterangan_jabatan."</option>";
+              }
+              ?>
+                </select>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label class="control-label col-sm-3">Nama Petugas Pertanahan</label>
+              <div class="col-sm-9">
+                <select name="uid" class="form-control select2" style="width:100%" id="">
+                <?php 
+              foreach ($pertanahan as $tanah) {
+                 echo "<option value='".$tanah->id."'>".$tanah->fullname." - ".$tanah->keterangan_jabatan."</option>";
+              }
+              ?>
+                </select>
+              </div>
+            </div>
+         </form>
+        <!--  -->
+      </div>
+
+        <div class="modal-footer">
+        <button type="button" id="btnSave" onclick="save_desa_baru()" class="btn btn-primary btn-sm">Simpan Data</button>
+        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+        </div>
+
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  <!-- End Bootstrap modal -->
