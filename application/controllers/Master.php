@@ -142,7 +142,7 @@ class Master extends CI_Controller{
     $kaur_keuangan =  strip_tags($this->input->post('kaur_keuangan'));
     $pertanahan =  strip_tags($this->input->post('pertanahan'));
     $bendahara =  strip_tags($this->input->post('bendahara'));
-    $ketua_bpd =  strip_tags($this->input->post('ketua_bpd'));
+    // $ketua_bpd =  strip_tags($this->input->post('ketua_bpd'));
     
     $update = array(
     'uid'=>$uid, 
@@ -156,7 +156,7 @@ class Master extends CI_Controller{
     'kaur_pelayanan'=>$kaur_pelayanan,
     'kaur_keuangan'=>$kaur_keuangan,
     'bendahara'=>$bendahara,
-    'ketua_bpd'=>$ketua_bpd,
+    // 'ketua_bpd'=>$ketua_bpd,
     'pertanahan_uid'=>$pertanahan
   );
 
@@ -184,7 +184,6 @@ class Master extends CI_Controller{
     $data['dusun']          =  $this->master_model->_get_dusun()->result();
     $data['administrasi']   =  $this->master_model->_get_administrasi_wilayah()->result();
     $data['data']           = $this->master_model->_get_desa_details($id)->row_array();
-    
     $this->load->view('template',$data);
   }
 

@@ -79,7 +79,10 @@
                ?>
             </tbody> 
      </table> 
-               
+        </div> 
+    </div>
+    <div class="box box-warning">
+        <div class="box-body">
     <table width="100%" class="table table-striped table-bordered table-hover" id="adm-wilayah">
      <thead>
        <tr valign="center" align="center">
@@ -136,9 +139,12 @@
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="kepala_desa">
                             <?php 
+                            echo "<option value='".$data["kades_id"]."'>".$data["fullname_kades"]." - ".$data["kades_keterangan_jabatan"]."</option>";
                             foreach ($kades as $kades) {
-                                echo "<option value='".$kades->id."'>".$kades->fullname."</option>";
-                            }                           
+                                if($kades->id != $data['kades_id']){
+                                echo "<option value='".$kades->id."'>".$kades->fullname." - ".$kades->keterangan_jabatan."</option>";
+                                }
+                            } 
                             ?>
                             </select> 
                         </div>
@@ -148,8 +154,11 @@
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="sekretaris_desa">
                             <?php 
+                            echo "<option value='".$data["sekdes_id"]."'>".$data["fullname_sekdes"]." - ".$data["kades_keterangan_jabatan"]."</option>";                    
                             foreach ($sekdes as $sekdes) {
-                                echo "<option value='".$sekdes->id."'>".$sekdes->fullname."</option>";
+                                if($sekdes->id != $data['sekdes_id']){
+                                echo "<option value='".$sekdes->id."'>".$sekdes->fullname." - ".$sekdes->keterangan_jabatan."</option>";
+                                }
                             }                           
                             ?>
                             </select> 
@@ -161,9 +170,12 @@
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="kasi_pemerintahan">
                             <?php 
+                            echo "<option value='".$data["pemerintahan_id"]."'>".$data["fullname_pemerintahan"]." - ".$data["pemerintahan_keterangan_jabatan"]."</option>";                    
                             foreach ($kasi_pemerintahan as $kasi_pemerintahan) {
-                                echo "<option value='".$kasi_pemerintahan->id."'>".$kasi_pemerintahan->fullname."</option>";
-                            }                           
+                                if($kasi_pemerintahan->id != $data['pemerintahan_id']){
+                                echo "<option value='".$kasi_pemerintahan->id."'>".$kasi_pemerintahan->fullname." - ".$kasi_pemerintahan->keterangan_jabatan."</option>";
+                                }
+                            }                             
                             ?>
                             </select> 
                         </div>
@@ -174,9 +186,12 @@
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="kasi_pembangunan">
                             <?php 
+                            echo "<option value='".$data["pembangunan_id"]."'>".$data["fullname_pembangunan"]." - ".$data["pembangunan_keterangan_jabatan"]."</option>";                    
                             foreach ($kasi_pembangunan as $kasi_pembangunan) {
-                                echo "<option value='".$kasi_pembangunan->id."'>".$kasi_pembangunan->fullname."</option>";
-                            }                           
+                                if($kasi_pembangunan->id != $data['pembangunan_id']){
+                                echo "<option value='".$kasi_pembangunan->id."'>".$kasi_pembangunan->fullname." - ".$kasi_pembangunan->keterangan_jabatan."</option>";
+                                }
+                            }                     
                             ?>
                             </select> 
                         </div>
@@ -187,9 +202,12 @@
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="kasi_pemberdayaan">
                             <?php 
-                            foreach ($kasi_pemberdayaan as $kasi_pemberdayaan) {
-                                echo "<option value='".$kasi_pemberdayaan->id."'>".$kasi_pemberdayaan->fullname."</option>";
-                            }                           
+                           echo "<option value='".$data["pemberdayaan_id"]."'>".$data["fullname_pemberdayaan"]." - ".$data["pemberdayaan_keterangan_jabatan"]."</option>";                    
+                           foreach ($kasi_pemberdayaan as $kasi_pemberdayaan) {
+                               if($kasi_pemberdayaan->id != $data['pemberdayaan_id']){
+                               echo "<option value='".$kasi_pemberdayaan->id."'>".$kasi_pemberdayaan->fullname." - ".$kasi_pemberdayaan->keterangan_jabatan."</option>";
+                               }
+                           }                          
                             ?>
                             </select> 
                         </div>
@@ -200,9 +218,12 @@
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="kaur_umum">
                             <?php 
+                            echo "<option value='".$data["umum_id"]."'>".$data["fullname_umum"]." - ".$data["umum_keterangan_jabatan"]."</option>";                    
                             foreach ($kaur_umum as $kaur_umum) {
-                                echo "<option  value='".$kaur_umum->id."'>".$kaur_umum->fullname."</option>";
-                            }                           
+                                if($kaur_umum->id != $data['umum_id']){
+                                echo "<option value='".$kaur_umum->id."'>".$kaur_umum->fullname." - ".$kaur_umum->keterangan_jabatan."</option>";
+                                }
+                            }                             
                             ?>
                             </select> 
                         </div>
@@ -213,8 +234,11 @@
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="kaur_keuangan">
                             <?php 
+                            echo "<option value='".$data["keuangan_id"]."'>".$data["fullname_keuangan"]." - ".$data["keuangan_keterangan_jabatan"]."</option>";                    
                             foreach ($kaur_keuangan as $kaur_keuangan) {
-                                echo "<option value='".$kaur_keuangan->id."'>".$kaur_keuangan->fullname."</option>";
+                                if($kaur_keuangan->id != $data['keuangan_id']){
+                                echo "<option value='".$kaur_keuangan->id."'>".$kaur_keuangan->fullname." - ".$kaur_keuangan->keterangan_jabatan."</option>";
+                                }
                             }                           
                             ?>
                             </select> 
@@ -226,9 +250,12 @@
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="kaur_pelayanan">
                             <?php 
-                            foreach ($kaur_pelayanan as $kaur_pelayanan) {
-                                echo "<option value='".$kaur_pelayanan->id."'>".$kaur_pelayanan->fullname."</option>";
-                            }                           
+                           echo "<option value='".$data["pelayanan_id"]."'>".$data["fullname_pelayanan"]." - ".$data["pelayanan_keterangan_jabatan"]."</option>";                    
+                           foreach ($kaur_pelayanan as $kaur_pelayanan) {
+                               if($kaur_pelayanan->id != $data['pelayanan_id']){
+                               echo "<option value='".$kaur_pelayanan->id."'>".$kaur_pelayanan->fullname." - ".$kaur_pelayanan->keterangan_jabatan."</option>";
+                               }
+                           }                            
                             ?>
                             </select> 
                         </div>
@@ -237,11 +264,14 @@
                     <div class="form-group">
                         <label  class="control-label col-sm-4" for="">Bendahara</label>
                         <div class="col-sm-8">
-                            <select style='width: 100%;'  class="form-control select2" name="kaur_pelayanan">
+                            <select style='width: 100%;'  class="form-control select2" name="bendahara">
                             <?php 
-                            foreach ($bendahara as $bendahara) {
-                                echo "<option value='".$bendahara->id."'>".$bendahara->fullname."</option>";
-                            }                           
+                           echo "<option value='".$data["bendahara_id"]."'>".$data["fullname_bendahara"]." - ".$data["bendahara_keterangan_jabatan"]."</option>";                    
+                           foreach ($bendahara as $bendahara) {
+                               if($bendahara->id != $data['bendahara_id']){
+                               echo "<option value='".$bendahara->id."'>".$bendahara->fullname." - ".$bendahara->keterangan_jabatan."</option>";
+                               }
+                           }                             
                             ?>
                             </select> 
                         </div>
@@ -252,32 +282,72 @@
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="pertanahan">
                             <?php 
-                            foreach ($pertanahan as $pertanahan) {
-                                echo "<option value='".$pertanahan->id."'>".$pertanahan->fullname."</option>";
-                            }                           
+                           echo "<option value='".$data["pertanahan_id"]."'>".$data["fullname_pertanahan"]." - ".$data["pertanahan_keterangan_jabatan"]."</option>";                    
+                           foreach ($pertanahan as $pertanahan) {
+                               if($pertanahan->id != $data['pertanahan_id']){
+                               echo "<option value='".$pertanahan->id."'>".$pertanahan->fullname." - ".$pertanahan->keterangan_jabatan."</option>";
+                               }
+                           }                             
                             ?>
                             </select> 
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label  class="control-label col-sm-4" for="">Ketua BPD</label>
                         <div class="col-sm-8">
                             <select style='width: 100%;'  class="form-control select2" name="ketua_bpd">
                             <?php 
-                            foreach ($bpd as $bpd) {
-                                echo "<option value='".$bpd->id."'>".$bpd->fullname."</option>";
-                            }                           
+                            //echo "<option value='".$data["bpd_id"]."'>".$data["fullname_bpd"]." - ".$data["bpd_keterangan_jabatan"]."</option>";                    
+                            // foreach ($bpd as $bpd) {
+                            //     if($bpd->id != $data['bpd_id']){
+                            //     echo "<option value='".$bpd->id."'>".$bpd->fullname." - ".$bpd->keterangan_jabatan."</option>";
+                            //     }
+                            // }                            
                             ?>
                             </select> 
                         </div>
-                    </div>
+                    </div> -->
       </div>
       <input type="hidden" name="desa_id" value="<?php echo $data['id'];?>">
       </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
         <button class="btn btn-primary" onclick="save_edit_data_desa()">Save <i class="fa fa-save"></i></button>
+      </div>
+    </div> 
+  </div> 
+</div>
+
+<!-- Modal Edit Data Desa -->
+<div class="modal fade" id="modal_data_dusun" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Edit Data dusun</h3>
+      </div>
+      <?php echo form_open_multipart('', array('id'=>'data_dusun_form','class'=>'form-horizontal'));?>
+      <div class="modal-body form">
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Nama dusun</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="nama_dusun" value="" class="form-control"> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Alamat dusun</label>
+                        <div class="col-sm-8">
+                            <textarea  name="alamat_dusun" rows="2" cols="4"  class="form-control"></textarea>
+                        </div>
+                    </div>
+               
+      </div>
+      <input type="hidden" name="dusun_id" value="">
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="save_edit_data_dusun()">Save <i class="fa fa-save"></i></button>
       </div>
     </div> 
   </div> 

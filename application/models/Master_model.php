@@ -90,17 +90,53 @@ class Master_model extends CI_Model{
   }
 
   public function _get_desa_details($id){
-    $query = "SELECT d.id as id, d.nama_desa as nama_desa, d.alamat_desa as alamat_desa,
+    $query = "SELECT 
+    d.id as id, d.nama_desa as nama_desa, d.alamat_desa as alamat_desa,
+
+    kades.id as kades_id,
     kades.fullname as fullname_kades, 
+    kades.keterangan_jabatan as kades_keterangan_jabatan,
+
     sekdes.fullname as fullname_sekdes,
+    sekdes.id as sekdes_id,
+    sekdes.keterangan_jabatan as sekdes_keterangan_jabatan,
+
+    pertanahan.keterangan_jabatan as pertanahan_keterangan_jabatan,
     pertanahan.fullname as fullname_pertanahan,
+    pertanahan.id as pertanahan_id,
+
     pemerintahan.fullname as fullname_pemerintahan,
+    pemerintahan.id as pemerintahan_id,
+    pemerintahan.keterangan_jabatan as pemerintahan_keterangan_jabatan,
+
     pembangunan.fullname as fullname_pembangunan,
+    pembangunan.keterangan_jabatan as pembangunan_keterangan_jabatan,
+    pembangunan.id as pembangunan_id,
+
     pemberdayaan.fullname as fullname_pemberdayaan,
+    pemberdayaan.id as pemberdayaan_id,
+    pemberdayaan.keterangan_jabatan as pemberdayaan_keterangan_jabatan,
+
     umum.fullname as fullname_umum,
+    umum.id as umum_id,
+    umum.keterangan_jabatan as umum_keterangan_jabatan,
+
     pelayanan.fullname as fullname_pelayanan,
+    pelayanan.id as pelayanan_id,
+    pelayanan.keterangan_jabatan as pelayanan_keterangan_jabatan,
+
     keuangan.fullname as fullname_keuangan,
-    bendahara.fullname as fullname_bendahara
+    keuangan.id as keuangan_id,
+    keuangan.keterangan_jabatan as keuangan_keterangan_jabatan,
+
+    bendahara.fullname as fullname_bendahara,
+    bendahara.id as bendahara_id,
+    bendahara.keterangan_jabatan as bendahara_keterangan_jabatan,
+
+    bpd.fullname as fullname_bpd,
+    bpd.id as bpd_id,
+    bpd.keterangan_jabatan as bpd_keterangan_jabatan
+
      FROM desa as d, 
      users as kades, 
      users as sekdes, 
@@ -111,9 +147,12 @@ class Master_model extends CI_Model{
      users as umum,
      users as pelayanan,
      users as keuangan,
-     users as bendahara
+     users as bendahara,
+     users as bpd
+     
      WHERE 
      d.uid = kades.id AND
+     d.ketua_bpd = bpd.id AND
      d.pertanahan_uid = pertanahan.id AND 
      d.kasi_pemerintahan = pemerintahan.id AND 
      d.kasi_pembangunan = pembangunan.id AND 
