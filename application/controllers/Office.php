@@ -22,13 +22,14 @@ class Office extends CI_Controller{
 
   function sms_kirim(){
     $pilihan = strip_tags($this->input->post('pilihan_type'));    
-    $message = strip_tags($this->input->post('message'));
+    $message = strip_tags($this->input->post('message'))."(SMS dari Sistem SiDesa Gantung)";
     $desa_id = $this->session->userdata('desa_id');
     switch ($pilihan) {
       case 0:
         $perDesa = $this->master_model->get_user_on($desa_id);
         foreach ($perDesa->result() as $perDesa) {
-          sms_notifikasi($perDesa->hp, $message);
+          $pesan = "Kepada Yth.".$perDesa->keterangan_jabatan.": ".$message;
+          sms_notifikasi($perDesa->hp, $pesan);
         }
         echo json_encode(array("status" => TRUE));
         break;
@@ -37,17 +38,20 @@ class Office extends CI_Controller{
         $dusun = $this->master_model->get_rt_dusun($dusun_id);
         $uidKadus = $dusun->row_array();
         $kadus = $this->master_model->_get_user_id($uidKadus['uid'])->row_array();
-        sms_notifikasi($kadus['hp'], $message);
+        $pesan = "Kepada Yth.".$kadus['keterangan_jabatan'].": ".$message;
+        sms_notifikasi($kadus['hp'], $pesan);
         foreach ($dusun->result() as $perDusun) {
           $rt = $this->master_model->_get_user_id($perDusun->uid)->row_array();
-          sms_notifikasi($rt['hp'], $message);
+          $pesan = "Kepada Yth.".$rt['keterangan_jabatan'].": ".$message;
+          sms_notifikasi($rt['hp'], $pesan);
         }        
         echo json_encode(array("status" => TRUE));
         break;
       case 2:
       $pilihan_user = strip_tags($this->input->post('pilihan_user'));
       $perUser = $this->master_model->_get_user_id($pilihan_user)->row_array();
-      sms_notifikasi($perUser['hp'],$message);
+      $pesan = "Kepada Yth.".$perUser['keterangan_jabatan'].": ".$message;
+      sms_notifikasi($perUser['hp'],$pesan);
       echo json_encode(array("status" => TRUE));
         break;
     }
