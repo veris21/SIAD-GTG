@@ -83,7 +83,7 @@
 				<td colspan="2">&nbsp;</td>
 			</tr>
 			<tr>
-				<td colspan="2">Batas - batas tanah :</td>
+				<td colspan="2">Batas - Batas tanah :</td>
 			</tr>
 			<tr>
 				<td>Batas Utara : <b><?php echo $data['tnhUtara']; ?></b></td>
@@ -92,16 +92,10 @@
 			<tr>
 				<td>Batas Selatan : <b><?php echo $data['tnhSelatan']; ?></b></td>
 				<td>Batas Barat : <b><?php echo $data['tnhBarat']; ?></b></td>
-			</tr>
-			<tr>
-				<td colspan="2">&nbsp;</td>
-			</tr>
+			</tr>			
 			<tr>
 				<td colspan="2">Tanah tersebut diusahakan sejak tahun <b><?php echo $data['tnhKet']; ?></b> sampai sekarang ini, dan tanah tersebut tidak pernah dalam sengketa, digadaikan, ataupun tersangkut suatu perkara dipengadilan. <br> Surat pernyataan ini saya buat dengan sebenarnya dengan penuh tanggungjawab, dan saya bersedia untuk mengangkat sumpah bila diperlukan, serta bersedia dituntut dihadapan pihak yang berwenang apabila dikemudian hari terjadi perbuatan hukum. <br> Demikian Surat Pernyataan ini saya buat untuk dapat dipergunakan sebagaimana mestinya.</td>
-			</tr>
-			<tr>
-				<td colspan="2">&nbsp;</td>
-			</tr>
+			</tr>			
 		</table>
 		<table>
 			<tr>
@@ -118,19 +112,19 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="4">&nbsp;<br><br></td>
+				<td colspan="4"><br></td>
 			</tr>
 			<tr>
 				<td>1. Nama</td>
-				<td>: <b><?php echo $data['saksi1Nama']; ?></b?</td>
+				<td>: <b><?php if($data['saksi1Nama']!=''){echo $data['saksi1Nama'];}else{echo "..............";} ?></b?</td>
 				<td>3. Nama</td>
-				<td>: <b><?php echo $data['saksi3Nama']; ?></b></td>
+				<td>: <b><?php if($data['saksi3Nama']!=''){echo $data['saks31Nama'];}else{echo "..............";}  ?></b></td>
 			</tr>
 			<tr>
 				<td>Jabatan</td>
-				<td>: <?php echo $data['saksi1Jab']; ?></td>
+				<td>: <?php if($data['saksi1Jab']!=''){echo $data['saksi1Jab'];}else{echo "..............";}  ?></td>
 				<td>Jabatan</td>
-				<td>: <?php echo $data['saksi3Jab']; ?></td>
+				<td>: <?php if($data['saksi3Jab']!=''){echo $data['saksi3Jab'];}else{echo "..............";}  ?></td>
 			</tr>
 			<tr>
 				<td>Tanda Tangan</td>
@@ -139,19 +133,19 @@
 				<td>: (. . . . . . . . . . . .)</td>
 			</tr>
 			<tr>
-				<td colspan="4">&nbsp;</td>
+				<td colspan="4"><br></td>
 			</tr>
 			<tr>
 				<td>2. Nama</td>
-				<td>: <b><?php echo $data['saksi2Nama']; ?></b></td>
+				<td>: <b><?php if($data['saksi2Nama']!=''){echo $data['saksi2Nama'];}else{echo "..............";}  ?></b></td>
 				<td>4. Nama</td>
-				<td>: <b><?php echo $data['saksi4Nama']; ?></b></td>
+				<td>: <b><?php if($data['saksi4Nama']!=''){echo $data['saksi4Nama'];}else{echo "..............";}  ?></b></td>
 			</tr>
 			<tr>
 				<td>Jabatan</td>
-				<td>: <?php echo $data['saksi2Jab']; ?></td>
+				<td>: <?php if($data['saksi2Jab']!=''){echo $data['saksi2Jab'];}else{echo "..............";}  ?></td>
 				<td>Jabatan</td>
-				<td>: <?php echo $data['saksi4Jab']; ?></td>
+				<td>: <?php if($data['saksi4Jab']!=''){echo $data['saksi4Jab'];}else{echo "..............";}  ?></td>
 			</tr>
 			<tr>
 				<td>Tanda Tangan</td>

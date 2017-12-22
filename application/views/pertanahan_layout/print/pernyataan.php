@@ -80,116 +80,84 @@
         </tr>
         <tr>
             <td colspan="2">
-                <ul>
-                    <li>Utara berbatasan dengan <b><?php echo $data['utara'];?></b></li>
-                    <li>Timur berbatasan dengan <b><?php echo $data['timur'];?></b></li>
-                </ul>
+                - Utara berbatasan dengan <b><?php echo $data['utara'];?></b><br> 
+                - Timur berbatasan dengan <b><?php echo $data['timur'];?></b>
             </td>
             <td colspan="2">
-                <ul>
-                    <li>Selatan berbatasan dengan <b><?php echo $data['selatan'];?></b></li>
-                    <li>Barat berbatasan dengan <b><?php echo $data['barat'];?></b></li>
-                </ul>
+                - Selatan berbatasan dengan <b><?php echo $data['selatan'];?></b><br> 
+                - Barat berbatasan dengan <b><?php echo $data['barat'];?></b>
             </td>
         </tr>
         <tr>
             <td colspan="4">
                 <p style="text-align:justify;">Tanah tersebut diusahakan sejak tahun <?php echo $data['tahun_kelola'];?> Sampai sekarang ini, dan tanah tersebut tidak pernah dalam sengketa, digadaikan, ataupun tersangkut suatu perkara dipengadilan.</p>
-                <p style="text-align:justify;">Surat Pernyataan ini saya buat dengan sebenarnya dengan penuh tanggungjawab, dan saya bersedia untuk mengangkat sumpah bila diperlukan, serta bersedia dituntut dihadapan pihak yang berwenang apabila pernyataan ini tidak benar dan saya tidak akan melibatkan para pihak yang mengesahkan pernyataan ini apabila dikemudian hari terjadi perbuatan hukum</p>
-                <p>Demikian Surat Permohonan ini dibuat untuk dapat dipergunakan sebagaimana mestinya.</p>
+                <p style="text-align:justify;">Surat Pernyataan ini saya buat dengan sebenarnya dengan penuh tanggungjawab, dan saya bersedia untuk mengangkat sumpah bila diperlukan, serta bersedia dituntut dihadapan pihak yang berwenang apabila pernyataan ini tidak benar dan saya tidak akan melibatkan para pihak yang mengesahkan pernyataan ini apabila dikemudian hari terjadi perbuatan hukum.</p>
+                <!-- <p>Demikian Surat Permohonan ini dibuat untuk dapat dipergunakan sebagaimana mestinya.</p> -->
             </td>
         </tr>
 </table> 
-<table>
+<table width="100%">
         <tr>
-        <td align="center" width="40%">
+        <td valign="top" colspan="2" width="50%"><p>
+        Nomor :<b><?php echo "181/".$data['id']."-PER/".strtoupper($data['nama_desa'])."/".romawi(mdate("%m", $data['time']))."/".mdate("%Y", $data['time']);?></b></p>
+        <center>
             <img width="90" src="<?php echo base_url().QRCODE.$data['qr_link'];?>" alt="logo"><br>
-            <i style="font-size:9px;font-family: Consolas, Monaco, Courier New, Courier, monospace;">(Dokumen ini di generate otomatis melalui sistem SiDesa untuk melihat validasi dokumen silahkan scan Kode QR secara online)</i>
+            <i style="font-size:9px;font-family: Consolas, Monaco, Courier New, Courier, monospace;">(Dokumen ini di generate otomatis melalui sistem SiDesa)</i>
+        </center>
         </td>
-        <td colspan="2" width="20%"></td>
-        <td align="center" width="40%">
+        <td colspan="2" align="center" width="50%">
             <p><?php echo $data['nama_desa'].", ".mdate("%d", $data['time'])." ".bulan(mdate("%m", $data['time']))." ".mdate("%Y", $data['time']);?>
-            <br>Yang membuat pernyataan,<br><br>&nbsp;<br><br><i style="font-size:9px;text-align:left;opacity:0.5;">materai 6000</i><br><br><br>
+            <br>Yang membuat pernyataan,<br><br><br><i style="font-size:9px;text-align:left;opacity:0.5;">materai 6000</i><br><br><br>
             <b><?php echo $data['nama'];?></b></p>
         </td>
         </tr>
-</table>
-<table>
+<!-- </table>
+<table >     -->
+
         <tr>
-            <td align="left" colspan="4">Saksi - Saksi</td>
+            <td colspan="4"  width="100%">Saksi - Saksi</td>
         </tr>
+
         <tr style="font-size:10px;">
-        <td width="30%">
-            <ul>
-                <li>Nama : <b><?php echo $data['saksi1_nama'];?></b></li>
-                <li>Pekerjaan : <b><?php echo $data['saksi1_pekerjaan'];?></b></li>
-                <li>Alamat : <b><?php echo $data['saksi1_alamat'];?></b></li>                
-                <li>Tanda Tangan :</li>
-            </ul>
-        </td>
-        <td width="20%" valign="bottom" align="center">
-            (..............)
-        </td>
-        <td width="30%">
-            <ul>
-                <li>Nama : <b><?php echo $data['saksi3_nama'];?></b></li>                
-                <li>Pekerjaan : <b><?php echo $data['saksi3_pekerjaan'];?></b></li>
-                <li>Alamat : <b><?php echo $data['saksi3_alamat'];?></b></li>
-                <li>Tanda Tangan :</li>
-            </ul>
-        </td>
-        <td width="20%" valign="bottom" align="center">
-            (..............)
-        </td>
+            <td width="25%">
+            - Nama : <b><?php if($data['saksi1_nama']!=''){echo $data['saksi1_nama'];}else{echo "...........";}?></b><br> 
+            - Pekerjaan : <b><?php if($data['saksi1_pekerjaan']!=''){echo $data['saksi1_pekerjaan'];}else{echo "...........";}?></b><br> 
+            - Alamat : <b><?php if($data['saksi1_alamat']!=''){echo $data['saksi1_alamat'];}else{echo "...........";}?></b><br> 
+            - Tanda Tangan : (..............)
+            </td>
+
+            <td width="25%">
+            - Nama : <b><?php if($data['saksi2_nama']!=''){echo $data['saksi2_nama'];}else{echo "...........";}?></b><br> 
+            - Pekerjaan : <b><?php if($data['saksi2_pekerjaan']!=''){echo $data['saksi2_pekerjaan'];}else{echo "...........";}?></b><br> 
+            - Alamat : <b><?php if($data['saksi2_alamat']!=''){echo $data['saksi2_alamat'];}else{echo "...........";}?></b><br> 
+            - Tanda Tangan : (..............)
+            </td>
+
+            <td  width="25%">
+            - Nama : <b><?php if($data['saksi3_nama']!=''){echo $data['saksi3_nama'];}else{echo "...........";}?></b><br> 
+            - Pekerjaan : <b><?php if($data['saksi3_pekerjaan']!=''){echo $data['saksi3_pekerjaan'];}else{echo "...........";}?></b><br> 
+            - Alamat : <b><?php if($data['saksi3_alamat']!=''){echo $data['saksi3_alamat'];}else{echo "...........";}?></b><br> 
+            - Tanda Tangan : (..............)
+            </td>
+
+            <td width="25%">
+            - Nama : <b><?php if($data['saksi4_nama']!=''){echo $data['saksi4_nama'];}else{echo "...........";}?></b><br> 
+            - Pekerjaan : <b><?php if($data['saksi4_pekerjaaan']!=''){echo $data['saksi4_pekerjaaan'];}else{echo "...........";}?></b><br> 
+            - Alamat : <b><?php if($data['saksi4_alamat']!=''){echo $data['saksi4_alamat'];}else{echo "...........";}?></b><br> 
+            - Tanda Tangan : (..............)
+            </td>
         </tr>
-        <tr style="font-size:10px;">
-        <td width="30%">
-            <ul>
-                <li>Nama : <b><?php echo $data['saksi2_nama'];?></b></li>                
-                <li>Pekerjaan : <b><?php echo $data['saksi2_pekerjaan'];?></b></li>
-                <li>Alamat : <b><?php echo $data['saksi2_alamat'];?></b></li>
-                <li>Tanda Tangan :</li>
-            </ul>
-        </td>
-        <td width="20%" valign="bottom" align="center">
-            (..............)
-        </td>
-        <td width="30%">
-            <ul>
-                <li>Nama : <b><?php echo $data['saksi4_nama'];?></b></li>                
-                <li>Pekerjaan : <b><?php echo $data['saksi4_pekerjaan'];?></b></li>
-                <li>Alamat : <b><?php echo $data['saksi4_alamat'];?></b></li>
-                <li>Tanda Tangan :</li>
-            </ul>
-        </td>
-        <td width="20%" valign="bottom" align="center">
-            (..............)
-        </td>
-        </tr>
-</table> 
-<br><br><br>
-<table>
-    <tr>
-        <td align="left" width="50%">
-            <p class="backed">
-            Nomor : <b style="font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo "181/".$data['id']."-PERNYATAAN/".strtoupper($data['nama_desa'])."/".mdate("%m/%Y", $data['time']);?></b><br>
-            Tanggal : <b style="font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo mdate("%d", $data['time'])." ".bulan(mdate("%m", $data['time']))." ".mdate("%Y", $data['time']);?></b>        
-            </p>
-       </td>
-       <td width="50%" ></td>
-    </tr>
-</table>
-<table>
+        <tr><td width="100%" colspan="4"><br></td></tr>
         <tr>
-        <td colspan="4">
-        <p align="center">Mengetahui, <br>
-            KEPALA DESA <?php echo strtoupper($data['nama_desa']);?>
-            <br><br>&nbsp;<br><br><br><br><br>
-            <b><?php echo $data['fullname'];?></b>
-        </p>
-        </td>
+            <td valign="bottom" colspan="4" width="100%">
+                <p align="center">Mengetahui, <br>
+                    KEPALA DESA <?php echo strtoupper($data['nama_desa']);?>
+                    <br><br><br><br><br><br>
+                    <b><?php echo $data['fullname'];?></b>
+                </p>
+            </td>
         </tr>
-  </table>
+</table>
 </div>
 </body>
 </html>

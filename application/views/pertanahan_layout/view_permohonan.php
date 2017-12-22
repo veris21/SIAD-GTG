@@ -10,6 +10,31 @@
 </section>
 <section class="content">
     <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-body">
+                <?php switch ($data['type_yang_disetujui']) {
+                        case 1:
+                        ?> 
+                        <button class="btn btn-flat btn-success btn-block">Surat Keterangan Tanah (SKT)</button>
+                        <?php
+                            break;
+                        case 2:
+                        ?> 
+                        <button class="btn btn-flat btn-warning btn-block">Surat Keterangan Rekomendasi</button>
+                        <?php
+                            break;                       
+                        default:
+                        ?> 
+                        <p class="well text-center">Belum Ada Keputusan Persetujuan</p>
+                        <?php
+                            break;
+                    } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-7">
             <div class="box box-info">
                 <div class="box-header">
@@ -54,38 +79,22 @@
                     <dt>Status Tanah</dt>
                     <dd><?php echo  $data['status_tanah'];?></dd>
                     <br>
-                    <dt>Status Persetujuan </dt>
-                    <dd><?php switch ($data['type_yang_disetujui']) {
-                        case 1:
-                        ?> 
-                        <button class="btn btn-flat btn-success">Surat Keterangan Tanah (SKT)</button>
-                        <?php
-                            break;
-                        case 2:
-                        ?> 
-                        <button class="btn btn-flat btn-warning">Surat Keterangan Rekomendasi</button>
-                        <?php
-                            break;                       
-                        default:
-                        ?> 
-                        <p class="well text-center">Belum Ada Keputusan Persetujuan</p>
-                        <?php
-                            break;
-                    } ?></dd>
+                    
                 </div>
             </div>        
         </div>
         <div class="col-md-5">
             <!-- Foto Pemohon -->
             <?php if($data['foto']!=''||$data['foto']!=null){ ?>
-
-            <img class="img img-responsive img-rounded" src="<?php echo base_url().UPLOADER.'foto_pemohon/'.$data['foto'];?>" alt="">
+            <a class="fancybox" rel="fancybox" href="<?php echo base_url().UPLOADER.'foto_pemohon/'.$data['foto'];?>" title="Lampiran FC KTP Pemohon <?php echo $data['nama']; ?>">   
+                <img class="img img-responsive img-rounded" src="<?php echo base_url().UPLOADER.'foto_pemohon/'.$data['foto'];?>" alt="">
+            </a>
             <br>
             <?php } ?>
             <!--  -->
             <!-- Scan Lampiran / Fotocopy KTP atau Pengantar -->
             <?php if($data['scan_link']!=''||$data['scan_link']!=null){ ?>
-             <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['scan_link'];?>" title="Lampiran dari Pemohon <?php echo $data['nama']; ?>">
+             <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['scan_link'];?>" title="Lampiran dari Pengantar Kadus <?php echo $data['nama']; ?>">
                 <img class="img img-responsive img-rounded" src="<?php echo base_url().KTP.$data['scan_link'];?>" alt="">
              </a>
              <br>
@@ -173,7 +182,7 @@
                         </div>
                         </div>
                         <div class="col-md-3" align="center">
-                        <img class="img img-responsive img-rounded hidden-xs hidden-sm" src="<?php echo QRCODE.$pernyataan['qr_link'];?>" alt="">
+                        <img class="img img-responsive img-rounded hidden-xs hidden-sm" src="<?php echo base_url().QRCODE.$pernyataan['qr_link'];?>" alt="">
                         </div>
                         </div>
                         <hr>
@@ -220,12 +229,12 @@
                         <div class="pull-right">
                         <?php
                         // IF DATA ID NOW = ID PEJABAT PERTANAHAN
-                        // $pejabat_pertanahan = $this->master_model->_get_desa_id($this->session->userdata('desa_id'))->row_array();
-                        // $id_pejabat_pertanahan = $pejabat_pertanahan['pertanahan_uid'];
-                        // $id = $this->session->userdata('id');                                             
-                        //  if($id == $id_pejabat_pertanahan) { ?>
+                        $pejabat_pertanahan = $this->master_model->_get_desa_id($this->session->userdata('desa_id'))->row_array();
+                        $id_pejabat_pertanahan = $pejabat_pertanahan['kasi_pemerintahan'];
+                        $id = $this->session->userdata('id');                                             
+                         if($id == $id_pejabat_pertanahan && $pernyataan['status_proses']!=1) { ?>
                             <button class="btn btn-primary btn-flat btn-sm" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
-                        <?php //} ?>
+                        <?php } ?>
                         <?php echo anchor('cetak/pernyataan/'.$pernyataan['id'], 'Cetak Pernyataan <i class="fa fa-print"></i>', array('class'=>'btn btn-warning btn-sm','target'=>'__blank')); ?>
 
                             <!-- <button onclick="cetak_pernyataan(<?php echo $pernyataan['id'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button> -->

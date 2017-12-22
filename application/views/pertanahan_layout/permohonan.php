@@ -210,12 +210,12 @@
               </tr>
           </table>
           <div class="form-group">
-          <label for="scan_file">Foto Pemohon</label>
+          <label for="scan_file">Scan KTP</label>
           <input type="file" name="foto" class="form-control">
           </div>
           <hr>
           <div class="form-group">
-          <label for="">Scan KTP/ Pengantar Kadus</label>
+          <label for="">Scan Surat Pengantar Kadus</label>
           <input type="file" name="scan_link" class="form-control">
           </div>
           <hr>

@@ -53,7 +53,7 @@ class Notifikasi_model extends CI_Model{
   }
 
 
-  public function _get_data_kasi_pertanahan($desa_id){
+  public function _get_data_kasi_pemerintahan($desa_id){
     $query = "SELECT u.id as id,
     u.hp as hp,
     d.id as desa_id,
@@ -61,7 +61,7 @@ class Notifikasi_model extends CI_Model{
     u.fullname as fullname,
     j.jabatan as jabatan
     FROM desa as d, users as u, jabatan as j
-    WHERE u.id = d.pertanahan_uid AND j.id = u.jabatan_id AND d.id = $desa_id";
+    WHERE u.id = d.kasi_pemerintahan AND j.id = u.jabatan_id AND d.id = $desa_id";
     return $this->db->query($query);
   }
 }

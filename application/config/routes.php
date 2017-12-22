@@ -78,7 +78,7 @@ $route['permohonan/setuju']              = 'pertanahan/permohonan_setuju';
 // ALTERNATIF DARI PERMASALAHAN SSL 
 $route['cetak/permohonan/(:any)']         = 'pertanahan/permohonan_print_alternatif/$1';
 $route['cetak/pernyataan/(:any)']         = 'pertanahan/pernyataan_print_alternatif/$1';
-
+$route['cetak/berita_acara/(:any)']       = 'pertanahan/berita_acara_print_alternatif/$1';
 
 $route['pernyataan/input']                = 'pertanahan/pernyataan_input';
 $route['pernyataan/cetak/(:any)']         = 'pertanahan/pernyataan_print/$1';

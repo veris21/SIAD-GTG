@@ -39,7 +39,7 @@
             <b>".$pemeriksa_4['fullname']."</b>, 
             <b>".$pemeriksa_5['fullname']."</b>
             </td>";
-            echo "<td>".anchor('berita_acara/view/'.$data->time_input, '<i class="fa fa-eye"></i>' ,array('class'=>'btn btn-success btn-xs btn-flat'))."</td>";
+            echo "<td>".anchor('berita_acara/view/'.$data->time_input, '<i class="fa fa-eye"></i>' , array('class'=>'btn btn-success btn-xs btn-flat')).anchor('cetak/berita_acara/'.$data->time_input, '<i class="fa fa-print"></i>' , array('class'=>'btn btn-default btn-xs btn-flat','target'=>'__blank'))."</td>";
             echo "</tr>";
         }
             ?>

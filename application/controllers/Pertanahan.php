@@ -187,7 +187,6 @@ class Pertanahan extends CI_Controller{
   }
 
   public function pernyataan_input(){ 
-
     $saksi1_nama      = strip_tags($this->input->post('saksi1_nama'));
     $saksi1_alamat      = strip_tags($this->input->post('saksi1_alamat'));
     $saksi1_pekerjaan = strip_tags($this->input->post('saksi1_pekerjaan'));
@@ -211,9 +210,8 @@ class Pertanahan extends CI_Controller{
 
     // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
     // ==============================
-
     // $desa_id = $this->session->userdata('desa_id');
-    // $hp_pertanahan = $this->notifikasi_model->_get_data_kasi_pertanahan($desa_id)->row_array();
+    // $hp_pertanahan = $this->notifikasi_model->_get_data_kasi_pemerintahan($desa_id)->row_array();
     // $kepada_id = $hp_pertanahan['id'];
     // $jabatan = $hp_pertanahan['jabatan'];
     // $nama_desa = $hp_pertanahan['nama_desa'];
@@ -306,11 +304,17 @@ class Pertanahan extends CI_Controller{
   public function berita_acara_print($id){
     $data['title'] = TITLE.'Cetak Berita Acara';
     $data['data']  = $this->pertanahan_model->_get_pernyataan_one($id)->row_array();
-    // $this->load->view(PERTANAHAN.'print/berita_acara', $data);
     $html = $this->load->view(PERTANAHAN.'print/berita_acara', $data, TRUE);
     if($this->pdfgenerator->generate($html, $data['data']['nama']." - Berita Acara Pemeriksaan (".date('d - M - Y').")")){
       echo json_encode(array("status" => TRUE));
     }
+  }
+
+  public function berita_acara_print_alternatif($id){
+    $data['title'] = TITLE.'Cetak Berita Acara';
+    $data['data']  = $this->pertanahan_model->_get_pernyataan_one($id)->row_array();
+    $html = $this->load->view(PERTANAHAN.'print/berita_acara', $data, TRUE);
+    $this->pdfgenerator->generate($html, $data['data']['nama']." - Berita Acara Pemeriksaan (".date('d - M - Y').")");
   }
 
   public function berita_acara_input(){
