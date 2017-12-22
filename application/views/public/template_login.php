@@ -36,7 +36,7 @@
     top: 0; bottom: 0;
     z-index: -1;
     display: block;
-    background-image: url(<?php echo base_url('assets/minion.jpg'); ?>);
+    background-image: url(<?php echo base_url('assets/back-login.jpg'); ?>);
     width: 100%;
     height: 100%;
     background-size: cover;
