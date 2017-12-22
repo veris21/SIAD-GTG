@@ -7,13 +7,10 @@
   </div>
   
   <div class="login-box-body"> 
-
     <center id="overlay">
-      <img width="50%" class="img img-responsive" src="<?php echo base_url('assets/nyapu.gif'); ?>" alt="">
+      <img width="70%" class="img img-responsive" src="<?php echo base_url('assets/nyapu.gif'); ?>" alt="">
     </center>
-
   <div class="auth-form">
-
     <p class="login-box-msg">Silahkan Login Dengan ID &amp; Password Untuk Masuk kedalam Sistem</p>
     <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="user ID" name="uid">
@@ -28,9 +25,7 @@
           <a onclick="validate()" name="login" class="btn btn-primary btn-block btn-flat">Log In</a>
         </div><!-- /.col -->
       </div>
-
-  </div>
-    
+  </div>    
   </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->
 </form>
