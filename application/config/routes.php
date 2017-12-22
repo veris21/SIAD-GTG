@@ -19,6 +19,8 @@ $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/
 $route['login']                     = 'auth/login';
 $route['logout']                    = 'auth/logout';
 $route['setting/akun']              = 'auth/setting';
+$route['get/uid/(:any)']            = 'auth/_get_uid/$1';
+$route['auth']                      = 'auth/validate';
 
 $route['public']                    = 'stream';
 

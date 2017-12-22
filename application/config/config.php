@@ -23,9 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// $config['base_url'] = 'https://si-desa.id/';
+$config['base_url'] = 'https://si-desa.id/';
 
-$config['base_url'] = 'http://localhost/SIA-GTG.github/';
+// $config['base_url'] = 'http://localhost/SIA-GTG.github/';
 
 /*
 |--------------------------------------------------------------------------

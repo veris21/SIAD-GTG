@@ -6,10 +6,6 @@ class Disposisi extends CI_Controller{
   public function __construct()
   {
     parent::__construct();
-    $this->load->library('html2pdf');
-    // require_once (APPPATH.'controllers/Notifikasi.php');
-    // $notifikasi = new Notifikasi();
-    // $this->load->model('master_model');
   }
 
   public function list($id)
@@ -36,7 +32,7 @@ class Disposisi extends CI_Controller{
     $to = $kepada['hp'];
     $message = "DISPOSISI : ".$dari."#SURAT: ".$pengirim."#Perihal ".$perihal."#Memo : ".$isi."! (SiDesa Sistem)";
     sms_notifikasi($to, $message);
-    $params['data'] = BASE_URL.'disposisi/validasi/'.$sekarang;
+    $params['data'] = base_url('disposisi/validasi/'.$sekarang);
     $params['level'] = 'M';
     $params['size'] = 10;
     $params['savename'] = FCPATH.'assets/uploader/qr_code/'.$sekarang.'.png';

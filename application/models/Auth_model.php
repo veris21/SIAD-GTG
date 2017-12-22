@@ -22,4 +22,11 @@ class Auth_model extends CI_Model{
     return $this->db->get_where('users', array('id'=>$id));
   }
 
+  public function _get_uid_data($id){
+    $this->db->select('*')
+    ->from('users')
+    ->where('uid', $id);
+    return $this->db->get();
+  }
+
 }

@@ -57,7 +57,7 @@
               <dd><?php echo $this->session->userdata('jabatan');?></dd>
               <br>
               <dt>Status Jabatan Administrasi</dt>
-              <dd></dd>
+              <dd><?php echo $this->session->userdata('keterangan_jabatan');?></dd>
               <br>
               <dt>Kontak yang digunakan</dt>
               <dd><?php echo $this->session->userdata('hp');?></dd>
