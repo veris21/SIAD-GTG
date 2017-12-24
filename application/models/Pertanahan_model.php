@@ -132,6 +132,10 @@ class Pertanahan_model extends CI_Model{
     return $this->db->get_where('data_koordinat', array('id_data_link'=>$id));
   }
 
+  public function _get_data_link($id){
+    return $this->db->get_where('data_link', array('tanah_id'=>$id));
+  }
+
 }
 
 /*    Pertanahan Model

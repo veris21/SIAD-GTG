@@ -27,6 +27,15 @@
             </div>
             <div class="box-body">
                  <?php 
+                 if($titik_tengah != null){
+                     echo "<div class='row'>";
+                     echo "<div class='col-md-6'>";
+                     echo "<ul><li>Latitude : ".$titik_tengah['lat']."</li><li>Longitude : ".$titik_tengah['lng']."</li></ul>";
+                     echo "</div>";
+                     echo "<div class='col-md-6'>";
+                     echo "<p>".$titik_tengah['keterangan']."</p>";
+                     echo "</div>";
+                     echo "</div>";
                  if($patok->num_rows() > 0){
                      $n = 1;
                      foreach($patok->result() as $patok){
@@ -51,7 +60,16 @@
                  <div class="well">
                     <h5 class="text-center">Data Koordinat Patok Belum Ada !!</h5>
                  </div>
-                 <?php } ?>
+                 <?php }
+                 }else{
+                    ?>
+                    <div class="well">
+                       <h5 class="text-center">Titik Tengah Tanah Belum di Definisikan !!</h5>                    
+                    </div>
+                    <button onclick="add_titik_tengah()" class="btn btn-success btn-flat btn-block btn-sm">Input Koordinat Titik Tengah Data <i class="fa fa-plus"></i></button>
+                    <?php   
+                                
+                 } ?>
             </div>
         </div>
         </div>

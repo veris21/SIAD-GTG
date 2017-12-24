@@ -236,6 +236,27 @@ function cari_data_skt(){
     $('#modal_user').modal('show');
   }
 
+  function add_titik_tengah(){
+    var startPos;
+    var geoOptions = {
+      enableHighAccuracy: true
+    }
+    var geoSuccess = function(position) {
+      startPos = position;
+      swal('Buka Kunci GPS','Lat : '+startPos.coords.latitude +' Lng : '+startPos.coords.longitude,'success');
+    };
+    var geoError = function(error) {
+      console.log('Error occurred. Error code: ' + error.code);
+      // error.code can be:
+      //   0: unknown error
+      //   1: permission denied
+      //   2: position unavailable (error response from location provider)
+      //   3: timed out
+    };
+    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);    
+  }
+  
+
 /* ===================================================*/
 /*/ Fungsi Cari Data /*/
 function cari_data() {

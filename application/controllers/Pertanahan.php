@@ -296,7 +296,8 @@ class Pertanahan extends CI_Controller{
     $data['pemeriksa_2'] = $this->auth_model->get_user_id($data['data']['pemeriksa_2_id'])->row_array();
     $data['pemeriksa_3'] = $this->auth_model->get_user_id($data['data']['pemeriksa_3_id'])->row_array();
     $data['pemeriksa_4'] = $this->auth_model->get_user_id($data['data']['pemeriksa_4_id'])->row_array();
-    $data['patok']       = $this->pertanahan_model->_get_data_patok($data['data']['id']); 
+    $data['titik_tengah'] = $this->pertanahan_model->_get_data_link($data['data']['id'])->row_array();
+    $data['patok']        = $this->pertanahan_model->_get_data_patok($data['titik_tengah']['id']); 
     $data['main_content'] = PERTANAHAN.'detail_berita_acara';
     $this->load->view('template', $data);
   }

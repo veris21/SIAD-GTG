@@ -241,6 +241,24 @@
         <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
-  </div>
-<?php //endif; ?> -->
+  </div>-->
+  <?php //endif; ?>
+
+<?php if($this->session->userdata('jabatan') == 'PERTANAHAN'){; ?>
+<div class="row">
+<div class="col-lg-12 col-xs-12">
+      <div class="small-box bg-purple">
+        <div class="inner">
+          <h3>GPS</h3>
+        </div>
+        <div class="icon">
+          <i class="fa fa-map-o"></i>
+        </div>
+        <a onclick="add_titik_tengah()" class="small-box-footer">Aktifkan Data GPS <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+</div>
+<?php 
+}
+?>
 </section>
