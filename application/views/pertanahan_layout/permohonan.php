@@ -211,17 +211,17 @@
           </table>
           <div class="form-group">
           <label for="scan_file">Scan KTP</label>
-          <input type="file" name="foto" class="form-control">
+          <input type="file" name="foto" class="form-control" accept="image/*" >
           </div>
           <hr>
           <div class="form-group">
           <label for="">Scan Surat Pengantar Kadus</label>
-          <input type="file" name="scan_link" class="form-control">
+          <input type="file" name="scan_link" class="form-control" accept="image/*" >
           </div>
           <hr>
           <div class="form-group">
           <label for="">Bukti Pembayaran PBB</label>
-          <input type="file" name="pbb" class="form-control">
+          <input type="file" name="pbb" class="form-control" accept="image/*" >
           </div>
           <hr>
           <div class="pull-right">
