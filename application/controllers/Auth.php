@@ -41,6 +41,7 @@ class Auth extends CI_Controller{
               'fullname'    =>$data['fullname'],
               'jabatan'     =>$data['jabatan'],
               'desa_id'     =>$data['desa_id'],
+              'keterangan_jabatan' => $data['keterangan_jabatan'],
               'avatar'      =>$data['avatar'],
               'hp'          =>$data['hp'],
               'last_login'  =>$data['time']

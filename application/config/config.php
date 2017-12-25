@@ -24,9 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'https://si-desa.id/';
-
 // $config['base_url'] = 'http://localhost/SIA-GTG.github/';
-
 /*
 |--------------------------------------------------------------------------
 | Index File

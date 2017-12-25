@@ -49,8 +49,26 @@ class Arsip_model extends CI_Model{
     arsip.perihal as perihal,
     arsip.tanggal_surat as tanggal_surat,
     arsip.time as time,
-    arsip.scan_link as scan_link
+    arsip.scan_link as scan_link,
+    arsip.scan_balasan as scan_balasan,
+    arsip.time_balasan as time_balasan,
+    arsip.id_pembalas as id_pembalas,
+    arsip.status as status
      FROM arsip_masuk as arsip, klasifikasi_surat as klasifikasi WHERE klasifikasi.id = arsip.klasifikasi_id AND time=$id";
     return $this->db->query($query);
+  }
+
+
+  public function _post_arsip_balasan($id, $insert){
+    $this->db->where('id', $id);
+    return $this->db->update('arsip_masuk', $insert);
+  }
+
+  public function cari_data($id){
+    $this->db->like('pengirim', $id);
+    $this->db->or_like('nomor_surat', $id);
+    $this->db->or_like('perihal', $id);
+    $this->db->or_like('sifat', $id);
+    return $this->db->get('arsip_masuk');
   }
 }

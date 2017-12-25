@@ -18,6 +18,8 @@ var arsip_method;
 var message = '';
 var maksimal;
 var sisa;
+
+
 function refresh(){
   location.reload();
 }
@@ -121,6 +123,41 @@ _________________________________________________
 
 // TODO: SETTING Untuk Pencarian
 
+function cari_data_arsip(){
+  event.preventDefault();
+  var minLength = 6;
+  var data = $('[name="cari_arsip"]').val();
+  if(data.length < minLength ){
+    $('#label').text('Input Minimal 6 Karakter');
+    $('#loader').show();
+  }else{
+    $('#label').text('');
+    $('#loader').show();
+    $.ajax({
+      url: baseUrl+'arsip/cari_data',
+      type:"GET",
+      data:"keyword="+data,
+      cache:false,
+      dataType:"JSON",
+      success: function(data){
+        // console.log(data);
+        if(data.status == true){
+          $('#loader').hide();
+          $('#hasil').html('<ul class="timeline timeline-inverse">'+data.hasil+'</ul>');
+        }else{
+          $('#loader').hide();
+          $('#hasil').html("<div class='well'><h2 class='text-center'>Data Tidak ditemukan !!!</h2></div>");
+        }
+        
+      }, error: function (jqXHR, textStatus, errorThrown)
+      {
+        $('#loader').hide();
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+      }
+    });
+  }
+}
+
 
 function cari_data_skt(){
       event.preventDefault();
@@ -223,6 +260,11 @@ function cari_data_skt(){
     $('#arsip_input')[0].reset();
     $('#modal_arsip').modal('show');
   }
+
+  function balasan_arsip(){
+    $('#balas_arsip_form')[0].reset();
+    $('#modal_balas_arsip').modal('show');
+  }
     
   function posting(){
     save_method = 'posting_klasifikasi';
@@ -235,6 +277,8 @@ function cari_data_skt(){
     $('#user_data')[0].reset();
     $('#modal_user').modal('show');
   }
+
+
 
   function add_titik_tengah(){
     var startPos;
@@ -420,6 +464,32 @@ function save_data_desa(){
           });
   });
 }
+
+
+function save_balasan_arsip(){
+  $('#balas_arsip_form').submit(function(evt){
+    evt.preventDefault();
+    var url = baseUrl+'arsip/balasan';
+    var formData = new FormData($(this)[0]);
+    $.ajax({
+      url:url,
+      type:"POST",
+      data:formData,
+      async: false,
+      cache: false,
+      contentType: false,
+      enctype: 'multipart/form-data',
+      processData: false,
+      success: function(data){
+        swal('Selamat !','Berhasil Input Data Balasan Arsip Ke Sistem!','success');
+        location.reload();
+      }, error: function (jqXHR, textStatus, errorThrown) {
+        swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+       }
+    });
+  });
+}
+
 
 function save_data_penduduk_baru(){
   $('#input_data_penduduk_baru').submit(function(evt){

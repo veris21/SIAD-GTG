@@ -17,9 +17,9 @@
         ?>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo base_url().'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip/cari'; ?>">
           <i class="fa fa-book"></i>
-          <span>Arsip Surat</span>
+          <span>Cari Arsip Surat</span>
           <!-- <small class="label pull-right bg-green">new</small> -->
           </a>
         </li>
@@ -36,9 +36,9 @@
         ?>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo base_url().'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip/cari'; ?>">
           <i class="fa fa-book"></i>
-          <span>Arsip Surat</span>
+          <span>Cari Arsip Surat</span>
           </a>
         </li>
         <!-- Data Tanah -->
@@ -65,9 +65,9 @@
         ?>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo base_url().'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip/cari'; ?>">
           <i class="fa fa-book"></i>
-          <span>Arsip Surat</span>
+          <span>Cari Arsip Surat</span>
           </a>
         </li>
         
@@ -77,9 +77,9 @@
         ?>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo base_url().'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip/cari'; ?>">
           <i class="fa fa-book"></i>
-          <span>Arsip Surat</span>
+          <span>Cari Arsip Surat</span>
           </a>
         </li>
         <?php
@@ -143,9 +143,9 @@
         ?>
         <!-- ARSIP -->
         <li>
-          <a href="<?php echo base_url().'arsip'; ?>">
+          <a href="<?php echo base_url().'arsip/cari'; ?>">
           <i class="fa fa-book"></i>
-          <span>Arsip Surat</span>
+          <span>Cari Arsip Surat</span>
           <!-- <small class="label pull-right bg-green">new</small> -->
           </a>
         </li>

@@ -55,8 +55,11 @@ $route['klasifikasi/delete/(:any)'] = 'master/delete_klasifikasi/$1';
 $route['adm/json']                  = 'master/adm_json';
 
 $route['arsip']                     = 'arsip/arsip';
+$route['arsip/cari']                = 'arsip/arsip_cari';
+$route['arsip/cari_data']           = 'arsip/arsip_cari_data';
 $route['arsip/input']               = 'arsip/arsip_input';
 $route['arsip/details/(:any)']      = 'arsip/arsip_detail/$1';
+$route['arsip/balasan']             = 'arsip/balasan_arsip';
  
 
 $route['disposisi/tandai/baca/(:any)']  = 'disposisi/tandai_baca/$1';

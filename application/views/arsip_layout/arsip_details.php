@@ -16,7 +16,42 @@
                 <a class="fancybox" rel="fancybox" href="<?php echo base_url().SCAN_ARSIP.$data['scan_link']; ?>" title="Surat dari <?php echo $data['pengirim']; ?>">
                     <img src="<?php echo base_url().SCAN_ARSIP.$data['scan_link']; ?>" width="100%" class="img img-rounded" alt="">
                 </a>
-                </div>
+                </div>                
+                 <?php $status = $data['status']; 
+                    if($status==1){
+                 ?>
+                 <div class="box box-warning">
+                    <div class="box-header">
+                        <h4 class="bo-titlex">
+                            Balasan Arsip
+                        </h4>
+                    </div>
+                    <div class="box-body">
+                    <a class="fancybox" rel="fancybox" href="<?php echo base_url().SCAN_ARSIP.$data['scan_balasan']; ?>" title="Surat balasan dari <?php echo $data['id_pembalas']; ?>">
+                        <img src="<?php echo base_url().SCAN_ARSIP.$data['scan_balasan']; ?>" width="100%" class="img img-rounded" alt="">
+                    </a>
+                    </div>
+                 </div>
+                    <?php }else{ ?>
+                    <div class="box box-danger">
+                        <div class="box-body">
+                            <button class="btn btn-lg btn-danger btn-block btn-flat">
+                            Data Arsip Belum Memiliki Balasan</button>
+                        </div>
+                        <div class="box-footer">
+                             <div class="pull-right">
+                                <?php 
+                                $jab = $this->session->userdata('jabatan');
+                                if($jab=='KASI'||$jab=='KAUR'||$jab=='ROOT'){
+                                ?>                 
+                                <button onclick="balasan_arsip()" class="btn btn-warning btn-flat btn-sm">Input Scan Balasan Arsip <i class="fa fa-archive"></i></button>
+                                <?php
+                                }                
+                                ?>
+                             </div> 
+                        </div>
+                    </div>
+                    <?php } ?>
             </div>
         </div>
 
@@ -78,7 +113,6 @@
                         <?php
                             break;
                         default:
-                            # code...
                             break;
                     }
                  ?>
@@ -183,3 +217,26 @@
     </div> 
   </div> 
 </div>
+
+<!-- Modal Balasan Arsip -->
+<div class="modal fade" id="modal_balas_arsip" role="dialog">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h3 class="modal-title">Upload Scan Balasan Arsip</h3>
+    </div>
+    <?php echo form_open_multipart('', array('id'=>'balas_arsip_form'));?>
+    <div class="modal-body form">
+        <input type="file" name="arsip_balasan" class="form-control" accept="image/*" id="">
+    </div>
+    <input type="hidden" name="arsip_id" value="<?php echo $data['id'];?>">
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      <button type="submit" onclick="save_balasan_arsip()" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+  </div> 
+</div> 
+</div>
+<!--  -->
