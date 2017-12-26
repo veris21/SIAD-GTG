@@ -106,7 +106,9 @@
                 </div>
                 <div class="box-footer">
                     <div class="pull-right">
-                    <button onclick='cetak_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-default'>Cetak Disposisi <i class='fa fa-print'></i></button>
+                    <!-- <button onclick='cetak_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-default'>Cetak Disposisi <i class='fa fa-print'></i></button> -->
+
+                    <a target="__blank" class="btn btn-sm btn-flat btn-default" href="<?php echo base_url('disposisi/cetak/'.$data['id']);?>"> Cetak Disposisi i <i class='fa fa-print'></i></a>
                 <?php 
                     switch ($this->session->userdata('jabatan')) {
                         case 'KADES':

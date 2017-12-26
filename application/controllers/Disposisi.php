@@ -72,11 +72,14 @@ class Disposisi extends CI_Controller{
   }
 
   public function cetak($id){
-    $data['data'] = $this->disposisi_model->_get_all_on_arsip_id($id)->result();
-    $html = $this->load->view(DISPOSISI.'print/print_disposisi', $data, true);    
-    if($this->pdfgenerator->generate($html, "DISPOSISI (".date('d-M-Y').")")){
-      echo json_encode(array("status" => TRUE));
-    }
+    $data['header'] = $this->master_model->_get_desa_id($this->session->userdata('desa_id'))->row_array();
+    $data['data'] = $this->arsip_model->get_arsip_one_by($id)->row_array();
+    $data['disposisi'] = $this->disposisi_model->_get_all_on_arsip_id($id)->result();
+    $this->load->view(DISPOSISI.'print/print_disposisi', $data);
+    // $html = $this->load->view(DISPOSISI.'print/print_disposisi', $data, true);    
+    // if($this->pdfgenerator->generate($html, "DISPOSISI (".date('d-M-Y').")")){
+    //   echo json_encode(array("status" => TRUE));
+    // }
   }
 
 }
