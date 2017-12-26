@@ -108,9 +108,14 @@
              <br>
             <?php } ?>
             <!--  -->
-            <div class="box box-warning">
+            
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+        <div class="box box-warning">
                 <div class="box-header">
-                    <h4 class="box-title text-center">Pilihan Operasi</h4>
+                    <h4 class="box-title text-center">Pilihan Operasi Data Permohonan</h4>
                 </div>
                 <div class="box-body">
                     <div class="pull-right">
@@ -120,21 +125,21 @@
                             case 'KADES':
                                 if($data['status_proses']==0){
                                 ?>
-                                <button onclick="permohonan_setujui()" class="btn btn-sm btn-primary">Setujui <i class="fa fa-check"></i></button>     
+                                <button onclick="permohonan_setujui()" class="btn btn-lg btn-flat btn-primary">Setujui <i class="fa fa-check"></i></button>     
                                 <?php
                                 }
                                 break;
                             case 'PERTANAHAN':
                             if($data['status_proses']==2){
                                 ?>
-                                <button onclick="pernyataan_input()" class="btn btn-sm btn-success">Input Pernyataan <i class="fa fa-arrow-right"></i></button>          
+                                <button onclick="pernyataan_input()" class="btn btn-lg btn-flat btn-success">Input Pernyataan <i class="fa fa-arrow-right"></i></button>          
                                 <?php
                                 }                                
                                 break;
                             case 'LAYANAN':
                             if($data['status_proses']==2){
                                     ?>
-                                    <button onclick="pernyataan_input()" class="btn btn-sm btn-success">Input Pernyataan <i class="fa fa-arrow-right"></i></button>          
+                                    <button onclick="pernyataan_input()" class="btn btn-lg btn-flat btn-success">Input Pernyataan <i class="fa fa-arrow-right"></i></button>          
                                     <?php
                                     }                                
                                     break;
@@ -144,13 +149,13 @@
                         }
                         ?>                        
                          <!-- --
-                             <button onclick="cetak_permohonan(<?php echo $data['time'];?>)" type="button" class="btn btn-default btn-sm">Cetak <i class="fa fa-print"></i></button> 
+                             <button onclick="cetak_permohonan(<?php echo $data['time'];?>)" type="button" class="btn btn-default btn-lg btn-flat">Cetak <i class="fa fa-print"></i></button> 
                           <!-- -->
-                          <?php echo anchor('cetak/permohonan/'.$data['time'], 'Cetak <i class="fa fa-print"></i>', array('class'=>'btn btn-default btn-sm','target'=>'__blank')); ?>
+                          <?php echo anchor('cetak/permohonan/'.$data['time'], 'Cetak Permohonan <i class="fa fa-print"></i>', array('class'=>'btn btn-default btn-lg btn-flat','target'=>'__blank')); ?>
                     </div>
                 </div>            
             </div>
-        </div>    
+        </div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -233,11 +238,11 @@
                         $id_pejabat_pertanahan = $pejabat_pertanahan['kasi_pemerintahan'];
                         $id = $this->session->userdata('id');                                             
                          if($id == $id_pejabat_pertanahan && $pernyataan['status_proses']!=1) { ?>
-                            <button class="btn btn-primary btn-flat btn-sm" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
+                            <button class="btn btn-primary btn-flat btn-lg" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
                         <?php } ?>
-                        <?php echo anchor('cetak/pernyataan/'.$pernyataan['id'], 'Cetak Pernyataan <i class="fa fa-print"></i>', array('class'=>'btn btn-warning btn-sm','target'=>'__blank')); ?>
+                        <?php echo anchor('cetak/pernyataan/'.$pernyataan['id'], 'Cetak Pernyataan <i class="fa fa-print"></i>', array('class'=>'btn btn-warning btn-lg','target'=>'__blank')); ?>
 
-                            <!-- <button onclick="cetak_pernyataan(<?php echo $pernyataan['id'];?>)" type="button" class="btn btn-warning btn-sm">Cetak Pernyataan <i class="fa fa-print"></i></button> -->
+                            <!-- <button onclick="cetak_pernyataan(<?php echo $pernyataan['id'];?>)" type="button" class="btn btn-warning btn-lg">Cetak Pernyataan <i class="fa fa-print"></i></button> -->
                         </div>
                     </div>
                 </div>

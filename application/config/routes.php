@@ -26,6 +26,12 @@ $route['public']                    = 'stream';
 
 $route['sms/undangan']              = 'office/sms_undangan';
 $route['sms/kirim']                 = 'office/sms_kirim';
+$route['sms/setting']               = 'master/sms_setting';
+$route['sms/aktif/(:any)']          = 'master/sms_aktif/$1';
+$route['sms/nonaktif/(:any)']       = 'master/sms_nonaktif/$1';
+$route['sms/get/(:any)']            = 'master/sms_get/$1';
+$route['sms/api/input']             = 'master/sms_api_input';
+$route['sms/api/update']            = 'master/sms_api_update';
 
 $route['user/list']                 = 'master/user_list'; 
 $route['user/administrasi']         = 'master/administrasi_data';
@@ -54,12 +60,13 @@ $route['klasifikasi/edit']          = 'master/update_klasifikasi';
 $route['klasifikasi/delete/(:any)'] = 'master/delete_klasifikasi/$1';
 $route['adm/json']                  = 'master/adm_json';
 
-$route['arsip']                     = 'arsip/arsip';
-$route['arsip/cari']                = 'arsip/arsip_cari';
-$route['arsip/cari_data']           = 'arsip/arsip_cari_data';
-$route['arsip/input']               = 'arsip/arsip_input';
-$route['arsip/details/(:any)']      = 'arsip/arsip_detail/$1';
-$route['arsip/balasan']             = 'arsip/balasan_arsip';
+$route['arsip']                         = 'arsip/arsip';
+$route['arsip/cari']                    = 'arsip/arsip_cari';
+$route['arsip/cari_data']               = 'arsip/arsip_cari_data';
+$route['arsip/input']                   = 'arsip/arsip_input';
+$route['arsip/details/(:any)']          = 'arsip/arsip_detail/$1';
+$route['arsip/balasan']                 = 'arsip/balasan_arsip';
+$route['arsip/balasan/setujui/(:any)']  = 'arsip/balasan_setujui/$1';
  
 
 $route['disposisi/tandai/baca/(:any)']  = 'disposisi/tandai_baca/$1';

@@ -60,7 +60,124 @@ $("#list-user").DataTable({
   responsive: true, 
   order:[[ 5, "desc"]]        
 });
+// ==========================
+// SMS SETTING
+$("#sms_set").DataTable({
+  responsive: true,
+});
 
+function edit_setting_sms(id){
+
+}
+
+function aktifkan_setting_sms(id){
+  swal({
+    title: 'Apa Anda Ingin Merubah Status Aktif API?',
+    text: "Status API SMS akan di aktifkan oleh sistem !",
+    type: 'success',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Iya, Aktifkan Status!'              
+  }, function isConfirm(){
+    $.ajax({
+      url:baseUrl+'sms/aktif/'+id,
+      type:"POST",
+      dataType:"JSON",
+      success: function(data){
+        swal('Selamat !','Berhasil Mengaktifkan API SMS !','success');
+              location.reload();
+            }
+            ,error: function (jqXHR, textStatus, errorThrown)
+              {
+                swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+                location.reload();
+              }
+    });
+  });
+}
+
+function nonaktifkan_setting_sms(id){
+  swal({
+    title: 'Apa Anda Ingin Merubah Status Aktif API?',
+    text: "Status API SMS akan di nonaktifkan oleh sistem !",
+    type: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Iya, Nonaktifkan Status!'              
+  }, function isConfirm(){
+    $.ajax({
+      url:baseUrl+'sms/nonaktif/'+id,
+      type:"POST",
+      dataType:"JSON",
+      success: function(data){
+        swal('Selamat !','Berhasil Nonaktifkan API SMS !','success');
+              location.reload();
+            }
+            ,error: function (jqXHR, textStatus, errorThrown)
+              {
+                swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+                location.reload();
+              }
+    });
+  });
+}
+var api_method = '';
+function add_api(){
+  api_method = 'add_api';
+  $('#data_api_form')[0].reset();
+  $('#modal_data_api').modal('show');
+}
+
+function edit_api(id){
+  api_method = 'update_api';
+  var url = baseUrl+'sms/get/'+id;
+  $('#data_api_form')[0].reset();
+  $.ajax({
+    url:url,
+    type:"GET",
+    dataType:"JSON",
+    success: function(data){
+      $('[name="user"]').val(data.user);
+      $('[name="pass"]').val(data.pass);
+      $('[name="url"]').val(data.url);
+      $('[name="api_id"]').val(data.id);
+      $('#modal_data_api').modal('show');
+      $('.modal-title').text('Edit Data API');
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+      swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+    }
+  });
+}
+
+function save_data_api(){
+  switch (api_method) {
+    case 'add_api':
+    var url = baseUrl+'sms/api/input';
+      break;
+    case 'update_api':
+    var url = baseUrl+'sms/api/update'; 
+      break;  
+  }
+  $.ajax({
+    url:url,
+    type:"POST",
+    dataType:"JSON",
+    data: $('#data_api_form').serialize(),
+    success: function(data){
+      swal('Selamat !','Berhasil Menyimpan Data API SMS !','success');
+      location.reload();
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+      swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+      location.reload();
+    }
+  });
+}
 // ==========================
 // Pertanahan
 $("#list_permohonan").DataTable({
@@ -264,6 +381,33 @@ function cari_data_skt(){
   function balasan_arsip(){
     $('#balas_arsip_form')[0].reset();
     $('#modal_balas_arsip').modal('show');
+  }
+
+  function setujui_balasan_arsip(id){
+    swal({
+      title: 'Apa Anda Yakin?',
+            text: "Setujui Balasan Konsep Surat ke Sistem!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya, Setujui Konsep!'              
+          }, function isConfirm(){
+            $.ajax({
+              url:baseUrl+'arsip/balasan/setujui/'+id,
+              type:"POST",
+              dataType:"JSON",            
+              success: function(data){
+                swal('Selamat !','Berhasil Setujui Konsep Balasan !','success');
+                location.reload();
+              }
+              ,error: function (jqXHR, textStatus, errorThrown)
+                {
+                  swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
+                  location.reload();
+                }
+            });
+    });
   }
     
   function posting(){

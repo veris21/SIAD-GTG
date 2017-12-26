@@ -1,9 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 function sms_notifikasi($to, $message, $return = '0')
 {
-  $id = 1;
   $CI =& get_instance();
-  $key = $CI->option_model->sms_opt($id)->row_array();
+  $key = $CI->option_model->sms_opt()->row_array();
   // $userkey="cmtiad"; // userkey lihat di zenziva
   // $passkey="v3r15juniard1"; // set passkey di zenziva
   $userkey=$key['user']; // userkey lihat di zenziva
@@ -22,9 +21,8 @@ function sms_notifikasi($to, $message, $return = '0')
 }
 
 function check_sisa_sms(){
-  $id = 1;
   $CI =& get_instance();
-  $key = $CI->option_model->sms_opt($id)->row_array();
+  $key = $CI->option_model->sms_opt()->row_array();
   $userkey=$key['user']; // userkey lihat di zenziva
   $passkey=$key['pass']; // set passkey di zenziva
   $link = $key['url'];

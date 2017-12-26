@@ -93,10 +93,11 @@ public function balasan_arsip(){
     $media = $this->upload->data('arsip_balasan'); 
     $sekarang = time();
     $id = strip_tags($this->input->post('arsip_id'));
+    $arsip_time = strip_tags($this->input->post('arsip_time'));
     $insert = array('scan_balasan'=>$fileName,'time_balasan'=>$sekarang,'id_pembalas'=>$this->session->userdata('id'));
           // NOTIFIKASI
           $desa_id = $this->session->userdata('desa_id');
-          $hp_kades = $this->notifikasi_model->_get_data_sekdes($desa_id)->row_array();
+          $hp_sekdes = $this->notifikasi_model->_get_data_sekdes($desa_id)->row_array();
           $kepada_id = $hp_sekdes['id'];
           $jabatan = $hp_sekdes['keterangan_jabatan'];
           $nama_desa = $hp_sekdes['nama_desa'];
@@ -105,8 +106,9 @@ public function balasan_arsip(){
           $message = 'NOTIFIKASI ARSIP BALASAN : Yth. '.$jabatan.' '.$nama_desa.' Konsep Balasan Arsip yg dibuat dari '.$penginput.'/'.$keterangan_jab.' masuk ke Notifikasi anda menunggu persetujuan (SiDesa Sistem)';
           $to = $hp_sekdes['hp'];
           sms_notifikasi($to, $message); 
-          $link = "arsip/".$sekarang;
+          $link = "arsip/".$arsip_time;
           $posting = array(
+            'dari_id'=>$this->session->userdata('id'),
             'kepada_id'=> $kepada_id,
             'hp'=> $to,
             'message'=> $message,
@@ -122,6 +124,14 @@ public function balasan_arsip(){
       echo json_encode(array("status" => TRUE));             
     }
   }
+}
+
+public function balasan_setujui($id){
+  $insert = array('status'=>1);
+  $check = $this->arsip_model->_post_arsip_balasan($id, $insert);
+    if($check){                           
+      echo json_encode(array("status" => TRUE));             
+    }
 }
 
 public function arsip_cari(){

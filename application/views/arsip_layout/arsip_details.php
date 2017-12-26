@@ -20,11 +20,11 @@
                  <?php $status = $data['status']; 
                     if($status==1){
                  ?>
+                 <br>
                  <div class="box box-warning">
                     <div class="box-header">
-                        <h4 class="bo-titlex">
-                            Balasan Arsip
-                        </h4>
+                    <button class="btn btn-lg btn-primary btn-block btn-flat">
+                    Data Arsip Balasan</button>
                     </div>
                     <div class="box-body">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().SCAN_ARSIP.$data['scan_balasan']; ?>" title="Surat balasan dari <?php echo $data['id_pembalas']; ?>">
@@ -32,7 +32,24 @@
                     </a>
                     </div>
                  </div>
-                    <?php }else{ ?>
+                    <?php }elseif($status==0 && $this->session->userdata('jabatan')=='SEKDES'){
+                    ?> 
+                <div class="box box-warning">
+                    <div class="box-header">
+                    <button class="btn btn-lg btn-warning btn-block btn-flat">
+                    Konsep Balasan Arsip </button>
+                    </div>
+                    <div class="box-body">
+                    <a class="fancybox" rel="fancybox" href="<?php echo base_url().SCAN_ARSIP.$data['scan_balasan']; ?>" title="Surat balasan dari <?php echo $data['id_pembalas']; ?>">
+                        <img src="<?php echo base_url().SCAN_ARSIP.$data['scan_balasan']; ?>" width="100%" class="img img-rounded" alt="">
+                    </a>
+                    </div>
+                    <div class="box-footer">
+                        <button onclick="setujui_balasan_arsip(<?php echo $data['id']; ?>)" class="btn btn-primary btn-flat">Setujui Konsep Balasan Arsip <i class="fa fa-check"></i></button>
+                    </div>
+                 </div>
+                    <?php
+                    }else{ ?>
                     <div class="box box-danger">
                         <div class="box-body">
                             <button class="btn btn-lg btn-danger btn-block btn-flat">
@@ -231,6 +248,7 @@
         <input type="file" name="arsip_balasan" class="form-control" accept="image/*" id="">
     </div>
     <input type="hidden" name="arsip_id" value="<?php echo $data['id'];?>">
+    <input type="hidden" name="arsip_time" value="<?php echo $data['time'];?>">
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
       <button type="submit" onclick="save_balasan_arsip()" class="btn btn-primary">Save</button>

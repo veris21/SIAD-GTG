@@ -270,7 +270,7 @@
             <li><a href="<?php echo base_url().'arsip/klasifikasi'; ?>"><i class="fa fa-circle-o"></i> Klasifikasi Arsip</a></li>
             <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i> Akses History</a></li>
             <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i> System Cron Jobs</a></li>
-            <li><a href="<?php echo base_url().'master/sms'; ?>"><i class="fa fa-circle-o"></i> SMS Option</a></li>
+            <li><a href="<?php echo base_url().'sms/setting'; ?>"><i class="fa fa-circle-o"></i> SMS Option</a></li>
           </ul>
         </li>
         <?php

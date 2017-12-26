@@ -9,13 +9,56 @@ class Master extends CI_Controller{
 
   }
 
-  function sms_api()
+  public function sms_setting()
   {
-    $id = 1;
-    $data['title']    = TITLE.'Root Master';
-    $data['data']     = $this->option_model->sms_opt($id)->row_array();
-    $data['main_content']   = MASTER.'sms_api';
+    $data['title']    = TITLE.'SMS API Master';
+    $data['data']     = $this->option_model->sms_api_get();
+    $data['main_content']   = MASTER.'sms_api_setting';
     $this->load->view('template', $data);
+  }
+
+  public function sms_aktif($id){
+    $status = array('status'=>1);
+    $check = $this->option_model->sms_api_update($id, $status);
+    if($check){
+      echo json_encode(array("status" => TRUE)); 
+    }
+  }
+
+  public function sms_nonaktif($id){
+    $status = array('status'=>0);
+    $check = $this->option_model->sms_api_update($id, $status);
+    if($check){
+      echo json_encode(array("status" => TRUE)); 
+    }
+  }
+
+  public function sms_get($id){
+    $data = $this->option_model->_get_data_api($id)->row_array();
+    echo json_encode($data);
+  }
+
+  public function sms_api_update(){
+    $id = strip_tags($this->input->post('api_id'));
+    $url = strip_tags($this->input->post('url'));
+    $user = strip_tags($this->input->post('user'));
+    $pass = strip_tags($this->input->post('pass'));
+    $update = array('url'=>$url, 'user'=>$user, 'pass'=>$pass, 'status'=>0);
+    $check = $this->option_model->sms_update_data($id, $update);
+    if($check){
+      echo json_encode(array("status" => TRUE)); 
+    }
+  }
+
+  public function sms_api_input(){
+    $url = strip_tags($this->input->post('url'));
+    $user = strip_tags($this->input->post('user'));
+    $pass = strip_tags($this->input->post('pass'));
+    $insert = array('url'=>$url, 'user'=>$user, 'pass'=>$pass, 'status'=>0);
+    $check = $this->option_model->sms_insert_data($insert);
+    if($check){
+      echo json_encode(array("status" => TRUE)); 
+    }
   }
 
   // ===================================
