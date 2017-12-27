@@ -83,6 +83,22 @@
           </a>
         </li>
         <?php
+          $kasi = $this->notifikasi_model->_get_data_kasi_pemerintahan($this->session->userdata('desa_id'))->row_array();
+         if($this->session->userdata('id') == $kasi['id']){ ?>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Layanan Pertanahan</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url().'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
+            <li><a href="<?php echo base_url().'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
+            <li><a href="<?php echo base_url().'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
+          </ul>
+        </li>
+        <?php } ?>
+        <?php
           break;
           case "LAYANAN":
         ?>

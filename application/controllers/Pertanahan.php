@@ -82,15 +82,15 @@ class Pertanahan extends CI_Controller{
   // ===============
 
   public function permohonan_input(){
-    if(isset($_FILES['foto'])){
-      $foto = time()."-".$_FILES['foto']['name'];
-      $config['upload_path'] = './assets/uploader/foto_pemohon/'; //buat folder dengan nama assets di root folder
+    if(isset($_FILES['ktp'])){
+      $ktp = time()."-".$_FILES['ktp']['name'];
+      $config['upload_path'] = './assets/uploader/ktp/'; //buat folder dengan nama assets di root folder
       $config['allowed_types'] = 'png|jpg|jpeg';
       $config['max_size'] = 10000;
-      $config['file_name'] = $foto;
+      $config['file_name'] = $ktp;
       $this->load->library('upload');
       $this->upload->initialize($config);
-      if(! $this->upload->do_upload('foto') );
+      if(! $this->upload->do_upload('ktp') );
     }
     if(isset($_FILES['pbb'])){
       $pbb = time()."-".$_FILES['pbb']['name'];
@@ -104,7 +104,7 @@ class Pertanahan extends CI_Controller{
     }
     if(isset($_FILES['scan_link'])){
       $fileName = time()."-".$_FILES['scan_link']['name'];
-      $config['upload_path'] = './assets/uploader/ktp/'; //buat folder dengan nama assets di root folder
+      $config['upload_path'] = './assets/uploader/surat_kadus/'; //buat folder dengan nama assets di root folder
       $config['allowed_types'] = 'png|jpg|jpeg';
       $config['max_size'] = 10000;
       $config['file_name'] = $fileName;
@@ -145,7 +145,7 @@ class Pertanahan extends CI_Controller{
         'dusun_id'=>$dusun_id,
         'tahun_kelola'=>$tahun_kelola,
         'hp'=>$kontak,
-        'foto'=>$foto,
+        'ktp'=>$ktp,
         'pbb'=>$pbb,
         'status_proses'=>0,
         'type_yang_disetujui'=>0
@@ -227,7 +227,6 @@ class Pertanahan extends CI_Controller{
        $params['savename'] = './assets/uploader/qr_code/'.$sekarang.'.png';
       $this->ciqrcode->generate($params);
       // +===============+
-
       // +===============+
       // $link = "pernyataan/".$sekarang;
       // $posting = array(
@@ -271,15 +270,44 @@ class Pertanahan extends CI_Controller{
   public function permohonan_setuju(){
     $id = $this->input->post('id');
     $nota_kades = strip_tags($this->input->post('nota_kades'));
+    $nama_pemohon = strip_tags($this->input->post('nama_pemohon'));
+    $time_permohonan = strip_tags($this->input->post('time_permohonan'));
     $status_persetujuan = strip_tags($this->input->post('status_persetujuan'));
+    switch ($status_persetujuan) {
+      case 1:
+       $persetujuan = "Disetujui Sebagai Surat Keterangan Tanah (SKT) ";
+        break;
+      case 2:
+        $persetujuan = "Disetujui Sebagai Surat Keterangan Rekomendasi ";
+        break;
+     case 99:
+        $persetujuan = "Ditolak ";
+        break;
+    }
     $setujui = array('status_proses'=>2,'type_yang_disetujui'=>$status_persetujuan, 'nota_kades'=>$nota_kades);
+    $kasi_pemerintahan = $this->notifikasi_model->__get_data_kasi_pemerintahan($this->session->userdata('desa_id'))->row_array();
+     // +===============+
+     $kepada_id = $kasi_pemerintahan['id'];
+     $to = $kasi_pemerintahan['hp'];
+     $message = "NOTIFIKASI Pertanahan : Persetujuan Permohonan Surat Tanah a/n. ".$nama_pemohon." di ".$persetujuan." oleh Kepala Desa dengan #Memo: ".$nota_kades." (SiDesa Sistem)";
+     sms_notifikasi($to, $message);
+     $link = "permohonan/".$time_permohonan;
+     $posting = array(
+        'kepada_id'=> $kepada_id,
+        'hp'=> $to,
+        'message'=> $message,
+        'link'=> $link,
+        'time'=> time(),
+        'status'=> 0,
+        'type'=> 0
+      );
+    $this->notifikasi_model->posting_notifikasi($posting);
     $check = $this->pertanahan_model->_setujui_permohonan($id, $setujui);
     if($check){
       echo json_encode(array("status" => TRUE));
     }
 
   }
-
 
   public function berita_acara(){
     $data['title'] = TITLE.'List Berita Acara';

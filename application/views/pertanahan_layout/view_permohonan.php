@@ -85,17 +85,17 @@
         </div>
         <div class="col-md-5">
             <!-- Foto Pemohon -->
-            <?php if($data['foto']!=''||$data['foto']!=null){ ?>
-            <a class="fancybox" rel="fancybox" href="<?php echo base_url().UPLOADER.'foto_pemohon/'.$data['foto'];?>" title="Lampiran FC KTP Pemohon <?php echo $data['nama']; ?>">   
-                <img class="img img-responsive img-rounded" src="<?php echo base_url().UPLOADER.'foto_pemohon/'.$data['foto'];?>" alt="">
+            <?php if($data['ktp']!=''||$data['ktp']!=null){ ?>
+            <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['ktp'];?>" title="Lampiran FC KTP Pemohon <?php echo $data['nama']; ?>">   
+                <img class="img img-responsive img-rounded" src="<?php echo base_url().KTP.$data['ktp'];?>" alt="">
             </a>
             <br>
             <?php } ?>
             <!--  -->
             <!-- Scan Lampiran / Fotocopy KTP atau Pengantar -->
             <?php if($data['scan_link']!=''||$data['scan_link']!=null){ ?>
-             <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['scan_link'];?>" title="Lampiran dari Pengantar Kadus <?php echo $data['nama']; ?>">
-                <img class="img img-responsive img-rounded" src="<?php echo base_url().KTP.$data['scan_link'];?>" alt="">
+             <a class="fancybox" rel="fancybox" href="<?php echo base_url().SURATKADUS.$data['scan_link'];?>" title="Lampiran dari Pengantar Kadus <?php echo $data['nama']; ?>">
+                <img class="img img-responsive img-rounded" src="<?php echo base_url().SURATKADUS.$data['scan_link'];?>" alt="">
              </a>
              <br>
             <?php } ?>
@@ -486,7 +486,9 @@
       <?php echo form_open_multipart('', array('id'=>'setuju_input','class'=>'form-horizontal'));?>
       <div class="modal-body form">
           
-          <input type="hidden" name="id" value="<?php echo $data['id'];?>">    
+          <input type="hidden" name="id" value="<?php echo $data['id'];?>">  
+          <input type="hidden" name="time_permohonan" value="<?php echo $data['time'];?>">  
+          <input type="hidden" name="nama_pemohon" value="<?php echo  $data['nama'];?>">
 
             <div class="box box-warning">
                 <div class="box-body"> 

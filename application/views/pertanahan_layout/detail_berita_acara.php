@@ -111,14 +111,19 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12"><b>Lampiran :</b></div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                    <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['ktp'];?>" title="Lampiran Scan KTP/ Pengantar Kepala Dusun">
+                        <img class="img img-responsive pad"  src="<?php echo base_url().KTP.$data['ktp'];?>" alt="">
+                    </a>
+                    </div>
+                    <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().PBB.$data['scan_bukti_pbb'];?>" title="Scan Bukti Pembayaran PBB">
                         <img class="img img-responsive pad" src="<?php echo base_url().PBB.$data['scan_bukti_pbb'];?>" alt="">
                     </a>
                     </div>
-                    <div class="col-md-6">
-                    <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['lampiran_permohonan'];?>" title="Lampiran Scan KTP/ Pengantar Kepala Dusun">
-                        <img class="img img-responsive pad"  src="<?php echo base_url().KTP.$data['lampiran_permohonan'];?>" alt="">
+                    <div class="col-md-4">
+                    <a class="fancybox" rel="fancybox" href="<?php echo base_url().SURATKADUS.$data['lampiran_permohonan'];?>" title="Lampiran Scan SURATKADUS/ Pengantar Kepala Dusun">
+                        <img class="img img-responsive pad"  src="<?php echo base_url().SURATKADUS.$data['lampiran_permohonan'];?>" alt="">
                     </a>
                     </div>
                 </div>

@@ -92,6 +92,7 @@ class Pertanahan_model extends CI_Model{
       mohon.time as time_permohonan,
       mohon.scan_link as lampiran_permohonan,
       mohon.pbb as scan_bukti_pbb,
+      mohon.ktp as ktp,
       mohon.qr_link as permohonan_qr,
       pernyataan.saksi1_nama as saksi1_nama,
       pernyataan.saksi1_alamat as saksi1_alamat,

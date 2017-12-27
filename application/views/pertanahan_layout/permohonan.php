@@ -211,7 +211,7 @@
           </table>
           <div class="form-group">
           <label for="scan_file">Scan KTP</label>
-          <input type="file" name="foto" class="form-control" accept="image/*" >
+          <input type="file" name="ktp" class="form-control" accept="image/*" >
           </div>
           <hr>
           <div class="form-group">

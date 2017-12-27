@@ -108,29 +108,29 @@
                     <div class="pull-right">
                     <!-- <button onclick='cetak_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-default'>Cetak Disposisi <i class='fa fa-print'></i></button> -->
 
-                    <a target="__blank" class="btn btn-sm btn-flat btn-default" href="<?php echo base_url('disposisi/cetak/'.$data['id']);?>"> Cetak Disposisi i <i class='fa fa-print'></i></a>
+                    <a target="__blank" class="btn btn-lg btn-flat btn-default" href="<?php echo base_url('disposisi/cetak/'.$data['id']);?>"> Cetak Disposisi i <i class='fa fa-print'></i></a>
                 <?php 
                     switch ($this->session->userdata('jabatan')) {
                         case 'KADES':
                         ?>
-                        <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-primary'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button>
+                        <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-lg btn-flat btn-warning'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button>
                         <?php
                             break;
                         case 'SEKDES':
                         ?>
-                        <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-primary'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button>
+                        <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-lg btn-flat btn-warning'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button>
                         <?php
                             break;
-                        case 'KAUR':
+                        //case 'KAUR':
                         ?>
-                        <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-primary'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button>
+                        <!-- <button onclick='buat_disposisi(<?php //echo $data['id'];?>)' class='btn btn-sm btn-flat btn-primary'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button> -->
                         <?php
-                            break;
-                         case 'KASI':
+                           // break;
+                         //case 'KASI':
                          ?>
-                         <button onclick='buat_disposisi(<?php echo $data['id'];?>)' class='btn btn-sm btn-flat btn-primary'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button>
+                         <!-- <button onclick='buat_disposisi(<?php //echo $data['id'];?>)' class='btn btn-sm btn-flat btn-primary'>Disposisikan Arsip <i class='fa fa-arrow-right'></i></button> -->
                         <?php
-                            break;
+                           // break;
                         default:
                             break;
                     }
