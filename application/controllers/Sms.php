@@ -24,4 +24,9 @@ class Sms extends CI_Controller{
     $message = "SIA-Desa GTG info : Permintaan Surat ".$typeSurat." nomor:".$nomorSurat." atas nama ".$nama." berhasil diproses (SMS DARI CONTROLLER SMS)";
     sms_helper($to, $message);
   }
+
+ 
+
+
+
 }

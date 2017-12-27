@@ -20,6 +20,17 @@ class Office extends CI_Controller{
       $this->load->view('template', $data);
   }
 
+  function sms_blast(){
+    $desa_id = $this->session->userdata('desa_id');
+    $sms = $this->master_model->get_user_on($desa_id)->result();
+    foreach ($sms as $sms) {
+          $pesan = "Kepada Yth.".$sms->fullname."(".$sms->keterangan_jabatan.") Akun SiDesa anda telah diaktifkan dengan username/UID: ".$sms->uid." dan Password Default : 123456 . silahkan login menggunakan akun tersebut ke Sistem dengan alamat ".base_url('login')." (--no replay SMS SiDesa Server)";
+          sms_notifikasi($sms->hp, $pesan);          
+        }
+    echo json_encode(array("status" => TRUE));
+     
+  }
+
   function sms_kirim(){
     $pilihan = strip_tags($this->input->post('pilihan_type'));    
     $message = strip_tags($this->input->post('message'))."(SMS dari Sistem SiDesa Gantung)";

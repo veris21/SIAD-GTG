@@ -67,8 +67,14 @@
             <div class="pull-right">
                 <button type="reset" class="btn btn-flat btn-warning">Reset <i class="fa fa-ban"></i></button>
                 <button onclick="kirim_sms()" type="submit" class="btn btn-flat btn-success">Kirim SMS <i class="fa fa-paper-plane"></i></button>
+                
             </div>
         </div>
     </div>
 </form>
+    <div class="box box-info">
+        <div class="box-body">
+            <a onclick="sms_uid()" class="btn btn-flat btn-block btn-warning">Kirim SMS User Default ke Semua <i class="fa fa-paper-plane"></i></a>
+        </div>
+    </div>
 </section>

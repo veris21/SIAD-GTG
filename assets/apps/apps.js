@@ -29,6 +29,32 @@ function hitungkarakter(){
   var message = $('[name="message"]').val().length;
   $('[name="sisa"').val(max - message);
 }
+
+ function sms_uid() {
+   swal({
+     title: 'Apa Anda Yakin?',
+     text: "Kirim SMS UID dan Pass user ke Semua !",
+     type: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Iya, Kirim!'
+   }, function isConfirm() {
+     $.ajax({
+       url: baseUrl + 'sms/blast',
+       type: "POST",
+       dataType: "JSON",
+       success: function (data) {
+         swal('Selamat !', 'Berhasil Kirim SMS Blast !', 'success');
+         location.reload();
+       },
+       error: function (jqXHR, textStatus, errorThrown) {
+         swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+         location.reload();
+       }
+     });
+   });
+ }
 /*===============================================
 _________________________________________________
 
@@ -382,6 +408,8 @@ function cari_data_skt(){
     $('#balas_arsip_form')[0].reset();
     $('#modal_balas_arsip').modal('show');
   }
+
+ 
 
   function setujui_balasan_arsip(id){
     swal({

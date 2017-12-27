@@ -24,6 +24,7 @@ $route['auth']                      = 'auth/validate';
 
 $route['public']                    = 'stream';
 
+$route['sms/blast']                 = 'office/sms_blast';
 $route['sms/undangan']              = 'office/sms_undangan';
 $route['sms/kirim']                 = 'office/sms_kirim';
 $route['sms/setting']               = 'master/sms_setting';
