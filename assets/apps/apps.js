@@ -453,27 +453,35 @@ function cari_data_skt(){
 /*====================================================*/
 //            FUNGSI KOORDINAT PERTANAHAN
 /*====================================================*/
-  var koordinat_method = '';
-  
-  function add_koordinat_tengah(){  
-  koordinat_method = 'koordinat_tengah';  
+var koordinat_method = '';
+
+
+function add_koordinat_tengah(){  
+  var data_koor;
+  koordinat_method = 'koordinat_tengah';
    var geoOptions = {
      enableHighAccuracy: true
    }
    var geoSuccess = function (position) {
-     var lat = position.coords.latitude;
-     var Lng = position.coords.longitude;
+     data_koor = position;
+     $('[name="lat"]').val(data_koor.coords.latitude);
+     $('[name="lng"]').val(data_koor.coords.longitude);
+     console.log('Lat: ' + data_koor.coords.latitude + ', Lng : ' + data_koor.coords.longitude);
    };
    var geoError = function (error) {
      console.log('Error occurred. Error code: ' + error.code);
    };
    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
     $('#data_koordinat')[0].reset();
-    $('[name="lat"]').val(lat);
-    $('[name="lng"]').val(lng);
-    $('[name="patok"]').hide();
+    $('#patok').hide();
+    $('#utara').hide();
+    $('#selatan').hide();
+    $('#barat').hide();
+    $('#timur').hide();
     $('#modal_koordinat').modal('show');
   }
+
+
 
   function add_koordinat_tanah() {
     koordinat_method = 'koordinat_tanah';
@@ -505,16 +513,26 @@ function cari_data_skt(){
         url = baseUrl + 'koordinat/tanah';
         break;
     }
-   
-   
-    // var geoSuccess = function (position) {
-    //   startPos = position;
-    //   swal('Buka Kunci GPS', 'Lat : ' + startPos.coords.latitude + ' Lng : ' + startPos.coords.longitude, 'success');
-    // };
-    // var geoError = function (error) {
-    //   console.log('Error occurred. Error code: ' + error.code);
-    // };
-    // navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+    $('#data_koordinat').submit(function (evt) {
+      evt.preventDefault();
+      var formData = new FormData($(this)[0]);
+      $.ajax({
+        url: url,
+        type: "POST",
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        enctype: 'multipart/form-data',
+        processData: false,
+        success: function (data) {
+          swal('Selamat !', 'Berhasil Input Data Koordinat Ke Sistem!', 'success');
+          location.reload();
+        }, error: function (jqXHR, textStatus, errorThrown) {
+          swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+        }
+      });
+    });  
 
   }
 

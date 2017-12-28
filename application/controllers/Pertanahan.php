@@ -397,6 +397,58 @@ class Pertanahan extends CI_Controller{
   }
 
 
+  // MAPS KOORDINAT 
+  /*------------------ Titik Tengah Koordinat / Marker ----------------------*/
+  public function input_koordinat_tengah(){
+    $lat = strip_tags($this->input->post('lat'));
+    $lng = strip_tags($this->input->post('lng'));
+    $keterangan = strip_tags($this->input->post('keterangan'));
+    $tanah_id = strip_tags($this->input->post('tanah_id'));
+    $status = strip_tags($this->input->post('status'));
+
+    $post = array('lat'=>$lat,'lng'=>$lng,'keterangan'=>$keterangan, 'tanah_id'=>$tanah_id, 'status'=>$status);
+    $check = $this->pertanahan_model->_post_titik_marker($post);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }
+  }
+
+   /*------------------ Titik Tengah Koordinat / Polygon ----------------------*/
+  public function input_koordinat(){
+    if(isset($_FILES['patok'])){
+      $patok = time()."-".$_FILES['patok']['name'];
+      $config['upload_path'] = './assets/uploader/patok/'; //buat folder dengan nama assets di root folder
+      $config['allowed_types'] = 'png|jpg|jpeg';
+      $config['max_size'] = 10000;
+      $config['file_name'] = $patok;
+      $this->load->library('upload');
+      $this->upload->initialize($config);
+      if(! $this->upload->do_upload('patok') );
+    }
+    $lat = strip_tags($this->input->post('lat'));
+    $lng = strip_tags($this->input->post('lng'));   
+    $data_link_id = strip_tags($this->input->post('data_link_id'));
+    $utara = strip_tags($this->input->post('utara'));
+    $selatan = strip_tags($this->input->post('selatan'));
+    $barat = strip_tags($this->input->post('barat'));
+    $timur = strip_tags($this->input->post('timur'));
+
+    $post = array(
+      'lat'=>$lat,
+      'lng'=>$lng,
+      'utara'=>$utara,
+      'selatan'=>$selatan,
+      'timur'=>$timur,
+      'barat'=>$barat, 
+      'data_link_id'=>$data_link_id);
+    $check = $this->pertanahan_model->_post_titik_polygon($post);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }
+  }
+
+
+
 }
 
 

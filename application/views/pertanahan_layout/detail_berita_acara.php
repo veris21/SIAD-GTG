@@ -189,21 +189,57 @@
                    <!--  -->
                    
                     <div class="form-group">
-                        <label  class="control-label col-sm-4" for="">Koordinat</label>
-                        <div class="col-sm-4">
-                            <input type="text" name="lat" class="form-control" id="">
-                        </select>
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="text" name="lng" class="form-control" id="">
-                        </select>
-                        </div>
+                        <label  class="control-label col-sm-4" for="">Latitude</label>
+                        <div class="col-sm-8">
+                           <input type="text" name="lat" class="form-control" id="">                        
+                        </div>                        
                     </div>
                     <div class="form-group">
-                        <label  class="control-label col-sm-4" for="">Koordinat</label>
+                        <label  class="control-label col-sm-4" for="">Longitude</label>
                         <div class="col-sm-8">
-                            <input type="file" name="patok" class="form-control" id="">
-                        </select>
+                           <input type="text" name="lng" class="form-control" id="">                        
+                        </div>                        
+                    </div>
+
+                    <div id="patok" class="form-group">
+                        <label  class="control-label col-sm-4" for="">Foto Patok / Batas</label>
+                        <div class="col-sm-8">
+                            <input type="file" name="patok" class="form-control" id="">                        
+                        </div>                        
+                    </div>
+
+                    <div id="utara" class="form-group">
+                        <label  class="control-label col-sm-4" for="">Batas Utara</label>
+                        <div class="col-sm-8">
+                           <input type="text" name="utara" class="form-control" id="">                        
+                        </div>                        
+                    </div>
+
+                     <div id="selatan" class="form-group">
+                        <label  class="control-label col-sm-4" for="">Batas Selatan</label>
+                        <div class="col-sm-8">
+                           <input type="text" name="selatan" class="form-control" id="">                        
+                        </div>                        
+                    </div>
+
+                     <div id="barat" class="form-group">
+                        <label  class="control-label col-sm-4" for="">Batas Barat</label>
+                        <div class="col-sm-8">
+                           <input type="text" name="barat" class="form-control" id="">                        
+                        </div>                        
+                    </div>
+
+                     <div id="timur" class="form-group">
+                        <label  class="control-label col-sm-4" for="">Batas Timur</label>
+                        <div class="col-sm-8">
+                           <input type="text" name="timur" class="form-control" id="">                        
+                        </div>                        
+                    </div>
+
+                    <div id="keterangan" class="form-group">
+                        <label  class="control-label col-sm-4" for="">Keterangan</label>
+                        <div class="col-sm-8">
+                            <textarea rows="4" cols="8" class="form-control" name="keterangan"></textarea>                  
                         </div>                        
                     </div>
                     <!--  -->
@@ -211,10 +247,14 @@
             </div>
                     
       </div>
-      
+      <input type="hidden" name="tanah_id" value="<?php echo $data['id'];?>">
+      <input type="hidden" name="status" value="1">
+      <?php if($titik_tengah!=null || $titik_tengah!='') {?>
+      <input type="hidden" name="data_link_id" value="<?php echo  $titik_tengah['id'];?>">
+      <?php } ?>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <button type="button" onclick="save_koordinat" class="btn btn-primary">Save Koordinat<i class="fa fa-save"></i></button>
+        <button type="button" onclick="save_koordinat()" class="btn btn-success">Save Koordinat <i class="fa fa-map-o"></i></button>
       </div>
     </form>
     </div> 
@@ -223,17 +263,5 @@
 
 
 
-<script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&libraries=drawing,geometry,distance"></script>
-<script>
- var map;
- function initialize() {
-    map = new google.maps.Map(document.getElementById('map-canvas'), {
-      zoom: 14,
-      center: new google.maps.LatLng(-2.975289, 108.158662),
-      mapTypeId: 'terrain',
-      mapTypeControl: false,
-      disableDefaultUI: true
-    });
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDbCwhTP2mtDKcb2s8A-bzrwMVKGwK-keY"></script>
+<script type="text/javascript" src="<?php echo base_url().APPS.'maps.js';?>"></script>

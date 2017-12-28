@@ -109,3 +109,8 @@ $route['cari/skt/(:any)']           = 'pertanahan/cari_skt/$1';
 
 $route['data_penduduk']             = 'datapenduduk/data_penduduk';
 $route['import/data']               = 'datapenduduk/import';
+
+
+// KOORDINAT ROUTE
+$route['koordinat/tengah']          = 'pertanahan/input_koordinat_tengah';
+$route['koordinat/tanah']           = 'pertanahan/input_koordinat';
