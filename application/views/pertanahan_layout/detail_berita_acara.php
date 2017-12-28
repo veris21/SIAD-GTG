@@ -59,6 +59,7 @@
                  ?>
                  <div class="well">
                     <h5 class="text-center">Data Koordinat Patok Belum Ada !!</h5>
+                    <button onclick="add_koordinat_tanah()" class="btn btn-success btn-flat btn-block btn-sm">Input Koordinat Tanah/ Patok <i class="fa fa-plus"></i></button>
                  </div>
                  <?php }
                  }else{
@@ -66,7 +67,7 @@
                     <div class="well">
                        <h5 class="text-center">Titik Tengah Tanah Belum di Definisikan !!</h5>                    
                     </div>
-                    <button onclick="add_titik_tengah()" class="btn btn-success btn-flat btn-block btn-sm">Input Koordinat Titik Tengah Data <i class="fa fa-plus"></i></button>
+                    <button onclick="add_koordinat_tengah()" class="btn btn-success btn-flat btn-block btn-sm">Input Koordinat Titik Tengah Data <i class="fa fa-plus"></i></button>
                     <?php   
                                 
                  } ?>
@@ -168,6 +169,60 @@
         </div>
     </div>
 </section>
+
+
+<!-- Modal Setuju Dan Pilihan Rekomedasi -->
+<div class="modal fade" id="modal_koordinat" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Input Data Koordinat</h3>
+      </div>
+      <?php echo form_open_multipart('', array('id'=>'data_koordinat','class'=>'form-horizontal'));?>
+      <div class="modal-body form">
+          
+          <input type="hidden" name="id" value="<?php echo $data['id'];?>">  
+
+            <div class="box box-warning">
+                <div class="box-body"> 
+                   <!--  -->
+                   
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Koordinat</label>
+                        <div class="col-sm-4">
+                            <input type="text" name="lat" class="form-control" id="">
+                        </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" name="lng" class="form-control" id="">
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Koordinat</label>
+                        <div class="col-sm-8">
+                            <input type="file" name="patok" class="form-control" id="">
+                        </select>
+                        </div>                        
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+                    
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" onclick="save_koordinat" class="btn btn-primary">Save Koordinat<i class="fa fa-save"></i></button>
+      </div>
+    </form>
+    </div> 
+  </div> 
+</div>
+
+
+
 <script type="text/javascript" src="http://maps.google.com/maps/api/js??key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&libraries=drawing,geometry,distance"></script>
 <script>
  var map;

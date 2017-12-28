@@ -450,7 +450,88 @@ function cari_data_skt(){
     $('#modal_user').modal('show');
   }
 
+/*====================================================*/
+//            FUNGSI KOORDINAT PERTANAHAN
+/*====================================================*/
+  var koordinat_method = '';
+  
+  function add_koordinat_tengah(){  
+  koordinat_method = 'koordinat_tengah';  
+   var geoOptions = {
+     enableHighAccuracy: true
+   }
+   var geoSuccess = function (position) {
+     var lat = position.coords.latitude;
+     var Lng = position.coords.longitude;
+   };
+   var geoError = function (error) {
+     console.log('Error occurred. Error code: ' + error.code);
+   };
+   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+    $('#data_koordinat')[0].reset();
+    $('[name="lat"]').val(lat);
+    $('[name="lng"]').val(lng);
+    $('[name="patok"]').hide();
+    $('#modal_koordinat').modal('show');
+  }
 
+  function add_koordinat_tanah() {
+    koordinat_method = 'koordinat_tanah';
+    var geoOptions = {
+      enableHighAccuracy: true
+    }
+    var geoSuccess = function (position) {
+      var lat = position.coords.latitude;
+      var Lng = position.coords.longitude;
+    };
+    var geoError = function (error) {
+      console.log('Error occurred. Error code: ' + error.code);
+    };
+    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+    $('#data_koordinat')[0].reset();
+    $('[name="lat"]').val(lat);
+    $('[name="lng"]').val(lng);
+    $('[name="patok"]').show();
+    $('#modal_koordinat').modal('show');
+  }
+
+  function save_koordinat(){
+    var url;      
+    switch (koordinat_method) {
+      case 'koordinat_tengah':
+        url = baseUrl+'koordinat/tengah';
+        break;
+      case 'koordinat_tanah':
+        url = baseUrl + 'koordinat/tanah';
+        break;
+    }
+   
+   
+    // var geoSuccess = function (position) {
+    //   startPos = position;
+    //   swal('Buka Kunci GPS', 'Lat : ' + startPos.coords.latitude + ' Lng : ' + startPos.coords.longitude, 'success');
+    // };
+    // var geoError = function (error) {
+    //   console.log('Error occurred. Error code: ' + error.code);
+    // };
+    // navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+
+  }
+
+  function get_koordinat_gps(){
+    var startPos;
+    var geoOptions = {
+      enableHighAccuracy: true
+    }
+    var geoSuccess = function (position) {
+      startPos = position;
+      swal('Buka Kunci GPS', 'Lat : ' + startPos.coords.latitude + ' Lng : ' + startPos.coords.longitude, 'success');
+    };
+    var geoError = function (error) {
+      console.log('Error occurred. Error code: ' + error.code);
+    };
+    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+  }
 
   function add_titik_tengah(){
     var startPos;
@@ -471,7 +552,7 @@ function cari_data_skt(){
     };
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);    
   }
-  
+/*====================================================*/
 
 /* ===================================================*/
 /*/ Fungsi Cari Data /*/
