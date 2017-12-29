@@ -35,39 +35,49 @@
                      echo "<div class='col-md-6'>";
                      echo "<p>".$titik_tengah['keterangan']."</p>";
                      echo "</div>";
-                     echo "</div>";
+                     echo "</div>
+                    <hr>";
                  if($patok->num_rows() > 0){
                      $n = 1;
                      foreach($patok->result() as $patok){
                 ?>
+
                 <div class="row">
-                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                        <a class="fancybox" rel="fancybox" href="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" title="Patok <?php echo $n; ?>">
+                            <img class="img img-responsive img-rounded"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="">
+                        </a>
+                        </div>
+
                         <div class="col-md-8">
                             <dt>Patok <?php echo $n; ?></dt>
-                            <dd>Lat . | Lng. </dd><br>
+                            <dd>Lat . <b><?php echo $patok->lat; ?></b> | Lng. <b><?php echo $patok->lng; ?></b></dd><br>
                             <dt>Batas - Batas Patok</dt>
-                            <dd>Utara : </dd>
-                            <dd>Selatan : </dd>
-                            <dd>Barat : </dd>
-                            <dd>Timur : </dd>
+                            <dd>Utara : <b><?php echo $patok->utara; ?></b></dd>
+                            <dd>Selatan : <b><?php echo $patok->selatan; ?></b></dd>
+                            <dd>Barat : <b><?php echo $patok->barat; ?></b></dd>
+                            <dd>Timur : <b><?php echo $patok->timur; ?></b></dd>
                         </div>
                 </div>
+                <hr>
                 <?php 
                 $n++;
-                     }
+                     }                     
                  }else{
                  ?>
                  <div class="well">
                     <h5 class="text-center">Data Koordinat Patok Belum Ada !!</h5>
-                    <button onclick="add_koordinat_tanah()" class="btn btn-success btn-flat btn-block btn-sm">Input Koordinat Tanah/ Patok <i class="fa fa-plus"></i></button>
                  </div>
                  <?php }
+                 ?> 
+                <button onclick="add_koordinat()" class="btn btn-primary btn-flat btn-block btn-lg">Input Koordinat Tanah/ Patok <i class="fa fa-plus"></i></button>
+                 <?php 
                  }else{
                     ?>
                     <div class="well">
                        <h5 class="text-center">Titik Tengah Tanah Belum di Definisikan !!</h5>                    
                     </div>
-                    <button onclick="add_koordinat_tengah()" class="btn btn-success btn-flat btn-block btn-sm">Input Koordinat Titik Tengah Data <i class="fa fa-plus"></i></button>
+                    <button onclick="add_koordinat_tengah()" class="btn btn-success btn-flat btn-block btn-lg">Input Koordinat Titik Tengah Data <i class="fa fa-plus"></i></button>
                     <?php   
                                 
                  } ?>
@@ -96,7 +106,7 @@
                         <br>
                         </div>
                     <div class="col-md-4 hidden-xs hidden-sm">
-                        <img class="img img-responsive pad"  src="<?php echo base_url().QRCODE.$data['permohonan_qr'];?>" alt="">
+                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().QRCODE.$data['permohonan_qr'];?>" alt="">
                      </div>
                      <div class="col-md-8">
                         <dt>Tanggal Permohonan</dt>
@@ -107,24 +117,24 @@
                         <br>
                     </div>
                     <div class="col-md-4 hidden-xs hidden-sm">
-                        <img class="img img-responsive pad"  src="<?php echo base_url().QRCODE.$data['pernyataan_qr'];?>" alt="">
+                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().QRCODE.$data['pernyataan_qr'];?>" alt="">
                      </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12"><b>Lampiran :</b></div>
                     <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['ktp'];?>" title="Lampiran Scan KTP/ Pengantar Kepala Dusun">
-                        <img class="img img-responsive pad"  src="<?php echo base_url().KTP.$data['ktp'];?>" alt="">
+                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().KTP.$data['ktp'];?>" alt="">
                     </a>
                     </div>
                     <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().PBB.$data['scan_bukti_pbb'];?>" title="Scan Bukti Pembayaran PBB">
-                        <img class="img img-responsive pad" src="<?php echo base_url().PBB.$data['scan_bukti_pbb'];?>" alt="">
+                        <img class="img img-responsive img-rounded" src="<?php echo base_url().PBB.$data['scan_bukti_pbb'];?>" alt="">
                     </a>
                     </div>
                     <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().SURATKADUS.$data['lampiran_permohonan'];?>" title="Lampiran Scan SURATKADUS/ Pengantar Kepala Dusun">
-                        <img class="img img-responsive pad"  src="<?php echo base_url().SURATKADUS.$data['lampiran_permohonan'];?>" alt="">
+                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().SURATKADUS.$data['lampiran_permohonan'];?>" alt="">
                     </a>
                     </div>
                 </div>
@@ -254,7 +264,7 @@
       <?php } ?>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <button type="button" onclick="save_koordinat()" class="btn btn-success">Save Koordinat <i class="fa fa-map-o"></i></button>
+        <button type="submit" onclick="save_koordinat()" class="btn btn-success">Save Koordinat <i class="fa fa-map-o"></i></button>
       </div>
     </form>
     </div> 

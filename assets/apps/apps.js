@@ -483,23 +483,24 @@ function add_koordinat_tengah(){
 
 
 
-  function add_koordinat_tanah() {
+  function add_koordinat() {
     koordinat_method = 'koordinat_tanah';
+    var data_koor;
     var geoOptions = {
       enableHighAccuracy: true
     }
     var geoSuccess = function (position) {
-      var lat = position.coords.latitude;
-      var Lng = position.coords.longitude;
+      data_koor = position;
+      $('[name="lat"]').val(data_koor.coords.latitude);
+      $('[name="lng"]').val(data_koor.coords.longitude);
+      console.log('Lat: ' + data_koor.coords.latitude + ', Lng : ' + data_koor.coords.longitude);
     };
     var geoError = function (error) {
       console.log('Error occurred. Error code: ' + error.code);
     };
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
     $('#data_koordinat')[0].reset();
-    $('[name="lat"]').val(lat);
-    $('[name="lng"]').val(lng);
-    $('[name="patok"]').show();
+    $('#keterangan').hide();
     $('#modal_koordinat').modal('show');
   }
 

@@ -424,27 +424,30 @@ class Pertanahan extends CI_Controller{
       $this->load->library('upload');
       $this->upload->initialize($config);
       if(! $this->upload->do_upload('patok') );
-    }
-    $lat = strip_tags($this->input->post('lat'));
-    $lng = strip_tags($this->input->post('lng'));   
-    $data_link_id = strip_tags($this->input->post('data_link_id'));
-    $utara = strip_tags($this->input->post('utara'));
-    $selatan = strip_tags($this->input->post('selatan'));
-    $barat = strip_tags($this->input->post('barat'));
-    $timur = strip_tags($this->input->post('timur'));
+      $lat = strip_tags($this->input->post('lat'));
+      $lng = strip_tags($this->input->post('lng'));   
+      $data_link_id = strip_tags($this->input->post('data_link_id'));
+      $utara = strip_tags($this->input->post('utara'));
+      $selatan = strip_tags($this->input->post('selatan'));
+      $barat = strip_tags($this->input->post('barat'));
+      $timur = strip_tags($this->input->post('timur'));
 
-    $post = array(
-      'lat'=>$lat,
-      'lng'=>$lng,
-      'utara'=>$utara,
-      'selatan'=>$selatan,
-      'timur'=>$timur,
-      'barat'=>$barat, 
-      'data_link_id'=>$data_link_id);
-    $check = $this->pertanahan_model->_post_titik_polygon($post);
-    if($check){
-      echo json_encode(array("status" => TRUE));
+      $post = array(
+        'link_dokumentasi'=>$patok,
+        'lat'=>$lat,
+        'lng'=>$lng,
+        'utara'=>$utara,
+        'selatan'=>$selatan,
+        'timur'=>$timur,
+        'barat'=>$barat, 
+        'id_data_link'=>$data_link_id);
+
+        $check = $this->pertanahan_model->_post_titik_polygon($post);
+        if($check){
+          echo json_encode(array("status" => TRUE));
+        }
     }
+    
   }
 
 
