@@ -10,17 +10,33 @@
 </section>
 <section class="content">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-9">
         <div class="box box-warning">
             <div class="box-header">
                 <h4 class="box-title"><i class="fa fa-globe"></i> Visual Data Tanah</h4>
             </div>
             <div class="box-body">
-                <div  style="height: 360px;" id="map-canvas"></div>
+                <div  style="height: 480px;" id="map-canvas"></div>
             </div>       
         </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
+            <div class="box box-danger"  valign="bottom">
+                <div class="box-header">
+                    <h4 class="box-title"><i class="fa fa-gear"></i> Push Data Peta</h4>
+                </div>
+                <div class="box-body">
+                    <p>Dengan menekan tombol dibawah ini, Data Akan disetujui dan di input langsung ke Database Finalisasi SKT / Surat Rekomendasi, dan akan muncul setelah mendapat persetujuan dari sistem dan pejabat terkait untuk print out akhir <b>Surat Keterangan Tanah (SKT) / Surat Rekomendasi Pengelolaan Tanah</b> beserta lampiran</p>
+                </div>
+                <div class="box-footer">
+                <button onclick="capture_peta()" class="btn btn-md btn-warning btn-block">Push Data Final <i class="fa fa-ban"></i></button>
+                </div>
+            </div>
+        </div>
+        </div> 
+
+        <div class="row">
+        <div class="col-md-12">
         <div class="box box-warning">
             <div class="box-header">
                 <h4 class="box-title"><i class="fa fa-map-o"></i> Data Patok Batas</h4>
@@ -38,12 +54,19 @@
                      echo "</div>
                     <hr>";
                  if($patok->num_rows() > 0){
+                     ?>
+            </div>
+         </div>
+                     <div class="row"> 
+                     <?php 
                      $n = 1;
                      foreach($patok->result() as $patok){
                 ?>
-
-                <div class="row">
-                        <div class="col-md-4">
+                <div class="col-md-6">
+                 <div class="box box-info">
+                    <div class="box-body">
+                    <div class="row"> 
+                     <div class="col-md-4">
                         <a class="fancybox" rel="fancybox" href="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" title="Patok <?php echo $n; ?>">
                             <img class="img img-responsive img-rounded"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="">
                         </a>
@@ -58,31 +81,48 @@
                             <dd>Barat : <b><?php echo $patok->barat; ?></b></dd>
                             <dd>Timur : <b><?php echo $patok->timur; ?></b></dd>
                         </div>
+                    </div>
+                    </div>
+                    </div>
                 </div>
-                <hr>
                 <?php 
                 $n++;
-                     }                     
+                     }  
+                     ?> 
+                     </div>
+                     <?php                    
                  }else{
                  ?>
+                 <div class="box box-warning">
+                 <div class="box-footer">
                  <div class="well">
                     <h5 class="text-center">Data Koordinat Patok Belum Ada !!</h5>
                  </div>
+                 </div>
+                 </div>
                  <?php }
                  ?> 
-                <button onclick="add_koordinat()" class="btn btn-primary btn-flat btn-block btn-lg">Input Koordinat Tanah/ Patok <i class="fa fa-plus"></i></button>
+                 <div class="box box-warning">
+                    <div class="box-footer">
+                        <button onclick="add_koordinat()" class="btn btn-primary btn-flat btn-block btn-lg">Input Koordinat Tanah/ Patok <i class="fa fa-plus"></i></button>
+                    </div>
+                 </div>
                  <?php 
                  }else{
                     ?>
+                    <div class="box box-warning">
+                    <div class="box-footer">
                     <div class="well">
                        <h5 class="text-center">Titik Tengah Tanah Belum di Definisikan !!</h5>                    
                     </div>
                     <button onclick="add_koordinat_tengah()" class="btn btn-success btn-flat btn-block btn-lg">Input Koordinat Titik Tengah Data <i class="fa fa-plus"></i></button>
+                    </div>
+                 </div>
                     <?php   
                                 
                  } ?>
-            </div>
-        </div>
+            <!-- </div>
+         </div> -->
         </div>
     </div>
     <div class="row">
