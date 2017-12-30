@@ -29,7 +29,7 @@
                     <p>Dengan menekan tombol dibawah ini, Data Akan disetujui dan di input langsung ke Database Finalisasi SKT / Surat Rekomendasi, dan akan muncul setelah mendapat persetujuan dari sistem dan pejabat terkait untuk print out akhir <b>Surat Keterangan Tanah (SKT) / Surat Rekomendasi Pengelolaan Tanah</b> beserta lampiran</p>
                 </div>
                 <div class="box-footer">
-                <button onclick="capture_peta()" class="btn btn-md btn-warning btn-block">Push Data Final <i class="fa fa-ban"></i></button>
+                <button onclick="push_data()" class="btn btn-md btn-warning btn-block">Push Data Final <i class="fa fa-ban"></i></button>
                 </div>
             </div>
         </div>
@@ -41,22 +41,22 @@
             <div class="box-header">
                 <h4 class="box-title"><i class="fa fa-map-o"></i> Data Patok Batas</h4>
             </div>
-            <div class="box-body">
+            
                  <?php 
                  if($titik_tengah != null){
-                     echo "<div class='row'>";
-                     echo "<div class='col-md-6'>";
-                     echo "<ul><li>Latitude : ".$titik_tengah['lat']."</li><li>Longitude : ".$titik_tengah['lng']."</li></ul>";
+                     echo "<div class='box-body'>";
+                     echo "<p class='well'>".$titik_tengah['keterangan']."</p>";
+                     echo "<h4>Latitude : <b>".$titik_tengah['lat']."</b> <br> Longitude : <b>".$titik_tengah['lng']."</b></h4>";
                      echo "</div>";
-                     echo "<div class='col-md-6'>";
-                     echo "<p>".$titik_tengah['keterangan']."</p>";
+                     echo "<div class='box-footer'>";
+                     echo "<div class='pull-right'>";
+                     echo "<button onclick='edit_titik_tengah(".$titik_tengah['id'].")' class='btn btn-flat btn-warning'>Edit Titik Tengah Koordinat <i class='fa fa-edit'></i></button>";
                      echo "</div>";
-                     echo "</div>
-                    <hr>";
-                 if($patok->num_rows() > 0){
+                     echo "</div>";
                      ?>
-            </div>
-         </div>
+            
+        </div>
+         <?php if($patok->num_rows() > 0){ ?>
                      <div class="row"> 
                      <?php 
                      $n = 1;
@@ -68,8 +68,10 @@
                     <div class="row"> 
                      <div class="col-md-4">
                         <a class="fancybox" rel="fancybox" href="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" title="Patok <?php echo $n; ?>">
-                            <img class="img img-responsive img-rounded"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="">
+                            <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="">
                         </a>
+                        <hr>
+                        <button onclick="edit_patok(<?php echo $patok->id;?>)" class="btn btn-warning btn-block">Edit Patok <i class="fa fa-edit"></i></button>
                         </div>
 
                         <div class="col-md-8">
@@ -310,8 +312,6 @@
     </div> 
   </div> 
 </div>
-
-
 
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDbCwhTP2mtDKcb2s8A-bzrwMVKGwK-keY"></script>
 <script type="text/javascript" src="<?php echo base_url().APPS.'maps.js';?>"></script>

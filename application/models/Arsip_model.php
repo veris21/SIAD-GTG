@@ -9,6 +9,10 @@ class Arsip_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function get_arsip_count(){
+    return $this->db->get('arsip_masuk')->num_rows();
+  }
+
   public function _post_arsip($insert){
     $this->db->insert('arsip_masuk', $insert);
     return;

@@ -1,0 +1,4 @@
+ERROR - 2017-12-30 10:31:17 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-30 10:31:19 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-30 10:32:29 --> 404 Page Not Found: Assets/theme
+ERROR - 2017-12-30 10:32:29 --> 404 Page Not Found: Assets/theme

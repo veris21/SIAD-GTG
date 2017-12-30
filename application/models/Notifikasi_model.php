@@ -9,6 +9,12 @@ class Notifikasi_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+     
+  public function get_notifikasi_count(){
+    return $this->db->get('notifikasi')->num_rows();
+  }
+
+
   public function tandai_baca($id, $update){
     $this->db->where('id', $id);
     return $this->db->update('notifikasi', $update);

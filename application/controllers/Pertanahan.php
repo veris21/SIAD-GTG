@@ -461,7 +461,7 @@ class Pertanahan extends CI_Controller{
 |    @Author     |      Version     |     Changelog     |
 _________________________________________________________
 | Veris Juniardi |    1.0.0-alfa    |   November 2017   |
-|                |                  |                   |
+|                |    1.0.0-beta    |   Januari 2018    |
 |                |                  |                   |
 =========================================================
 

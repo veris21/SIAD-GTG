@@ -281,12 +281,13 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url().'user/list'; ?>"><i class="fa fa-circle-o"></i> Master User</a></li>
-            <li><a href="<?php echo base_url().'user/administrasi'; ?>"><i class="fa fa-circle-o"></i> Master Wilayah</a></li>
-            <li><a href="<?php echo base_url().'arsip/klasifikasi'; ?>"><i class="fa fa-circle-o"></i> Klasifikasi Arsip</a></li>
+            <li><a href="<?php echo base_url('user/list'); ?>"><i class="fa fa-circle-o"></i> Master User</a></li>
+            <li><a href="<?php echo base_url('user/administrasi'); ?>"><i class="fa fa-circle-o"></i> Master Wilayah</a></li>
+            <li><a href="<?php echo base_url('arsip/klasifikasi'); ?>"><i class="fa fa-circle-o"></i> Klasifikasi Arsip</a></li>
             <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i> Akses History</a></li>
-            <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i> System Cron Jobs</a></li>
-            <li><a href="<?php echo base_url().'sms/setting'; ?>"><i class="fa fa-circle-o"></i> SMS Option</a></li>
+            <li><a href="<?php echo base_url(); ?>"><i class="fa fa-circle-o"></i> Cron Jobs</a></li>
+            <li><a href="<?php echo base_url('sms/setting'); ?>"><i class="fa fa-circle-o"></i> SMS API Option</a></li>
+            <li><a href="<?php echo base_url('reset/database'); ?>"><i class="fa fa-circle-o"></i> Reset Database </a></li>
           </ul>
         </li>
         <?php

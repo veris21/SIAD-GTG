@@ -8,6 +8,33 @@ class Master_model extends CI_Model{
     parent::__construct();
     //Codeigniter : Write Less Do More
   }
+
+  public function reset_pertanahan(){
+    $this->db->truncate('permohonan_pertanahan'); 
+    $this->db->truncate('pernyataan_pertanahan'); 
+    $this->db->truncate('berita_acara_pertanahan'); 
+    $this->db->truncate('data_link');
+    $this->db->truncate('data_koordinat');
+    return;  
+  }
+
+ public function reset_arsip(){
+    $this->db->truncate('arsip_masuk'); 
+    $this->db->truncate('disposisi'); 
+    return;  
+  }
+   
+  public function get_session_count(){
+    return $this->db->get('log_sessions')->num_rows();
+  }
+
+  public function reset_session(){
+    return $this->db->truncate('log_sessions');
+  }
+
+  public function reset_notifikasi(){
+    return $this->db->truncate('notifikasi');
+  }
   // // ============ FAST SEARCH
   // public function get_proses($id)
   // {

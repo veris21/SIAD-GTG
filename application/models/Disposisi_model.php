@@ -9,6 +9,10 @@ class Disposisi_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function get_disposisi_count(){
+    return $this->db->get('disposisi')->num_rows();
+  }
+
   public function tandai_telah_baca($id, $baca){
     $this->db->where('time', $id);
     return $this->db->update('disposisi', $baca);

@@ -24,6 +24,17 @@ $route['auth']                      = 'auth/validate';
 
 $route['public']                    = 'stream';
 
+/* -----------------------------------------------------------------------
+                        RESET DATABASE
+ ----------------------------------------------------------------------- */
+$route['reset/database']            = 'master/reset';
+$route['reset/pertanahan']          = 'master/reset_pertanahan';
+$route['reset/arsip']               = 'master/reset_arsip';
+$route['reset/notifikasi']          = 'master/reset_notifikasi';
+$route['reset/session']             = 'master/reset_session';
+/* -----------------------------------------------------------------------
+ ----------------------------------------------------------------------- */
+
 $route['sms/blast']                 = 'office/sms_blast';
 $route['sms/undangan']              = 'office/sms_undangan';
 $route['sms/kirim']                 = 'office/sms_kirim';

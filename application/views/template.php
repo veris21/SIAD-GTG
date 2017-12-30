@@ -55,6 +55,7 @@ folder instead of downloading all of them to reduce the load. -->
 <link rel="shortcut icon" href="<?php echo base_url().'assets/';?>new-logo.png" type="image/x-icon">
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+<script type="text/javascript" >/*/ Base Setting /*/ var baseUrl = '<?php echo base_url();?>';</script>
 <div class="wrapper">
 <?php $this->load->view('top-navbar'); ?>
 <?php $this->load->view('side-navbar'); ?>
@@ -121,7 +122,6 @@ $.widget.bridge('uibutton', $.ui.button);
 <script src="<?php echo base_url().THEME; ?>dist/js/app.min.js"></script>
 <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 <!-- <script src="<?php echo base_url().THEME; ?>plugins/fancybox/jquery.mousewheel.pack.js"></script> -->
-<script type="text/javascript" >/*/ Base Setting /*/ var baseUrl = '<?php echo base_url();?>';</script>
 <script src="<?php echo base_url().THEME; ?>plugins/fancybox/jquery.fancybox.pack.js"></script>
 <!--  -->
 <script src="<?php echo base_url().THEME; ?>plugins/fancybox/helpers/jquery.fancybox-media.js"></script>
@@ -137,6 +137,12 @@ $.widget.bridge('uibutton', $.ui.button);
 <!--  -->
 <!-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCv9ymzLZLuz9x8AexGZiwd38TpN4VgNzw"></scsript> -->
 <script type="text/javascript" src="<?php echo base_url().THEME; ?>plugins/html2canvas.js"></script>
+<script type="text/javascript" src="<?php echo base_url().APPS.'config.js';?>"></script>
 <script type="text/javascript" src="<?php echo base_url().APPS.'apps.js';?>"></script>
+<script>
+    // $(function(){
+    //     $('img').imgPreload()
+    // })
+</script>
 </body>
 </html> 

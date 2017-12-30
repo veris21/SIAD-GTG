@@ -366,6 +366,53 @@ class Master extends CI_Controller{
       $data['data']           = $this->master_model->_get_klasifikasi_surat()->result();
       $this->load->view('template',$data);
   }
+
+
+
+
+/*------------------------------------------------------------*/
+/*----------------------- RESET DATABASE ---------------------*/
+/*------------------------------------------------------------*/
+function reset(){
+      $data['title']          =  TITLE.'RESET DATABASE';
+      $data['arsip']          = $this->arsip_model->get_arsip_count();
+      $data['disposisi']      = $this->disposisi_model->get_disposisi_count();
+      $data['session']        = $this->master_model->get_session_count();
+      $data['notifikasi']     = $this->notifikasi_model->get_notifikasi_count();
+      $data['main_content']   =  MASTER.'reset';
+      $this->load->view('template',$data);
+}
+
+public function reset_pertanahan(){
+  $res = $this->master_model->reset_pertanahan();
+  if($res){
+    echo json_encode(array("status" => TRUE));
+  }
+}
+
+public function reset_arsip(){
+  $res = $this->master_model->reset_arsip();
+  if($res){
+    echo json_encode(array("status" => TRUE));
+  }
+}
+
+public function reset_notifikasi(){
+  $res = $this->master_model->reset_notifikasi();
+  if($res){
+    echo json_encode(array("status" => TRUE));
+  }
+}
+
+public function reset_session(){
+  $res = $this->master_model->reset_session();
+  if($res){
+    echo json_encode(array("status" => TRUE));
+  }
+}
+
+
+  /*------------------------------------------------------------*/
  
   // Master CI_Controller
   /*

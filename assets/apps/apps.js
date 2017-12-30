@@ -18,7 +18,11 @@ var arsip_method;
 var message = '';
 var maksimal;
 var sisa;
+var koordinat_method = '';
 
+$(function () {
+  $('.main-img').imgPreload();
+});
 
 function refresh(){
   location.reload();
@@ -450,92 +454,6 @@ function cari_data_skt(){
     $('#modal_user').modal('show');
   }
 
-/*====================================================*/
-//            FUNGSI KOORDINAT PERTANAHAN
-/*====================================================*/
-var koordinat_method = '';
-
-
-function add_koordinat_tengah(){  
-  var data_koor;
-  koordinat_method = 'koordinat_tengah';
-   var geoOptions = {
-     enableHighAccuracy: true
-   }
-   var geoSuccess = function (position) {
-     data_koor = position;
-     $('[name="lat"]').val(data_koor.coords.latitude);
-     $('[name="lng"]').val(data_koor.coords.longitude);
-     console.log('Lat: ' + data_koor.coords.latitude + ', Lng : ' + data_koor.coords.longitude);
-   };
-   var geoError = function (error) {
-     console.log('Error occurred. Error code: ' + error.code);
-   };
-   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
-    $('#data_koordinat')[0].reset();
-    $('#patok').hide();
-    $('#utara').hide();
-    $('#selatan').hide();
-    $('#barat').hide();
-    $('#timur').hide();
-    $('#modal_koordinat').modal('show');
-  }
-
-
-
-  function add_koordinat() {
-    koordinat_method = 'koordinat_tanah';
-    var data_koor;
-    var geoOptions = {
-      enableHighAccuracy: true
-    }
-    var geoSuccess = function (position) {
-      data_koor = position;
-      $('[name="lat"]').val(data_koor.coords.latitude);
-      $('[name="lng"]').val(data_koor.coords.longitude);
-      console.log('Lat: ' + data_koor.coords.latitude + ', Lng : ' + data_koor.coords.longitude);
-    };
-    var geoError = function (error) {
-      console.log('Error occurred. Error code: ' + error.code);
-    };
-    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
-    $('#data_koordinat')[0].reset();
-    $('#keterangan').hide();
-    $('#modal_koordinat').modal('show');
-  }
-
-  function save_koordinat(){
-    var url;      
-    switch (koordinat_method) {
-      case 'koordinat_tengah':
-        url = baseUrl+'koordinat/tengah';
-        break;
-      case 'koordinat_tanah':
-        url = baseUrl + 'koordinat/tanah';
-        break;
-    }
-    $('#data_koordinat').submit(function (evt) {
-      evt.preventDefault();
-      var formData = new FormData($(this)[0]);
-      $.ajax({
-        url: url,
-        type: "POST",
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        enctype: 'multipart/form-data',
-        processData: false,
-        success: function (data) {
-          swal('Selamat !', 'Berhasil Input Data Koordinat Ke Sistem!', 'success');
-          location.reload();
-        }, error: function (jqXHR, textStatus, errorThrown) {
-          swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
-        }
-      });
-    });  
-
-  }
 
   function get_koordinat_gps(){
     var startPos;
@@ -1383,6 +1301,109 @@ $.ajax({
        }
 });
 }
+
+
+
+
+
+/*================================================= */
+/*/                Peta Handler System             /*/
+/*/================================================/*/
+
+function push_data(){
+
+}
+
+function edit_titik_tengah(id){
+
+}
+
+function edit_patok(id) {
+
+}
+
+
+function add_koordinat_tengah() {
+  var data_koor;
+  koordinat_method = 'koordinat_tengah';
+  var geoOptions = {
+    enableHighAccuracy: true
+  }
+  var geoSuccess = function (position) {
+    data_koor = position;
+    $('[name="lat"]').val(data_koor.coords.latitude);
+    $('[name="lng"]').val(data_koor.coords.longitude);
+    console.log('Lat: ' + data_koor.coords.latitude + ', Lng : ' + data_koor.coords.longitude);
+  };
+  var geoError = function (error) {
+    console.log('Error occurred. Error code: ' + error.code);
+  };
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+  $('#data_koordinat')[0].reset();
+  $('#patok').hide();
+  $('#utara').hide();
+  $('#selatan').hide();
+  $('#barat').hide();
+  $('#timur').hide();
+  $('#modal_koordinat').modal('show');
+}
+
+
+
+function add_koordinat() {
+  koordinat_method = 'koordinat_tanah';
+  var data_koor;
+  var geoOptions = {
+    enableHighAccuracy: true
+  }
+  var geoSuccess = function (position) {
+    data_koor = position;
+    $('[name="lat"]').val(data_koor.coords.latitude);
+    $('[name="lng"]').val(data_koor.coords.longitude);
+    console.log('Lat: ' + data_koor.coords.latitude + ', Lng : ' + data_koor.coords.longitude);
+  };
+  var geoError = function (error) {
+    console.log('Error occurred. Error code: ' + error.code);
+  };
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+  $('#data_koordinat')[0].reset();
+  $('#keterangan').hide();
+  $('#modal_koordinat').modal('show');
+}
+
+function save_koordinat() {
+  var url;
+  switch (koordinat_method) {
+    case 'koordinat_tengah':
+      url = baseUrl + 'koordinat/tengah';
+      break;
+    case 'koordinat_tanah':
+      url = baseUrl + 'koordinat/tanah';
+      break;
+  }
+  $('#data_koordinat').submit(function (evt) {
+    evt.preventDefault();
+    var formData = new FormData($(this)[0]);
+    $.ajax({
+      url: url,
+      type: "POST",
+      data: formData,
+      async: false,
+      cache: false,
+      contentType: false,
+      enctype: 'multipart/form-data',
+      processData: false,
+      success: function (data) {
+        swal('Selamat !', 'Berhasil Input Data Koordinat Ke Sistem!', 'success');
+        location.reload();
+      }, error: function (jqXHR, textStatus, errorThrown) {
+        swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+      }
+    });
+  });
+
+}
+
 
 /*/================================================/*/
 /*/                                                /*/
