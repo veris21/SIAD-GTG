@@ -129,6 +129,10 @@ class Pertanahan_model extends CI_Model{
     return $this->db->query($query);
   }
 
+
+/*==========================================
+            Koordinat Data
+==========================================*/
   public function _get_data_patok($id){
     return $this->db->get_where('data_koordinat', array('id_data_link'=>$id));
   }
@@ -137,17 +141,13 @@ class Pertanahan_model extends CI_Model{
     return $this->db->get_where('data_link', array('tanah_id'=>$id));
   }
 
-/*==========================================
-            Koordinat Data
-==========================================*/
+  public function _post_titik_marker($post){
+    return $this->db->insert('data_link', $post);
+  }
 
-public function _post_titik_marker($post){
-  return $this->db->insert('data_link', $post);
-}
-
-public function _post_titik_polygon($post){
-  return $this->db->insert('data_koordinat', $post);
-}
+  public function _post_titik_polygon($post){
+    return $this->db->insert('data_koordinat', $post);
+  }
 
 
 /*==========================================*/
