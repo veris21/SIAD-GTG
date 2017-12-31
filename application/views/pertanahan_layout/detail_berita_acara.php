@@ -106,7 +106,8 @@
                  ?> 
                  <div class="box box-warning">
                     <div class="box-footer">
-                        <button onclick="add_koordinat()" class="btn btn-primary btn-flat btn-block btn-lg">Input Koordinat Tanah/ Patok <i class="fa fa-plus"></i></button>
+                        <button onclick="add_koordinat()" class="btn btn-primary btn-flat btn-lg">Input Koordinat Tanah/ Patok <i class="fa fa-plus"></i></button>
+                        <button onclick="lock_koordinat()" class="btn btn-warning btn-flat btn-lg">Kunci Data Koordinat <i class="fa fa-lock"></i></button>
                     </div>
                  </div>
                  <?php 
@@ -127,6 +128,7 @@
          </div> -->
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-6">
         <div class="box box-warning">
@@ -134,6 +136,7 @@
                 <h4 class="box-title"><i class="fa fa-file-archive-o"></i> Data Pemohon</h4>
             </div>
             <div class="box-body">
+
                 <div class="row">
                     <div class="col-md-8">
                         <dt>Pemohon</dt>
@@ -146,8 +149,8 @@
                         <dd>  <b><?php echo $data['lokasi'];?></b><br> Dusun <?php echo $data['nama_dusun'];?> Desa <?php echo $data['nama_desa'];?> Kecamatan <?php echo $data['nama_kecamatan'];?> Kabupaten <?php echo $data['nama_kabupaten'];?> <br>
                         - Luas tanah &plusmn;<b> <?php echo $data['luas'];?></b> m<sup>2</sup></dd>
                         <br>
-                        </div>
-                    <div class="col-md-4 hidden-xs hidden-sm">
+                    </div>
+                     <div class="col-md-4 hidden-xs hidden-sm">
                         <img class="img img-responsive img-rounded"  src="<?php echo base_url().QRCODE.$data['permohonan_qr'];?>" alt="">
                      </div>
                      <div class="col-md-8">
@@ -162,8 +165,11 @@
                         <img class="img img-responsive img-rounded"  src="<?php echo base_url().QRCODE.$data['pernyataan_qr'];?>" alt="">
                      </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-12"><b>Lampiran :</b></div>
+                </div>
+                 <div class="row">
                     <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['ktp'];?>" title="Lampiran Scan KTP/ Pengantar Kepala Dusun">
                         <img class="img img-responsive img-rounded"  src="<?php echo base_url().KTP.$data['ktp'];?>" alt="">
@@ -180,15 +186,19 @@
                     </a>
                     </div>
                 </div>
+
             </div>
         </div>
+
         </div>
+
         <div class="col-md-6">
         <div class="box box-warning">
              <div class="box-header">
                 <h4 class="box-title"><i class="fa fa-sticky-note-o"></i> Data Pemeriksaan</h4>
             </div>
             <div class="box-body">
+
                 <div class="row">
                     <div class="col-md-12">
                         <dt>Ketua Tim Pemeriksa</dt>
@@ -202,6 +212,7 @@
                         <br>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-6">
                         <dt>Saksi 1</dt>
@@ -216,6 +227,7 @@
                         <dd>Nama :  <?php echo $data['saksi4_nama'];?> <br> Pekerjaan :  <?php echo $data['saksi4_pekerjaan'];?><br> Alamat :  <?php echo $data['saksi4_alamat'];?></dd>                        
                     </div>
                 </div>
+
             </div>
         </div>
         </div>

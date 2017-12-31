@@ -369,10 +369,11 @@ class Master extends CI_Controller{
 
 
 
+/*------------------------------------------------------------------------------------------------*/
+/*----------------------------------------- RESET DATABASE ---------------------------------------*/
+/*-------------------------------   HANYA AKTIF SAAT DEVELOPMENT      ----------------------------*/
+/*------------------------------------------------------------------------------------------------*/
 
-/*------------------------------------------------------------*/
-/*----------------------- RESET DATABASE ---------------------*/
-/*------------------------------------------------------------*/
 function reset(){
       $data['title']          =  TITLE.'RESET DATABASE';
       $data['arsip']          = $this->arsip_model->get_arsip_count();
@@ -384,6 +385,25 @@ function reset(){
 }
 
 public function reset_pertanahan(){
+  $permohonan = $this->pertanahan_model->_permohonan_all()->result();
+  foreach($permohonan as $permohonan){
+    unlink('./assets/uploader/ktp/'.$permohonan->ktp);
+    unlink('./assets/uploader/pbb_pemohon/'.$permohonan->pbb);
+    unlink('./assets/uploader/surat_kadus/'.$permohonan->scan_link);
+    unlink('./assets/uploader/qr_code/'.$permohonan->qr_link);
+  }
+  $pernyataan = $this->pertanahan_model->_pernyataan_all()->result();
+  foreach($pernyataan as $pernyataan){
+    unlink('./assets/uploader/qr_code/'.$pernyataan->qr_link);
+  }
+  $berita_acara = $this->pertanahan_model->_berita_acara_all()->result();
+  foreach($berita_acara as $berita_acara){
+    unlink('./assets/uploader/qr_code/'.$berita_acara->qr_link);
+  }
+  $koordinat = $this->pertanahan_model->_get_all_koordinat()->result();
+  foreach($koordinat as $koordinat){
+    unlink('./assets/uploader/patok/'.$koordinat->link_dokumentasi);
+  }
   $res = $this->master_model->reset_pertanahan();
   if($res){
     echo json_encode(array("status" => TRUE));
@@ -391,6 +411,11 @@ public function reset_pertanahan(){
 }
 
 public function reset_arsip(){
+  $hapus = $this->arsip_model->get_all()->result();
+  foreach($hapus as $hapus){
+    unlink('./assets/uploader/arsip/'.$hapus->scan_link);
+    unlink('./assets/uploader/arsip/'.$hapus->scan_balasan);
+  }
   $res = $this->master_model->reset_arsip();
   if($res){
     echo json_encode(array("status" => TRUE));
@@ -410,9 +435,9 @@ public function reset_session(){
     echo json_encode(array("status" => TRUE));
   }
 }
-
-
-  /*------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------*/
  
   // Master CI_Controller
   /*

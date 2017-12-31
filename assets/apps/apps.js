@@ -20,6 +20,10 @@ var maksimal;
 var sisa;
 var koordinat_method = '';
 
+
+
+
+
 $(function () {
   $('.main-img').imgPreload();
 });
@@ -1303,15 +1307,41 @@ $.ajax({
 }
 
 
-
-
-
 /*================================================= */
 /*/                Peta Handler System             /*/
 /*/================================================/*/
 
-function push_data(){
-
+function push_data() {
+   event.preventDefault();
+   swal({
+     title: 'Apa Anda Yakin?',
+     text: "Data Akan di Funalisasi database Utama tabel SKT/Rekomendasi !",
+     type: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Iya, Push Data!'
+   }, function isConfirm() {
+     html2canvas($("#map-canvas"), {
+       useCORS: true,
+       onrendered: function (canvas) {
+         var imagedata = canvas.toDataURL('image/png');
+         var imgdata = imagedata.replace(/^data:image\/(png|jpg);base64,/, "");
+        //  var formData = new FormData($(this)[0]);
+         $.ajax({
+               url: baseUrl+'polygon/push',
+               type: "POST",
+               data: { img_data : imgdata },
+               success: function (data) {
+                  console.log(data);
+                  //  $('#polygon img').attr('src', data);
+               }, error: function (jqXHR, textStatus, errorThrown) {
+                  swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+               }
+         });
+       }
+     });
+   });
 }
 
 function edit_titik_tengah(id){
@@ -1409,4 +1439,8 @@ function save_koordinat() {
 /*/                                                /*/
 /*/               DON'T BE A DICK                  /*/
 /*/                                                /*/
+/*/           Just Call Me if You See              /*/
+/*/           This Code Provided For               /*/
+/*/           https://si-desa.id project           /*/
+/*/           By : Veris Juniardi                  /*/
 /*/================================================/*/

@@ -285,7 +285,7 @@ class Pertanahan extends CI_Controller{
         break;
     }
     $setujui = array('status_proses'=>2,'type_yang_disetujui'=>$status_persetujuan, 'nota_kades'=>$nota_kades);
-    $kasi_pemerintahan = $this->notifikasi_model->__get_data_kasi_pemerintahan($this->session->userdata('desa_id'))->row_array();
+    $kasi_pemerintahan = $this->notifikasi_model->_get_data_kasi_pemerintahan($this->session->userdata('desa_id'))->row_array();
      // +===============+
      $kepada_id = $kasi_pemerintahan['id'];
      $to = $kasi_pemerintahan['hp'];
@@ -450,7 +450,15 @@ class Pertanahan extends CI_Controller{
     
   }
 
-
+  public function skt_input(){
+      $img_data = base64_decode($this->input->post('img_data'));
+      $img_name = time().'.png';
+      $path = './assets/uploader/polygon/'.$img_name; //buat folder dengan nama assets di root folder
+      $check = file_put_contents($path, $img_data);
+      if ($check) {
+        echo json_encode(array("status" => TRUE));
+      }     
+  }
 
 }
 

@@ -89,6 +89,8 @@
 			html2canvas($("#map-canvas"),{
 				useCORS: true,
 				onrendered: function(canvas){
+					var imagedata = canvas.toDataURL('image/png');
+					var imgdata = imagedata.replace(/^data:image\/(png|jpg);base64,/, "");
 				document.body.appendChild(canvas);	
 					// Convert and download as image 
 				Canvas2Image.saveAsPNG(canvas); 

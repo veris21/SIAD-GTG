@@ -129,10 +129,26 @@ class Pertanahan_model extends CI_Model{
     return $this->db->query($query);
   }
 
+  public function _permohonan_all(){
+    return $this->db->get('permohonan_pertanahan');
+  }
 
+  public function _pernyataan_all(){
+    return $this->db->get('pernyataan_pertanahan');
+  }
+
+   public function _berita_acara_all(){
+    return $this->db->get('berita_acara_pertanahan');
+  }
 /*==========================================
             Koordinat Data
 ==========================================*/
+  
+
+  public function _get_all_koordinat(){
+    return $this->db->get('data_koordinat');
+  }
+
   public function _get_data_patok($id){
     return $this->db->get_where('data_koordinat', array('id_data_link'=>$id));
   }

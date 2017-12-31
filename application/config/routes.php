@@ -125,3 +125,4 @@ $route['import/data']               = 'datapenduduk/import';
 // KOORDINAT ROUTE
 $route['koordinat/tengah']          = 'pertanahan/input_koordinat_tengah';
 $route['koordinat/tanah']           = 'pertanahan/input_koordinat';
+$route['polygon/push']              = 'pertanahan/skt_input';
