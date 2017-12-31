@@ -29,7 +29,7 @@
                     <p>Dengan menekan tombol dibawah ini, Data Akan disetujui dan di input langsung ke Database Finalisasi SKT / Surat Rekomendasi, dan akan muncul setelah mendapat persetujuan dari sistem dan pejabat terkait untuk print out akhir <b>Surat Keterangan Tanah (SKT) / Surat Rekomendasi Pengelolaan Tanah</b> beserta lampiran</p>
                 </div>
                 <div class="box-footer">
-                <button onclick="push_data()" class="btn btn-md btn-warning btn-block">Push Data Final <i class="fa fa-ban"></i></button>
+                <button onclick="push_data(<?php echo $data['id']; ?>)" class="btn btn-md btn-warning btn-block">Push Data Final <i class="fa fa-ban"></i></button>
                 </div>
             </div>
         </div>

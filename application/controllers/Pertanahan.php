@@ -451,8 +451,12 @@ class Pertanahan extends CI_Controller{
   }
 
   public function skt_input(){
+    
+      $time = time();
+      $bap_id = strip_tags($this->input->post('bap_id'));
+
       $img_data = base64_decode($this->input->post('img_data'));
-      $img_name = time().'.png';
+      $img_name = $time.'.png';
       $path = './assets/uploader/polygon/'.$img_name; //buat folder dengan nama assets di root folder
       $check = file_put_contents($path, $img_data);
       if ($check) {

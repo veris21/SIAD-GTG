@@ -1311,7 +1311,7 @@ $.ajax({
 /*/                Peta Handler System             /*/
 /*/================================================/*/
 
-function push_data() {
+function push_data(id) {
    event.preventDefault();
    swal({
      title: 'Apa Anda Yakin?',
@@ -1331,10 +1331,10 @@ function push_data() {
          $.ajax({
                url: baseUrl+'polygon/push',
                type: "POST",
-               data: { img_data : imgdata },
+               data: { img_data : imgdata, bap_id : id },
                success: function (data) {
-                  console.log(data);
-                  //  $('#polygon img').attr('src', data);
+                  // console.log(data);
+                  swal('Selesai!', 'Berhasil Push dan Kunci data Pertanahan !', 'success');
                }, error: function (jqXHR, textStatus, errorThrown) {
                   swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
                }
