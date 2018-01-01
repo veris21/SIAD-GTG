@@ -123,6 +123,15 @@ $route['import/data']               = 'datapenduduk/import';
 
 
 // KOORDINAT ROUTE
-$route['koordinat/tengah']          = 'pertanahan/input_koordinat_tengah';
-$route['koordinat/tanah']           = 'pertanahan/input_koordinat';
-$route['polygon/push']              = 'pertanahan/skt_input';
+$route['koordinat/tengah']                  = 'pertanahan/input_koordinat_tengah';
+$route['get/koordinat/tengah/(:any)']       = 'pertanahan/get_koordinat_tengah/$1';
+$route['update/koordinat/tengah']           = 'pertanahan/update_koordinat_tengah';
+
+$route['koordinat/tanah']                   = 'pertanahan/input_koordinat';
+$route['get/koordinat/tanah/(:any)']        = 'pertanahan/get_koordinat/$1';
+$route['update/koordinat']                  = 'pertanahan/update_koordinat';
+$route['delete/koordinat/(:any)']           = 'pertanahan/delete_koordinat/$1';
+
+
+// DATA KOORDINAT DIPUSH ke SKT
+$route['polygon/push']                      = 'pertanahan/skt_input';

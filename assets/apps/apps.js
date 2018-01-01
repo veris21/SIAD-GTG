@@ -1345,11 +1345,110 @@ function push_data(id) {
 }
 
 function edit_titik_tengah(id){
+  var url = baseUrl + 'get/koordinat/tengah/' + id;
+  event.preventDefault();
+  swal({
+    title: 'Apa Anda Ingin Merubah Titik Tengah?',
+    text: "Edit Data Titik Tengah",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Iya, Edit Data!'
+  }, function isConfirm() {
+    $('#data_koordinat')[0].reset();
+    $.ajax({
+      url: url,
+      type: "GET",
+      dataType: "JSON",
+      success: function (data) {
+        koordinat_method = 'edit_koordinat_tengah';
+        $('[name="tengah_id"]').val(data.id);
+        $('[name="lat"]').val(data.lat);
+        $('[name="lng"]').val(data.lng);
+        $('[name="keterangan"]').val(data.keterangan);
+        $('#patok').hide();
+        $('#foto-patok').hide();
+        $('#utara').hide();
+        $('#selatan').hide();
+        $('#barat').hide();
+        $('#timur').hide();
 
+        $('#foto-patok').hide();
+
+        $('#modal_koordinat').modal('show');
+        $('.modal-title').text('Update Titik Tengah');
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+      }
+    });
+  });
 }
 
 function edit_patok(id) {
+  var url = baseUrl + 'get/koordinat/tanah/' + id;
+  event.preventDefault();
+  swal({
+    title: 'Apa Anda Ingin Merubah Data Patok?',
+    text: "Edit Data Patok",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Iya, Edit Data!'
+  }, function isConfirm() {      
+      $('#data_koordinat')[0].reset();
+      $.ajax({
+        url: url,
+        type:"GET",
+        dataType: "JSON",
+        success: function(data){          
+          koordinat_method = 'edit_koordinat_tanah';
+          $('[name="id_patok"]').val(data.id);
+          $('[name="lat"]').val(data.lat);
+          $('[name="lng"]').val(data.lng);
+          $('[name="utara"]').val(data.utara);
+          $('[name="selatan"]').val(data.selatan);
+          $('[name="timur"]').val(data.timur);
+          $('[name="barat"]').val(data.barat);
+          $('#keterangan').hide();
 
+          $('#foto-patok img').attr('src', baseUrl+'assets/uploader/patok/'+data.link_dokumentasi);
+          $('#modal_koordinat').modal('show'); 
+          $('.modal-title').text('Update Data Patok');
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+        }
+      });
+  });
+}
+
+function hapus_patok(id) {
+  event.preventDefault();
+  swal({
+    title: 'Apa Anda Ingin Menghapus Data Patok ?',
+    text: "Hapus Data Patok Secara Permanen",
+    type: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Iya, Hapus Patok!'
+  }, function isConfirm() {   
+    $.ajax({
+      url: baseUrl +'delete/koordinat/'+id,
+      type:"POST",
+      success: function(data){
+        swal('Selamat !', 'Berhasil Menghapus Data Koordinat di Sistem!', 'success');
+        location.reload();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+      }
+
+    });
+  });
 }
 
 
@@ -1371,6 +1470,7 @@ function add_koordinat_tengah() {
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
   $('#data_koordinat')[0].reset();
   $('#patok').hide();
+  $('#foto-patok').hide();
   $('#utara').hide();
   $('#selatan').hide();
   $('#barat').hide();
@@ -1397,6 +1497,7 @@ function add_koordinat() {
   };
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
   $('#data_koordinat')[0].reset();
+  $('#foto-patok').hide();
   $('#keterangan').hide();
   $('#modal_koordinat').modal('show');
 }
@@ -1407,8 +1508,14 @@ function save_koordinat() {
     case 'koordinat_tengah':
       url = baseUrl + 'koordinat/tengah';
       break;
+    case 'edit_koordinat_tengah':
+      url = baseUrl + 'update/koordinat/tengah';
+      break;
     case 'koordinat_tanah':
       url = baseUrl + 'koordinat/tanah';
+      break;
+    case 'edit_koordinat_tanah':
+      url = baseUrl + 'update/koordinat';
       break;
   }
   $('#data_koordinat').submit(function (evt) {
@@ -1425,6 +1532,8 @@ function save_koordinat() {
       processData: false,
       success: function (data) {
         swal('Selamat !', 'Berhasil Input Data Koordinat Ke Sistem!', 'success');
+        // var obj = JSON.parse(data);
+        // console.log("status : "+obj.status + " message : "+obj.message);
         location.reload();
       }, error: function (jqXHR, textStatus, errorThrown) {
         swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');

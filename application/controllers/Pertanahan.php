@@ -326,6 +326,7 @@ class Pertanahan extends CI_Controller{
     $data['pemeriksa_4'] = $this->auth_model->get_user_id($data['data']['pemeriksa_4_id'])->row_array();
     $data['titik_tengah'] = $this->pertanahan_model->_get_data_link($data['data']['id'])->row_array();
     $data['patok']        = $this->pertanahan_model->_get_data_patok($data['titik_tengah']['id']); 
+    $data['data_patok']  = $this->pertanahan_model->_get_data_patok($data['titik_tengah']['id'])->result();
     $data['main_content'] = PERTANAHAN.'detail_berita_acara';
     $this->load->view('template', $data);
   }
@@ -450,11 +451,94 @@ class Pertanahan extends CI_Controller{
     
   }
 
-  public function skt_input(){
-    
+  public function update_koordinat(){   
+    if(isset($_FILES['patok'])){
+      if($_FILES['patok']['name']!=''){
+        $patok = time()."-".$_FILES['patok']['name'];
+      $config['upload_path'] = './assets/uploader/patok/'; //buat folder dengan nama assets di root folder
+      $config['allowed_types'] = 'png|jpg|jpeg';
+      $config['max_size'] = 10000;
+      $config['file_name'] = $patok;
+      $this->load->library('upload');
+      $this->upload->initialize($config);
+      if(! $this->upload->do_upload('patok') );
+      $id = $this->input->post('id_patok');
+      $lat = strip_tags($this->input->post('lat'));
+      $lng = strip_tags($this->input->post('lng')); 
+      $utara = strip_tags($this->input->post('utara'));
+      $selatan = strip_tags($this->input->post('selatan'));
+      $barat = strip_tags($this->input->post('barat'));
+      $timur = strip_tags($this->input->post('timur'));
+        $update = array(
+          'link_dokumentasi'=>$patok,
+          'lat'=>$lat,
+          'lng'=>$lng,
+          'utara'=>$utara,
+          'selatan'=>$selatan,
+          'timur'=>$timur,
+          'barat'=>$barat);
+          $check = $this->pertanahan_model->_update_patok($id, $update);
+          if($check){
+            echo json_encode(array("status" => TRUE, "message"=>"FOTO TIDAK KOSONG"));
+          }
+      }else{
+      $id = $this->input->post('id_patok');
+      $lat = strip_tags($this->input->post('lat'));
+      $lng = strip_tags($this->input->post('lng')); 
+      $utara = strip_tags($this->input->post('utara'));
+      $selatan = strip_tags($this->input->post('selatan'));
+      $barat = strip_tags($this->input->post('barat'));
+      $timur = strip_tags($this->input->post('timur'));
+        $update = array(
+          'lat'=>$lat,
+          'lng'=>$lng,
+          'utara'=>$utara,
+          'selatan'=>$selatan,
+          'timur'=>$timur,
+          'barat'=>$barat);
+          $check = $this->pertanahan_model->_update_patok($id , $update);
+          if($check){
+            echo json_encode(array("status" => TRUE, "message"=>"FOTO KOSONG"));
+          }
+      }
+    }
+  }
+
+  public function update_koordinat_tengah(){
+    $lat = strip_tags($this->input->post('lat'));
+    $lng = strip_tags($this->input->post('lng'));
+    $keterangan = strip_tags($this->input->post('keterangan'));
+    $id = strip_tags($this->input->post('tengah_id'));
+
+    $update = array('lat'=>$lat,'lng'=>$lng,'keterangan'=>$keterangan);
+    $check = $this->pertanahan_model->_update_titik_tengah($id, $update);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }
+  }
+
+  public function get_koordinat($id){
+    $data = $this->pertanahan_model->get_koordinat_id($id)->row_array();
+    echo json_encode($data);
+  }
+
+  public function delete_koordinat($id){
+    $data = $this->pertanahan_model->get_koordinat_id($id)->row_array();
+    unlink('./assets/uploader/patok/'.$data['link_dokumentasi']);
+    $check = $this->pertanahan_model->_delete_koordinat_patok($id);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }
+  }
+
+  public function get_koordinat_tengah($id){
+    $data = $this->pertanahan_model->get_koordinat_tengah_id($id)->row_array();
+    echo json_encode($data);
+  }
+
+  public function skt_input(){    
       $time = time();
       $bap_id = strip_tags($this->input->post('bap_id'));
-
       $img_data = base64_decode($this->input->post('img_data'));
       $img_name = $time.'.png';
       $path = './assets/uploader/polygon/'.$img_name; //buat folder dengan nama assets di root folder

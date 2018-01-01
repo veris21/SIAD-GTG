@@ -71,7 +71,8 @@
                             <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="">
                         </a>
                         <hr>
-                        <button onclick="edit_patok(<?php echo $patok->id;?>)" class="btn btn-warning btn-block">Edit Patok <i class="fa fa-edit"></i></button>
+                        <button onclick="edit_patok(<?php echo $patok->id;?>)" class="btn btn-warning">Edit <i class="fa fa-edit"></i></button>
+                        <button onclick="hapus_patok(<?php echo $patok->id;?>)" class="btn btn-danger">Hapus <i class="fa fa-trash"></i></button>
                         </div>
 
                         <div class="col-md-8">
@@ -251,7 +252,9 @@
             <div class="box box-warning">
                 <div class="box-body"> 
                    <!--  -->
-                   
+                   <div id="foto-patok" class="form-group">
+                       <img src="" class=" col-sm-12 img img-rounded img-responsive" alt="">
+                   </div>
                     <div class="form-group">
                         <label  class="control-label col-sm-4" for="">Latitude</label>
                         <div class="col-sm-8">
@@ -311,6 +314,8 @@
             </div>
                     
       </div>
+      <input type="hidden" name="id_patok" value="">
+      <input type="hidden" name="tengah_id" value="">
       <input type="hidden" name="tanah_id" value="<?php echo $data['id'];?>">
       <input type="hidden" name="status" value="1">
       <?php if($titik_tengah!=null || $titik_tengah!='') {?>
@@ -325,5 +330,51 @@
   </div> 
 </div>
 
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDbCwhTP2mtDKcb2s8A-bzrwMVKGwK-keY"></script>
-<script type="text/javascript" src="<?php echo base_url().APPS.'maps.js';?>"></script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDbCwhTP2mtDKcb2s8A-bzrwMVKGwK-keY&libraries=geometry"></script>
+<!-- <script type="text/javascript" src="<?php echo base_url().APPS.'maps.js';?>"></script> -->
+<script>
+var map;
+function initialize() {
+  map = new google.maps.Map(document.getElementById('map-canvas'), {
+    zoom: 18,
+    center: new google.maps.LatLng(
+        <?php echo $titik_tengah['lat'].",".$titik_tengah['lng']; ?>
+    ),
+    mapTypeId: 'terrain',
+    mapTypeControl: false,
+    disableDefaultUI: true
+  });
+
+  var patok = [];
+  <?php 
+  foreach ($data_patok as $patok){
+      ?> 
+     patok.push(new google.maps.LatLng(parseFloat(<?php echo $patok->lat;?>), parseFloat(<?php echo $patok->lng;?>)));
+      <?php
+  }
+  ?>
+  
+    // var color = '#'+Math.random().toString(16).substr(-6);
+    var area = google.maps.geometry.spherical.computeArea(patok);
+    var contentString = '<b><?php echo $titik_tengah['keterangan'];?></b><br><br>Luas : '+(area).toFixed(2)+' meter<sup>2</sup>';
+    
+   polygon = new google.maps.Polygon({
+        paths: [patok],
+        strokeColor:'#000000',
+        strokeOpacity: 0,
+        strokeWeight: 2,
+        fillColor:'#DDD000',
+        fillOpacity: 0.9,
+        html: contentString
+    });
+    
+    polygon.setMap(map);
+    infoWindow = new google.maps.InfoWindow();
+    google.maps.event.addListener(polygon, 'click', function(e) {
+    infoWindow.setContent(this.html);
+    infoWindow.setPosition(e.latLng);
+    infoWindow.open(map);
+    });
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>

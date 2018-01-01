@@ -143,7 +143,28 @@ class Pertanahan_model extends CI_Model{
 /*==========================================
             Koordinat Data
 ==========================================*/
+  public function _update_patok($id,$update){
+    $this->db->where('id', $id);
+    return $this->db->update('data_koordinat', $update);
+  }
+
+  public function _delete_koordinat_patok($id){
+    $this->db->where('id', $id);
+    return $this->db->delete('data_koordinat');
+  }
+
+  public function _update_titik_tengah($id, $update){
+    $this->db->where('id', $id);
+    return $this->db->update('data_link', $update);
+  }
   
+  public function get_koordinat_id($id){
+    return $this->db->get_where('data_koordinat', array('id'=>$id));
+  }
+
+  public function get_koordinat_tengah_id($id){
+    return $this->db->get_where('data_link', array('id'=>$id));
+  }
 
   public function _get_all_koordinat(){
     return $this->db->get('data_koordinat');
