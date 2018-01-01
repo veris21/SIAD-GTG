@@ -57,7 +57,7 @@
         <ul class="treeview-menu">
           <li><a href="<?php echo base_url().'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
           <li><a href="<?php echo base_url().'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
-          <li><a href="<?php echo base_url().'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
+          <li><a href="<?php echo base_url().'pertanahan/surat_tanah'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
         </ul>
       </li>        <?php
           break;
@@ -94,7 +94,7 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url().'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
             <li><a href="<?php echo base_url().'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
-            <li><a href="<?php echo base_url().'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
+            <li><a href="<?php echo base_url().'pertanahan/surat_tanah'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
           </ul>
         </li>
         <?php } ?>
@@ -150,7 +150,7 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url().'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
             <li><a href="<?php echo base_url().'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
-            <li><a href="<?php echo base_url().'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
+            <li><a href="<?php echo base_url().'pertanahan/surat_tanah'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
           </ul>
         </li>
         <?php
@@ -264,7 +264,7 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url().'pertanahan/permohonan'; ?>"><i class="fa fa-circle-o"></i> Data Permohonan</a></li>
             <li><a href="<?php echo base_url().'pertanahan/berita_acara'; ?>"><i class="fa fa-circle-o"></i> Data BAP</a></li>
-            <li><a href="<?php echo base_url().'skt_release'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
+            <li><a href="<?php echo base_url().'pertanahan/surat_tanah'; ?>"><i class="fa fa-circle-o"></i> Data SKT Release</a></li>
           </ul>
         </li>
         <!-- MASTER SISTEM -->

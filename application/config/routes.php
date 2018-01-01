@@ -91,6 +91,7 @@ $route['notifikasi/baca/(:any)']    = 'office/notifikasi_baca/$1';
 $route['pertanahan/data']                 = 'pertanahan/data_view';
 $route['pertanahan/permohonan']           = 'pertanahan/permohonan';
 $route['pertanahan/berita_acara']         = 'pertanahan/berita_acara';
+$route['pertanahan/surat_tanah']          = 'pertanahan/list_skt';
 
 $route['permohonan/input']                = 'pertanahan/permohonan_input';
 $route['permohonan/view/(:any)']          = 'pertanahan/permohonan_view/$1';

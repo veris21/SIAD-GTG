@@ -108,6 +108,7 @@ class Pertanahan_model extends CI_Model{
       pernyataan.saksi4_pekerjaan as saksi4_pekerjaan,
       pernyataan.time as time_pernyataan,
       pernyataan.qr_link as pernyataan_qr,
+      bap.status_bap as status_bap,
       bap.qr_link as bap_qr,
       bap.pemeriksa_1 as ketua_pemeriksa_id,
       bap.pemeriksa_2 as pemeriksa_1_id,
@@ -126,7 +127,25 @@ class Pertanahan_model extends CI_Model{
       desa.kecamatan_id = kecamatan.id AND 
       kecamatan.kabupaten_id = kabupaten.id AND 
       bap.time_input=$id";
-    return $this->db->query($query);
+      return $this->db->query($query);
+  }
+
+  public function _update_bap($id, $update){
+    $this->db->where('id', $id);
+    return $this->db->update('berita_acara_pertanahan', $update);
+  }
+
+  public function _get_skt(){
+    $this->db->select('skt.* ,bap.time time_bap, mohon.time time_mohon, desa.nama_desa, mohon.type_yang_disetujui, mohon.lokasi, mohon.luas, p.no_nik, p.nama, p.alamat, p.no_kk');
+    $this->db->from('permohonan_pertanahan mohon, master_data_penduduk_ p, berita_acara_pertanahan bap, desa desa, data_skt skt');
+    $this->db->where('mohon.kependudukan_id=p.id');
+    $this->db->where('bap.permohonan_id=mohon.id');
+    $this->db->where('skt.id_berita_acara=bap.id');
+    return $this->db->get();
+  }
+
+  public function _push_skt($push){
+    return $this->db->insert('data_skt', $push);
   }
 
   public function _permohonan_all(){

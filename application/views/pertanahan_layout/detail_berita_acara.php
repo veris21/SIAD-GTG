@@ -8,6 +8,7 @@
     <li class="active">Details Berita Acara</li>
   </ol>
 </section>
+<?php $lock = ($data['status_bap']==1 ? 'hidden' : '');?>
 <section class="content">
     <div class="row">
         <div class="col-md-9">
@@ -23,13 +24,23 @@
         <div class="col-md-3">
             <div class="box box-danger"  valign="bottom">
                 <div class="box-header">
-                    <h4 class="box-title"><i class="fa fa-gear"></i> Push Data Peta</h4>
+                    <h4 class="box-title"><i class="fa fa-gear"></i>Finalisasi Data Peta</h4>
                 </div>
                 <div class="box-body">
+                    <?php if ($lock=='hidden') {
+                    ?>
+                    <center><i class="fa fa-lock fa-5x"></i></center>
+                    <h3 class="well text-center">
+                        Data Telah di Kunci
+                    </h3>
+                    <p>Silahkan Lihat Keterangan SKT/ Rekomendasi di Halaman Finalisasi SKT/ Surat rekomendasi Penggunaan Tanah</p>
+                    <?php
+                    }else{ ?>
                     <p>Dengan menekan tombol dibawah ini, Data Akan disetujui dan di input langsung ke Database Finalisasi SKT / Surat Rekomendasi, dan akan muncul setelah mendapat persetujuan dari sistem dan pejabat terkait untuk print out akhir <b>Surat Keterangan Tanah (SKT) / Surat Rekomendasi Pengelolaan Tanah</b> beserta lampiran</p>
+                    <?php } ?>
                 </div>
                 <div class="box-footer">
-                <button onclick="push_data(<?php echo $data['id']; ?>)" class="btn btn-md btn-warning btn-block">Push Data Final <i class="fa fa-ban"></i></button>
+                <button onclick="push_data(<?php echo $data['id']; ?>)" class="btn btn-lg btn-success btn-block  <?php echo $lock;?>" >Kunci Data Final <i class="fa fa-lock"></i></button>
                 </div>
             </div>
         </div>
@@ -46,11 +57,12 @@
                  if($titik_tengah != null){
                      echo "<div class='box-body'>";
                      echo "<p class='well'>".$titik_tengah['keterangan']."</p>";
-                     echo "<h4>Latitude : <b>".$titik_tengah['lat']."</b> <br> Longitude : <b>".$titik_tengah['lng']."</b></h4>";
+                     echo "<h4>Latitude : <b>".$titik_tengah['lat']."</b> <br> Longitude : <b>".$titik_tengah['lng']."</b></h4>
+                     <h4 id='luas'></h4>";
                      echo "</div>";
                      echo "<div class='box-footer'>";
                      echo "<div class='pull-right'>";
-                     echo "<button onclick='edit_titik_tengah(".$titik_tengah['id'].")' class='btn btn-flat btn-warning'>Edit Titik Tengah Koordinat <i class='fa fa-edit'></i></button>";
+                     echo "<button onclick='edit_titik_tengah(".$titik_tengah['id'].")' class='btn btn-flat btn-warning ".$lock."'>Edit Titik Tengah Koordinat <i class='fa fa-edit'></i></button>";
                      echo "</div>";
                      echo "</div>";
                      ?>
@@ -71,8 +83,9 @@
                             <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="">
                         </a>
                         <hr>
-                        <button onclick="edit_patok(<?php echo $patok->id;?>)" class="btn btn-warning">Edit <i class="fa fa-edit"></i></button>
-                        <button onclick="hapus_patok(<?php echo $patok->id;?>)" class="btn btn-danger">Hapus <i class="fa fa-trash"></i></button>
+                        <button onclick="edit_patok(<?php echo $patok->id;?>)" class="btn btn-primary <?php echo $lock;?>">Edit <i class="fa fa-edit"></i></button>
+                        <button onclick="hapus_patok(<?php echo $patok->id;?>)" class="btn btn-danger pull-right <?php echo $lock;?>">Hapus <i class="fa fa-trash"></i></button>
+                        <hr>
                         </div>
 
                         <div class="col-md-8">
@@ -107,8 +120,7 @@
                  ?> 
                  <div class="box box-warning">
                     <div class="box-footer">
-                        <button onclick="add_koordinat()" class="btn btn-primary btn-flat btn-lg">Input Koordinat Tanah/ Patok <i class="fa fa-plus"></i></button>
-                        <button onclick="lock_koordinat()" class="btn btn-warning btn-flat btn-lg">Kunci Data Koordinat <i class="fa fa-lock"></i></button>
+                        <button onclick="add_koordinat()" class="btn btn-primary btn-flat btn-lg  <?php echo $lock;?>" >Input Patok <i class="fa fa-plus"></i></button>
                     </div>
                  </div>
                  <?php 
@@ -356,15 +368,16 @@ function initialize() {
   
     // var color = '#'+Math.random().toString(16).substr(-6);
     var area = google.maps.geometry.spherical.computeArea(patok);
+    $('#luas').html('Luas : <b>'+(area).toFixed(2)+' meter<sup>2</sup></b>');
     var contentString = '<b><?php echo $titik_tengah['keterangan'];?></b><br><br>Luas : '+(area).toFixed(2)+' meter<sup>2</sup>';
     
    polygon = new google.maps.Polygon({
         paths: [patok],
         strokeColor:'#000000',
-        strokeOpacity: 0,
+        strokeOpacity: 1,
         strokeWeight: 2,
         fillColor:'#DDD000',
-        fillOpacity: 0.9,
+        fillOpacity: 0,
         html: contentString
     });
     

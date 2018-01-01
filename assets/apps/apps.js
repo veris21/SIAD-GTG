@@ -94,6 +94,7 @@ $("#list-user").DataTable({
   responsive: true, 
   order:[[ 5, "desc"]]        
 });
+
 // ==========================
 // SMS SETTING
 $("#sms_set").DataTable({
@@ -227,6 +228,10 @@ $("#table_klasifikasi_surat").DataTable({
   rowGroup: {
     dataSrc: 'tipe'
     }
+});
+
+$("#list_skt").DataTable({
+  responsive: true,
 });
 
 $("#master_penduduk").DataTable({
@@ -1335,6 +1340,7 @@ function push_data(id) {
                success: function (data) {
                   // console.log(data);
                   swal('Selesai!', 'Berhasil Push dan Kunci data Pertanahan !', 'success');
+                  location.reload();
                }, error: function (jqXHR, textStatus, errorThrown) {
                   swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
                }

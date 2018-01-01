@@ -536,13 +536,31 @@ class Pertanahan extends CI_Controller{
     echo json_encode($data);
   }
 
+  public function list_skt(){
+    $desa_id = $this->session->userdata('desa_id');
+    $data['title']    = TITLE.'Data Rekomendasi / SuratTanah';
+    $data['main_content'] = PERTANAHAN.'list_skt';
+    $data['data']         = $this->pertanahan_model->_get_skt()->result();
+    $this->load->view('template', $data);
+  }
+
   public function skt_input(){    
       $time = time();
-      $bap_id = strip_tags($this->input->post('bap_id'));
+      $id = strip_tags($this->input->post('bap_id'));
+      $update = array('time'=>$time, 'status_bap'=>1);
+      $this->pertanahan_model->_update_bap($id, $update);
       $img_data = base64_decode($this->input->post('img_data'));
       $img_name = $time.'.png';
       $path = './assets/uploader/polygon/'.$img_name; //buat folder dengan nama assets di root folder
-      $check = file_put_contents($path, $img_data);
+      file_put_contents($path, $img_data);
+      $qr_link = $time.'.png';
+      $params['data'] = base_url('skt/validasi/').$time;
+      $params['level'] = 'M';
+      $params['size'] = 10;
+      $params['savename'] = './assets/uploader/qr_code/'.$qr_link;
+      $this->ciqrcode->generate($params);
+      $push = array('id_berita_acara'=>$id,'peta'=>$img_name,'qr_link'=>$qr_link, 'time'=>$time, 'status'=>0);
+      $check = $this->pertanahan_model->_push_skt($push);
       if ($check) {
         echo json_encode(array("status" => TRUE));
       }     
