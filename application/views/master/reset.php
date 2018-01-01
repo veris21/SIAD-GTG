@@ -112,4 +112,4 @@
             </div><!-- ./col -->
           </div><!-- /.row -->
 </section>
-<!-- <script type="text/javascript" src="<?php echo base_url().APPS.'reset.js';?>"></script> -->
+<script type="text/javascript" src="<?php echo base_url().APPS.'reset.js';?>"></script>
