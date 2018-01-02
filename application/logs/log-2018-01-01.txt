@@ -79,3 +79,5 @@ ERROR - 2018-01-01 16:20:26 --> 404 Page Not Found: Assets/uploader
 ERROR - 2018-01-01 16:20:26 --> 404 Page Not Found: Assets/uploader
 ERROR - 2018-01-01 16:20:26 --> 404 Page Not Found: Assets/uploader
 ERROR - 2018-01-01 16:20:26 --> 404 Page Not Found: Assets/uploader
+ERROR - 2018-01-01 20:20:34 --> 404 Page Not Found: Assets/theme
+ERROR - 2018-01-01 20:20:34 --> 404 Page Not Found: Assets/theme

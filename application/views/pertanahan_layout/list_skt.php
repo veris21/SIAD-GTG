@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
-    Data Berita Acara Pemeriksaan Pertanahan
+    Data Surat Pertanahan
     <small>Control panel</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Berita Acara</li>
+    <li class="active">Surat Tanah</li>
   </ol>
 </section>
 <section class="content">
@@ -25,11 +25,11 @@
             <?php 
             foreach ($data as $data) {
                echo "<tr>";
-               echo "<td>".$data->time_mohon."</td>";
-               echo "<td>".$data->time_bap."</td>";
-               echo "<td>".$data->time."</td>";
-               echo "<td>a/n. ".$data->nama." NIK . ".$data->no_nik.">br>Luas : ".$data->luas."</td>";
-               echo "<td></td>";
+               echo "<td align='center'>".mdate("%d %m %Y - %H:%i %a", $data->time_mohon)."</td>";
+               echo "<td align='center'>".mdate("%d %m %Y - %H:%i %a", $data->time_bap)."</td>";
+               echo "<td align='center'>".mdate("%d %m %Y - %H:%i %a", $data->time)."</td>";
+               echo "<td align='center'>a/n. ".$data->nama." NIK . ".$data->no_nik."<br>Luas : ".$data->luas."<br>Lokasi : ".$data->lokasi."</td>";
+               echo "<td align='center'><a class='btn btn-success ' href='".base_url().'surat_tanah/details/'.$data->id."'> Details <i class='fa fa-eye'></i></a></td>";
                echo "</tr>";
             }
             ?>
