@@ -65,7 +65,7 @@
              <?php }elseif($linkType[0]=="permohonan"){
                $permohonan = $this->pertanahan_model->_get_details_one($linkType[1])->row_array(); ?>
                <div class="attachment-block clearfix">
-                <img class="attachment-img" src="<?php echo base_url().KTP.$permohonan['scan_link'];?>" alt="attachment image">
+                <img class="attachment-img" src="<?php echo base_url().SURATKADUS.$permohonan['scan_link'];?>" alt="attachment image">
                 <div class="attachment-pushed">
                   <h4 class="attachment-heading">Permohonan dari : <?php echo $permohonan['nama']?></h4>
                   <div class="attachment-text">
@@ -102,7 +102,7 @@
               <div class="pull-right">
               <button onclick='lihat_notif(<?php echo $notif->id;?>)' class='btn btn-success btn-xs'><i class='fa fa-check'></i> Tandai Telah Dibaca</button>            
               <?php if($judul='DISPOSISI'){?>
-              <button class='btn btn-warning btn-xs'> Teruskan Disposisi <i class='fa fa-arrow-right'></i></button>
+              <!-- <button class='btn btn-warning btn-xs'> Teruskan Disposisi <i class='fa fa-arrow-right'></i></button> -->
              <?php } ?>
               </div>
             </div><!-- /.box-body -->
