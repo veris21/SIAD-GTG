@@ -214,7 +214,7 @@
                 <h3 class="box-title">Lampiran</h3>
             </div>
             <div class="box-body">
-            <h4>Lampiran Permohonan</h4>
+            <h4 class="well text-center">Lampiran Permohonan</h4>
             <div class="row">
                 <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['ktp']; ?>" title="KTP <?php echo $data['nama'];?>">
@@ -233,25 +233,22 @@
                 </div>
             </div>
             <hr>
-            <h4>Patok Batas</h4>
+            <h4 class="well text-center">Patok Batas</h4>
+            <div class="row">
             <?php 
             $n=1; 
             foreach ($patok as $patok) {
-            ?>
-            <div class="row">
+            ?>            
                 <div class="col-md-4">
                 <a class="fancybox" rel="fancybox" href="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" title="PATOK <?php echo $n;?>">
                 <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="">
                 </a>
-                </div>
-                <div class="col-md-7">
-                    <p>Latitude : <b><?php echo $patok->lat;?></b></p>
-                    <p>Longitude : <b><?php echo $patok->lng;?></b></p>
-                    
-                </div>
-            </div>
-            <hr>
+                <br> 
+                <p>Lat : <b><?php echo $patok->lat;?></b> <br> Long : <b><?php echo $patok->lng;?></b></p>
+                </div>            
             <?php $n++;  } ?>
+                </div>
+            <hr>
             </div>
         </div>
     </div>

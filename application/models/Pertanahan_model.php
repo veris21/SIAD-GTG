@@ -241,6 +241,11 @@ class Pertanahan_model extends CI_Model{
     return $this->db->insert('data_skt', $push);
   }
 
+  public function _update_skt($id, $update){
+    $this->db->where('id', $id);
+    return $this->db->update('data_skt', $update);
+  }
+
   public function _permohonan_all(){
     return $this->db->get('permohonan_pertanahan');
   }

@@ -1547,7 +1547,7 @@ function save_koordinat() {
 }
 
 function aktifasi_download(){
-  $('#aktivasi_form')[0].reset();
+  // $('#aktivasi_form')[0].reset();
   $('#aktivasi_modal').modal('show');
 }
 

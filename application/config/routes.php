@@ -138,3 +138,4 @@ $route['delete/koordinat/(:any)']           = 'pertanahan/delete_koordinat/$1';
 
 // DATA KOORDINAT DIPUSH ke SKT
 $route['polygon/push']                      = 'pertanahan/skt_input';
+$route['aktivasi/download']                 = 'pertanahan/skt_update';

@@ -646,6 +646,17 @@ class Pertanahan extends CI_Controller{
     $this->load->view('template', $data);
   }
 
+  public function skt_update(){
+    $id = strip_tags($this->input->post('id'));
+    $type = strip_tags($this->input->post('type'));
+    $luas_skt = strip_tags($this->input->post('luas_skt'));
+    $update = array('luas_skt'=>$luas_skt,'type'=>$type,'status'=>1);
+    $check = $this->pertanahan_model->_update_skt($id, $update);
+     if ($check) {
+        echo json_encode(array("status" => TRUE));
+      }  
+  }
+
 }
 
 
