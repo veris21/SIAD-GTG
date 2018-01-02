@@ -105,6 +105,12 @@ $route['cetak/permohonan/(:any)']         = 'pertanahan/permohonan_print_alterna
 $route['cetak/pernyataan/(:any)']         = 'pertanahan/pernyataan_print_alternatif/$1';
 $route['cetak/berita_acara/(:any)']       = 'pertanahan/berita_acara_print_alternatif/$1';
 
+// FINAL CETAK 
+$route['final/cetak/(:any)']              = 'pertanahan/cetak_skt/$1';
+$route['denah/cetak/(:any)']              = 'pertanahan/cetak_denah_skt/$1';
+$route['patok/cetak/(:any)']              = 'pertanahan/cetak_patok_skt/$1';
+$route['lampiran/cetak/(:any)']           = 'pertanahan/cetak_lampiran_skt/$1';
+
 $route['pernyataan/input']                = 'pertanahan/pernyataan_input';
 $route['pernyataan/cetak/(:any)']         = 'pertanahan/pernyataan_print/$1';
 

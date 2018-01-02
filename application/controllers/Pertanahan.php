@@ -637,8 +637,7 @@ class Pertanahan extends CI_Controller{
   }
 
   public function skt_view_one($id){
-    $data['title'] = TITLE.'Details Surat Tanah';
-    
+    $data['title'] = TITLE.'Details Surat Tanah';    
     $data['data'] = $this->pertanahan_model->_get_skt_data($id)->row_array();
     $data['data_patok']  = $this->pertanahan_model->_get_data_patok($data['data']['titik_tengah'])->result();
     $data['patok']  = $this->pertanahan_model->_get_data_patok($data['data']['titik_tengah'])->result();
@@ -657,11 +656,24 @@ class Pertanahan extends CI_Controller{
       }  
   }
 
-}
+  public function cetak_skt($id){
+    echo json_encode(array("status" => TRUE));
+  }
+
+  public function cetak_denah_skt($id){
+    echo json_encode(array("status" => TRUE));
+  }
+
+  public function cetak_patok_skt($id){
+    echo json_encode(array("status" => TRUE));
+  }
+
+  public function cetak_lampiran_skt($id){
+    echo json_encode(array("status" => TRUE));
+  }
 
 
 /* Pertanahan.php || Controller Handler Untuk Modul Pertanahan
- 
 =========================================================
 |    @Author     |      Version     |     Changelog     |
 _________________________________________________________
@@ -669,5 +681,6 @@ _________________________________________________________
 |                |    1.0.0-beta    |   Januari 2018    |
 |                |                  |                   |
 =========================================================
-
 */
+
+}
