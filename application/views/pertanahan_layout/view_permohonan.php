@@ -265,6 +265,7 @@
           <input type="hidden" name="pemohon" value="<?php echo $data['nama'];?>">
           <input type="hidden" name="luas" value="<?php echo $data['luas'];?>">
           <input type="hidden" name="lokasi" value="<?php echo $data['lokasi'];?>">    
+          <input type="hidden" name="kontak_pemohon" value="<?php echo $data['hp'];?>">
 
             <div class="box box-warning">
                 <div class="box-header">

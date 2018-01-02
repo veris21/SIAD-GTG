@@ -36,6 +36,7 @@ define('KTP',             'assets/uploader/ktp/');
 define('PBB',             'assets/uploader/pbb_pemohon/');
 define('SURATKADUS',      'assets/uploader/surat_kadus/');
 define('PATOK',           'assets/uploader/patok/');
+define('POLYGON',         'assets/uploader/polygon/');
 define('SCAN_ARSIP',      'assets/uploader/arsip/');
 define('QRCODE',          'assets/uploader/qr_code/');
 

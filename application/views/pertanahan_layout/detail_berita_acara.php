@@ -17,7 +17,7 @@
                 <h4 class="box-title"><i class="fa fa-globe"></i> Visual Data Tanah</h4>
             </div>
             <div class="box-body">
-                <div  style="height: 480px;" id="map-canvas"></div>
+                <div style="height: 480px;" id="map-canvas"></div>
             </div>       
         </div>
         </div>
@@ -56,13 +56,19 @@
                  <?php 
                  if($titik_tengah != null){
                      echo "<div class='box-body'>";
+                     echo "<div class='row'>";
+                     echo "<div class='col-md-6'>";
+                     echo "<img src='".base_url(PATOK.$titik_tengah['foto_tanah'])."' class='img img-rounded main-img img-responsive'>";
+                     echo "</div>";
+                     echo "<div class='col-md-6'>";
                      echo "<p class='well'>".$titik_tengah['keterangan']."</p>";
                      echo "<h4>Latitude : <b>".$titik_tengah['lat']."</b> <br> Longitude : <b>".$titik_tengah['lng']."</b></h4>
                      <h4 id='luas'></h4>";
                      echo "</div>";
+                     echo "</div>";
                      echo "<div class='box-footer'>";
                      echo "<div class='pull-right'>";
-                     echo "<button onclick='edit_titik_tengah(".$titik_tengah['id'].")' class='btn btn-flat btn-warning ".$lock."'>Edit Titik Tengah Koordinat <i class='fa fa-edit'></i></button>";
+                     echo "<button onclick='edit_titik_tengah(".$titik_tengah['id'].")' class='btn btn-flat btn-warning ".$lock."'>Edit Titik Tengah <i class='fa fa-edit'></i></button>";
                      echo "</div>";
                      echo "</div>";
                      ?>
@@ -83,8 +89,8 @@
                             <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="">
                         </a>
                         <hr>
-                        <button onclick="edit_patok(<?php echo $patok->id;?>)" class="btn btn-primary <?php echo $lock;?>">Edit <i class="fa fa-edit"></i></button>
-                        <button onclick="hapus_patok(<?php echo $patok->id;?>)" class="btn btn-danger pull-right <?php echo $lock;?>">Hapus <i class="fa fa-trash"></i></button>
+                        <button onclick="edit_patok(<?php echo $patok->id;?>)" class="btn btn-primary <?php echo $lock;?>">Edit <i class="fa fa-edit"></i></button> 
+                        <button onclick="hapus_patok(<?php echo $patok->id;?>)" class="btn btn-danger pull-right <?php echo $lock;?>"><i class="fa fa-trash"></i></button>
                         <hr>
                         </div>
 
@@ -348,13 +354,13 @@
 var map;
 function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'), {
-    zoom: 18,
+    zoom: 20,
     center: new google.maps.LatLng(
         <?php echo $titik_tengah['lat'].",".$titik_tengah['lng']; ?>
     ),
     mapTypeId: 'terrain',
-    mapTypeControl: false,
-    disableDefaultUI: true
+    // mapTypeControl: false,
+    // disableDefaultUI: true
   });
 
   var patok = [];
@@ -365,10 +371,11 @@ function initialize() {
       <?php
   }
   ?>
-  
+    
     // var color = '#'+Math.random().toString(16).substr(-6);
     var area = google.maps.geometry.spherical.computeArea(patok);
     $('#luas').html('Luas : <b>'+(area).toFixed(2)+' meter<sup>2</sup></b>');
+    $('#luas_skt').text(area);
     var contentString = '<b><?php echo $titik_tengah['keterangan'];?></b><br><br>Luas : '+(area).toFixed(2)+' meter<sup>2</sup>';
     
    polygon = new google.maps.Polygon({
@@ -390,4 +397,38 @@ function initialize() {
     });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+
+// function push_data(id) {
+//    event.preventDefault();
+//    swal({
+//      title: 'Apa Anda Yakin?',
+//      text: "Data Akan di Funalisasi database Utama tabel SKT/Rekomendasi !",
+//      type: 'warning',
+//      showCancelButton: true,
+//      confirmButtonColor: '#3085d6',
+//      cancelButtonColor: '#d33',
+//      confirmButtonText: 'Iya, Push Data!'
+//    }, function isConfirm() {
+//      html2canvas($("#map-canvas"), {
+//        useCORS: true,
+//        onrendered: function (canvas) {
+//          var imagedata = canvas.toDataURL('image/png');
+//          var imgdata = imagedata.replace(/^data:image\/(png|jpg);base64,/, "");
+//         //  var formData = new FormData($(this)[0]);
+//          $.ajax({
+//                url: baseUrl+'polygon/push',
+//                type: "POST",
+//                data: { img_data : imgdata, bap_id : id },
+//                success: function (data) {
+//                   // console.log(data);
+//                   swal('Selesai!', 'Berhasil Push dan Kunci data Pertanahan !', 'success');
+//                   location.reload();
+//                }, error: function (jqXHR, textStatus, errorThrown) {
+//                   swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+//                }
+//          });
+//        }
+//      });
+//    });
+// }
 </script>

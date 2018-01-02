@@ -144,6 +144,99 @@ class Pertanahan_model extends CI_Model{
     return $this->db->get();
   }
 
+  public function _get_skt_data($id){
+    $query = "SELECT kabupaten.nama_kabupaten as nama_kabupaten,
+    kecamatan.nama_kecamatan as nama_kecamatan,
+    desa.nama_desa as nama_desa,
+    dusun.nama_dusun as nama_dusun,
+    mohon.time as time_permohonan,
+    mohon.id as id_mohon,
+    mohon.luas as luas,
+    mohon.lokasi as lokasi,
+    mohon.status_tanah as status_tanah,
+    mohon.peruntukan_tanah as peruntukan_tanah,
+    mohon.tahun_kelola as tahun_kelola,
+    mohon.type_yang_disetujui as type_surat_tanah,
+    mohon.scan_link as surat_kadus,
+    mohon.ktp as ktp,
+    mohon.pbb as bukti_pbb,
+    mohon.qr_link as qr_mohon,
+    mohon.utara as utara,
+    mohon.selatan as selatan,
+    mohon.barat as barat,
+    mohon.timur as timur,
+    mohon.hp as kontak_pemohon,
+    pernyataan.id as id_pernyataan,
+    pernyataan.time as time_pernyataan,
+    pernyataan.qr_link as qr_pernyataan,
+
+    pernyataan.saksi1_nama as saksi1_nama,
+    pernyataan.saksi1_alamat as saksi1_alamat,
+    pernyataan.saksi1_pekerjaan as saksi1_pekerjaan,
+
+    pernyataan.saksi2_nama as saksi2_nama,
+    pernyataan.saksi2_alamat as saksi2_alamat,
+    pernyataan.saksi2_pekerjaan as saksi2_pekerjaan,
+
+    pernyataan.saksi3_nama as saksi3_nama,
+    pernyataan.saksi3_alamat as saksi3_alamat,
+    pernyataan.saksi3_pekerjaan as saksi3_pekerjaan,
+
+    pernyataan.saksi4_nama as saksi4_nama,
+    pernyataan.saksi4_alamat as saksi4_alamat,
+    pernyataan.saksi4_pekerjaan as saksi4_pekerjaan,
+
+    bap.time as time_bap,
+    bap.qr_link as qr_bap,
+
+    bap.pemeriksa_1 as pemeriksa_1,
+    bap.pemeriksa_2 as pemeriksa_2,
+    bap.pemeriksa_3 as pemeriksa_3,
+    bap.pemeriksa_4 as pemeriksa_4,
+    bap.pemeriksa_5 as pemeriksa_5,
+
+    skt.id as id,
+    skt.qr_link as qr_skt,
+    skt.time as time_skt,
+    skt.luas_skt as luas_skt,
+    skt.peta as peta,
+    skt.status as status,
+
+    penduduk.nama as nama_pemohon,
+    penduduk.no_nik as nik_pemohon,
+    penduduk.alamat as alamat_pemohon,
+    penduduk.tempat_lahir as tempat_lahir_pemohon,
+    penduduk.tanggal_lahir as tanggal_lahir_pemohon,
+    penduduk.agama as agama_pemohon,
+    penduduk.pekerjaan as pekerjaan_pemohon,
+    penduduk.jenis_kelamin as jenis_kelamin_pemohon,
+    penduduk.status as status_pemohon,
+
+    tengah.foto_tanah as foto_tanah,
+    tengah.keterangan as tengah_keterangan,
+    tengah.id as titik_tengah,
+    tengah.lat as lat,
+    tengah.lng as lng
+
+    FROM 
+    data_skt as skt, permohonan_pertanahan as mohon, 
+    pernyataan_pertanahan as pernyataan, berita_acara_pertanahan as bap, data_link as tengah,  master_data_penduduk_ as penduduk, dusun as dusun, desa as desa, kecamatan as kecamatan, kabupaten as kabupaten
+
+    WHERE 
+    tengah.tanah_id = bap.id AND
+    kecamatan.kabupaten_id = kabupaten.id AND 
+    desa.kecamatan_id = kecamatan.id AND
+    dusun.desa_id = desa.id AND
+    mohon.dusun_id = dusun.id AND 
+    mohon.kependudukan_id = penduduk.id AND 
+    pernyataan.permohonan_id = mohon.id AND 
+    bap.pernyataan_id = pernyataan.id AND  
+    skt.id_berita_acara = bap.id AND 
+    skt.id = $id";
+
+    return $this->db->query($query);
+  }
+
   public function _push_skt($push){
     return $this->db->insert('data_skt', $push);
   }

@@ -203,24 +203,26 @@ class Pertanahan extends CI_Controller{
     $saksi4_pekerjaan = strip_tags($this->input->post('saksi4_pekerjaan'));
 
     $id    = $this->input->post('permohonan_id');
-    // $pemohon =  strip_tags($this->input->post('pemohon'));
-    // $lokasi =  strip_tags($this->input->post('lokasi'));
+    $pemohon =  strip_tags($this->input->post('pemohon'));
+    $lokasi =  strip_tags($this->input->post('lokasi'));
     // $luas =  strip_tags($this->input->post('luas'));
 
-    // $kontak_pemohon =  strip_tags($this->input->post('kontak_pemohon'));
+    $kontak_pemohon =  strip_tags($this->input->post('kontak_pemohon'));
     $sekarang = time();
 
     // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
     // ==============================
     // $desa_id = $this->session->userdata('desa_id');
-    // $hp_pertanahan = $this->notifikasi_model->_get_data_kasi_pemerintahan($desa_id)->row_array();
+    // $hp_pertanahan = $this->notifikasi_model->_get_data_petugas_pertanahan($desa_id)->row_array();
     // $kepada_id = $hp_pertanahan['id'];
     // $jabatan = $hp_pertanahan['jabatan'];
     // $nama_desa = $hp_pertanahan['nama_desa'];
-    // $message = 'NOTIFIKASI : Yth. '.$jabatan.' '.$nama_desa.' Pernyataan SKT '.$pemohon.', Lokasi : '.$lokasi.', Luas : '.$luas.' meter persegi Telah disetujui dan menunggu Data Tim Verifikasi (SiDesa Sistem)';
-    // $to = $hp_kades['hp'];
+    // $message = 'NOTIFIKASI : Tanah a/n. '.$pemohon.' dengan HP : '.$kontak_pemohon.', Lokasi : '.$lokasi.', Telah disetujui dan menunggu Data Tim Verifikasi & Pengukuran  (SiDesa Sistem)';
+    // $to = $hp_pertanahan['hp'];
     // sms_notifikasi($to, $message);
-      // ==============================
+    // $pesan = "Yth.".$pemohon." Tim Verifikasi Pengukur Pertanahan yang anda Mohonkan dengan Lokasi ".$lokasi." telah siap dilakukan Pengukuran, untuk lebih lanjut silahkan Hubungi ".$hp_pertanahan['fullname']." No.HP ".$to."(SiDesa Sistem)";
+    // sms_notifikasi($kontak_pemohon, $pesan);
+    // ==============================
       // QRCODE GENERATE
       $params['data'] = base_url('pernyataan/validasi/').$sekarang;
       $params['level'] = 'M';
@@ -230,7 +232,7 @@ class Pertanahan extends CI_Controller{
       $this->ciqrcode->generate($params);
       // +===============+
       // +===============+
-      // $link = "pernyataan/".$sekarang;
+      // $link = "permohonan/".$sekarang;
       // $posting = array(
       //   'kepada_id'=> $kepada_id,
       //   'hp'=> $to,
@@ -260,7 +262,7 @@ class Pertanahan extends CI_Controller{
         'saksi4_pekerjaan'=>$saksi4_pekerjaan,
         'time'=>$sekarang,
         'qr_link'=>$qr_link,
-        'status_proses'=>0
+        'status_proses'=>1
       );
       $check = $this->pertanahan_model->_post_pernyataan($insert);
       if($check){
@@ -354,6 +356,7 @@ class Pertanahan extends CI_Controller{
     $permohonan_id = strip_tags($this->input->post('permohonan_id'));
     $pernyataan_id = strip_tags($this->input->post('pernyataan_id'));
     $pemohon =  strip_tags($this->input->post('pemohon'));
+    $kontak_pemohon =  strip_tags($this->input->post('kontak_pemohon'));
     $lokasi =  strip_tags($this->input->post('lokasi'));
     $luas =  strip_tags($this->input->post('luas'));
     $p1 = 1; //$this->session->userdata('id');    
@@ -380,6 +383,29 @@ class Pertanahan extends CI_Controller{
     if($p5_data!=''){
       sms_notifikasi($p5_data['hp'], $message);
     }
+        // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
+    // ==============================
+    $desa_id = $this->session->userdata('desa_id');
+    $hp_pertanahan = $this->notifikasi_model->_get_data_petugas_pertanahan($desa_id)->row_array();
+    $kepada_id = $hp_pertanahan['id'];
+    $jabatan = $hp_pertanahan['jabatan'];
+    $nama_desa = $hp_pertanahan['nama_desa'];
+    $pesan = 'NOTIFIKASI : Tanah a/n. '.$pemohon.' dengan HP : '.$kontak_pemohon.', Lokasi : '.$lokasi.', Telah disetujui dan menunggu Data Tim Verifikasi & Pengukuran  (SiDesa Sistem)';
+    $kepada_hp = $hp_pertanahan['hp'];
+    sms_notifikasi($kepada_hp, $pesan);
+    $pesan_ = "Yth.".$pemohon." Tim Verifikasi Pengukur Pertanahan yang anda Mohonkan dengan Lokasi ".$lokasi." telah siap dilakukan Pengukuran, untuk lebih lanjut silahkan Hubungi ".$hp_pertanahan['fullname']." No.HP ".$kepada_hp."(SiDesa Sistem)";
+    sms_notifikasi($kontak_pemohon, $pesan_);
+    // =========================================  
+    $link = "berita_acara/".$sekarang;
+    $posting = array(
+      'kepada_id'=> $kepada_id,
+      'hp'=>  $kepada_hp,
+      'message'=> $pesan,
+      'link'=> $link,
+      'time'=> $sekarang,
+      'status'=> 0,
+      'type'=> 0
+    );
     // =========================================
     $insert = array(
       'permohonan_id'=>$permohonan_id,
@@ -392,6 +418,7 @@ class Pertanahan extends CI_Controller{
       'time_input'=> $sekarang,
       'status_bap'=> 0
     );
+    $this->notifikasi_model->posting_notifikasi($posting);
     $check = $this->pertanahan_model->_post_berita_acara($insert);
     if($check){
       echo json_encode(array("status" => TRUE));
@@ -403,16 +430,27 @@ class Pertanahan extends CI_Controller{
   // MAPS KOORDINAT 
   /*------------------ Titik Tengah Koordinat / Marker ----------------------*/
   public function input_koordinat_tengah(){
-    $lat = strip_tags($this->input->post('lat'));
-    $lng = strip_tags($this->input->post('lng'));
-    $keterangan = strip_tags($this->input->post('keterangan'));
-    $tanah_id = strip_tags($this->input->post('tanah_id'));
-    $status = strip_tags($this->input->post('status'));
+    if(isset($_FILES['patok'])){
+      $patok = time()."-".$_FILES['patok']['name'];
+      $config['upload_path'] = './assets/uploader/patok/'; //buat folder dengan nama assets di root folder
+      $config['allowed_types'] = 'png|jpg|jpeg';
+      $config['max_size'] = 10000;
+      $config['file_name'] = $patok;
+      $this->load->library('upload');
+      $this->upload->initialize($config);
+      if(! $this->upload->do_upload('patok') );
 
-    $post = array('lat'=>$lat,'lng'=>$lng,'keterangan'=>$keterangan, 'tanah_id'=>$tanah_id, 'status'=>$status);
-    $check = $this->pertanahan_model->_post_titik_marker($post);
-    if($check){
-      echo json_encode(array("status" => TRUE));
+      $lat = strip_tags($this->input->post('lat'));
+      $lng = strip_tags($this->input->post('lng'));
+      $keterangan = strip_tags($this->input->post('keterangan'));
+      $tanah_id = strip_tags($this->input->post('tanah_id'));
+      $status = strip_tags($this->input->post('status'));
+
+      $post = array('lat'=>$lat,'lng'=>$lng,'keterangan'=>$keterangan, 'tanah_id'=>$tanah_id,'foto_tanah'=>$patok, 'status'=>$status);
+      $check = $this->pertanahan_model->_post_titik_marker($post);
+      if($check){
+        echo json_encode(array("status" => TRUE));
+      }
     }
   }
 
@@ -457,20 +495,20 @@ class Pertanahan extends CI_Controller{
     if(isset($_FILES['patok'])){
       if($_FILES['patok']['name']!=''){
         $patok = time()."-".$_FILES['patok']['name'];
-      $config['upload_path'] = './assets/uploader/patok/'; //buat folder dengan nama assets di root folder
-      $config['allowed_types'] = 'png|jpg|jpeg';
-      $config['max_size'] = 10000;
-      $config['file_name'] = $patok;
-      $this->load->library('upload');
-      $this->upload->initialize($config);
-      if(! $this->upload->do_upload('patok') );
-      $id = $this->input->post('id_patok');
-      $lat = strip_tags($this->input->post('lat'));
-      $lng = strip_tags($this->input->post('lng')); 
-      $utara = strip_tags($this->input->post('utara'));
-      $selatan = strip_tags($this->input->post('selatan'));
-      $barat = strip_tags($this->input->post('barat'));
-      $timur = strip_tags($this->input->post('timur'));
+        $config['upload_path'] = './assets/uploader/patok/'; //buat folder dengan nama assets di root folder
+        $config['allowed_types'] = 'png|jpg|jpeg';
+        $config['max_size'] = 10000;
+        $config['file_name'] = $patok;
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+        if(! $this->upload->do_upload('patok') );
+        $id = $this->input->post('id_patok');
+        $lat = strip_tags($this->input->post('lat'));
+        $lng = strip_tags($this->input->post('lng')); 
+        $utara = strip_tags($this->input->post('utara'));
+        $selatan = strip_tags($this->input->post('selatan'));
+        $barat = strip_tags($this->input->post('barat'));
+        $timur = strip_tags($this->input->post('timur'));
         $update = array(
           'link_dokumentasi'=>$patok,
           'lat'=>$lat,
@@ -507,15 +545,38 @@ class Pertanahan extends CI_Controller{
   }
 
   public function update_koordinat_tengah(){
-    $lat = strip_tags($this->input->post('lat'));
-    $lng = strip_tags($this->input->post('lng'));
-    $keterangan = strip_tags($this->input->post('keterangan'));
-    $id = strip_tags($this->input->post('tengah_id'));
+    if(isset($_FILES['patok'])){
+     if($_FILES['patok']['name']!=''){
+        $patok = time()."-".$_FILES['patok']['name'];
+        $config['upload_path'] = './assets/uploader/patok/'; //buat folder dengan nama assets di root folder
+        $config['allowed_types'] = 'png|jpg|jpeg';
+        $config['max_size'] = 10000;
+        $config['file_name'] = $patok;
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+        if(! $this->upload->do_upload('patok') );
 
-    $update = array('lat'=>$lat,'lng'=>$lng,'keterangan'=>$keterangan);
-    $check = $this->pertanahan_model->_update_titik_tengah($id, $update);
-    if($check){
-      echo json_encode(array("status" => TRUE));
+        $lat = strip_tags($this->input->post('lat'));
+        $lng = strip_tags($this->input->post('lng'));
+        $keterangan = strip_tags($this->input->post('keterangan'));
+        $id = strip_tags($this->input->post('tengah_id'));
+        $update = array('lat'=>$lat,'lng'=>$lng,'keterangan'=>$keterangan,'foto_tanah'=>$patok);
+        $check = $this->pertanahan_model->_update_titik_tengah($id, $update);
+          if($check){
+            echo json_encode(array("status" => TRUE, "message"=>"FOTO TIDAK KOSONG"));
+          }
+      }else{
+        $lat = strip_tags($this->input->post('lat'));
+        $lng = strip_tags($this->input->post('lng'));
+        $keterangan = strip_tags($this->input->post('keterangan'));
+        $id = strip_tags($this->input->post('tengah_id'));
+
+        $update = array('lat'=>$lat,'lng'=>$lng,'keterangan'=>$keterangan);
+        $check = $this->pertanahan_model->_update_titik_tengah($id, $update);
+        if($check){
+          echo json_encode(array("status" => TRUE));
+        }
+      }
     }
   }
 
@@ -548,8 +609,15 @@ class Pertanahan extends CI_Controller{
 
   public function skt_input(){    
       $time = time();
+      // $luas_skt = strip_tags($this->input->post('luas'));
       $id = strip_tags($this->input->post('bap_id'));
-      $update = array('time'=>$time, 'status_bap'=>1);
+      $par['data'] = base_url('berita_acara/validasi/').$time;
+      $par['level'] = 'M';
+      $par['size'] = 10;
+      // $par['savename'] = FCPATH.'assets/uploader/qr_code/'.$time.'.png';
+       $par['savename'] = './assets/uploader/qr_code/'.$time.'.png';
+      $this->ciqrcode->generate($par);
+      $update = array('time'=>$time, 'status_bap'=>1, 'qr_link'=>$time.'.png');
       $this->pertanahan_model->_update_bap($id, $update);
       $img_data = base64_decode($this->input->post('img_data'));
       $img_name = $time.'.png';
@@ -566,6 +634,16 @@ class Pertanahan extends CI_Controller{
       if ($check) {
         echo json_encode(array("status" => TRUE));
       }     
+  }
+
+  public function skt_view_one($id){
+    $data['title'] = TITLE.'Details Surat Tanah';
+    
+    $data['data'] = $this->pertanahan_model->_get_skt_data($id)->row_array();
+    $data['data_patok']  = $this->pertanahan_model->_get_data_patok($data['data']['titik_tengah'])->result();
+    $data['patok']  = $this->pertanahan_model->_get_data_patok($data['data']['titik_tengah'])->result();
+    $data['main_content'] = PERTANAHAN.'details_surat_tanah';
+    $this->load->view('template', $data);
   }
 
 }

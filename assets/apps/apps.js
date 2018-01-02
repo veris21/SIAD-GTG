@@ -1316,7 +1316,7 @@ $.ajax({
 /*/                Peta Handler System             /*/
 /*/================================================/*/
 
-function push_data(id) {
+function push_data(id, luas) {
    event.preventDefault();
    swal({
      title: 'Apa Anda Yakin?',
@@ -1373,14 +1373,11 @@ function edit_titik_tengah(id){
         $('[name="lat"]').val(data.lat);
         $('[name="lng"]').val(data.lng);
         $('[name="keterangan"]').val(data.keterangan);
-        $('#patok').hide();
-        $('#foto-patok').hide();
+        $('#foto-patok img').attr('src', baseUrl + 'assets/uploader/patok/' + data.foto_tanah);
         $('#utara').hide();
         $('#selatan').hide();
         $('#barat').hide();
         $('#timur').hide();
-
-        $('#foto-patok').hide();
 
         $('#modal_koordinat').modal('show');
         $('.modal-title').text('Update Titik Tengah');
@@ -1547,6 +1544,39 @@ function save_koordinat() {
     });
   });
 
+}
+
+function aktifasi_download(){
+  $('#aktivasi_form')[0].reset();
+  $('#aktivasi_modal').modal('show');
+}
+
+function buka_kunci_download(){
+  event.preventDefault();
+  swal({
+    title: 'Apa Anda Ingin Mengaktivasi Data Download ?',
+    text: "Data Akan Mengirimkan Jenis Surat Tanah dan Perhitungan Luas dari System",
+    type: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Iya, Aktivasi Data!'
+  }, function isConfirm() {
+    $.ajax({
+      url: baseUrl + 'aktivasi/download',
+      type: "POST",
+      dataType:"JSON",
+      data: $('#aktivasi_form').serialize(),
+      success: function (data) {
+        swal('Selamat !', 'Berhasil Mengaktivasi Tombol Download di Sistem!', 'success');
+        location.reload();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+      }
+
+    });
+  });
 }
 
 

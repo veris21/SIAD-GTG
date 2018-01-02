@@ -112,6 +112,8 @@ $route['berita_acara/input']              = 'pertanahan/berita_acara_input';
 $route['berita_acara/view/(:any)']        = 'pertanahan/berita_acara_view/$1';
 $route['berita_acara/cetak/(:any)']       = 'pertanahan/berita_acara_print/$1';
 
+
+$route['surat_tanah/details/(:any)']      = 'pertanahan/skt_view_one/$1';
 // AUTOFILL
 $route['cari/nik/(:any)']           = 'datapenduduk/cari_nik/$1';
 
