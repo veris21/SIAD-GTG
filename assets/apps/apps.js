@@ -901,7 +901,7 @@ swal({
         text: "Data Tim Verifikasi Akan di Input ke Sistem!",
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#3085d6', 
         cancelButtonColor: '#d33',
         confirmButtonText: 'Iya, Simpan!'              
       }, function isConfirm(){
@@ -917,7 +917,7 @@ swal({
           ,error: function (jqXHR, textStatus, errorThrown)
             {
               swal('Astagapeer','Ade Nok Salah Mudel e...!','error');
-              location.reload();
+              // location.reload();
             }
         });
 });

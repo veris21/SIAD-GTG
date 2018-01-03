@@ -1,6 +1,0 @@
-ERROR - 2018-01-03 01:59:00 --> 404 Page Not Found: Assets/theme
-ERROR - 2018-01-03 01:59:02 --> 404 Page Not Found: Assets/theme
-ERROR - 2018-01-03 11:37:47 --> 404 Page Not Found: Assets/theme
-ERROR - 2018-01-03 11:37:47 --> 404 Page Not Found: Assets/theme
-ERROR - 2018-01-03 11:49:08 --> 404 Page Not Found: Assets/theme
-ERROR - 2018-01-03 11:49:08 --> 404 Page Not Found: Assets/theme

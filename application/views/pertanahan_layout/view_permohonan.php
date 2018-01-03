@@ -324,7 +324,8 @@
             </div>
                     
       </div>
-      
+      <input type="hidden" name="desa_id" value="<?php echo $this->session->userdata('desa_id');?>">
+      <input type="hidden" name="id" value="<?php echo $this->session->userdata('id');?>">
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
         <button type="submit" onclick="bap_save()" class="btn btn-primary">Save <i class="fa fa-save"></i></button>

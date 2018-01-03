@@ -70,12 +70,14 @@ class Notifikasi_model extends CI_Model{
     return $this->db->query($query);
   }
 
-  public function _get_data_petugas_pertanahan($id){
-    $query = "SELECT u.id as id,
+  public function _get_data_petugas_pertanahan($desa_id){
+    $query = "SELECT 
+    u.id as id,
     u.hp as hp,
     d.id as desa_id,
     d.nama_desa as nama_desa,
     u.fullname as fullname,
+    u.keterangan_jabatan as keterangan_jabatan,
     j.jabatan as jabatan
     FROM desa as d, users as u, jabatan as j
     WHERE u.id = d.pertanahan_uid AND j.id = u.jabatan_id AND d.id = $desa_id";
