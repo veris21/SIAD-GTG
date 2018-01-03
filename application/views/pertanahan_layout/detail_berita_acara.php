@@ -34,6 +34,7 @@
                         Data Telah di Kunci
                     </h3>
                     <p>Silahkan Lihat Keterangan SKT/ Rekomendasi di Halaman Finalisasi SKT/ Surat rekomendasi Penggunaan Tanah</p>
+                    <a target="__blank" class="btn btn-block btn-success" href="<?php echo base_url('berita_acara/cetak/'.$data['id']); ?>">Cetak Berita Acara <i class="fa fa-print"></i></a>
                     <?php
                     }else{ ?>
                     <p>Dengan menekan tombol dibawah ini, Data Akan disetujui dan di input langsung ke Database Finalisasi SKT / Surat Rekomendasi, dan akan muncul setelah mendapat persetujuan dari sistem dan pejabat terkait untuk print out akhir <b>Surat Keterangan Tanah (SKT) / Surat Rekomendasi Pengelolaan Tanah</b> beserta lampiran</p>

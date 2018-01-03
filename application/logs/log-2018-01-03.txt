@@ -1,0 +1,2 @@
+ERROR - 2018-01-03 01:59:00 --> 404 Page Not Found: Assets/theme
+ERROR - 2018-01-03 01:59:02 --> 404 Page Not Found: Assets/theme

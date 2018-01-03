@@ -335,21 +335,16 @@ class Pertanahan extends CI_Controller{
     $this->load->view('template', $data);
   }
 
-  public function berita_acara_print($id){
-    $data['title'] = TITLE.'Cetak Berita Acara';
-    $data['data']  = $this->pertanahan_model->_get_pernyataan_one($id)->row_array();
-    $html = $this->load->view(PERTANAHAN.'print/berita_acara', $data, TRUE);
-    if($this->pdfgenerator->generate($html, $data['data']['nama']." - Berita Acara Pemeriksaan (".date('d - M - Y').")")){
-      echo json_encode(array("status" => TRUE));
-    }
-  }
+  // public function berita_acara_print($id){
+  //   $data['title'] = TITLE.'Cetak Berita Acara';
+  //   $data['data']  = $this->pertanahan_model->_get_pernyataan_one($id)->row_array();
+  //   $html = $this->load->view(PERTANAHAN.'print/berita_acara', $data, TRUE);
+  //   if($this->pdfgenerator->generate($html, $data['data']['nama']." - Berita Acara Pemeriksaan (".date('d - M - Y').")")){
+  //     echo json_encode(array("status" => TRUE));
+  //   }
+  // }
 
-  public function berita_acara_print_alternatif($id){
-    $data['title'] = TITLE.'Cetak Berita Acara';
-    $data['data']  = $this->pertanahan_model->_get_pernyataan_one($id)->row_array();
-    $html = $this->load->view(PERTANAHAN.'print/berita_acara', $data, TRUE);
-    $this->pdfgenerator->generate($html, $data['data']['nama']." - Berita Acara Pemeriksaan (".date('d - M - Y').")");
-  }
+  
 
   public function berita_acara_input(){
     $sekarang = time();
@@ -656,16 +651,45 @@ class Pertanahan extends CI_Controller{
       }  
   }
 
+  public function cetak_bap($id){
+    $data['title'] = TITLE.'Cetak Berita Acara';
+    $data['data']  = $this->pertanahan_model->_get_bap_one($id)->row_array();
+    $data['ketua_pemeriksa'] =  $this->auth_model->get_user_id($data['data']['pemeriksa_1'])->row_array();
+    $data['pemeriksa_1'] =  $this->auth_model->get_user_id($data['data']['pemeriksa_2'])->row_array();
+    $data['pemeriksa_2'] =  $this->auth_model->get_user_id($data['data']['pemeriksa_3'])->row_array();
+    $data['pemeriksa_3'] =  $this->auth_model->get_user_id($data['data']['pemeriksa_4'])->row_array();
+    $data['pemeriksa_4'] =  $this->auth_model->get_user_id($data['data']['pemeriksa_5'])->row_array();
+    // $this->load->view(PERTANAHAN.'print/berita_acara', $data);
+    $html = $this->load->view(PERTANAHAN.'print/berita_acara', $data, TRUE);
+    $this->pdfgenerator->generate($html, $data['data']['nama']." - Berita Acara Pemeriksaan (".date('d - M - Y').")");
+  }
+
   public function cetak_skt($id){
-    echo json_encode(array("status" => TRUE));
+    $data['title'] = TITLE.'Cetak Berita Acara';
+    $data['data']  = $this->pertanahan_model->_get_skt_one($id)->row_array();
+    // $this->load->view(PERTANAHAN.'print/surat_tanah', $data);
+    $html = $this->load->view(PERTANAHAN.'print/surat_tanah', $data, TRUE);
+    $this->pdfgenerator->generate($html, $data['data']['nama']." - SURAT KETERANGAN TANAH (".date('d - M - Y').")");
   }
 
   public function cetak_denah_skt($id){
-    echo json_encode(array("status" => TRUE));
+    $data['title'] = TITLE.'Cetak Berita Acara';
+    $data['data']  = $this->pertanahan_model->_get_skt_one($id)->row_array();
+    $data['titik_tengah'] = $this->pertanahan_model->_get_data_link($data['data']['bap_id'])->row_array();
+    $data['patok']        = $this->pertanahan_model->_get_data_patok($data['titik_tengah']['id']); 
+    $this->load->view(PERTANAHAN.'print/denah_situasi', $data);
+    // $html = $this->load->view(PERTANAHAN.'print/denah_situasi', $data, TRUE);
+    // $this->pdfgenerator->generate($html, $data['data']['nama']." - DENAH TANAH (".date('d - M - Y').")");
   }
 
   public function cetak_patok_skt($id){
-    echo json_encode(array("status" => TRUE));
+    $data['title'] = TITLE.'Cetak Data Patok';
+    $data['data']  = $this->pertanahan_model->_get_skt_one($id)->row_array();
+    $data['titik_tengah'] = $this->pertanahan_model->_get_data_link($data['data']['bap_id'])->row_array();
+    $data['patok']        = $this->pertanahan_model->_get_data_patok($data['titik_tengah']['id']); 
+    $this->load->view(PERTANAHAN.'print/data_patok', $data);
+    // $html = $this->load->view(PERTANAHAN.'print/data_patok', $data, TRUE);
+    // $this->pdfgenerator->generate($html, $data['data']['nama']." - DATA PATOK (".date('d - M - Y').")");
   }
 
   public function cetak_lampiran_skt($id){

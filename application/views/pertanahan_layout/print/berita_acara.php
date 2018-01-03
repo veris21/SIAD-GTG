@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>SKT Lampiran</title>
+	<title>Berita Acara</title>
 	<!-- -->
 	<link rel="stylesheet" href="<?php echo base_url().'assets/print.css' ?>">
 	<!-- -->
@@ -54,10 +54,6 @@
             <td colspan="3" align="left">: <?php echo $data['tempat_lahir'].",".$data['tanggal_lahir'];?></td>
         </tr>
         
-        <tr>
-            <td>Agama</td>
-            <td colspan="3" align="left">: <?php echo $data['agama'];?></td>
-        </tr>
         <tr>
             <td>Status Perkawinan</td>
             <td colspan="3" align="left">: <?php echo $data['status'];?></td>
@@ -118,19 +114,23 @@
             <br>Pemeriksa :
             <table style="font-size:11px;font-family: Consolas, Monaco, Courier New, Courier, monospace;padding-top:0;margin-top:0;">
                 <tr>
-                    <td width="70%">1. <b>Nurita </b><br> (Kasi Pemerintahan dan Pembinaan Kemasyarakatan) </td>
+                    <td width="70%">1. <b><?php echo $ketua_pemeriksa['fullname']; ?></b><br> (<?php echo $ketua_pemeriksa['keterangan_jabatan']; ?>) </td>
                     <td width="30%">(...........)</td>
                 </tr>
                 <tr>
-                    <td width="70%">2. <b>Roni Riansyah </b><br> (Sekretaris Desa Gantung) </td>
+                    <td width="70%">2. <b><?php echo $pemeriksa_1['fullname']; ?></b><br> (<?php echo $pemeriksa_1['keterangan_jabatan']; ?>)  </td>
                     <td width="30%">(...........)</td>
                 </tr>
                 <tr>
-                    <td width="70%">3. <b>Cici Rahmawati </b><br> (Petugas Verifikasi Tanah) </td>
+                    <td width="70%">3. <b><?php echo $pemeriksa_2['fullname']; ?></b><br> (<?php echo $pemeriksa_2['keterangan_jabatan']; ?>)  </td>
                     <td width="30%">(...........)</td>
                 </tr>
                 <tr>
-                    <td width="70%">4. <b>M. Riduan </b><br> (Petugas Pengukuran Tanah) </td>
+                    <td width="70%">4. <b><?php echo $pemeriksa_3['fullname']; ?></b><br> (<?php echo $pemeriksa_3['keterangan_jabatan']; ?>)  </td>
+                    <td width="30%">(...........)</td>
+                </tr>
+                <tr>
+                    <td width="70%">5. <b><?php echo $pemeriksa_4['fullname']; ?></b><br> (<?php echo $pemeriksa_4['keterangan_jabatan']; ?>)  </td>
                     <td width="30%">(...........)</td>
                 </tr>
             </table>
@@ -140,7 +140,7 @@
 </table>
 <table>
 <tr>
-<td align="center" colspan="4">Saksi - Saksi :</td>
+<td align="center" colspan="5">Saksi - Saksi :</td>
 </tr>
 <tr style="font-size:10px;">
 <td width="30%">
@@ -192,9 +192,9 @@
         <tr>
         <td colspan="4">
         <p align="center">Mengetahui, <br>
-            KEPALA DESA <?php echo strtoupper($data['nama_desa']);?>
+            <?php echo strtoupper($data['jabatan_kades']);?>
             <br><br>&nbsp;<br><br><br><br><br>
-            <b><?php echo $data['fullname'];?></b>
+            <b><?php echo $data['nama_kades'];?></b>
         </p>
         </td>
         </tr>

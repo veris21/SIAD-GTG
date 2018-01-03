@@ -78,8 +78,7 @@ $route['arsip/cari_data']               = 'arsip/arsip_cari_data';
 $route['arsip/input']                   = 'arsip/arsip_input';
 $route['arsip/details/(:any)']          = 'arsip/arsip_detail/$1';
 $route['arsip/balasan']                 = 'arsip/balasan_arsip';
-$route['arsip/balasan/setujui/(:any)']  = 'arsip/balasan_setujui/$1';
- 
+$route['arsip/balasan/setujui/(:any)']  = 'arsip/balasan_setujui/$1'; 
 
 $route['disposisi/tandai/baca/(:any)']  = 'disposisi/tandai_baca/$1';
 $route['disposisi/post']                = 'disposisi/input';
@@ -93,43 +92,35 @@ $route['pertanahan/permohonan']           = 'pertanahan/permohonan';
 $route['pertanahan/berita_acara']         = 'pertanahan/berita_acara';
 $route['pertanahan/surat_tanah']          = 'pertanahan/list_skt';
 
-$route['permohonan/input']                = 'pertanahan/permohonan_input';
-$route['permohonan/view/(:any)']          = 'pertanahan/permohonan_view/$1';
-$route['permohonan/cetak/(:any)']         = 'pertanahan/permohonan_print/$1';
-
 $route['permohonan/setuju']              = 'pertanahan/permohonan_setuju';
-
 
 // ALTERNATIF DARI PERMASALAHAN SSL 
 $route['cetak/permohonan/(:any)']         = 'pertanahan/permohonan_print_alternatif/$1';
 $route['cetak/pernyataan/(:any)']         = 'pertanahan/pernyataan_print_alternatif/$1';
-$route['cetak/berita_acara/(:any)']       = 'pertanahan/berita_acara_print_alternatif/$1';
 
 // FINAL CETAK 
+$route['permohonan/cetak/(:any)']         = 'pertanahan/permohonan_print/$1';
+$route['pernyataan/cetak/(:any)']         = 'pertanahan/pernyataan_print/$1';
+$route['berita_acara/cetak/(:any)']       = 'pertanahan/cetak_bap/$1';
 $route['final/cetak/(:any)']              = 'pertanahan/cetak_skt/$1';
 $route['denah/cetak/(:any)']              = 'pertanahan/cetak_denah_skt/$1';
 $route['patok/cetak/(:any)']              = 'pertanahan/cetak_patok_skt/$1';
 $route['lampiran/cetak/(:any)']           = 'pertanahan/cetak_lampiran_skt/$1';
 
+$route['permohonan/input']                = 'pertanahan/permohonan_input';
 $route['pernyataan/input']                = 'pertanahan/pernyataan_input';
-$route['pernyataan/cetak/(:any)']         = 'pertanahan/pernyataan_print/$1';
-
 $route['berita_acara/input']              = 'pertanahan/berita_acara_input';
+
+$route['permohonan/view/(:any)']          = 'pertanahan/permohonan_view/$1';
 $route['berita_acara/view/(:any)']        = 'pertanahan/berita_acara_view/$1';
-$route['berita_acara/cetak/(:any)']       = 'pertanahan/berita_acara_print/$1';
-
-
 $route['surat_tanah/details/(:any)']      = 'pertanahan/skt_view_one/$1';
+
 // AUTOFILL
 $route['cari/nik/(:any)']           = 'datapenduduk/cari_nik/$1';
-
 $route['cari/skt/(:any)']           = 'pertanahan/cari_skt/$1';
-
-
 
 $route['data_penduduk']             = 'datapenduduk/data_penduduk';
 $route['import/data']               = 'datapenduduk/import';
-
 
 // KOORDINAT ROUTE
 $route['koordinat/tengah']                  = 'pertanahan/input_koordinat_tengah';
