@@ -79,7 +79,7 @@
       <!--  -->
       <div id="result_cari_data" class="box box-info" hidden>
           <div class="box-body">
-          <table class="table table-bordered" id="details_nik">
+          <table width="100%" class="table table-bordered  table-responsive" id="details_nik">
             <tr>
               <td colspan="5" align="center">
                 <h3 id="no_kk"></h3>
