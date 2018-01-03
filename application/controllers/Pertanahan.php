@@ -361,23 +361,23 @@ class Pertanahan extends CI_Controller{
     $p4 = strip_tags($this->input->post('pemeriksa_3'));
     $p5 = strip_tags($this->input->post('pemeriksa_4'));
      //========= SMS NOTIFIKASI =================
-    $message = "Notifikasi : Anda ditunjuk sebagai Tim Pemeriksa Pertanahan a/n.".$pemohon." Lokasi : ".$lokasi ." (SiDesa Sistem)";
-    $p2_data = $this->auth_model->get_user_id($p2)->row_array();
-    if($p2_data!=''){
-      sms_notifikasi($p2_data['hp'], $message);
-    }
-    $p3_data = $this->auth_model->get_user_id($p3)->row_array();
-    if($p3_data!=''){
-      sms_notifikasi($p3_data['hp'], $message);
-    }
-    $p4_data = $this->auth_model->get_user_id($p4)->row_array();
-    if($p4_data!=''){
-      sms_notifikasi($p4_data['hp'], $message);
-    }
-    $p5_data = $this->auth_model->get_user_id($p5)->row_array();
-    if($p5_data!=''){
-      sms_notifikasi($p5_data['hp'], $message);
-    }
+    // $message = "Notifikasi : Anda ditunjuk sebagai Tim Pemeriksa Pertanahan a/n.".$pemohon." Lokasi : ".$lokasi ." (SiDesa Sistem)";
+    // $p2_data = $this->auth_model->get_user_id($p2)->row_array();
+    // if($p2_data!=''){
+    //   sms_notifikasi($p2_data['hp'], $message);
+    // }
+    // $p3_data = $this->auth_model->get_user_id($p3)->row_array();
+    // if($p3_data!=''){
+    //   sms_notifikasi($p3_data['hp'], $message);
+    // }
+    // $p4_data = $this->auth_model->get_user_id($p4)->row_array();
+    // if($p4_data!=''){
+    //   sms_notifikasi($p4_data['hp'], $message);
+    // }
+    // $p5_data = $this->auth_model->get_user_id($p5)->row_array();
+    // if($p5_data!=''){
+    //   sms_notifikasi($p5_data['hp'], $message);
+    // }
         // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
     // ==============================
     $desa_id = $this->session->userdata('desa_id');
@@ -387,9 +387,9 @@ class Pertanahan extends CI_Controller{
     $nama_desa = $hp_pertanahan['nama_desa'];
     $pesan = 'NOTIFIKASI : Tanah a/n. '.$pemohon.' dengan HP : '.$kontak_pemohon.', Lokasi : '.$lokasi.', Telah disetujui dan menunggu Data Tim Verifikasi & Pengukuran  (SiDesa Sistem)';
     $kepada_hp = $hp_pertanahan['hp'];
-    sms_notifikasi($kepada_hp, $pesan);
+    // sms_notifikasi($kepada_hp, $pesan);
     $pesan_ = "Yth.".$pemohon." Tim Verifikasi Pengukur Pertanahan yang anda Mohonkan dengan Lokasi ".$lokasi." telah siap dilakukan Pengukuran, untuk lebih lanjut silahkan Hubungi ".$hp_pertanahan['fullname']." No.HP ".$kepada_hp."(SiDesa Sistem)";
-    sms_notifikasi($kontak_pemohon, $pesan_);
+    // sms_notifikasi($kontak_pemohon, $pesan_);
     // =========================================  
     $link = "berita_acara/".$sekarang;
     $posting = array(
