@@ -236,11 +236,11 @@
                         // IF DATA ID NOW = ID PEJABAT PERTANAHAN
                         $pejabat = $this->master_model->_get_desa_id($this->session->userdata('desa_id'))->row_array();
                         $id = $this->session->userdata('id');  
-                        if($id = $pejabat['sekdes_uid'] && $pernyataan['status_proses']==0){
+                        if($id = $pejabat['sekdes_uid'] && $pernyataan['status_proses']==1){
                         ?>
                             <button class="btn btn-primary btn-flat btn-lg" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
                         <?php
-                        }elseif ($id = $pejabat['kasi_pemerintahan'] && $pernyataan['status_proses']==0) {
+                        }elseif ($id = $pejabat['kasi_pemerintahan'] && $pernyataan['status_proses']==1) {
                         ?>
                             <button class="btn btn-primary btn-flat btn-lg" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
                         <?php
