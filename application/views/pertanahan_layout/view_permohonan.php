@@ -234,12 +234,18 @@
                         <div class="pull-right">
                         <?php
                         // IF DATA ID NOW = ID PEJABAT PERTANAHAN
-                        $pejabat_pertanahan = $this->master_model->_get_desa_id($this->session->userdata('desa_id'))->row_array();
-                        $id_pejabat_pertanahan = $pejabat_pertanahan['kasi_pemerintahan'];
-                        $id = $this->session->userdata('id');                                             
-                         if($id == $id_pejabat_pertanahan && $pernyataan['status_proses']!=1) { ?>
+                        $pejabat = $this->master_model->_get_desa_id($this->session->userdata('desa_id'))->row_array();
+                        $id = $this->session->userdata('id');  
+                        if($id = $pejabat['sekdes_uid'] && $pernyataan['status_proses']==0){
+                        ?>
                             <button class="btn btn-primary btn-flat btn-lg" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
-                        <?php } ?>
+                        <?php
+                        }elseif ($id = $pejabat['kasi_pemerintahan'] && $pernyataan['status_proses']==0) {
+                        ?>
+                            <button class="btn btn-primary btn-flat btn-lg" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
+                        <?php
+                        }
+                         ?>                                 
                         <?php echo anchor('cetak/pernyataan/'.$pernyataan['id'], 'Cetak Pernyataan <i class="fa fa-print"></i>', array('class'=>'btn btn-warning btn-lg','target'=>'__blank')); ?>
 
                             <!-- <button onclick="cetak_pernyataan(<?php echo $pernyataan['id'];?>)" type="button" class="btn btn-warning btn-lg">Cetak Pernyataan <i class="fa fa-print"></i></button> -->
@@ -249,7 +255,7 @@
 
 
                 <!--  -->
-                
+          <!-- input_tim_verifikasi       -->
 <!-- Modal Input BAP -->
 <div class="modal fade" id="modal_bap" role="dialog">
   <div class="modal-dialog">

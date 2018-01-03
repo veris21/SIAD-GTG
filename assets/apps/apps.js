@@ -1350,7 +1350,9 @@ function push_data(id, luas) {
    });
 }
 
-function edit_titik_tengah(id){
+//bap_input
+
+function edit_titik_tengah(id){ 
   var url = baseUrl + 'get/koordinat/tengah/' + id;
   event.preventDefault();
   swal({
