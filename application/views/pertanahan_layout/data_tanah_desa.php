@@ -21,9 +21,9 @@
       </div>
       <div class="box-footer">
         <?php if($titik!=null){
-              echo "<h2 class='text-center'>Data JSON : ".$titik['json']."</h2>";
+              echo "<h3 class='text-center'>Data JSON : ".anchor(GEOJSON.$titik['json'],$titik['json'],array('target'=>'__blank'))."</h3>";
           }else{ 
-            echo "<h2 class='text-center'>Data Geo JSON Kosong</h2>";
+            echo "<h3 class='text-center'>Data Geo JSON Kosong</h3>";
             ?>
        <button onclick="add_geo()" class="btn btn-warning btn-block">Upload Data Desa (GeoJSON) <i class="fa fa-globe"></i></button>
        <?php } ?>
