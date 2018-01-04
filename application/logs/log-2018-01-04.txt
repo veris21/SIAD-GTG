@@ -1,0 +1,4 @@
+ERROR - 2018-01-04 12:06:07 --> 404 Page Not Found: Assets/theme
+ERROR - 2018-01-04 14:23:36 --> Severity: error --> Exception: Call to undefined method Pertanahan_model::_get_titik_tanah_desa() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Pertanahan.php 702
+ERROR - 2018-01-04 14:23:41 --> Severity: error --> Exception: Call to undefined method Pertanahan_model::_get_titik_tanah_desa() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Pertanahan.php 702
+ERROR - 2018-01-04 14:24:35 --> Severity: error --> Exception: Call to undefined method Pertanahan_model::_get_titik_tanah_desa() C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Pertanahan.php 702

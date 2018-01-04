@@ -677,9 +677,9 @@ class Pertanahan extends CI_Controller{
     $data['data']  = $this->pertanahan_model->_get_skt_one($id)->row_array();
     $data['titik_tengah'] = $this->pertanahan_model->_get_data_link($data['data']['bap_id'])->row_array();
     $data['patok']        = $this->pertanahan_model->_get_data_patok($data['titik_tengah']['id']); 
-    $this->load->view(PERTANAHAN.'print/denah_situasi', $data);
-    // $html = $this->load->view(PERTANAHAN.'print/denah_situasi', $data, TRUE);
-    // $this->pdfgenerator->generate($html, $data['data']['nama']." - DENAH TANAH (".date('d - M - Y').")");
+    // $this->load->view(PERTANAHAN.'print/denah_situasi', $data);
+    $html = $this->load->view(PERTANAHAN.'print/denah_situasi', $data, TRUE);
+    $this->pdfgenerator->generate($html, $data['data']['nama']." - DENAH TANAH (".date('d - M - Y').")");
   }
 
   public function cetak_patok_skt($id){
@@ -687,15 +687,23 @@ class Pertanahan extends CI_Controller{
     $data['data']  = $this->pertanahan_model->_get_skt_one($id)->row_array();
     $data['titik_tengah'] = $this->pertanahan_model->_get_data_link($data['data']['bap_id'])->row_array();
     $data['patok']        = $this->pertanahan_model->_get_data_patok($data['titik_tengah']['id']); 
-    $this->load->view(PERTANAHAN.'print/data_patok', $data);
-    // $html = $this->load->view(PERTANAHAN.'print/data_patok', $data, TRUE);
-    // $this->pdfgenerator->generate($html, $data['data']['nama']." - DATA PATOK (".date('d - M - Y').")");
+    // $this->load->view(PERTANAHAN.'print/data_patok', $data);
+    $html = $this->load->view(PERTANAHAN.'print/data_patok', $data, TRUE);
+    $this->pdfgenerator->generate($html, $data['data']['nama']." - DATA PATOK (".date('d - M - Y').")");
   }
 
   public function cetak_lampiran_skt($id){
     echo json_encode(array("status" => TRUE));
   }
 
+
+  public function tanah_desa_list(){
+    $data['title'] = TITLE.'Data Aset Pertanahan Desa';
+    // $data['titik']  = $this->pertanahan_model->_get_titik_tanah_desa($this->session->userdata('desa_id'));
+
+    $data['main_content'] = PERTANAHAN.'data_tanah_desa';
+    $this->load->view('template', $data);
+  }
 
 /* Pertanahan.php || Controller Handler Untuk Modul Pertanahan
 =========================================================
