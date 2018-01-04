@@ -1581,6 +1581,38 @@ function buka_kunci_download(){
   });
 }
 
+function add_geo(){
+  $('#data_geo')[0].reset();
+  $('#modal_geo').modal('show');
+}
+
+function save_geo(){
+  var url = baseUrl + 'geojson/input';
+  $('#data_geo').submit(function (evt) {
+    evt.preventDefault();
+    var formData = new FormData($(this)[0]);
+    $.ajax({
+      url: url,
+      type: "POST",
+      data: formData,
+      async: false,
+      cache: false,
+      contentType: false,
+      enctype: 'multipart/form-data',
+      processData: false,
+      success: function (data) {
+        swal('Selamat !', 'Berhasil Input Data Koordinat Ke Sistem!', 'success');
+        // var obj = JSON.parse(data);
+        // console.log("status : "+obj.status + " message : "+obj.message);
+        location.reload();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+      }
+    });
+  });
+}
+
 
 /*/================================================/*/
 /*/                                                /*/

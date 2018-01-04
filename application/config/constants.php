@@ -37,6 +37,7 @@ define('PBB',             'assets/uploader/pbb_pemohon/');
 define('SURATKADUS',      'assets/uploader/surat_kadus/');
 define('PATOK',           'assets/uploader/patok/');
 define('POLYGON',         'assets/uploader/polygon/');
+define('GEOJSON',         'assets/uploader/data_json/');
 define('SCAN_ARSIP',      'assets/uploader/arsip/');
 define('QRCODE',          'assets/uploader/qr_code/');
 

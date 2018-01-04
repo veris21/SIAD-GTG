@@ -399,37 +399,4 @@ function initialize() {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
-// function push_data(id) {
-//    event.preventDefault();
-//    swal({
-//      title: 'Apa Anda Yakin?',
-//      text: "Data Akan di Funalisasi database Utama tabel SKT/Rekomendasi !",
-//      type: 'warning',
-//      showCancelButton: true,
-//      confirmButtonColor: '#3085d6',
-//      cancelButtonColor: '#d33',
-//      confirmButtonText: 'Iya, Push Data!'
-//    }, function isConfirm() {
-//      html2canvas($("#map-canvas"), {
-//        useCORS: true,
-//        onrendered: function (canvas) {
-//          var imagedata = canvas.toDataURL('image/png');
-//          var imgdata = imagedata.replace(/^data:image\/(png|jpg);base64,/, "");
-//         //  var formData = new FormData($(this)[0]);
-//          $.ajax({
-//                url: baseUrl+'polygon/push',
-//                type: "POST",
-//                data: { img_data : imgdata, bap_id : id },
-//                success: function (data) {
-//                   // console.log(data);
-//                   swal('Selesai!', 'Berhasil Push dan Kunci data Pertanahan !', 'success');
-//                   location.reload();
-//                }, error: function (jqXHR, textStatus, errorThrown) {
-//                   swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
-//                }
-//          });
-//        }
-//      });
-//    });
-// }
 </script>

@@ -382,6 +382,14 @@ class Pertanahan_model extends CI_Model{
 /*==========================================
             Koordinat Data
 ==========================================*/
+  public function _get_titik_tanah_desa($id){
+    return $this->db->get_where('data_tanah_administrasi_desa', array('desa_id'=>$id));
+  }
+
+  public function _post_titik_tanah_desa($insert){
+    return $this->db->insert('data_tanah_administrasi_desa', $insert);
+  }
+
   public function _update_patok($id,$update){
     $this->db->where('id', $id);
     return $this->db->update('data_koordinat', $update);

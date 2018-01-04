@@ -699,10 +699,29 @@ class Pertanahan extends CI_Controller{
 
   public function tanah_desa_list(){
     $data['title'] = TITLE.'Data Aset Pertanahan Desa';
-    // $data['titik']  = $this->pertanahan_model->_get_titik_tanah_desa($this->session->userdata('desa_id'));
-
+    $data['titik']  = $this->pertanahan_model->_get_titik_tanah_desa($this->session->userdata('desa_id'));
     $data['main_content'] = PERTANAHAN.'data_tanah_desa';
     $this->load->view('template', $data);
+  }
+
+  public function geojson_input(){
+      if(isset($_FILES['geojson'])){
+      $geojson = time()."-".$_FILES['geojson']['name'];
+      $config['upload_path'] = './assets/uploader/data_json/'; //buat folder dengan nama assets di root folder
+      $config['allowed_types'] = 'json';
+      $config['max_size'] = 10000;
+      $config['file_name'] = $geojson;
+      $this->load->library('upload');
+      $this->upload->initialize($config);
+      if(! $this->upload->do_upload('geojson') );
+
+        $insert = array('desa_id'=>$this->input->post('desa_id'), 'json'=>$geojson,'status'=>1);
+        $check = $this->pertanahan_model->_post_titik_tanah_desa($insert);
+        if ($check) {
+          echo json_encode(array("status" => TRUE));
+        }
+
+    }        
   }
 
 /* Pertanahan.php || Controller Handler Untuk Modul Pertanahan
