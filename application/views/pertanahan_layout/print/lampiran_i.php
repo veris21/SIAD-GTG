@@ -2,135 +2,107 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>SKT Lampiran</title>
+	<title><?php echo $title.$data['nama']; ?></title>
 	<!-- -->
 	<link rel="stylesheet" href="<?php echo BASE_URL.'assets/print.css' ?>">
 	<!-- -->
 </head>
-<body id="logo-back">
+<body>
 <div id="container">
-  <table>
-    <tr>
-      <td align="center"  style="padding-bottom:0;margin-bottom:0;">
-				<img src="<?php echo BASE_URL.'assets/logo-beltim.png'; ?>" alt="Logo" width="90" >
-			</td>
-      <td colspan="7" align="center" class="header-surat"  style="padding-bottom:0;margin-bottom:0;">
-        <h2>
-          PEMERINTAH KABUPATEN <?php echo 'BELITUNG TIMUR'; ?> <br>
-          KECAMATAN <?php echo 'GANTUNG'; ?><br>
-          KANTOR KEPALA DESA <?php echo 'GANTUNG'; ?>
-        </h2>
-				<p><i>Alamat Kantor: <?php echo 'Jl Sudirman Dusun Rasau Desa Gantung Kecamatan Gantung Kabupaten Belitung Timur 33462'; ?></i></p>
-      </td>
-    </tr>
-		<tr>
-			<td colspan="8"><hr style="padding-top:0;margin-top:0;"></td>
-		</tr>
-    <tr>
-      <td colspan="8" align="center">
-        <h3><u>DENAH / SITUASI TANAH</h3>
-      </td>
-    </tr>
+  <table width="100%">
+        <tr>
+        <td colspan="3" width="60%"></td>
+        <td width="40%">
+            <table>
+            <tr>
+                <td colspan="2">LAMPIRAN III</td>
+            </tr>
+            <tr>
+                <td width="30%"><b style="font-size:11px;">Nomor </b></td>
+                <td width="70%"> : 
+                <b style="font-size:11px;font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo "181/".$data['id']."-".$type."/KTD.".strtoupper($data['nama_desa'])."/".romawi(mdate("%m",$data['time']))."/".mdate("%Y",$data['time']);?></b>
+                </td>
+            </tr>
+            <tr>
+                <td width="30%"><b style="font-size:11px;">Tanggal </b></td>
+                <td width="70%">: 
+                    <b  style="font-size:11px;">
+                <?php echo mdate("%d",$data['time'])." ".bulan(mdate("%m",$data['time']))." ".mdate("%Y",$data['time']);?></b>
+                </td>
+            </tr>
+            </table>
+        </td>
+        </tr>
+
+        <tr>
+            <td colspan="4"><br></td>
+        </tr>
+
+        <tr>
+            <td colspan="4"><h3 style="text-align:center;">LAMPIRAN PENDUKUNG</h3></td>
+        </tr>
+        
+</table>
+<table border="1" width="100%">
+        <tr>            
+            <td valign="middle" colspan="4">
+                <center>
+								<h5>KTP PEMOHON</h5>
+<?php if($data['ktp']!=''){ ?>
+                <img style="padding:4px;" width="240" src="<?php echo base_url().KTP.$data['ktp']; ?>" alt="">
+<?php }else{ ?>
+<h5><i>Data KTP Kosong</i></h5>
+<?php }?>
+							 </center>
+            </td>
+        </tr>
+				<tr>            
+            <td valign="middle" colspan="4">
+                <center>
+								<h5>SURAT PENGANTAR KEPALA DUSUN</h5>
+<?php if($data['surat_kadus']!=''){ ?>
+                <img style="padding:4px;" width="240" src="<?php echo base_url().SURATKADUS.$data['surat_kadus']; ?>" alt="">
+<?php }else{ ?>
+<h5><i>Data Surat Pengantar Kosong</i></h5>
+<?php }?>
+               </center>
+            </td>
+        </tr>
+				<tr>            
+            <td valign="middle" colspan="4">
+                <center>
+								<h5>BUKTI PEMBAYARAN PBB</h5>
+<?php if($data['ktp']!=''){ ?>
+                <img style="padding:4px;" width="240" src="<?php echo base_url().PBB.$data['pbb']; ?>" alt="">
+<?php }else{ ?>
+<h5><i>Data Bukti Bayar Pajak Bumi dan Bangunan Kosong</i></h5>
+<?php }?>
+               </center>
+            </td>
+        </tr>
   </table>
-	<table>
-		<tr>
-			<td  width="60%">
-				<div style="height:480px;" id="map"></div>
-			</td>
-			<td width="40%" valign="top">
-				<table>
-			    <tr>
-			      <td>Nama Pemohon</td>
-			      <td>: Veris Juniardi</td>
-			    </tr>
-			    <tr>
-			      <td>Luas</td>
-			      <td>: <b><?php echo '800'; ?> M<sup>2</sup></b></td>
-			    </tr>
-			    <tr>
-			      <td>Peruntukan</td>
-			      <td>: <b><?php echo 'PERUMAHAN'; ?></b></td>
-			    </tr>
-			    <tr>
-			      <td>Lokasi</td>
-			      <td>: <b><?php echo 'DUSUN RASAU'; ?></b></td>
-			    </tr>
-					<tr>
-						<td colspan="2"><hr/><br></td>
-					</tr>
-					<?php
-					for ($i=0; $i < 5; $i++) {
-					 ?>
-					<tr>
-						<td width="60%">
-							<img width="100%" src="<?php echo PATOK.'1510755387IMG_20170526_154346.jpg'; ?>" alt="">
-						</td>
-						<td width="40%" valign="bottom">
-							<h4>No.Patok <?php echo $i; ?></h4>
-              <h5>
-								Koor. Lat. (<b><i><?php echo $i; ?></i></b>)<br>
-								Koor. Lng. (<b><i><?php echo $i; ?></i></b>)
-							</h5>
-						</td>
-					</tr>
-					<?php $i++; } ?>
-			  </table>
-			</td>
-		</tr>
-	</table>
-	<hr>
-  <table>
-    <tr align="center">
-			<td width="20%">
-				<img src="<?php echo QRCODE.'gantung.si-desa.jpg'; ?>" class="img img-responsive" width="100%" alt="">
-			</td>
-      <td width="80%" colspan="3"  style="text-align:center">
-        Mengetahui/ Menyetujui, <br>
-        <b><?php echo 'KEPALA DESA GANTUNG'; ?></b>
-        <br><br>&nbsp;<br><br><br><br>
-        <b><?php echo 'SISWADI USMAN'; ?><b>
-      </td>
-    </tr>
-  </table>
+<table>
+        <tr>
+        <td width="40%">
+        <p align="center">Mengetahui, <br>
+            <?php echo strtoupper($data['jabatan_kades']);?>
+            <br><br>&nbsp;<br><br><br><br><br>
+            <b><?php echo $data['nama_kades'];?></b>
+        </p>
+        </td>
+        <td colspan="2" align="center" width="20%">
+            <img width="90" src="<?php echo base_url().QRCODE.$data['qr_link'];?>" alt="logo"><br>
+            <i style="font-size:9px;font-family: Consolas, Monaco, Courier New, Courier, monospace;">(Dokumen ini di generate otomatis melalui sistem SiDesa.id)</i>
+        </td>
+        <td width="40%">
+        <p align="center">
+            Yang Mengusahakan, <br>
+            <br><br>&nbsp;<br><br><br><br><br>
+            <b><?php echo $data['nama'];?></b>
+        </p>
+        </td>        
+        </tr>
+</table>
 </div>
-<script type="text/javascript">
-function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 5,
-          center: {lat: 24.886, lng: -70.268},
-          mapTypeId: 'roadmap',
-					disableDefaultUI: true,
-					styles:[
-						{
-						    "featureType": "all",
-						    "stylers": [
-						      { "visibility": "off" }
-						    ]
-						 },
-						 {
-
-						 }
-					]
-        });
-
-        var triangleCoords = [
-          {lat: 25.774, lng: -80.190},
-          {lat: 18.466, lng: -66.118},
-          {lat: 32.321, lng: -64.757},
-          {lat: 25.774, lng: -80.190}
-        ];
-
-        var bermudaTriangle = new google.maps.Polygon({
-          paths: triangleCoords,
-          strokeColor: '#000000',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#FFFFFF',
-          fillOpacity: 0.1
-        });
-        bermudaTriangle.setMap(map);
-      }
-	</script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwYQT-WMW5KgJUqF-PjmcSlFQ2iWmAiRI&callback=initMap"></script>
 </body>
 </html>

@@ -337,6 +337,10 @@ class Pertanahan_model extends CI_Model{
     mohon.peruntukan_tanah as peruntukan_tanah,
     mohon.tahun_kelola as tahun_kelola,
     mohon.time as time_permohonan,
+    
+    mohon.pbb as pbb,
+    mohon.scan_link as surat_kadus,
+    mohon.ktp as ktp,
 
     mohon.utara as utara,
     mohon.selatan as selatan,

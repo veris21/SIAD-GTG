@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>SKT Denah Situasi Tanah</title>
+	<title><?php echo $title.$data['nama']; ?></title>
 	<!-- -->
 	<link rel="stylesheet" href="<?php echo BASE_URL.'assets/print.css' ?>">
 	<!-- -->
@@ -11,22 +11,23 @@
 <div id="container">
   <table width="100%">
         <tr>
-        <td colspan="3" width="70%"></td>
-        <td width="30%">
+        <td colspan="3" width="60%"></td>
+        <td width="40%">
             <table>
             <tr>
                 <td colspan="2">LAMPIRAN I</td>
             </tr>
             <tr>
-                <td width="30%">Nomor :</td>
-                <td width="70%"> 
-                <b style="font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo "181/".$data['id']."-".$type."/KTD.".strtoupper($data['nama_desa'])."/".romawi(mdate("%m",$data['time']))."/".mdate("%Y",$data['time']);?></b>
+                <td width="30%"><b style="font-size:11px;">Nomor </b></td>
+                <td width="70%"> : 
+                <b style="font-size:11px;font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo "181/".$data['id']."-".$type."/KTD.".strtoupper($data['nama_desa'])."/".romawi(mdate("%m",$data['time']))."/".mdate("%Y",$data['time']);?></b>
                 </td>
             </tr>
             <tr>
-                <td width="30%">Tanggal :</td>
-                <td width="70%">
-                <?php echo mdate("%d",$data['time'])." ".bulan(mdate("%m",$data['time']))." ".mdate("%Y",$data['time']);?>
+                <td width="30%"><b style="font-size:11px;">Tanggal </b></td>
+                <td width="70%">: 
+                    <b  style="font-size:11px;">
+                <?php echo mdate("%d",$data['time'])." ".bulan(mdate("%m",$data['time']))." ".mdate("%Y",$data['time']);?></b>
                 </td>
             </tr>
             </table>
@@ -73,6 +74,8 @@
         <tr>
             <td colspan="4"><br></td>
         </tr>
+</table>
+<table border="1" width="100%">
         <tr>
             <td valign="middle" width="10%">
                <center>
@@ -86,7 +89,6 @@
             </td>
         </tr>
   </table>
-  <br><br>
 <table>
         <tr>
         <td width="40%">

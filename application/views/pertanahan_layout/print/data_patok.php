@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>SKT Denah Situasi Tanah</title>
+	<title><?php echo $title.$data['nama']; ?></title>
 	<!-- -->
 	<link rel="stylesheet" href="<?php echo BASE_URL.'assets/print.css' ?>">
 	<!-- -->
@@ -21,24 +21,21 @@
                 <td colspan="2">LAMPIRAN II</td>
             </tr>
             <tr>
-                <td width="30%">Nomor :</td>
-                <td width="70%"> 
-                <b style="font-size:11px;font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo "181/".$data['id']."-".$type."/KTD.".strtoupper($data['nama_desa'])."/".romawi(mdate("%m",$data['time']))."/".mdate("%Y",$data['time']);?></b>
+                <td width="30%"><b style="font-size:11px;">Nomor </b></td>
+                <td width="70%"> : 
+                <b style="font-size:11px;font-family: Consolas, Monaco, Courier New, Courier, monospace;"> <?php echo "181/".$data['id']."-".$type."/KTD.".strtoupper($data['nama_desa'])."/".romawi(mdate("%m",$data['time']))."/".mdate("%Y",$data['time']);?></b>
                 </td>
             </tr>
             <tr>
-                <td width="30%">Tanggal :</td>
-                <td width="70%">
-                <b style="font-size:11px;"><?php echo mdate("%d",$data['time'])." ".bulan(mdate("%m",$data['time']))." ".mdate("%Y",$data['time']);?></b>
+                <td width="30%"><b style="font-size:11px;">Tanggal </b></td>
+                <td width="70%">: 
+                <b style="font-size:11px;"> <?php echo mdate("%d",$data['time'])." ".bulan(mdate("%m",$data['time']))." ".mdate("%Y",$data['time']);?></b>
                 </td>
             </tr>
             </table>
 
         </td>
 
-        </tr>
-        <tr>
-            <td colspan="4"><br></td>
         </tr>
 
         <tr>
@@ -62,24 +59,24 @@
         foreach ($patok->result() as $patok) { ?>
         <tr>
             <td valign="top" align="center" width="30%" >
-            <h5>PATOK <?php echo $n;?></h5>            
-            <img width="160" src="<?php echo base_url().PATOK.$patok->link_dokumentasi;?>" alt="">
+            <b>PATOK <?php echo $n;?></b><br>         
+            <img style="padding:2px;" width="150" src="<?php echo base_url().PATOK.$patok->link_dokumentasi;?>" alt="">
             </td>
-            <td width="60%" colspan="2">            
-                <dt>Koordinat</dt>
+            <td width="50%" colspan="2">            
                 <dd>  
                 Latitude : <?php echo $patok->lat; ?> <br>
                 Longitude : <?php echo $patok->lng; ?> 
                 </dd>
-                <br>
                 <dt>Batas - Batas</dt>
                 <dd>
-                - Utara : <?php echo $patok->utara; ?> - Selatan : <?php echo $patok->selatan; ?><br>
-                - Timur : <?php echo $patok->timur; ?> - Barat : <?php echo $patok->barat; ?> <br>
+                - Utara : <?php echo $patok->utara; ?> <br>
+                - Selatan : <?php echo $patok->selatan; ?><br>
+                - Timur : <?php echo $patok->timur; ?> <br>
+                - Barat : <?php echo $patok->barat; ?> 
                 </dd>
             </td>
-            <td valign="bottom" align="center">
-            (......................)
+            <td  width="20%" valign="bottom" align="center">
+            (...............)
             </td>
         </tr>
 <?php $n++; }?>

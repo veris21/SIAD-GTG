@@ -673,7 +673,7 @@ class Pertanahan extends CI_Controller{
   }
 
   public function cetak_denah_skt($id){
-    $data['title'] = TITLE.'Cetak Berita Acara';
+    $data['title'] = TITLE.'Lampiran I - Denah - ';
     $data['data']  = $this->pertanahan_model->_get_skt_one($id)->row_array();
     $data['titik_tengah'] = $this->pertanahan_model->_get_data_link($data['data']['bap_id'])->row_array();
     $data['patok']        = $this->pertanahan_model->_get_data_patok($data['titik_tengah']['id']); 
@@ -683,7 +683,7 @@ class Pertanahan extends CI_Controller{
   }
 
   public function cetak_patok_skt($id){
-    $data['title'] = TITLE.'Cetak Data Patok';
+    $data['title'] = TITLE.'Lampiran II - Data Patok -';
     $data['data']  = $this->pertanahan_model->_get_skt_one($id)->row_array();
     $data['titik_tengah'] = $this->pertanahan_model->_get_data_link($data['data']['bap_id'])->row_array();
     $data['patok']        = $this->pertanahan_model->_get_data_patok($data['titik_tengah']['id']); 
@@ -693,7 +693,13 @@ class Pertanahan extends CI_Controller{
   }
 
   public function cetak_lampiran_skt($id){
-    echo json_encode(array("status" => TRUE));
+    $data['title'] = TITLE.'Lampiran III - Lampiran Pendukung -';
+    $data['data']  = $this->pertanahan_model->_get_skt_one($id)->row_array();
+    $data['titik_tengah'] = $this->pertanahan_model->_get_data_link($data['data']['bap_id'])->row_array();
+    $data['patok']        = $this->pertanahan_model->_get_data_patok($data['titik_tengah']['id']); 
+    // $this->load->view(PERTANAHAN.'print/data_patok', $data);
+    $html = $this->load->view(PERTANAHAN.'print/lampiran_i', $data, TRUE);
+    $this->pdfgenerator->generate($html, $data['data']['nama']." - Lampiran (".date('d - M - Y').")");
   }
 
 
