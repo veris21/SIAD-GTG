@@ -17,7 +17,7 @@
         <h3 class="box-title"><i class="fa fa-map"></i> Data Administrasi Desa</h3>
       </div>
       <div class="box-body">
-        <div style="height:480px;" id="map-desa"></div>
+        <div style="height:520px;" id="map-desa"></div>
       </div>
       <div class="box-footer">
         <?php if($titik!=null){

@@ -11,8 +11,11 @@
 <div id="container">
   <table width="100%">
         <tr>
-        <td colspan="3" width="70%"></td>
-        <td width="30%">
+
+        <td colspan="3" width="60%"></td>
+
+        <td width="40%">
+
             <table>
             <tr>
                 <td colspan="2">LAMPIRAN II</td>
@@ -20,19 +23,20 @@
             <tr>
                 <td width="30%">Nomor :</td>
                 <td width="70%"> 
-                <b style="font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo "181/".$data['id']."-".$type."/KTD.".strtoupper($data['nama_desa'])."/".romawi(mdate("%m",$data['time']))."/".mdate("%Y",$data['time']);?></b>
+                <b style="font-size:11px;font-family: Consolas, Monaco, Courier New, Courier, monospace;"><?php echo "181/".$data['id']."-".$type."/KTD.".strtoupper($data['nama_desa'])."/".romawi(mdate("%m",$data['time']))."/".mdate("%Y",$data['time']);?></b>
                 </td>
             </tr>
             <tr>
                 <td width="30%">Tanggal :</td>
                 <td width="70%">
-                <?php echo mdate("%d",$data['time'])." ".bulan(mdate("%m",$data['time']))." ".mdate("%Y",$data['time']);?>
+                <b style="font-size:11px;"><?php echo mdate("%d",$data['time'])." ".bulan(mdate("%m",$data['time']))." ".mdate("%Y",$data['time']);?></b>
                 </td>
             </tr>
             </table>
-        </td>
-        </tr>
 
+        </td>
+
+        </tr>
         <tr>
             <td colspan="4"><br></td>
         </tr>
@@ -40,23 +44,26 @@
         <tr>
             <td colspan="4"><h4 style="text-align:center;">PHOTO LOKASI SITUASI TANAH <br> (PHOTO DAN PATOK/BATAS TANAH)</h4></td>
         </tr>
-        <tr>
-            <td colspan="4"><br></td>
-        </tr>
+        
         <tr>
             <td colspan="4">
                 <center>
-                    <img width="360" src="<?php echo base_url().PATOK.$titik_tengah['foto_tanah'];?>" alt="">
+                    <img width="240" src="<?php echo base_url().PATOK.$titik_tengah['foto_tanah'];?>" alt="">
                 </center>
             </td>
         </tr>
-<?php $n=1;
-foreach ($patok->result() as $patok) { ?>
+        <tr>
+            <td colspan="4"><br></td>
+        </tr>
+    </table>
 
-        <tr width="100%">
+    <table width="100%" border='1'>
+        <?php $n=1;
+        foreach ($patok->result() as $patok) { ?>
+        <tr>
             <td valign="top" align="center" width="30%" >
             <h5>PATOK <?php echo $n;?></h5>            
-            <img width="240" src="<?php echo base_url().PATOK.$patok->link_dokumentasi;?>" alt="">
+            <img width="160" src="<?php echo base_url().PATOK.$patok->link_dokumentasi;?>" alt="">
             </td>
             <td width="60%" colspan="2">            
                 <dt>Koordinat</dt>
@@ -67,22 +74,17 @@ foreach ($patok->result() as $patok) { ?>
                 <br>
                 <dt>Batas - Batas</dt>
                 <dd>
-                - Utara : <?php echo $patok->utara; ?><br>
-                - Timur : <?php echo $patok->timur; ?> <br>
-                - Selatan : <?php echo $patok->selatan; ?><br>
-                - Barat : <?php echo $patok->barat; ?>                
+                - Utara : <?php echo $patok->utara; ?> - Selatan : <?php echo $patok->selatan; ?><br>
+                - Timur : <?php echo $patok->timur; ?> - Barat : <?php echo $patok->barat; ?> <br>
                 </dd>
             </td>
             <td valign="bottom" align="center">
             (......................)
             </td>
         </tr>
-        <tr>
-            <td colspan="4"><hr></td>
-        </tr>
 <?php $n++; }?>
-  </table>
-  <br><br>
+</table>
+
 <table>
         <tr>
         <td width="40%">
@@ -99,7 +101,7 @@ foreach ($patok->result() as $patok) { ?>
         <td width="40%">
         <p align="center">
             Yang Mengusahakan, <br>
-            <br><br>&nbsp;<br><br><br><br><br>
+           <br><br>&nbsp;<br><br><br><br>
             <b><?php echo $data['nama'];?></b>
         </p>
         </td>        

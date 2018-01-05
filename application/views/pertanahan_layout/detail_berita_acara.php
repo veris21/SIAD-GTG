@@ -365,16 +365,17 @@ function initialize() {
   });
 
   var patok = [];
+  var jarak = [];
   <?php 
   foreach ($data_patok as $patok){
       ?> 
      patok.push(new google.maps.LatLng(parseFloat(<?php echo $patok->lat;?>), parseFloat(<?php echo $patok->lng;?>)));
-      <?php
+     <?php
   }
   ?>
     
     // var color = '#'+Math.random().toString(16).substr(-6);
-    var area = google.maps.geometry.spherical.computeArea(patok);
+    var area = google.maps.geometry.spherical.computeArea(patok);    
     $('#luas').html('Luas : <b>'+(area).toFixed(2)+' meter<sup>2</sup></b>');
     $('#luas_skt').text(area);
     var contentString = '<b><?php echo $titik_tengah['keterangan'];?></b><br><br>Luas : '+(area).toFixed(2)+' meter<sup>2</sup>';
@@ -385,7 +386,7 @@ function initialize() {
         strokeOpacity: 1,
         strokeWeight: 2,
         fillColor:'#DDD000',
-        fillOpacity: 0,
+        fillOpacity: 0.3,
         html: contentString
     });
     
