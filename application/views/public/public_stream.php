@@ -37,7 +37,9 @@
 
   <div id="control">
 		<center>
+		<a href="<?php echo base_url('login');?>">
 		<img src="<?php echo base_url().'assets/new-logo.png'; ?>" width="60%" alt="Logo si-desa.id">
+		</a>
 		</center>
 		<br>
 		<hr>		
@@ -104,7 +106,7 @@
 		<div class="clear"></div>
 		<div id="results"></div>
 		
-		<p style="font-size:9px;">Simple Project by <?php echo anchor('login','Si-Desa Gantung');?></p>
+		<p style="font-size:11px;">Simple Project by <?php echo anchor('login','Si-Desa Gantung');?></p>
 	</div>
 		<!-- an empty div for the map -->
 	<?php $this->load->view($main_content); ?>	
