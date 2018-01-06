@@ -18,10 +18,18 @@ class Stream extends CI_Controller{
 
   function details($id){
     $data['title']          = TITLE . 'Open Data Pertanahan Publik';
+    $data['data']           = array('id'=>$id);
     $data['main_content']   = UMUM.'details';
     $this->load->view(UMUM. 'public_stream', $data);
   }
 
+
+  public function cek_validasi($id){
+    $data['title']          = TITLE . 'Open Data Pertanahan Publik';
+    $data['data']           = $this->pertanahan_model->_get_validasi_skt($id)->row_array();
+    $data['main_content']   = UMUM.'cek_qr_skt';
+    $this->load->view(UMUM. 'public_stream', $data);
+  }
 }
 
 /* Stream.php || Controller Handler Untuk Modul Stream */ 

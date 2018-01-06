@@ -127,20 +127,25 @@
           <div class="text-center success">
           <h3>Lengkapi Data Permohonan Sesuai Pengantar</h3>
           </div>
-          <?php echo form_open_multipart('', array('id'=>'permohonan_form'));?>
+          <?php echo form_open_multipart('', array('id'=>'permohonan_form','class'=>'form-horizontal'));?>
           <input type="hidden" name="kependudukan_id" >
           <input type="hidden" name="pemohon">
           <input type="hidden" name="no_nik">
           <div class="form-group">
-          <label for="">Kontak (hp)</label>
-          <input type="text" name="kontak" class="form-control">
+          <label class="control-label col-sm-4" for="">Kontak (hp)</label>
+          <div class="col-sm-8">
+              <input type="text" name="kontak" class="form-control">
+          </div>              
           </div>
           <div class="form-group">
-          <label for="">Lokasi Tanah</label>
-          <input type="text" name="lokasi" class="form-control">
+          <label class="control-label col-sm-4" for="">Lokasi Tanah</label>
+            <div class="col-sm-8">
+                <input type="text" name="lokasi" class="form-control">
+            </div>
           </div>
           <div class="form-group">
-            <label for="">Dusun</label>
+            <label class="control-label col-sm-4" for="">Dusun</label>
+              <div class="col-sm-8">
             <select name="dusun_id" class="form-control">
               <?php
               foreach ($dusun as $dusun) {
@@ -148,13 +153,17 @@
               }
               ?>            
             </select>
+            </div>
           </div>
           <div class="form-group">
-          <label for="">Perkiraan Luas Tanah dalam ( &plusmn;m<sup>2</sup>)</label>
+          <label class="control-label col-sm-4" for="">Perkiraan Luas Tanah dalam ( &plusmn;m<sup>2</sup>)</label>
+          <div class="col-sm-8">
           <input type="text" name="luas" class="form-control">
           </div>
+          </div>
           <div class="form-group">
-          <label for="">Status Tanah</label>
+          <label class="control-label col-sm-4" for="">Status Tanah</label>
+          <div class="col-sm-8">
           <select name="status_tanah" id="" class="form-control">
             <option value="TANAH NEGARA">TANAH NEGARA</option>
             <option value="TANAH DESA">TANAH DESA</option>
@@ -162,8 +171,10 @@
             <option value="TANAH GARAPAN">TANAH GARAPAN</option>
           </select>
           </div>
+          </div>
           <div class="form-group">
-          <label for="">Peruntukan Tanah</label>
+          <label class="control-label col-sm-4" for="">Peruntukan Tanah</label>
+          <div class="col-sm-8">
           <select name="peruntukan_tanah" class="form-control">
             <option value="PERUMAHAN">PERUMAHAN</option>
             <option value="PERKEBUNAN">PERKEBUNAN</option>
@@ -175,53 +186,70 @@
 
           </select>
           </div>
+          </div>
           <div class="form-group">
-          <label for="">Tahun Pengelolaan Objek Tanah</label>
-          <input type="text" name="tahun_kelola" class="form-control"  data-inputmask='"mask": "2###"' data-mask>
+          <label class="control-label col-sm-4" for="">Tahun Pengelolaan Objek Tanah</label>
+          <div class="col-sm-8">
+          <input type="text" name="tahun_kelola" class="form-control"  data-inputmask='"mask": "####"' data-mask>
+          </div>
           </div>
           <table class="table table-striped">
               <tr>
                 <td>
                   <div class="form-group">
-                    <label for="">Batas Utara</label>
+                    <label  class="control-label col-sm-4"  for="">Batas Utara</label>
+                    <div class="col-sm-8">
                     <input type="text" name="utara" class="form-control">
+                    </div>
                   </div>
                 </td>
                 <td>
                   <div class="form-group">
-                    <label for="">Batas Barat</label>
+                    <label class="control-label col-sm-4"  for="">Batas Barat</label>
+                    <div class="col-sm-8">
                     <input type="text" name="barat" class="form-control">
+                    </div>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td>
                   <div class="form-group">
-                    <label for="">Batas Selatan</label>
+                    <label class="control-label col-sm-4"  for="">Batas Selatan</label>
+                    <div class="col-sm-8">
                     <input type="text" name="selatan" class="form-control">
+                    </div>
                   </div>
                 </td>
                 <td>
                   <div class="form-group">
-                    <label for="">Batas Timur</label>
+                    <label class="control-label col-sm-4"  for="">Batas Timur</label>
+                    <div class="col-sm-8">
                     <input type="text" name="timur" class="form-control">
+                    </div>
                   </div>
                 </td>
               </tr>
           </table>
           <div class="form-group">
-          <label for="scan_file">Scan KTP</label>
+          <label class="control-label col-sm-4" for="scan_file">Scan KTP</label>
+          <div class="col-sm-8">
           <input type="file" name="ktp" class="form-control" accept="image/*" >
           </div>
-          <hr>
-          <div class="form-group">
-          <label for="">Scan Surat Pengantar Kadus</label>
-          <input type="file" name="scan_link" class="form-control" accept="image/*" >
           </div>
           <hr>
           <div class="form-group">
-          <label for="">Bukti Pembayaran PBB</label>
+          <label class="control-label col-sm-4" for="">Scan Surat Pengantar Kadus</label>
+          <div class="col-sm-8">
+          <input type="file" name="scan_link" class="form-control" accept="image/*" >
+          </div>
+          </div>
+          <hr>
+          <div class="form-group">
+          <label class="control-label col-sm-4" for="">Bukti Pembayaran PBB</label>
+          <div class="col-sm-8">
           <input type="file" name="pbb" class="form-control" accept="image/*" >
+          </div>
           </div>
           <hr>
           <div class="pull-right">
@@ -248,16 +276,218 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title">Input Data Penduduk ke Sistem</h3>
       </div>
-      <?php echo form_open_multipart('', array('id'=>'input_data_penduduk_baru'));?>
+      <?php echo form_open_multipart('', array('id'=>'input_data_penduduk_baru','class'=>'form-horizontal'));?>
       <div class="modal-body form">
       <!--  -->
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Kabupaten</label>
+            <div class="col-sm-8">
+              <select name="kabupaten" class="form-control select2" style="width:100%;" id="">
+                <option value="">-- Pilih Kabupaten --</option>
+              </select>
+            </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Kecamatan</label>
+            <div class="col-sm-8">
+              <select name="kecamatan" class="form-control select2" style="width:100%;" id="">
+                <option value="">-- Pilih Kecamatan --</option>
+              </select>
+            </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Desa</label>
+            <div class="col-sm-8">
+              <select name="desa" class="form-control select2" style="width:100%;" id="">
+                <option value="">-- Pilih Desa --</option>
+              </select>
+            </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Dusun</label>
+            <div class="col-sm-8">
+              <select name="dusun" class="form-control select2" style="width:100%;" id="">
+                <option value="">-- Pilih Dusun --</option>
+              </select>
+            </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">RT</label>
+            <div class="col-sm-8">
+              <select name="rt" class="form-control select2" style="width:100%;" id="">
+                <option value="">-- Pilih RT --</option>
+              </select>
+            </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Alamat</label>
+              <div class="col-sm-8">
+                  <input type="text" name="alamat" class="form-control" id="">
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">No. Kartu Keluarga</label>
+              <div class="col-sm-8">
+                  <input type="text" name="no_kk" class="form-control" id="">
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">No. NIK</label>
+              <div class="col-sm-8">
+                  <input type="text" name="no_nik" class="form-control" id="">
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Nama Lengkap</label>
+              <div class="col-sm-8">
+                  <input type="text" name="nama" class="form-control" id="">
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Jenis Kelamin</label>
+            <div class="col-sm-8">
+              <select name="rt" class="form-control" id="">
+                <option value="">-- Pilih Jenis Kelamin --</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </select>
+            </div>
+      </div>
+      
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Tempat Lahir</label>
+              <div class="col-sm-8">
+                  <input type="text" name="tempat_lahir" class="form-control" id="">
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Tanggal Lahir</label>
+              <div class="col-sm-8">
+                  <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input name="tanggal_lahir" type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                    </div>
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Pekerjaan</label>
+              <div class="col-sm-8">
+                  <input type="text" name="pekerjaan" class="form-control" id="">
+               </div>
+      </div>
+      
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Agama</label>
+              <div class="col-sm-8">
+                <select name="agama" class="form-control" id="">
+                  <option value="">-- PIlih Agama --</option>
+                  <option value="ISLAM">ISLAM</option>
+                  <option value="KRISTEN">KRISTEN</option>
+                  <option value="KATOLIK">KATOLIK</option>
+                  <option value="BUDHA">BUDHA</option>
+                  <option value="HINDU">HINDU</option>
+                  <option value="KONGHUCU">KONGHUCU</option>
+                </select>
+               </div>
+      </div>
+      
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Pendidikan Terakhir</label>
+              <div class="col-sm-8">
+                  <select name="pddk_akhir" class="form-control" id="">
+                  <option value="">-- Pendidikan Terakhir --</option>
+                  <option value="TIDAK/BELUM SEKOLAH">TIDAK/BELUM SEKOLAH</option>
+                  <option value="TAMAT SD/SEDERAJAT">TAMAT SD/SEDERAJAT</option>
+                  <option value="SLTP/SEDERAJAT">SLTP/SEDERAJAT</option>
+                  <option value="SLTA/SEDERAJAT">SLTA/SEDERAJAT</option>
+                  <option value="PERGURUAN TINGGI/SEDERAJAT">PERGURUAN TINGGI/SEDERAJAT</option>
+                </select>
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Status Perkawinan</label>
+              <div class="col-sm-8">
+                <select name="status" class="form-control" id="">
+                  <option value="">-- Pilih Status Perkawinan --</option>
+                  <option value="BELUM KAWIN">Belum Kawin</option>
+                  <option value="KAWIN">Kawin</option>
+                  <option value="DUDA">DUDA</option>
+                  <option value="JANDA">JANDA</option>
+                </select>
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Status Dalam Keluarga</label>
+              <div class="col-sm-8">
+                  <select name="shdk" class="form-control" id="">
+                  <option value="">-- Pilih Status Dalam Rumah Tangga --</option>
+                  <option value="KEPALA KELUARGA">KEPALA KELUARGA</option>
+                  <option value="ISTRI">ISTRI</option>
+                  <option value="ANAK">ANAK</option>
+                  <option value="FAMILI LAIN">FAMILI LAIN</option>
+                </select>
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Jumlah Anggota Keluarga</label>
+              <div class="col-sm-8">
+                  <input type="number" name="shdrt" class="form-control" id="">
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Nama Ayah</label>
+              <div class="col-sm-8">
+                  <input type="text" name="nama_ayah" class="form-control" id="">
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Nama Ibu</label>
+              <div class="col-sm-8">
+                  <input type="text" name="nama_ibu" class="form-control" id="">
+               </div>
+      </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Scan FC KTP/KK</label>
+        <div class="col-sm-8">
+            <input type="file" name="ktp" class="form-control" id="">
+        </div>
+      </div>
+
       <!--  -->
       </div> 
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <button type="submit" onclick="save_data_penduduk_baru()" class="btn btn-primary">Save</button>
+        <button type="submit" onclick="save_penduduk_baru()" class="btn btn-primary">Save</button>
       </div>
     </form>
     </div> 
   </div> 
 </div>
+
+<script>
+var kab = $('[name="kabupaten"]').val();
+$('[name="kabupaten"]').change(function(){
+  $.ajax({
+
+  });
+});
+</script>

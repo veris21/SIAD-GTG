@@ -1,6 +1,7 @@
 $(function() {
 	$(".select2").select2();
 	$("#form_cari").hide();
+
 	$("#searchBtn").click(function () {
 		$("#searchBtn").hide();
 		$("#form_cari")[0].reset();
@@ -8,7 +9,6 @@ $(function() {
 		$('#cariDusun').hide();
 		$('#dusun').hide();
 		$('#nama_or_nik').hide();
-
 		$('#btnCari').hide();
 	});
 
@@ -17,7 +17,6 @@ $(function() {
 		$('#dusun').hide();
 		$('#nama_or_nik').hide();
 		$('#btnCari').hide();
-
 		$('#cariDesa').show();
 	});
 

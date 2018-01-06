@@ -690,13 +690,12 @@ function save_balasan_arsip(){
 }
 
 
-function save_data_penduduk_baru(){
+function save_penduduk_baru(){
   $('#input_data_penduduk_baru').submit(function(evt){
     evt.preventDefault();
-    var url = baseUrl+'input/datapenduduk';
     var formData = new FormData($(this)[0]);
     $.ajax({
-      url:url,
+      url: baseUrl + 'data_penduduk/input',
       type: "POST",
       data: formData,
       async: false,

@@ -12,15 +12,19 @@ class Datapenduduk extends CI_Controller {
         //Do your magic here
     }
 
+    public function input_penduduk(){
+        echo json_encode(array("status" => TRUE));
+    }
+
+    public function mutasi_data(){
+        echo json_encode(array("status" => TRUE));
+    }
+
     public function cari_nik($nik){
         $data = $this->datapenduduk_model->_get_data_nik($nik)->row_array();
         echo json_encode($data);
     }
     
-    public function mutasi_data()
-    {
-        echo json_encode(array("status" => TRUE));
-    }
 
     public function import(){
         if (!empty($_FILES['import_xls'])) {

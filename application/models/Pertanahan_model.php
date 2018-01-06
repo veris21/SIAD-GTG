@@ -320,6 +320,77 @@ class Pertanahan_model extends CI_Model{
     return $this->db->query($query);
   }
 
+  
+  /* ===============================================
+                  VALIDASI QR CHECK
+    ===============================================*/
+
+  public function _get_validasi_skt($id){
+    $query = "SELECT 
+    penduduk.nama as nama,
+    penduduk.no_nik as no_nik,
+    penduduk.jenis_kelamin as jenis_kelamin,
+    penduduk.alamat as alamat,
+    penduduk.status as status,
+    penduduk.pekerjaan as pekerjaan,
+    penduduk.tanggal_lahir as tanggal_lahir,
+    penduduk.tempat_lahir as tempat_lahir,
+    penduduk.agama as agama,
+
+    mohon.lokasi as lokasi,
+    mohon.status_tanah as status_tanah,
+    mohon.peruntukan_tanah as peruntukan_tanah,
+    mohon.tahun_kelola as tahun_kelola,
+    mohon.time as time_permohonan,
+    
+    mohon.pbb as pbb,
+    mohon.scan_link as surat_kadus,
+    mohon.ktp as ktp,
+
+    mohon.utara as utara,
+    mohon.selatan as selatan,
+    mohon.timur as timur,
+    mohon.barat as barat,    
+
+    pernyataan.time as time_pernyataan,
+
+    dusun.nama_dusun as nama_dusun,
+    desa.nama_desa as nama_desa,
+    kades.fullname as nama_kades,
+    kades.keterangan_jabatan as jabatan_kades,
+
+    desa.alamat_desa as alamat_desa,
+    desa.uid as kades_uid,
+    kecamatan.nama_kecamatan as nama_kecamatan,
+    kabupaten.nama_kabupaten as nama_kabupaten,
+
+    bap.time as time_bap,
+    bap.id as bap_id,
+
+    skt.qr_link as qr_link,
+    skt.peta as peta,
+    skt.id as id,
+    skt.time as time,
+    skt.luas_skt as luas,
+    skt.type as type
+
+    FROM data_skt as skt, berita_acara_pertanahan as bap, pernyataan_pertanahan as pernyataan, permohonan_pertanahan as mohon, 
+    kabupaten as kabupaten, kecamatan as kecamatan, desa as desa, dusun as dusun,  master_data_penduduk_ as penduduk, users as kades
+    WHERE 
+    desa.uid = kades.id AND
+    kecamatan.kabupaten_id = kabupaten.id AND
+    desa.kecamatan_id = kecamatan.id AND
+    dusun.desa_id = desa.id AND
+    mohon.dusun_id = dusun.id AND
+    bap.pernyataan_id = pernyataan.id AND 
+    pernyataan.permohonan_id = mohon.id AND 
+    skt.id_berita_acara = bap.id AND
+    mohon.kependudukan_id = penduduk.id AND skt.time = $id";
+    return $this->db->query($query);
+  }
+
+  /* ===============================================*/
+
   public function _get_skt_one($id){
     $query = "SELECT 
     penduduk.nama as nama,
