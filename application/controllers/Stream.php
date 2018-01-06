@@ -12,7 +12,14 @@ class Stream extends CI_Controller{
   function index()
   {
       $data['title']          = TITLE . 'Open Data Pertanahan Publik';
+      $data['main_content']   = UMUM.'public';
       $this->load->view(UMUM. 'public_stream', $data);
+  }
+
+  function details($id){
+    $data['title']          = TITLE . 'Open Data Pertanahan Publik';
+    $data['main_content']   = UMUM.'details';
+    $this->load->view(UMUM. 'public_stream', $data);
   }
 
 }
