@@ -79,12 +79,12 @@
         <tr>
             <td valign="middle" width="10%">
                <center>
-                <img width="40" src="<?php echo base_url().'assets/n-1.png'; ?>" >
+                <img width="30" src="<?php echo base_url().'assets/n-1.png'; ?>" >
                </center>
             </td>
-            <td valign="middle" colspan="3" width="90%">
+            <td valign="middle" width="90%">
                 <center>
-                <img src="<?php echo base_url().POLYGON.$data['peta']; ?>" >
+                <img width="100%" src="<?php echo base_url().POLYGON.$data['peta']; ?>" >
                </center>
             </td>
         </tr>
