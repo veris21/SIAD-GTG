@@ -84,7 +84,7 @@
             </td>
             <td valign="middle" width="90%">
                 <center>
-                <img width="100%" src="<?php echo base_url().POLYGON.$data['peta']; ?>" >
+                <img src="<?php echo base_url().POLYGON.$data['peta']; ?>" alt="" >
                </center>
             </td>
         </tr>
