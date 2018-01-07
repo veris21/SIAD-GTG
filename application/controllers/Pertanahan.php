@@ -46,8 +46,10 @@ class Pertanahan extends CI_Controller{
     $this->load->view('template', $data);
   }
 
+  // DEPRECEATED FUNCTION CAUSE CORS PROBLEM
+  /*----------------------------------------*/
+
   public function permohonan_print($id){
-    
     $data['title'] = TITLE.'Cetak Permohonan';
     $data['data']  = $this->pertanahan_model->_get_details_one($id)->row_array();
     $html = $this->load->view(PERTANAHAN.'print/permohonan', $data, TRUE);
@@ -65,6 +67,8 @@ class Pertanahan extends CI_Controller{
       echo json_encode(array("status" => TRUE));
     }
   }
+  /*----------------------------------------*/
+  /*----------------------------------------*/
 
   // ALTERNATIF PRINT MASALAH SSL 
   public function permohonan_print_alternatif($id){
@@ -77,7 +81,6 @@ class Pertanahan extends CI_Controller{
   public function pernyataan_print_alternatif($id){
     $data['title'] = TITLE.'Cetak Pernyataan';
     $data['data']  = $this->pertanahan_model->_get_pernyataan_one($id)->row_array();
-    // $this->load->view(PERTANAHAN.'print/pernyataan', $data);
     $html = $this->load->view(PERTANAHAN.'print/pernyataan', $data, TRUE);
     $this->pdfgenerator->generate($html, $data['data']['nama']." - PERNYATAAN (".date('d-M-Y').")");
   }
@@ -191,18 +194,17 @@ class Pertanahan extends CI_Controller{
 
   public function pernyataan_input(){ 
     $saksi1_nama      = strip_tags($this->input->post('saksi1_nama'));
-    $saksi1_alamat      = strip_tags($this->input->post('saksi1_alamat'));
+    $saksi1_alamat    = strip_tags($this->input->post('saksi1_alamat'));
     $saksi1_pekerjaan = strip_tags($this->input->post('saksi1_pekerjaan'));
     $saksi2_nama      = strip_tags($this->input->post('saksi2_nama'));
-    $saksi2_alamat      = strip_tags($this->input->post('saksi2_alamat'));
+    $saksi2_alamat    = strip_tags($this->input->post('saksi2_alamat'));
     $saksi2_pekerjaan = strip_tags($this->input->post('saksi2_pekerjaan'));
     $saksi3_nama      = strip_tags($this->input->post('saksi3_nama'));
-    $saksi3_alamat      = strip_tags($this->input->post('saksi3_alamat'));
+    $saksi3_alamat    = strip_tags($this->input->post('saksi3_alamat'));
     $saksi3_pekerjaan = strip_tags($this->input->post('saksi3_pekerjaan'));
     $saksi4_nama      = strip_tags($this->input->post('saksi4_nama'));
-    $saksi4_alamat      = strip_tags($this->input->post('saksi4_alamat'));
+    $saksi4_alamat    = strip_tags($this->input->post('saksi4_alamat'));
     $saksi4_pekerjaan = strip_tags($this->input->post('saksi4_pekerjaan'));
-
     $id    = $this->input->post('permohonan_id');
     $pemohon =  strip_tags($this->input->post('pemohon'));
     $lokasi =  strip_tags($this->input->post('lokasi'));
@@ -421,9 +423,8 @@ class Pertanahan extends CI_Controller{
     }
     
   }
-
-
-  // MAPS KOORDINAT 
+   /*-------------------------------------------------------------------------*/
+  //                           MAPS KOORDINAT                                 //
   /*------------------ Titik Tengah Koordinat / Marker ----------------------*/
   public function input_koordinat_tengah(){
     if(isset($_FILES['patok'])){

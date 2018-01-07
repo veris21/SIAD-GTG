@@ -34,10 +34,10 @@
     </tr>
   </table>
   <table>
-        <tr>
+        <tr> 
             <td colspan="4">
                 <p style="text-align:justify;">
-                Pada hari ini <?php echo nama_hari(mdate("%D",$data['time']));?>, Tanggal <?php echo terbilang(mdate("%d", $data['time']));?> Bulan <?php echo bulan(mdate("%m", $data['time']));?> Tahun <?php echo terbilang(mdate("%Y", $data['time']));?> (<?php echo mdate("%d-%m-%Y", $data['time']); ?>) yang dihadiri oleh masing - masing yang bertandatangan dibawah ini, telah dilakukan pemeriksaan sebidang tanah yang dipergunakan untuk <b><?php echo $data['peruntukan_tanah'];?></b> dengan Luas &plusmn; <b><?php echo number_format($data['luas'], 1, ',', '.');;?></b> m<sup>2</sup> yang terletak di <?php echo $data['lokasi'];?> <?php echo "Dusun ".$data['nama_dusun']." Desa ".$data['nama_desa']." Kecamatan ".$data['nama_kecamatan']." Kabupaten ".$data['nama_kabupaten'];?>, yang dimohon oleh :
+                Pada hari ini <b><i> <?php echo nama_hari(mdate("%D",$data['time']));?>, Tanggal <?php echo terbilang(number_format(mdate("%d", $data['time'])));?> Bulan <?php echo bulan(mdate("%m", $data['time']));?> Tahun <?php echo terbilang(mdate("%Y", $data['time']));?> (<?php echo mdate("%d-%m-%Y", $data['time']); ?>) </i></b> yang dihadiri oleh masing - masing yang bertandatangan dibawah ini, telah dilakukan pemeriksaan sebidang tanah yang dipergunakan untuk <b><?php echo $data['peruntukan_tanah'];?></b> dengan Luas &plusmn; <b><?php echo number_format($data['luas'], 1, ',', '.');;?></b> m<sup>2</sup> yang terletak di <?php echo $data['lokasi'];?> <?php echo "Dusun ".$data['nama_dusun']." Desa ".$data['nama_desa']." Kecamatan ".$data['nama_kecamatan']." Kabupaten ".$data['nama_kabupaten'];?>, yang dimohon oleh :
                 </p>
             </td>
         </tr>
