@@ -75,20 +75,21 @@
             <td colspan="4"><br></td>
         </tr>
 </table>
-<table border="1">
+<table border="1" width="100%">
         <tr>
             <td valign="middle" width="10%">
                <center>
                 <img width="30" src="<?php echo base_url().'assets/n-1.png'; ?>" />
                </center>
             </td>
-            <td valign="middle" width="90%">
+            <td valign="middle" width="80%">
                 <center>
                 <img src="<?php echo base_url().POLYGON.$data['peta']; ?>" alt="" />
                </center>
             </td>
+            <td></td>
         </tr>
-  </table>
+</table>
 <table>
         <tr>
         <td width="40%">
