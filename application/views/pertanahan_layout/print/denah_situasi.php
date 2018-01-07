@@ -75,16 +75,16 @@
             <td colspan="4"><br></td>
         </tr>
 </table>
-<table  border="1">
+<table width="100%" border="1">
         <tr>
             <td valign="middle" width="10%">
                <!-- <center> -->
-                <img src="<?php echo base_url().'assets/n-1.png'; ?>" alt="" >
+                <img width="30" src="<?php echo base_url().'assets/n-1.png'; ?>" alt="" >
                <!-- </center> -->
             </td>
             <td valign="middle" width="90%">
                 <!-- <center> -->
-                <img src="<?php echo base_url().POLYGON.$data['peta']; ?>" alt="" >
+                <img style="width:100%" src="<?php echo base_url().POLYGON.$data['peta']; ?>" alt="" >
                <!-- </center> -->
             </td>
         </tr>
