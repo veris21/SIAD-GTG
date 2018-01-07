@@ -353,5 +353,28 @@ class Master_model extends CI_Model{
   }
 
 
+  // NESTED WiLAyAH SELECT
+  public function _kabupaten_all(){
+    return $this->db->get('kabupaten');
+  }
+
+  public function _kecamatan_on($id){
+    $this->db->where('kabupaten_id', $id);
+    return $this->db->get('kecamatan');
+  }
+  public function _desa_on($id){
+    $this->db->where('kecamatan_id', $id);
+    return $this->db->get('desa');
+  }
+
+  public function _dusun_on($id){
+    $this->db->where('desa_id', $id);
+    return $this->db->get('dusun');
+  }
+
+  public function _rt_on($id){
+    $this->db->where('dusun_id', $id);
+    return $this->db->get('rt');
+  }
   // =========================================
 }

@@ -167,7 +167,10 @@ $route['lampiran/cetak/(:any)']           = 'pertanahan/cetak_lampiran_skt/$1';
  ----------------------------------------------------------------------- */
 $route['cari/nik/(:any)']           = 'datapenduduk/cari_nik/$1';
 $route['cari/skt/(:any)']           = 'pertanahan/cari_skt/$1';
-
+$route['get/kecamatan/(:any)']      = 'datapenduduk/get_kecamatan/$1';
+$route['get/desa/(:any)']           = 'datapenduduk/get_desa/$1';
+$route['get/dusun/(:any)']          = 'datapenduduk/get_dusun/$1';
+$route['get/rt/(:any)']             = 'datapenduduk/get_rt/$1';
 /* -----------------------------------------------------------------------
                        ADMINISTRASI PENDUDUK ROUTE
  ----------------------------------------------------------------------- */

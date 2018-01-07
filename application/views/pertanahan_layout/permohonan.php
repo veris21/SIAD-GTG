@@ -284,50 +284,47 @@
             <div class="col-sm-8">
               <select name="kabupaten" class="form-control select2" style="width:100%;" id="">
                 <option value="">-- Pilih Kabupaten --</option>
+                <?php 
+                foreach ($kabupaten as $kabupaten) {
+                  echo "<option value='".$kabupaten->id."'>".$kabupaten->nama_kabupaten."</option>";
+                }
+                ?>
               </select>
             </div>
       </div>
 
       <div class="form-group">
       <label class="control-label col-sm-4" for="">Kecamatan</label>
-            <div class="col-sm-8">
-              <select name="kecamatan" class="form-control select2" style="width:100%;" id="">
-                <option value="">-- Pilih Kecamatan --</option>
-              </select>
+            <div class="col-sm-8"  id="kecamatan">
+                <select name='kecamatan' class='form-control select2' style='width:100%'></select>
             </div>
       </div>
 
       <div class="form-group">
       <label class="control-label col-sm-4" for="">Desa</label>
-            <div class="col-sm-8">
-              <select name="desa" class="form-control select2" style="width:100%;" id="">
-                <option value="">-- Pilih Desa --</option>
-              </select>
+            <div class="col-sm-8" id="desa">
+            <select name='desa' class='form-control select2' style='width:100%' ></select>
             </div>
       </div>
 
       <div class="form-group">
       <label class="control-label col-sm-4" for="">Dusun</label>
-            <div class="col-sm-8">
-              <select name="dusun" class="form-control select2" style="width:100%;" id="">
-                <option value="">-- Pilih Dusun --</option>
-              </select>
+            <div class="col-sm-8" id="dsn">
+            <select name='dusun' class='form-control select2' style='width:100%' ></select>      
             </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" >
       <label class="control-label col-sm-4" for="">RT</label>
-            <div class="col-sm-8">
-              <select name="rt" class="form-control select2" style="width:100%;" id="">
-                <option value="">-- Pilih RT --</option>
-              </select>
+            <div class="col-sm-8" id="rt">
+                <select name='rt' class='form-control  select2' style='width:100%' ></select>
             </div>
       </div>
 
       <div class="form-group">
       <label class="control-label col-sm-4" for="">Alamat</label>
               <div class="col-sm-8">
-                  <input type="text" name="alamat" class="form-control" id="">
+                  <input type="text" name="alamat" class="form-control" >
                </div>
       </div>
 
@@ -472,6 +469,12 @@
         </div>
       </div>
 
+      <div class="form-group">
+      <label class="control-label col-sm-4" for="">Memo / Catatan Input</label>
+              <div class="col-sm-8">
+                  <textarea name="keterangan" class="form-control" cols="8" rows="4"></textarea>
+               </div>
+      </div>
       <!--  -->
       </div> 
       <div class="modal-footer">
@@ -482,12 +485,3 @@
     </div> 
   </div> 
 </div>
-
-<script>
-var kab = $('[name="kabupaten"]').val();
-$('[name="kabupaten"]').change(function(){
-  $.ajax({
-
-  });
-});
-</script>

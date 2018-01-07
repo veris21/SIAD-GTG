@@ -18,6 +18,10 @@ class Datapenduduk_model extends CI_Model{
     // return $this->db->get_where('master_data_penduduk_', array('no_nik'=>$nik));
   }
 
+  public function _post_timeline($post){
+    return $this->db->insert('timeline_data_penduduk_', $post);
+  }
+
   public function _get_data()
   {
     return $this->db->get('master_data_penduduk_');
@@ -28,6 +32,7 @@ class Datapenduduk_model extends CI_Model{
     $this->db->where('id', $id);
     return $this->db->update('master_data_penduduk_', $update);
   }
+  
   public function input($insert)
   {
     return $this->db->insert('master_data_penduduk_', $insert);

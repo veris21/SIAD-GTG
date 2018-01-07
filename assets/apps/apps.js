@@ -689,7 +689,97 @@ function save_balasan_arsip(){
   });
 }
 
+// ============================AUTO FILL DATA WILAYAH
+$('#kecamatan').hide();
+$('#desa').hide();
+$('#dsn').hide();
+$('#rt').hide();
+$('#null').hide();
 
+$('[name="kabupaten"]').change(function () {
+  var kabupaten = $('[name="kabupaten"]').val();
+  $('#desa').hide();
+  $('#dsn').hide();
+  $('#rt').hide();
+
+  $.ajax({
+    url: baseUrl + 'get/kecamatan/' + kabupaten,
+    type: "GET",
+    dataType: "JSON",
+    success: function (data) {
+      $('#kecamatan').show();
+      if (data.status == true) {
+        $('[name="kecamatan"]').html(data.hasil);
+        console.log(data.hasil);
+      } else {
+        console.log(data);
+      }
+    }
+  });
+});
+
+
+$('[name="kecamatan"]').change(function () {
+  var kecamatan = $('[name="kecamatan"]').val();
+  $('#dsn').hide();
+  $('#rt').hide();
+  $.ajax({
+    url: baseUrl + 'get/desa/' + kecamatan,
+    type: "GET",
+    dataType: "JSON",
+    success: function (kec) {      
+      if (kec.status == true) {
+        $('#desa').show();
+        $('[name="desa"]').html(kec.hasil);
+        console.log(kec.hasil);
+      } else {
+        console.log(kec);
+      }
+    }
+  });
+});
+
+$('[name="desa"]').change(function () {
+  var desa = $('[name="desa"]').val();
+  $('#rt').hide();
+  $.ajax({
+    url: baseUrl + 'get/dusun/' + desa,
+    type: "GET",
+    dataType: "JSON",
+    success: function (desa) {
+      if (desa.status == true) {
+        $('#dsn').show();
+        $('[name="dusun"]').html(desa.hasil);
+        console.log(desa.hasil);
+      } else {
+        console.log(desa);
+      }
+    }
+  });
+});
+
+$('[name="dusun"]').change(function () {
+  var dusun = $('[name="dusun"]').val();
+  $.ajax({
+    url: baseUrl + 'get/rt/' + dusun,
+    type: "GET",
+    dataType: "JSON",
+    success: function (dusun) {
+      if (dusun.status == true) {
+        $('#rt').show();
+        $('[name="rt"]').html(dusun.hasil);
+        console.log(dusun.hasil);
+      } else {
+        console.log(dusun);
+      }
+    }
+  });
+});
+
+
+
+
+// ==========================
 function save_penduduk_baru(){
   $('#input_data_penduduk_baru').submit(function(evt){
     evt.preventDefault();

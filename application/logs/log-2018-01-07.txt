@@ -1,0 +1,36 @@
+ERROR - 2018-01-07 12:39:58 --> 404 Page Not Found: Assets/theme
+ERROR - 2018-01-07 12:39:58 --> 404 Page Not Found: Assets/theme
+ERROR - 2018-01-07 13:02:48 --> 404 Page Not Found: Assets/theme
+ERROR - 2018-01-07 13:02:56 --> 404 Page Not Found: Assets/theme
+ERROR - 2018-01-07 13:14:26 --> 404 Page Not Found: Assets/theme
+ERROR - 2018-01-07 13:14:26 --> 404 Page Not Found: Assets/theme
+ERROR - 2018-01-07 13:26:42 --> 404 Page Not Found: Get/kecamatan
+ERROR - 2018-01-07 13:33:45 --> 404 Page Not Found: Office/_get_kecamatan
+ERROR - 2018-01-07 13:40:49 --> 404 Page Not Found: Office/_get_kecamatan
+ERROR - 2018-01-07 13:46:28 --> 404 Page Not Found: Office/_get_kecamatan
+ERROR - 2018-01-07 13:49:07 --> 404 Page Not Found: Office/_get_kecamatan
+ERROR - 2018-01-07 13:55:02 --> 404 Page Not Found: Datapenduduk/_get_kecamatan
+ERROR - 2018-01-07 13:59:13 --> 404 Page Not Found: Datapenduduk/_get_kecamatan
+ERROR - 2018-01-07 13:59:56 --> 404 Page Not Found: Datapenduduk/_get_kecamatan
+ERROR - 2018-01-07 14:09:21 --> 404 Page Not Found: Get/kecamatan
+ERROR - 2018-01-07 14:10:23 --> 404 Page Not Found: Get/kecamatan
+ERROR - 2018-01-07 14:19:00 --> 404 Page Not Found: Get/kecamatan
+ERROR - 2018-01-07 15:16:52 --> 404 Page Not Found: Get/kecamatan
+ERROR - 2018-01-07 15:28:02 --> 404 Page Not Found: Get/kecamatan
+ERROR - 2018-01-07 15:30:11 --> Query error: Unknown column 'kecamatann_id' in 'where clause' - Invalid query: SELECT *
+FROM `desa`
+WHERE `kecamatann_id` = '1'
+ERROR - 2018-01-07 15:30:11 --> Severity: error --> Exception: Call to a member function result() on boolean C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Datapenduduk.php 31
+ERROR - 2018-01-07 15:30:33 --> Query error: Unknown column 'kecamatann_id' in 'where clause' - Invalid query: SELECT *
+FROM `desa`
+WHERE `kecamatann_id` = '1'
+ERROR - 2018-01-07 15:30:33 --> Severity: error --> Exception: Call to a member function result() on boolean C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Datapenduduk.php 31
+ERROR - 2018-01-07 15:30:37 --> Query error: Unknown column 'kecamatann_id' in 'where clause' - Invalid query: SELECT *
+FROM `desa`
+WHERE `kecamatann_id` = '2'
+ERROR - 2018-01-07 15:30:37 --> Severity: error --> Exception: Call to a member function result() on boolean C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Datapenduduk.php 31
+ERROR - 2018-01-07 15:30:43 --> Query error: Unknown column 'kecamatann_id' in 'where clause' - Invalid query: SELECT *
+FROM `desa`
+WHERE `kecamatann_id` = '1'
+ERROR - 2018-01-07 15:30:43 --> Severity: error --> Exception: Call to a member function result() on boolean C:\wampp\apache2\htdocs\SIA-GTG.github\application\controllers\Datapenduduk.php 31
+ERROR - 2018-01-07 15:57:11 --> 404 Page Not Found: Get/kecamatan

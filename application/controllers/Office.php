@@ -100,6 +100,8 @@ class Office extends CI_Controller{
     }
   }
 
+  
+
 }
 
 /* Office.php || Controller Handler Untuk Modul Office */ 
