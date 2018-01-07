@@ -32,8 +32,11 @@ $route['public/details/(:any)']     = 'stream/details/$1';
 /* -----------------------------------------------------------------------
                        Validasi Check ROUTE
  ----------------------------------------------------------------------- */
-$route['skt/validasi/(:any)']       = 'stream/cek_validasi/$1';
-
+$route['skt/validasi/(:any)']                = 'stream/cek_validasi/$1';
+$route['berita_acara/validasi/(:any)']       = 'stream/cek_validasi_bap/$1';
+$route['pernyataan/validasi/(:any)']         = 'stream/cek_validasi_pernyataan/$1';
+$route['permohonan/validasi/(:any)']         = 'stream/cek_validasi_permohonan/$1';
+$route['disposisi/validasi/(:any)']          = 'stream/cek_validasi_disposisi/$1';
 
 /* -----------------------------------------------------------------------
                         RESET DATABASE ROUTE

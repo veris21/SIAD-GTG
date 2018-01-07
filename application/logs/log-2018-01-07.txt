@@ -1,4 +1,0 @@
-ERROR - 2018-01-07 17:20:53 --> 404 Page Not Found: Pot/kecamatan
-ERROR - 2018-01-07 17:20:56 --> 404 Page Not Found: Post/kecamatan
-ERROR - 2018-01-07 17:21:08 --> 404 Page Not Found: Input/kecamatan
-ERROR - 2018-01-07 17:21:16 --> 404 Page Not Found: Insert/kecamatan

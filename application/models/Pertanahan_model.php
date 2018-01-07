@@ -130,6 +130,62 @@ class Pertanahan_model extends CI_Model{
       return $this->db->query($query);
   }
 
+    public function _get_bap_valid($id){
+    $query = "SELECT 
+      bap.id as id,
+      kabupaten.nama_kabupaten as nama_kabupaten, 
+      kecamatan.nama_kecamatan as nama_kecamatan, desa.nama_desa as nama_desa,
+      dusun.nama_dusun as nama_dusun, penduduk.no_nik as no_nik, penduduk.nama as nama,
+      penduduk.alamat as alamat, mohon.lokasi as lokasi, 
+      mohon.luas as luas,
+      mohon.peruntukan_tanah as peruntukan_tanah,
+      mohon.type_yang_disetujui as type_yang_disetujui,
+      mohon.status_tanah as status_tanah,
+      mohon.lokasi as lokasi,
+      mohon.tahun_kelola as tahun_kelola,
+      mohon.utara as batas_utara, mohon.selatan as batas_selatan,
+      mohon.barat as batas_barat, mohon.timur as batas_timur,
+      mohon.time as time_permohonan,
+      mohon.scan_link as lampiran_permohonan,
+      mohon.pbb as scan_bukti_pbb,
+      mohon.ktp as ktp,
+      mohon.qr_link as permohonan_qr,
+      pernyataan.saksi1_nama as saksi1_nama,
+      pernyataan.saksi1_alamat as saksi1_alamat,
+      pernyataan.saksi1_pekerjaan as saksi1_pekerjaan,
+      pernyataan.saksi2_nama as saksi2_nama,
+      pernyataan.saksi2_alamat as saksi2_alamat,
+      pernyataan.saksi2_pekerjaan as saksi2_pekerjaan,
+      pernyataan.saksi3_nama as saksi3_nama,
+      pernyataan.saksi3_alamat as saksi3_alamat,
+      pernyataan.saksi3_pekerjaan as saksi3_pekerjaan,
+      pernyataan.saksi4_nama as saksi4_nama,
+      pernyataan.saksi4_alamat as saksi4_alamat,
+      pernyataan.saksi4_pekerjaan as saksi4_pekerjaan,
+      pernyataan.time as time_pernyataan,
+      pernyataan.qr_link as pernyataan_qr,
+
+      bap.status_bap as status_bap,
+      bap.qr_link as bap_qr,
+      bap.pemeriksa_1 as ketua_pemeriksa_id,
+      bap.pemeriksa_2 as pemeriksa_1_id,
+      bap.pemeriksa_3 as pemeriksa_2_id,
+      bap.pemeriksa_4 as pemeriksa_3_id,
+      bap.pemeriksa_5 as pemeriksa_4_id
+     FROM 
+      berita_acara_pertanahan as bap, permohonan_pertanahan as mohon,
+      pernyataan_pertanahan as pernyataan, master_data_penduduk_ as penduduk,
+      dusun as dusun, desa as desa, kecamatan as kecamatan, kabupaten as kabupaten
+     WHERE 
+      mohon.kependudukan_id = penduduk.id AND 
+      bap.permohonan_id = mohon.id AND bap.pernyataan_id = pernyataan.id AND 
+      mohon.dusun_id = dusun.id AND
+      dusun.desa_id = desa.id AND
+      desa.kecamatan_id = kecamatan.id AND 
+      kecamatan.kabupaten_id = kabupaten.id AND 
+      bap.time = $id";
+      return $this->db->query($query);
+  }
   public function _update_bap($id, $update){
     $this->db->where('id', $id);
     return $this->db->update('berita_acara_pertanahan', $update);
@@ -250,7 +306,7 @@ class Pertanahan_model extends CI_Model{
     return $this->db->get('permohonan_pertanahan');
   }
 
-  public function _pernyataan_all(){
+  public function _pernyataan_all(){ 
     return $this->db->get('pernyataan_pertanahan');
   }
 
