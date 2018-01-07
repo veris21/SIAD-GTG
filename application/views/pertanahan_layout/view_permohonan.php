@@ -53,7 +53,7 @@
                             <dd><?php echo  $data['alamat'];?></dd>                       
                         </div>
                         <div class="col-md-4">
-                        <img class="img img-responsive img-rounded hidden-xs hidden-sm" src="<?php echo base_url().QRCODE.$data['qr_link'];?>" alt="">
+                        <img class="img img-responsive img-rounded hidden-xs hidden-sm" src="<?php echo base_url().QRCODE.$data['qr_link'];?>" alt="QR CODE">
                         </div>
                     </div>
                     <hr>
@@ -87,7 +87,7 @@
             <!-- Foto Pemohon -->
             <?php if($data['ktp']!=''||$data['ktp']!=null){ ?>
             <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['ktp'];?>" title="Lampiran FC KTP Pemohon <?php echo $data['nama']; ?>">   
-                <img class="img img-responsive img-rounded" src="<?php echo base_url().KTP.$data['ktp'];?>" alt="">
+                <img class="img img-responsive img-rounded" src="<?php echo base_url().KTP.$data['ktp'];?>" alt="KTP SCAN">
             </a>
             <br>
             <?php } ?>
@@ -95,7 +95,7 @@
             <!-- Scan Lampiran / Fotocopy KTP atau Pengantar -->
             <?php if($data['scan_link']!=''||$data['scan_link']!=null){ ?>
              <a class="fancybox" rel="fancybox" href="<?php echo base_url().SURATKADUS.$data['scan_link'];?>" title="Lampiran dari Pengantar Kadus <?php echo $data['nama']; ?>">
-                <img class="img img-responsive img-rounded" src="<?php echo base_url().SURATKADUS.$data['scan_link'];?>" alt="">
+                <img class="img img-responsive img-rounded" src="<?php echo base_url().SURATKADUS.$data['scan_link'];?>" alt="PENGANTAR KADUS">
              </a>
              <br>
             <?php } ?>
@@ -103,7 +103,7 @@
              <!-- Scan Bukti PBB -->
              <?php if($data['pbb']!=''||$data['pbb']!=null){ ?>
              <a class="fancybox" rel="fancybox" href="<?php echo base_url().UPLOADER.'pbb_pemohon/'.$data['pbb'];?>" title="Lampiran Bukti PBB <?php echo $data['nama']; ?>">
-                <img class="img img-responsive img-rounded" src="<?php echo base_url().UPLOADER.'pbb_pemohon/'.$data['pbb'];?>" alt="">
+                <img class="img img-responsive img-rounded" src="<?php echo base_url().UPLOADER.'pbb_pemohon/'.$data['pbb'];?>" alt="SCAN BUKTI BAYAR PBB">
              </a>
              <br>
             <?php } ?>
@@ -187,7 +187,7 @@
                         </div>
                         </div>
                         <div class="col-md-3" align="center">
-                        <img class="img img-responsive img-rounded hidden-xs hidden-sm" src="<?php echo base_url().QRCODE.$pernyataan['qr_link'];?>" alt="">
+                        <img class="img img-responsive img-rounded hidden-xs hidden-sm" src="<?php echo base_url().QRCODE.$pernyataan['qr_link'];?>" alt="QR LINK">
                         </div>
                         </div>
                         <hr>

@@ -28,7 +28,7 @@
         <div class="box box-info">
             <div class="box-body">
             <a class="fancybox" rel="fancybox" href="<?php echo base_url().PATOK.$data['foto_tanah']; ?>" title="Situasi Tanah">
-                <img class="img img-responsive img-rounded main-img" src="<?php echo base_url().PATOK.$data['foto_tanah']; ?>" alt="">
+                <img class="img img-responsive img-rounded main-img" src="<?php echo base_url().PATOK.$data['foto_tanah']; ?>" alt="FOTO SITUASI TANAH">
             </a>
             </div>
             <div class="box-footer">
@@ -218,17 +218,17 @@
             <div class="row">
                 <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['ktp']; ?>" title="KTP <?php echo $data['nama'];?>">
-                            <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().KTP.$data['ktp']; ?>" alt="">
+                            <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().KTP.$data['ktp']; ?>" alt="KTP">
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().SURATKADUS.$data['surat_kadus']; ?>" title="Pengantar Dusun <?php echo $data['nama_dusun'];?>">
-                            <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().SURATKADUS.$data['surat_kadus']; ?>" alt="">
+                            <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().SURATKADUS.$data['surat_kadus']; ?>" alt="SURAT KADUS">
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().PBB.$data['bukti_pbb']; ?>" title="BUKTI PBB <?php echo $data['nama'];?>">
-                            <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().PBB.$data['bukti_pbb']; ?>" alt="">
+                            <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().PBB.$data['bukti_pbb']; ?>" alt="SCAN PEMBAYARAN PBB">
                     </a>
                 </div>
             </div>
@@ -241,7 +241,7 @@
             ?>            
                 <div class="col-md-4">
                 <a class="fancybox" rel="fancybox" href="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" title="PATOK <?php echo $n;?>">
-                <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="">
+                <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="FOTO PATOK">
                 </a>
                 <br> 
                 <p>Lat : <b><?php echo $patok->lat;?></b> <br> Long : <b><?php echo $patok->lng;?></b></p>

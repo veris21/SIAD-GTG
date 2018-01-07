@@ -65,11 +65,11 @@
       <tr>
         <td style="margin:4px;padding:4px;" colspan="3"> 
         <p><?php echo "<b>Memo dari : ".$kades_memo['dari']."</b><br><br><br><i>".$kades_memo['isi_disposisi']."</i>"; ?></p> 
-        <p align="right"><img width="40" src="<?php echo base_url().QRCODE.$kades_memo['qr_link']; ?>" alt=""></p>
+        <p align="right"><img width="40" src="<?php echo base_url().QRCODE.$kades_memo['qr_link']; ?>" alt="QR Code"></p>
         </td>   
         <td style="margin:2px;padding:4px;" colspan="3">Isi Disposisi :   
         <p><?php echo "<b>Memo dari : ".$sekdes_memo['dari']."</b><br><br><br><i>". $sekdes_memo['isi_disposisi']."</i>"; ?></p> 
-        <p align="right"><img width="40" src="<?php echo  base_url().QRCODE.$sekdes_memo['qr_link']; ?>" alt=""></p> 
+        <p align="right"><img width="40" src="<?php echo  base_url().QRCODE.$sekdes_memo['qr_link']; ?>" alt="QR Code"></p> 
          </td>
       </tr>
   </table>

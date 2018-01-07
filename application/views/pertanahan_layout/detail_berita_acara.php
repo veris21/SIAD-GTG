@@ -87,7 +87,7 @@
                     <div class="row"> 
                      <div class="col-md-4">
                         <a class="fancybox" rel="fancybox" href="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" title="Patok <?php echo $n; ?>">
-                            <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="">
+                            <img class="img img-responsive img-rounded main-img"  src="<?php echo base_url().PATOK.$patok->link_dokumentasi; ?>" alt="Foto Patok">
                         </a>
                         <hr>
                         <button onclick="edit_patok(<?php echo $patok->id;?>)" class="btn btn-primary <?php echo $lock;?>">Edit <i class="fa fa-edit"></i></button> 
@@ -171,7 +171,7 @@
                         <br>
                     </div>
                      <div class="col-md-4 hidden-xs hidden-sm">
-                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().QRCODE.$data['permohonan_qr'];?>" alt="">
+                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().QRCODE.$data['permohonan_qr'];?>" alt="QR CODE">
                      </div>
                      <div class="col-md-8">
                         <dt>Tanggal Permohonan</dt>
@@ -182,7 +182,7 @@
                         <br>
                     </div>
                     <div class="col-md-4 hidden-xs hidden-sm">
-                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().QRCODE.$data['pernyataan_qr'];?>" alt="">
+                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().QRCODE.$data['pernyataan_qr'];?>" alt="QR CODE">
                      </div>
                 </div>
 
@@ -192,17 +192,17 @@
                  <div class="row">
                     <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().KTP.$data['ktp'];?>" title="Lampiran Scan KTP/ Pengantar Kepala Dusun">
-                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().KTP.$data['ktp'];?>" alt="">
+                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().KTP.$data['ktp'];?>" alt="SCAN KTP">
                     </a>
                     </div>
                     <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().PBB.$data['scan_bukti_pbb'];?>" title="Scan Bukti Pembayaran PBB">
-                        <img class="img img-responsive img-rounded" src="<?php echo base_url().PBB.$data['scan_bukti_pbb'];?>" alt="">
+                        <img class="img img-responsive img-rounded" src="<?php echo base_url().PBB.$data['scan_bukti_pbb'];?>" alt="BUKTI PEMBAYARAN PBB">
                     </a>
                     </div>
                     <div class="col-md-4">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().SURATKADUS.$data['lampiran_permohonan'];?>" title="Lampiran Scan SURATKADUS/ Pengantar Kepala Dusun">
-                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().SURATKADUS.$data['lampiran_permohonan'];?>" alt="">
+                        <img class="img img-responsive img-rounded"  src="<?php echo base_url().SURATKADUS.$data['lampiran_permohonan'];?>" alt="SURAT PENGANTAR DARI DUSUN">
                     </a>
                     </div>
                 </div>
@@ -272,7 +272,7 @@
                 <div class="box-body"> 
                    <!--  -->
                    <div id="foto-patok" class="form-group">
-                       <img src="" class=" col-sm-12 img img-rounded img-responsive" alt="">
+                       <img src="" class=" col-sm-12 img img-rounded img-responsive" alt="FOTO PATOK">
                    </div>
                     <div class="form-group">
                         <label  class="control-label col-sm-4" for="">Latitude</label>

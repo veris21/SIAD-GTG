@@ -42,7 +42,7 @@
       ?>
       <div class="box box-warning">
         <div class="box-body">
-          <img width="100%" class="img img-responsive img-rounded" src="<?php echo UPLOADER.'patok/'.$p->patok_foto;?>" alt="">
+          <img width="100%" class="img img-responsive img-rounded" src="<?php echo UPLOADER.'patok/'.$p->patok_foto;?>" alt="FOTO PATOK">
         </div>
         <div class="box-footer">
           <div class="col-md-6">

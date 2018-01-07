@@ -2,13 +2,13 @@
 <div class="login-box">
 
   <div class="login-logo">
-    <img class="img img-logo" src="<?php echo base_url().'assets/new-logo.png'; ?>" alt="" width="120"><br>
+    <img class="img img-logo" src="<?php echo base_url().'assets/new-logo.png'; ?>" alt="www.si-desa.id" width="120"><br>
     <a href="<?php echo base_url().'public';?>">Si<b>Desa Gantung</b></a>
   </div>
   
   <div class="login-box-body"> 
     <center id="overlay">
-      <img width="70%" class="img img-responsive" src="<?php echo base_url('assets/nyapu.gif'); ?>" alt="">
+      <img width="70%" class="img img-responsive" src="<?php echo base_url('assets/nyapu.gif'); ?>" alt="loader">
     </center>
   <div class="auth-form">
     <p class="login-box-msg">Silahkan Login Dengan ID &amp; Password Untuk Masuk kedalam Sistem</p>

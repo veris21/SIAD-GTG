@@ -49,7 +49,7 @@
                     Layout Tanah
                 </div>
                 <div class="box-body">
-                    <img width="100%" src="<?php echo base_url().POLYGON.$data['peta'];?>" alt="" class="img img-rounded">
+                    <img width="100%" src="<?php echo base_url().POLYGON.$data['peta'];?>" alt="CANVAS PETA" class="img img-rounded">
                 </div>
             </div>
         </div>

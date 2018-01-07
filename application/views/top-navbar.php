@@ -1,5 +1,5 @@
 <header class="main-header">
-  <a href="<?php echo BASE_URL; ?>" class="logo">
+  <a href="<?php echo base_url(); ?>" class="logo">
     <span class="logo-mini">Si<b>G</b></span>
     <span class="logo-lg">Si<b>Desa Gantung</b></span>
   </a>

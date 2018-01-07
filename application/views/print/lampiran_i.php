@@ -65,7 +65,7 @@
               <h4>Koor. Lat. (<b><i><?php echo $k->koordinat_x; ?></i></b>)</h4>
               <h4>Koor. Lng. (<b><i><?php echo $k->koordinat_y; ?></i></b>)</h4>
             </td>
-            <td><img width="160" src="<?php echo BASE_URL.'uploader/patok/'.$k->lampiran; ?>" alt=""></td>
+            <td><img width="160" src="<?php echo BASE_URL.'uploader/patok/'.$k->lampiran; ?>" alt="FOTO PATOK"></td>
           </tr>
         <?php $n++;
         } ?>

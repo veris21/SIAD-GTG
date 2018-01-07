@@ -14,7 +14,7 @@
             <div class="box box-info">
                 <div class="box-body">
                 <a class="fancybox" rel="fancybox" href="<?php echo base_url().SCAN_ARSIP.$data['scan_link']; ?>" title="Surat dari <?php echo $data['pengirim']; ?>">
-                    <img src="<?php echo base_url().SCAN_ARSIP.$data['scan_link']; ?>" width="100%" class="img img-rounded" alt="">
+                    <img src="<?php echo base_url().SCAN_ARSIP.$data['scan_link']; ?>" width="100%" class="img img-rounded" alt="Arsip Surat">
                 </a>
                 </div>                
                  <?php $status = $data['status']; 
@@ -28,7 +28,7 @@
                     </div>
                     <div class="box-body">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().SCAN_ARSIP.$data['scan_balasan']; ?>" title="Surat balasan dari <?php echo $data['id_pembalas']; ?>">
-                        <img src="<?php echo base_url().SCAN_ARSIP.$data['scan_balasan']; ?>" width="100%" class="img img-rounded" alt="">
+                        <img src="<?php echo base_url().SCAN_ARSIP.$data['scan_balasan']; ?>" width="100%" class="img img-rounded" alt="Arsip Balasan">
                     </a>
                     </div>
                  </div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="box-body">
                     <a class="fancybox" rel="fancybox" href="<?php echo base_url().SCAN_ARSIP.$data['scan_balasan']; ?>" title="Surat balasan dari <?php echo $data['id_pembalas']; ?>">
-                        <img src="<?php echo base_url().SCAN_ARSIP.$data['scan_balasan']; ?>" width="100%" class="img img-rounded" alt="">
+                        <img src="<?php echo base_url().SCAN_ARSIP.$data['scan_balasan']; ?>" width="100%" class="img img-rounded" alt="Arsip Balasan">
                     </a>
                     </div>
                     <div class="box-footer">
