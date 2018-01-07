@@ -302,7 +302,7 @@
       }
        ?>
       <li class="header">ACCOUNT CONTROL</li>
-      <!-- <li><a href="<?php echo base_url().'setting/akun'; ?>"><i class="fa fa-user"></i> <span>Setting Akun</span></a></li> -->
+      <li><a href="<?php echo base_url().'setting/akun'; ?>"><i class="fa fa-user"></i> <span>Setting Akun</span></a></li>
       <li><a href="<?php echo base_url('logout'); ?>"><i class="fa fa-circle-o text-red"></i> <span>Logout</span></a></li>
     </ul>
   </section>

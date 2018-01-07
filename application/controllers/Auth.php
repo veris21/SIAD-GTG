@@ -81,6 +81,12 @@ class Auth extends CI_Controller{
     exit;
   }
 
+  public function setting()
+  {
+      $data['title']          = TITLE . 'SETTING';
+      $data['main_content']   = MASTER. 'user_one_setting';
+      $this->load->view('template', $data);
+  }
 
 
 }

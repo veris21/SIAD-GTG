@@ -1705,6 +1705,38 @@ function save_geo(){
   });
 }
 
+function ganti_password_one(id){
+  $('#setting_user')[0].reset();
+  $('#set_uid').hide();
+  $('#set_nama').hide();
+  $('#set_keterangan').hide();
+  $('#set_hp').hide();
+  $('#set_uid').hide();
+
+  $('#password').show();
+  $('#modal_setting_user').modal('show');
+}
+
+function edit_user_one(id){
+  $('#setting_user')[0].reset();
+  $('#password').hide();
+
+  $('#set_uid').show();
+  $('#set_nama').show();
+  $('#set_keterangan').show();
+  $('#set_hp').show();
+  $('#set_uid').show();
+
+  $('#modal_setting_user').modal('show');
+}
+
+function save_setting_one(){
+
+}
+
+function validate_setting_pass(){
+  
+}
 
 /*/================================================/*/
 /*/                                                /*/
