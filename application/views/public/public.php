@@ -15,14 +15,12 @@
 			<?php echo form_open('',array('id'=>'form_cari'));?>
 			<div id="desa" class="form-group" >
 				<label for="">Desa</label>
-				<select name="desa" class="form-control select2" id="">
-					<option value="">--Pilih Desa--</option>
-					<option value="1">Gantung</option>
-					<option value="2">Lenggang</option>
-					<option value="3">Selinsing</option>
-					<option value="4">Batu Penyu</option>
-					<option value="5">Jangkar Asam</option>
-					<option value="6">Lilangan</option>
+				<select name="desa" class="form-control select2" style="width:100%" >
+					<?php 
+					foreach ($desa as $desa) {
+						echo "<option value='".$desa->id."'>".$desa->nama_desa."</option>";
+					}
+					?>					
 				</select>
 			</div>
 			<div id="cariDesa" class="pull-right" >			
@@ -31,11 +29,7 @@
 			</div>
 			<div id="dusun" class="form-group" >
 				<label for="">Dusun</label>
-				<select name="dusun" class="form-control select2" id="">
-					<option value="">--Pilih Dusun--</option>
-					<option value="1">Baru</option>
-					<option value="2">Rasau</option>
-					<option value="3">Ganse</option>
+				<select name="dusun" class="form-control select2" style="width:100%" >					
 				</select>
 			</div>
 			<div id="cariDusun" class="pull-right" >

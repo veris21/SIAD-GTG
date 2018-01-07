@@ -12,6 +12,7 @@ class Stream extends CI_Controller{
   function index()
   {
       $data['title']          = TITLE . 'Open Data Pertanahan Publik';
+      $data['desa']           = $this->master_model->desa()->result();
       $data['main_content']   = UMUM.'public';
       $this->load->view(UMUM. 'public_stream', $data);
   }

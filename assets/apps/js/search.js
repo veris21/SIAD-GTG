@@ -12,12 +12,12 @@ $(function() {
 		$('#btnCari').hide();
 	});
 
-	$('#desa').change(function () {
+	$('#desa').change(function () {		
 		$('#cariDusun').hide();
 		$('#dusun').hide();
 		$('#nama_or_nik').hide();
 		$('#btnCari').hide();
-		$('#cariDesa').show();
+		$('#cariDesa').show();		
 	});
 
 	$('#dusun').change(function () {
@@ -25,14 +25,31 @@ $(function() {
 		$('#btnCari').hide();
 		$('#cariDesa').hide();
 		$('#cariDusun').show();
+		
 	});
 
 });
 
-
 function buka_dusun() {
-	$('#cariDesa').hide();
-	$('#dusun').show();
+	var desa = $('[name="desa"]').val();
+	$.ajax({
+		url: baseUrl + 'get/dusun/' + desa,
+		type: "GET",
+		dataType: "JSON",
+		success: function (desa) {
+			if (desa.status == true) {
+				$('#cariDesa').hide();
+				$('#dusun').show();
+				$('[name="dusun"]').html(desa.hasil);
+				console.log(desa.hasil);
+			} else {
+				console.log(desa);
+			}
+		}
+	});	
+	// $('#cariDesa').hide();
+	// $('#dusun').show();
+
 }
 
 function buka_nik() {
