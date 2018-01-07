@@ -3,9 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * @author Veris Juniardi <veris.juniardi@gmail.com>
  */
-class Datapenduduk extends CI_Controller {
-
-    
+class Datapenduduk extends CI_Controller {    
     public function __construct()
     {
         parent::__construct();
@@ -92,7 +90,6 @@ class Datapenduduk extends CI_Controller {
         $rt = strip_tags($this->input->post('rt'));
         $alamat = strip_tags($this->input->post('alamat'));
 
-
         $keterangan = strip_tags($this->input->post('keterangan'));
 
         $ktp = time()."-".$_FILES['ktp']['name'];
@@ -105,7 +102,7 @@ class Datapenduduk extends CI_Controller {
         if(! $this->upload->do_upload('ktp') );
         $post = array('keterangan'=>$keterangan,'scan_ktp_or_kk'=>$ktp,'time'=>time(),'type'=>0,'nik'=>$no_nik,'status'=>1);
         $this->datapenduduk_model->_post_timeline($post);
-
+        $no_rt = $this->master_model->get_rt_id($rt)->row_array();
         $insert = array(
             'nama'=>$nama,
             'jenis_kelamin'=>$jenis_kelamin,
@@ -122,7 +119,7 @@ class Datapenduduk extends CI_Controller {
             'id_kecamatan'=>$kecamatan,
             'id_desa'=>$desa,
             'id_dusun'=>$dusun,
-            'no_rt'=>$rt,
+            'no_rt'=>$no_rt['nama_rt'],
             'pddk_akhir'=>$pddk_akhir,
             'alamat'=>$alamat,
             'nama_ayah'=>$nama_ayah,
@@ -135,7 +132,7 @@ class Datapenduduk extends CI_Controller {
         }
         
     }
-
+    
     public function mutasi_data(){
         // echo json_encode(array("status" => TRUE));
     }
@@ -145,7 +142,6 @@ class Datapenduduk extends CI_Controller {
         echo json_encode($data);
     }
     
-
     public function import(){
         if (!empty($_FILES['import_xls'])) {
             $fileName = time()."-".$_FILES['import_xls']['name'];

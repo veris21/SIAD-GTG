@@ -3,9 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * @author Veris Juniardi <veris.juniardi@gmail.com>
  */
-class Datapenduduk extends CI_Controller {
-
-    
+class Datapenduduk extends CI_Controller {    
     public function __construct()
     {
         parent::__construct();
@@ -91,7 +89,6 @@ class Datapenduduk extends CI_Controller {
         $dusun = strip_tags($this->input->post('dusun'));
         $rt = strip_tags($this->input->post('rt'));
         $alamat = strip_tags($this->input->post('alamat'));
-
 
         $keterangan = strip_tags($this->input->post('keterangan'));
 
