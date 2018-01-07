@@ -11,8 +11,8 @@
 <div id="container">
   <table width="100%">
         <tr>
-        <td colspan="3" width="60%"></td>
-        <td width="40%">
+        <td colspan="3" width="50%"></td>
+        <td width="50%">
             <table>
             <tr>
                 <td colspan="2">LAMPIRAN I</td>
