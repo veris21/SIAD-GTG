@@ -32,8 +32,8 @@ class Datapenduduk_model extends CI_Model{
     $this->db->where('id', $id);
     return $this->db->update('master_data_penduduk_', $update);
   }
-  
-  public function input($insert)
+
+  public function input_penduduk($insert)
   {
     return $this->db->insert('master_data_penduduk_', $insert);
   }

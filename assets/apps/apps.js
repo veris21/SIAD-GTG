@@ -698,6 +698,7 @@ $('#null').hide();
 
 $('[name="kabupaten"]').change(function () {
   var kabupaten = $('[name="kabupaten"]').val();
+  $('#kecamatan').hide();
   $('#desa').hide();
   $('#dsn').hide();
   $('#rt').hide();
@@ -721,9 +722,9 @@ $('[name="kabupaten"]').change(function () {
 
 $('[name="kecamatan"]').change(function () {
   var kecamatan = $('[name="kecamatan"]').val();
+  $('#desa').hide();
   $('#dsn').hide();
-  $('#rt').hide();
-  $.ajax({
+  $('#rt').hide();  $.ajax({
     url: baseUrl + 'get/desa/' + kecamatan,
     type: "GET",
     dataType: "JSON",
@@ -741,8 +742,9 @@ $('[name="kecamatan"]').change(function () {
 
 $('[name="desa"]').change(function () {
   var desa = $('[name="desa"]').val();
+  $('#dsn').hide();
   $('#rt').hide();
-  $.ajax({
+    $.ajax({
     url: baseUrl + 'get/dusun/' + desa,
     type: "GET",
     dataType: "JSON",
@@ -760,6 +762,7 @@ $('[name="desa"]').change(function () {
 
 $('[name="dusun"]').change(function () {
   var dusun = $('[name="dusun"]').val();
+  $('#rt').hide();
   $.ajax({
     url: baseUrl + 'get/rt/' + dusun,
     type: "GET",

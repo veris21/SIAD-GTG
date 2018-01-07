@@ -331,14 +331,14 @@
       <div class="form-group">
       <label class="control-label col-sm-4" for="">No. Kartu Keluarga</label>
               <div class="col-sm-8">
-                  <input type="text" name="no_kk" class="form-control" id="">
+                  <input type="number" name="no_kk" class="form-control" id="">
                </div>
       </div>
 
       <div class="form-group">
       <label class="control-label col-sm-4" for="">No. NIK</label>
               <div class="col-sm-8">
-                  <input type="text" name="no_nik" class="form-control" id="">
+                  <input type="number" name="no_nik" class="form-control" id="">
                </div>
       </div>
 
@@ -352,7 +352,7 @@
       <div class="form-group">
       <label class="control-label col-sm-4" for="">Jenis Kelamin</label>
             <div class="col-sm-8">
-              <select name="rt" class="form-control" id="">
+              <select name="jenis_kelamin" class="form-control" id="">
                 <option value="">-- Pilih Jenis Kelamin --</option>
                 <option value="Laki-Laki">Laki-Laki</option>
                 <option value="Perempuan">Perempuan</option>

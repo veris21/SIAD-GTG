@@ -82,6 +82,7 @@ class Datapenduduk extends CI_Controller {
         $shdk = strip_tags($this->input->post('shdk'));
         $status = strip_tags($this->input->post('status'));
         $shdrt = strip_tags($this->input->post('shdrt'));
+        $pddk_akhir = strip_tags($this->input->post('pddk_akhir'));
         $nama_ayah = strip_tags($this->input->post('nama_ayah'));
         $nama_ibu = strip_tags($this->input->post('nama_ibu'));
         $kabupaten = strip_tags($this->input->post('kabupaten'));
@@ -93,21 +94,17 @@ class Datapenduduk extends CI_Controller {
 
 
         $keterangan = strip_tags($this->input->post('keterangan'));
-        if ($_FILES['ktp']['name']!='') {
-            $ktp = time()."-".$_FILES['ktp']['name'];
-            $config['upload_path'] = './assets/uploader/ktp/'; //buat folder dengan nama assets di root folder
-            $config['allowed_types'] = 'png|jpg|jpeg';
-            $config['max_size'] = 10000;
-            $config['file_name'] = $ktp;
-            $this->load->library('upload');
-            $this->upload->initialize($config);
-            if(! $this->upload->do_upload('ktp') );
-            $post = array('keterangan'=>$keterangan,'scan_ktp_or_kk'=>$ktp,'time'=>time(),'type'=>0,'nik'=>$nik,'status'=>1);
-            $this->datapenduduk_model->_post_timeline($post);
-        }else{
-            $post = array('keterangan'=>$keterangan,'time'=>time(),'type'=>0,'nik'=>$nik,'status'=>0);
-            $this->datapenduduk_model->_post_timeline($post);
-        }
+
+        $ktp = time()."-".$_FILES['ktp']['name'];
+        $config['upload_path'] = './assets/uploader/ktp/'; //buat folder dengan nama assets di root folder
+        $config['allowed_types'] = 'png|jpg|jpeg';
+        $config['max_size'] = 10000;
+        $config['file_name'] = $ktp;
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+        if(! $this->upload->do_upload('ktp') );
+        $post = array('keterangan'=>$keterangan,'scan_ktp_or_kk'=>$ktp,'time'=>time(),'type'=>0,'nik'=>$no_nik,'status'=>1);
+        $this->datapenduduk_model->_post_timeline($post);
 
         $insert = array(
             'nama'=>$nama,
@@ -131,7 +128,7 @@ class Datapenduduk extends CI_Controller {
             'nama_ayah'=>$nama_ayah,
             'nama_ibu'=>$nama_ibu
         );        
-        $check = $this->datapenduduk_model->input($insert);
+        $check = $this->datapenduduk_model->input_penduduk($insert);
             if ($check) {
                 echo json_encode(array("status" => TRUE));
             }
@@ -140,7 +137,7 @@ class Datapenduduk extends CI_Controller {
     }
 
     public function mutasi_data(){
-        echo json_encode(array("status" => TRUE));
+        // echo json_encode(array("status" => TRUE));
     }
 
     public function cari_nik($nik){
