@@ -353,6 +353,8 @@ class Pertanahan extends CI_Controller{
     $sekarang = time();
     $permohonan_id = strip_tags($this->input->post('permohonan_id'));
     $pernyataan_id = strip_tags($this->input->post('pernyataan_id'));
+    $status = array('status_proses'=>2);
+    $this->pertanahan_model->_update_pernyataan($pernyataan_id,$status);
     $pemohon =  strip_tags($this->input->post('pemohon'));
     $kontak_pemohon =  strip_tags($this->input->post('kontak_pemohon'));
     $lokasi =  strip_tags($this->input->post('lokasi'));

@@ -114,7 +114,7 @@
 <table>
         <tr>
         <td width="40%">
-        <table style="font-family: Consolas, Monaco, Courier New, Courier, monospace;">
+        <table style="padding-top:0;font-family: Consolas, Monaco, Courier New, Courier, monospace;">
             <tr>
                 <td width="40%">Nomor</td>
                 <td width="60%">: </td>
@@ -141,7 +141,7 @@
             <i style="font-size:9px;font-family: Consolas, Monaco, Courier New, Courier, monospace;">(Dokumen ini di generate otomatis melalui sistem SiDesa.id)</i>
         </td>
         <td width="40%">
-        <table style="font-family: Consolas, Monaco, Courier New, Courier, monospace;">
+        <table style="padding-top:0;font-family: Consolas, Monaco, Courier New, Courier, monospace;">
             <tr>
                 <td width="40%">Dikeluarkan di</td>
                 <td width="60%">: <?php echo $data['nama_desa'];?></td>
@@ -156,7 +156,7 @@
         </table>
         <p align="center">
             <?php echo strtoupper($data['jabatan_kades']);?>
-            <br><br>&nbsp;<br><br><br><br><br>
+            <br><br>&nbsp;<br><br><br><br><br><br>
             <b><?php echo $data['nama_kades'];?></b>
         </p>
         </td>        

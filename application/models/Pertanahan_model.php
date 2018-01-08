@@ -53,6 +53,11 @@ class Pertanahan_model extends CI_Model{
     return $this->db->insert('pernyataan_pertanahan', $insert);
   }
 
+  public function _update_pernyataan($id, $insert){
+    $this->db->where('id', $id);
+    return $this->db->update('pernyataan_pertanahan', $insert);
+  }
+
   public function _get_pernyataan($id){
     return $this->db->get_where('pernyataan_pertanahan', array('permohonan_id'=>$id));
   }

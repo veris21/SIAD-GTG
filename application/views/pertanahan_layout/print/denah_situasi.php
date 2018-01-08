@@ -77,14 +77,14 @@
 </table>
 <table width="100%" border="1">
         <tr>
-            <td valign="middle" width="10%">
+            <td align="center" valign="middle" width="10%">
                <!-- <center> -->
                 <img width="30" src="<?php echo base_url().'assets/n-1.png'; ?>" alt="" >
                <!-- </center> -->
             </td>
-            <td valign="middle" width="90%">
+            <td align="center" valign="middle" width="90%">
                 <!-- <center> -->
-                <img style="width:100%" src="<?php echo base_url().POLYGON.$data['peta']; ?>" alt="" >
+                <img width="640" src="<?php echo base_url().POLYGON.$data['peta']; ?>" alt="" >
                <!-- </center> -->
             </td>
         </tr>
