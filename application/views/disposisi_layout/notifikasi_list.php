@@ -81,7 +81,21 @@
               <?php }elseif($linkType[0]=="pernyataan"){
                 ?>
               <?php }elseif($linkType[0]=="berita_acara"){
-                ?>
+                 $berita_acara = $this->pertanahan_model->_get_bap_details($linkType[1])->row_array(); ?>
+               <div class="attachment-block clearfix">
+                <img class="attachment-img" src="<?php echo base_url().SURATKADUS.$berita_acara['lampiran_permohonan'];?>" alt="attachment image">
+                <div class="attachment-pushed">
+                  <h4 class="attachment-heading">berita_acara dari : <?php echo $berita_acara['nama']?></h4>
+                  <div class="attachment-text">
+                    Lokasi :<?php echo $berita_acara['lokasi'];?><br>
+                    Dusun :<?php echo $berita_acara['nama_dusun'];?><br>
+                    Luas :<b><?php echo $berita_acara['luas'];?>m<sup>2</sup></b>
+              <div class="pull-right"> 
+              <?php echo anchor('berita_acara/view/'.$berita_acara["time_input"],'<i class="fa fa-eye"></i> Lihat Detail Berita Acara',array('class'=>'btn btn-primary btn-xs'));?>        
+              </div>
+                  </div>
+                </div>
+              </div>
               <?php }elseif($linkType[0]=="surat_keterangan"){
                 ?>
               <?php

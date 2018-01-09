@@ -78,7 +78,9 @@ class Pertanahan_model extends CI_Model{
   }
 
   public function _post_berita_acara($insert){
-    return $this->db->insert('berita_acara_pertanahan', $insert);
+    $this->db->insert('berita_acara_pertanahan', $insert);
+    // return $this->db->insert_id();
+    return;
   }
 
   public function get_bap_list(){
@@ -129,7 +131,8 @@ class Pertanahan_model extends CI_Model{
       bap.pemeriksa_2 as pemeriksa_1_id,
       bap.pemeriksa_3 as pemeriksa_2_id,
       bap.pemeriksa_4 as pemeriksa_3_id,
-      bap.pemeriksa_5 as pemeriksa_4_id
+      bap.pemeriksa_5 as pemeriksa_4_id,
+      bap.time_input as time_input
      FROM 
       berita_acara_pertanahan as bap, permohonan_pertanahan as mohon,
       pernyataan_pertanahan as pernyataan, master_data_penduduk_ as penduduk,
