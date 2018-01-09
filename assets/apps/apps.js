@@ -19,9 +19,7 @@ var message = '';
 var maksimal;
 var sisa;
 var koordinat_method = '';
-
-
-
+var bap_method = '';
 
 
 $(function () {
@@ -407,7 +405,18 @@ function cari_data_skt(){
   }
 
   function input_tim_verifikasi(){
+    bap_method = 'input_tim';
+    $('#petugas_pemeriksa').show();
+    $('#pesan').hide();
     $('#bap_input')[0].reset();
+    $('#modal_bap').modal('show');
+  }
+  function setujui_verifikasi() {
+    bap_method = 'setujui_bap';
+    $('#petugas_pemeriksa').hide();
+    $('#pesan').show();
+    $('#bap_input')[0].reset();
+    $('.modal-title').text('Setujui &amp; Input Berita Acara');
     $('#modal_bap').modal('show');
   }
 
@@ -990,15 +999,24 @@ function bap_save(){
 event.preventDefault();
 swal({
   title: 'Apa Anda Yakin?',
-        text: "Data Tim Verifikasi Akan di Input ke Sistem!",
+        text: "Data Verifikasi Akan di Input ke Sistem!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6', 
         cancelButtonColor: '#d33',
         confirmButtonText: 'Iya, Simpan!'              
       }, function isConfirm(){
+        var url;
+        switch (bap_method) {
+          case 'setujui_bap':
+            url = baseUrl + 'berita_acara/input';
+            break;
+          case 'input_tim':
+            url = baseUrl + 'tim_pemeriksa/input';
+            break;
+        }
         $.ajax({
-          url:baseUrl+'berita_acara/input',
+          url:url,
           type:"POST",
           data:$('#bap_input').serialize(),
           dataType:"JSON",            

@@ -38,11 +38,13 @@ class Pertanahan extends CI_Controller{
   public function permohonan_view($id){
     $data['title']    = TITLE.'Data Permohonan Tanah';
     $data['main_content'] = PERTANAHAN.'view_permohonan';
+    $data['ketua_pemeriksa'] = $this->master_model->get_user_detail()->result();
     $data['pemeriksa1']   = $this->master_model->get_user_detail()->result();
     $data['pemeriksa2']   = $this->master_model->get_user_detail()->result();
     $data['pemeriksa3']   = $this->master_model->get_user_detail()->result();
     $data['pemeriksa4']   = $this->master_model->get_user_detail()->result();
     $data['data']         = $this->pertanahan_model->_get_details_one($id)->row_array();
+    $data['check']        = $this->pertanahan_model->_get_data_petugas_pemeriksa($this->session->userdata('desa_id'))->row_array();
     $this->load->view('template', $data);
   }
 
@@ -61,7 +63,6 @@ class Pertanahan extends CI_Controller{
   public function pernyataan_print($id){
     $data['title'] = TITLE.'Cetak Pernyataan';
     $data['data']  = $this->pertanahan_model->_get_pernyataan_one($id)->row_array();
-    // $this->load->view(PERTANAHAN.'print/pernyataan', $data);
     $html = $this->load->view(PERTANAHAN.'print/pernyataan', $data, TRUE);
     if($this->pdfgenerator->generate($html, $data['data']['nama']." - PERNYATAAN (".date('d-M-Y').")")){
       echo json_encode(array("status" => TRUE));
@@ -117,7 +118,7 @@ class Pertanahan extends CI_Controller{
       $this->load->library('upload');
       $this->upload->initialize($config);
       if(! $this->upload->do_upload('scan_link') );
-      $media = $this->upload->data('scan_link'); 
+      }
       $sekarang = time();
       $kependudukan_id = $this->input->post('kependudukan_id');
       $nik = $this->input->post('no_nik');
@@ -134,6 +135,11 @@ class Pertanahan extends CI_Controller{
       $status_tanah = $this->input->post('status_tanah');
       $dusun_id = $this->input->post('dusun_id');
       $qr_link = $sekarang.'.png';
+      
+      // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
+      $desa_id = $this->session->userdata('desa_id');
+      $kades = $this->notifikasi_model->_get_data_kades($desa_id)->row_array();
+      // ARRAY 
       $insert = array(
         'kependudukan_id'=>$kependudukan_id,
         'nik'=> $nik,
@@ -153,21 +159,18 @@ class Pertanahan extends CI_Controller{
         'hp'=>$kontak,
         'ktp'=>$ktp,
         'pbb'=>$pbb,
+        'kades'=>$kades['id'],
         'status_proses'=>0,
         'type_yang_disetujui'=>0
       );
-      // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
-      $desa_id = $this->session->userdata('desa_id');
-      $hp_kades = $this->notifikasi_model->_get_data_kades($desa_id)->row_array();
-      $kepada_id = $hp_kades['id'];
-      $jabatan = $hp_kades['jabatan'];
-      $nama_desa = $hp_kades['nama_desa'];
+      $kepada_id = $kades['id'];
+      $jabatan = $kades['jabatan'];
+      $nama_desa = $kades['nama_desa'];
       $message = 'NOTIFIKASI PERTANAHAN : Yth. '.$jabatan.' '.$nama_desa.' Permohonan SKT '.$pemohon.', Lokasi : '.$lokasi.', Luas : '.$luas.' meter persegi (SiDesa Sistem)';
-      $to = $hp_kades['hp'];
+      $to = $kades['hp'];
       sms_notifikasi($to, $message);
       // ==========================
       // QRCODE GENERATE
-      // $apiQr = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example';
       $params['data'] = base_url('permohonan/validasi/').$sekarang;
       $params['level'] = 'M';
       $params['size'] = 10;
@@ -189,7 +192,6 @@ class Pertanahan extends CI_Controller{
       if($check){
         echo json_encode(array("status" => TRUE));
       }
-    }
   }
 
   public function pernyataan_input(){ 
@@ -212,42 +214,19 @@ class Pertanahan extends CI_Controller{
 
     $kontak_pemohon =  strip_tags($this->input->post('kontak_pemohon'));
     $sekarang = time();
-
-    // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
     // ==============================
-    // $desa_id = $this->session->userdata('desa_id');
-    // $hp_pertanahan = $this->notifikasi_model->_get_data_petugas_pertanahan($desa_id)->row_array();
-    // $kepada_id = $hp_pertanahan['id'];
-    // $jabatan = $hp_pertanahan['jabatan'];
-    // $nama_desa = $hp_pertanahan['nama_desa'];
-    // $message = 'NOTIFIKASI : Tanah a/n. '.$pemohon.' dengan HP : '.$kontak_pemohon.', Lokasi : '.$lokasi.', Telah disetujui dan menunggu Data Tim Verifikasi & Pengukuran  (SiDesa Sistem)';
-    // $to = $hp_pertanahan['hp'];
-    // sms_notifikasi($to, $message);
-    // $pesan = "Yth.".$pemohon." Tim Verifikasi Pengukur Pertanahan yang anda Mohonkan dengan Lokasi ".$lokasi." telah siap dilakukan Pengukuran, untuk lebih lanjut silahkan Hubungi ".$hp_pertanahan['fullname']." No.HP ".$to."(SiDesa Sistem)";
-    // sms_notifikasi($kontak_pemohon, $pesan);
+      $desa_id = $this->session->userdata('desa_id');
+      $kades = $this->notifikasi_model->_get_data_kades($desa_id)->row_array();
     // ==============================
       // QRCODE GENERATE
       $params['data'] = base_url('pernyataan/validasi/').$sekarang;
       $params['level'] = 'M';
       $params['size'] = 10;
-      // $params['savename'] = FCPATH.'assets/uploader/qr_code/'.$sekarang.'.png';
-       $params['savename'] = './assets/uploader/qr_code/'.$sekarang.'.png';
+      $params['savename'] = './assets/uploader/qr_code/'.$sekarang.'.png';
       $this->ciqrcode->generate($params);
       // +===============+
-      // +===============+
-      // $link = "permohonan/".$sekarang;
-      // $posting = array(
-      //   'kepada_id'=> $kepada_id,
-      //   'hp'=> $to,
-      //   'message'=> $message,
-      //   'link'=> $link,
-      //   'time'=> time(),
-      //   'status'=> 0,
-      //   'type'=> 0
-      // );
       $setujui = array('status_proses'=>1);
       $up = $this->pertanahan_model->_setujui_permohonan($id, $setujui);
-      // $this->notifikasi_model->posting_notifikasi($posting);
       $qr_link = $sekarang.'.png';
       $insert = array(
         'permohonan_id'=>$id,
@@ -265,6 +244,7 @@ class Pertanahan extends CI_Controller{
         'saksi4_pekerjaan'=>$saksi4_pekerjaan,
         'time'=>$sekarang,
         'qr_link'=>$qr_link,
+        'kades'=>$kades['id'],
         'status_proses'=>1
       );
       $check = $this->pertanahan_model->_post_pernyataan($insert);
@@ -337,17 +317,7 @@ class Pertanahan extends CI_Controller{
     $data['main_content'] = PERTANAHAN.'detail_berita_acara';
     $this->load->view('template', $data);
   }
-
-  // public function berita_acara_print($id){
-  //   $data['title'] = TITLE.'Cetak Berita Acara';
-  //   $data['data']  = $this->pertanahan_model->_get_pernyataan_one($id)->row_array();
-  //   $html = $this->load->view(PERTANAHAN.'print/berita_acara', $data, TRUE);
-  //   if($this->pdfgenerator->generate($html, $data['data']['nama']." - Berita Acara Pemeriksaan (".date('d - M - Y').")")){
-  //     echo json_encode(array("status" => TRUE));
-  //   }
-  // }
-
-  
+ 
 
   public function berita_acara_input(){
     $sekarang = time();
@@ -359,34 +329,13 @@ class Pertanahan extends CI_Controller{
     $kontak_pemohon =  strip_tags($this->input->post('kontak_pemohon'));
     $lokasi =  strip_tags($this->input->post('lokasi'));
     $luas =  strip_tags($this->input->post('luas'));
-    $p1 = strip_tags($this->input->post('id'));  
-    
-    $p2 = strip_tags($this->input->post('pemeriksa_1'));    
-    $p3 = strip_tags($this->input->post('pemeriksa_2'));
-    $p4 = strip_tags($this->input->post('pemeriksa_3'));
-    $p5 = strip_tags($this->input->post('pemeriksa_4'));
-     //========= SMS NOTIFIKASI =================
-    $message = "Notifikasi : Anda ditunjuk sebagai Tim Pemeriksa Pertanahan a/n.".$pemohon." Lokasi : ".$lokasi ." (SiDesa Sistem)";
-    $p2_data = $this->auth_model->get_user_id($p2)->row_array();
-    if($p2_data!=''){
-      sms_notifikasi($p2_data['hp'], $message);
-    }
-    $p3_data = $this->auth_model->get_user_id($p3)->row_array();
-    if($p3_data!=''){
-      sms_notifikasi($p3_data['hp'], $message);
-    }
-    $p4_data = $this->auth_model->get_user_id($p4)->row_array();
-    if($p4_data!=''){
-      sms_notifikasi($p4_data['hp'], $message);
-    }
-    $p5_data = $this->auth_model->get_user_id($p5)->row_array();
-    if($p5_data!=''){
-      sms_notifikasi($p5_data['hp'], $message);
-    }
-        // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
+    // SMS NOTIFIKASI INPUT MASUK =====> PAK KADES/SEKDES 
     // ==============================
     $desa_id = $this->input->post('desa_id');
     $hp_pertanahan = $this->notifikasi_model->_get_data_petugas_pertanahan($desa_id)->row_array();
+    $kades = $this->notifikasi_model->_get_data_kades($desa_id)->row_array();
+    $kasi_pemerintahan = $this->notifikasi_model->_get_data_kasi_pemerintahan($desa_id)->row_array();
+    $pemeriksa = $this->pertanahan_model->_get_data_petugas_pemeriksa($desa_id)->row_array();
     $kepada_id = $hp_pertanahan['id'];
     $jabatan = $hp_pertanahan['jabatan'];
     $nama_desa = $hp_pertanahan['nama_desa'];
@@ -410,12 +359,14 @@ class Pertanahan extends CI_Controller{
     $insert = array(
       'permohonan_id'=>$permohonan_id,
       'pernyataan_id'=>$pernyataan_id,
-      'pemeriksa_1'=>$p1,
-      'pemeriksa_2'=>$p2,
-      'pemeriksa_3'=>$p3,
-      'pemeriksa_4'=>$p4,
-      'pemeriksa_5'=>$p5,
+      'pemeriksa_1'=>$pemeriksa['ketua_pemeriksa'],
+      'pemeriksa_2'=>$pemeriksa['anggota_1'],
+      'pemeriksa_3'=>$pemeriksa['anggota_2'],
+      'pemeriksa_4'=>$pemeriksa['anggota_3'],
+      'pemeriksa_5'=>$pemeriksa['anggota_4'],
       'time_input'=> $sekarang,
+      'kades'=>$kades['id'],
+      'kasi_pemerintahan'=>$kasi_pemerintahan['id'],
       'status_bap'=> 0
     );
     $this->notifikasi_model->posting_notifikasi($posting);
@@ -424,6 +375,28 @@ class Pertanahan extends CI_Controller{
       echo json_encode(array("status" => TRUE));
     }
     
+  }
+
+  public function input_petugas_pemeriksa(){
+    $desa_id = strip_tags($this->input->post('desa_id'));
+    $ketua_pemeriksa = strip_tags($this->input->post('ketua_pemeriksa'));
+    $anggota_1 = strip_tags($this->input->post('pemeriksa_1'));
+    $anggota_2 = strip_tags($this->input->post('pemeriksa_2'));
+    $anggota_3 = strip_tags($this->input->post('pemeriksa_3'));
+    $anggota_4 = strip_tags($this->input->post('pemeriksa_4'));
+    $insert = array(
+      'desa_id'=>$desa_id,
+      'ketua_pemeriksa'=>$ketua_pemeriksa,
+      'anggota_1'=>$anggota_1,
+      'anggota_2'=>$anggota_2,
+      'anggota_3'=>$anggota_3,
+      'anggota_4'=>$anggota_4,
+      'status'=>1
+     );
+    $check = $this->pertanahan_model->_post_data_petugas_pemeriksa($insert);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    }
   }
    /*-------------------------------------------------------------------------*/
   //                           MAPS KOORDINAT                                 //
@@ -608,13 +581,15 @@ class Pertanahan extends CI_Controller{
 
   public function skt_input(){    
       $time = time();
-      // $luas_skt = strip_tags($this->input->post('luas'));
+      // KADES
+      $desa_id = $this->session->userdata('desa_id');
+      $kades = $this->notifikasi_model->_get_data_kades($desa_id)->row_array();
+      // ===========================
       $id = strip_tags($this->input->post('bap_id'));
       $par['data'] = base_url('berita_acara/validasi/').$time;
       $par['level'] = 'M';
       $par['size'] = 10;
-      // $par['savename'] = FCPATH.'assets/uploader/qr_code/'.$time.'.png';
-       $par['savename'] = './assets/uploader/qr_code/'.$time.'.png';
+      $par['savename'] = './assets/uploader/qr_code/'.$time.'.png';
       $this->ciqrcode->generate($par);
       $update = array('time'=>$time, 'status_bap'=>1, 'qr_link'=>$time.'.png');
       $this->pertanahan_model->_update_bap($id, $update);
@@ -628,7 +603,12 @@ class Pertanahan extends CI_Controller{
       $params['size'] = 10;
       $params['savename'] = './assets/uploader/qr_code/'.$qr_link;
       $this->ciqrcode->generate($params);
-      $push = array('id_berita_acara'=>$id,'peta'=>$img_name,'qr_link'=>$qr_link, 'time'=>$time, 'status'=>0);
+      $push = array('id_berita_acara'=>$id,
+      'peta'=>$img_name,
+      'qr_link'=>$qr_link,
+      'time'=>$time,
+      'kades'=>$kades['id'],
+      'status'=>0);
       $check = $this->pertanahan_model->_push_skt($push);
       if ($check) {
         echo json_encode(array("status" => TRUE));

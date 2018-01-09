@@ -9,6 +9,16 @@ class Pertanahan_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function _get_data_petugas_pemeriksa($desa_id){
+    $this->db->where('desa_id', $desa_id);
+    $this->db->where('status', 1);
+    return $this->db->get('pemeriksa_pertanahan');
+  }
+
+  public function _post_data_petugas_pemeriksa($post){
+    return $this->db->insert('pemeriksa_pertanahan',$post);
+  }
+
   public function _get_details_one($id){
     $this->db->select('mohon.*, p.no_nik, p.nama, p.alamat, p.agama, p.tempat_lahir, 
     p.tanggal_lahir, p.pekerjaan, p.status, p.jenis_kelamin, dsn.nama_dusun, d.nama_desa, d.alamat_desa, u.fullname, kec.nama_kecamatan, kab.nama_kabupaten');

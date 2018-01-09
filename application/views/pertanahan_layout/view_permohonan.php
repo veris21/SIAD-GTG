@@ -235,20 +235,23 @@
                         <?php
                         // IF DATA ID NOW = ID PEJABAT PERTANAHAN
                         $pejabat = $this->master_model->_get_desa_id($this->session->userdata('desa_id'))->row_array();
-                        $id = $this->session->userdata('id');  
-                        if($id = $pejabat['sekdes_uid'] && $pernyataan['status_proses']==1){
+                        $id = $this->session->userdata('id');
+                        if($pernyataan['status_proses']==1){
                         ?>
-                            <button class="btn btn-primary btn-flat btn-lg" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
                         <?php
-                        }elseif ($id = $pejabat['kasi_pemerintahan'] && $pernyataan['status_proses']==1) {
+                            if($id == $pejabat['sekdes_uid'] || $id == $pejabat['kasi_pemerintahan']){
                         ?>
-                            <button class="btn btn-primary btn-flat btn-lg" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
-                        <?php
+                        <?php if($check!=null || $check!=''){ ?> 
+                        <button class="btn btn-success btn-flat btn-lg" onclick="setujui_verifikasi()">Setujui Proses B.A.P <i class="fa fa-check"></i></button>
+                        <?php }else{ ?>
+                        <p class="well">Data Tim Verifikasi Pertanahan Belum Ada di Sistem Silahkan Input Terlebih Dahulu </p>
+                        <button class="btn btn-primary btn-flat btn-lg" onclick="input_tim_verifikasi()">Input Tim Verifikasi Tanah <i class="fa fa-users"></i></button>
+                        <?php } 
+                            }
                         }
                          ?>                                 
                         <?php echo anchor('cetak/pernyataan/'.$pernyataan['id'], 'Cetak Pernyataan <i class="fa fa-print"></i>', array('class'=>'btn btn-warning btn-lg','target'=>'__blank')); ?>
-
-                            <!-- <button onclick="cetak_pernyataan(<?php echo $pernyataan['id'];?>)" type="button" class="btn btn-warning btn-lg">Cetak Pernyataan <i class="fa fa-print"></i></button> -->
+                        <!-- <button onclick="cetak_pernyataan(<?php echo $pernyataan['id'];?>)" type="button" class="btn btn-warning btn-lg">Cetak Pernyataan <i class="fa fa-print"></i></button> -->
                         </div>
                     </div>
                 </div>
@@ -278,7 +281,21 @@
                     <h3>Input Pemeriksa &amp; Petugas Verifikasi Tanah</h3>
                 </div>
                 <div class="box-body"> 
+                <div id="pesan">
+                    <p>Setelah Data di Setujui Perintah Pengukuran akan segera di kirim ke petugas pengukur, dan pemberitahuan waktu dan janji pengukuran akan akan segera dikirimkan kepada pemohon</p>
+                </div>
+                <div id="petugas_pemeriksa">
                    <!--  -->
+                   <div class="form-group">
+                        <label  class="control-label col-sm-4" for="">Ketua Pemeriksa</label>
+                        <div class="col-sm-8">
+                        <select name="ketua_pemeriksa" class="form-control select2" style="width:100%;">
+                        <?php foreach ($ketua_pemeriksa as $ketua_pemeriksa) {
+                           echo "<option value='".$ketua_pemeriksa->id."'>".$ketua_pemeriksa->fullname." - ".$ketua_pemeriksa->jabatan."</option>";
+                        }?>
+                        </select>
+                        </div>
+                    </div>
                    <div class="form-group">
                         <label  class="control-label col-sm-4" for="">Petugas Pemeriksa 1</label>
                         <div class="col-sm-8">
@@ -320,6 +337,7 @@
                         </div>
                     </div>
                     <!--  -->
+                </div>
                 </div>
             </div>
                     
