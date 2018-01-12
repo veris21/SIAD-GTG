@@ -21,14 +21,14 @@
                 <td colspan="2">LAMPIRAN II</td>
             </tr>
             <tr>
-                <td width="30%"><b style="font-size:11px;">Nomor </b></td>
-                <td width="70%"> : 
+                <td width="20%"><b style="font-size:11px;">Nomor </b></td>
+                <td width="80%"> : 
                 <b style="font-size:11px;font-family: Consolas, Monaco, Courier New, Courier, monospace;"> <?php echo "181/".$data['id']."-".$type."/KTD.".strtoupper($data['nama_desa'])."/".romawi(mdate("%m",$data['time']))."/".mdate("%Y",$data['time']);?></b>
                 </td>
             </tr>
             <tr>
                 <td width="30%"><b style="font-size:11px;">Tanggal </b></td>
-                <td width="70%">: 
+                <td width="80%">: 
                 <b style="font-size:11px;"> <?php echo mdate("%d",$data['time'])." ".bulan(mdate("%m",$data['time']))." ".mdate("%Y",$data['time']);?></b>
                 </td>
             </tr>
