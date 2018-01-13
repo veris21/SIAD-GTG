@@ -1,4 +1,4 @@
-var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1] + '/';		
+// var baseUrl = window.location.origin + '/' + window.location.pathname.split ('/') [1] + '/';		
 var map;
 var infowindow = null;
 var color = '#' + Math.random().toString(16).substr(-6);
@@ -44,7 +44,7 @@ function initialize() {
 		var desa_id = $('[name="desa"]').val();
 		$.ajax({
 			type: "GET",
-			url: base_url + 'api/stream/desa/' + desa_id,
+			url: baseUrl + 'api/stream/desa/' + desa_id,
 			dataType: "JSON",
 			success: function (data){
 				$.each(data.results, function (i, val) {
@@ -56,7 +56,7 @@ function initialize() {
 				var counter = 0;
 				$.each(markerId, function(k, v){
 					$.ajax({
-						url: base_url + 'api/stream/marker/one/'+ v,
+						url: baseUrl + 'api/stream/marker/one/'+ v,
 						type: "GET",
 						dataType: "JSON",
 						success: function (data){
