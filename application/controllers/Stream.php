@@ -73,6 +73,10 @@ class Stream extends CI_Controller{
 
 
   /*========================= STREAM DATA TANAH VIEW PUBLIC ======================= */
+  public function get_one_marker($key){
+    $data['results'] = $this->pertanahan_model->get_marker($key)->row_array();
+    echo json_encode($data);
+  }
   public function cari_data_per_desa($key){
     $data['results'] = $this->pertanahan_model->cari_data_tanah_desa($key)->result();
     echo json_encode($data);

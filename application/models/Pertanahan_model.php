@@ -587,9 +587,21 @@ class Pertanahan_model extends CI_Model{
 
   /* STREAM DATA */
   public function cari_data_tanah_desa($key){
-    $this->db->where('desa_id', $key);
-    return $this->db->get('dusun');
+    $query = "SELECT 
+    bap.id as id,
+    penduduk.nama as nama,
+    penduduk.no_nik as NIK,
+    penduduk.alamat as alamat,
+    permohonan.lokasi as lokasi,
+    permohonan.luas as luas,
+    dusun.nama_dusun as nama_dusun
+    FROM dusun as dusun, desa as desa, berita_acara_pertanahan as bap, permohonan_pertanahan as permohonan, master_data_penduduk_ as penduduk
+    WHERE penduduk.id = permohonan.kependudukan_id AND bap.permohonan_id = permohonan.id AND permohonan.dusun_id = dusun.id AND dusun.desa_id = desa.id AND desa.id = $key";
+    return $this->db->query($query);    
   }
+   public function get_marker($key){
+     return $this->db->get_where('data_link', array('tanah_id'=>$key));
+   }
 
 }
 

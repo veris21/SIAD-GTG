@@ -32,6 +32,8 @@ $route['api/stream/desa/(:any)']            = 'stream/cari_data_per_desa/$1';
 $route['api/stream/dusun/(:any)']           = 'stream/cari_data_per_dusun/$1';
 $route['api/stream/nama/(:any)']            = 'stream/cari_data_per_nama/$1';
 
+$route['api/stream/marker/one/(:any)']      = 'stream/get_one_marker/$1';
+
 /* -----------------------------------------------------------------------
                        Validasi Check ROUTE
  ----------------------------------------------------------------------- */

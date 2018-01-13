@@ -10,7 +10,7 @@
 		<p>Kami membantu anda melihat status tanah anda melalui database Si Desa pemerintah Desa Gantung </p>
 		<hr>
 		<br>
-			<!-- <button type="submit" class="learnButton">Gunakan Lokasi</button> -->
+			<!-- <button type="submit" class="learnButton">Tanah Terdekat</button> -->
 			<button type="button" id="searchBtn" class="learnButton">Cari Data Tanah</button>
 			<?php echo form_open('',array('id'=>'form_cari'));?>
 			<div id="desa" class="form-group" >
@@ -23,15 +23,18 @@
 					?>					
 				</select>
 			</div>
+			
 			<div id="cariDesa" class="pull-right" >			
 				<button onclick="buka_dusun()"  class="btn btn-primary" type="button"><i class="fa fa-search"></i> Dusun</button>
 				<button name="clickDesa" class="btn btn-success" type="button"><i class="fa fa-search"></i> Desa</button>
 			</div>
+
 			<div id="dusun" class="form-group" >
 				<label for="">Dusun</label>
 				<select name="dusun" class="form-control select2" style="width:100%" >					
 				</select>
 			</div>
+
 			<div id="cariDusun" class="pull-right" >
 			
 				<button onclick="buka_nik()"  class="btn btn-primary" type="button"><i class="fa fa-search"></i> Pemilik</button>
@@ -42,9 +45,15 @@
 				<label for="">Nama / NIK</label>
 				<input onkeyup="cari_data()" type="text" name="nikData" class="form-control" id="">
 			</div>
+
 			<div id="btnCari" class="pull-right" >
 				<button class="btn btn-warning" type="reset">Reset <i class="fa fa-ban"></i> </button>
 				<button  name="clickNama" class="btn btn-success" type="button">Cari <i class="fa fa-search"></i> </button>
+			</div>
+			<br>
+			<div id="btnReload">
+				<hr>
+				<button type="button" id="reload" class="btn btn-warning btn-block">Reload <i class="fa fa-refresh"></i></button>
 			</div>
 			</form>
 		<div class="social">		

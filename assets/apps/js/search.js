@@ -2,6 +2,10 @@ $(function() {
 	$(".select2").select2();
 	$("#form_cari").hide();
 
+	$("#reload").click(function(){
+		location.reload();
+	});
+
 	$("#searchBtn").click(function () {
 		$("#searchBtn").hide();
 		$("#form_cari")[0].reset();

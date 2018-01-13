@@ -1,8 +1,19 @@
 var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1] + '/';		
 var map;
+var infowindow = null;
+var color = '#' + Math.random().toString(16).substr(-6);
+var markerId = [];
+var markerName = [];
+var markerLokasi = [];
+var markerLuas = [];
 var desa = [];
 var dusun = [];
-var nama = '';
+
+var allTitik = [];
+var allLatLng = [];
+
+var tempMarkerHolder = [];
+
 
 var mapOptions = {
 	zoom: 10,
@@ -21,25 +32,77 @@ var mapOptions = {
 	scaleControl: false
 
 };	
-var color = '#' + Math.random().toString(16).substr(-6);
 
-function initialize() {
-	
+infowindow = new google.maps.InfoWindow({
+	content: "holding..."
+});
+
+
+function initialize() {	
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	// map.data.setStyle({
-	// 	strokeColor: '#FF0000',
-	// 	strokeWeight: 1,
-	// 	fillColor: color,
-	// 	fillOpacity: 0.6
-	// });
 	$('[name="clickDesa"]').click( function(){
 		var desa_id = $('[name="desa"]').val();
-		var titikDesa = new google.maps.Marker({
-			position: new google.maps.LatLng(-2.858830, 107.906900),
-			title: 'Hello World!'
+		$.ajax({
+			type: "GET",
+			url: base_url + 'api/stream/desa/' + desa_id,
+			dataType: "JSON",
+			success: function (data){
+				$.each(data.results, function (i, val) {
+					markerId.push(val.id);
+					markerName.push(val.nama);
+					markerLuas.push(val.luas);
+					markerLokasi.push(val.lokasi);
+				});
+				var counter = 0;
+				$.each(markerId, function(k, v){
+					$.ajax({
+						url: base_url + 'api/stream/marker/one/'+ v,
+						type: "GET",
+						dataType: "JSON",
+						success: function (data){
+							for(var key in data){
+								var results = data[key];
+								var lat = parseFloat(results['lat']);
+								var lng = parseFloat(results['lng']);
+								var keterangan = results['keterangan'];
+								myLatLng = new google.maps.LatLng(lat, lng);
+								allTitik = new google.maps.Marker({
+									position : myLatLng,
+									map: map,
+									html: 
+									'<div class="markerPop">' +
+										'<h1>a/n. ' + markerName[counter] +'</h1>'+
+									'<h3>' + keterangan + '</h3>' +
+										'<p> Luas ' + markerLuas[counter] +' meter<sup>2</sup></p>'+
+										'<p>Lokasi : ' + markerLokasi[counter] + '</p>' +
+									'<div>'
+								});
+								allLatLng.push(myLatLng);
+								tempMarkerHolder.push(allTitik);
+								counter++;
+							};
+							google.maps.event.addListener(allTitik, 'click', function () {
+								infowindow.setContent(this.html);
+								infowindow.open(map, this);
+							});
+
+							var bounds = new google.maps.LatLngBounds();
+							for (var i = 0, LtLgLen = allLatLng.length; i < LtLgLen; i++) {
+								//  And increase the bounds to take this point
+								bounds.extend(allLatLng[i]);
+							}
+							//  Fit these bounds to the map
+							map.fitBounds(bounds);
+						}									
+					});
+				});
+			}				
 		});
-		titikDesa.setMap(map);
+		return false;
 	});
+
+
+	// KELOMPOKKAN PER DUSUN
 
 	$('[name="clickDusun"]').click(function () {
 		var dusun_id = $('[name="dusun"]').val();
