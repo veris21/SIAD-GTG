@@ -25,7 +25,7 @@
 			</div>
 			<div id="cariDesa" class="pull-right" >			
 				<button onclick="buka_dusun()"  class="btn btn-primary" type="button"><i class="fa fa-search"></i> Dusun</button>
-				<button onclick="cari_desa()" class="btn btn-success" type="button"><i class="fa fa-search"></i> Desa</button>
+				<button name="clickDesa" class="btn btn-success" type="button"><i class="fa fa-search"></i> Desa</button>
 			</div>
 			<div id="dusun" class="form-group" >
 				<label for="">Dusun</label>
@@ -35,7 +35,7 @@
 			<div id="cariDusun" class="pull-right" >
 			
 				<button onclick="buka_nik()"  class="btn btn-primary" type="button"><i class="fa fa-search"></i> Pemilik</button>
-				<button onclick="cari_dusun()"  class="btn btn-success" type="button"><i class="fa fa-search"></i> Dusun </button>
+				<button name="clickDusun"  class="btn btn-success" type="button"><i class="fa fa-search"></i> Dusun </button>
 			</div>
 
 			<div id="nama_or_nik" class="form-group" >
@@ -44,7 +44,7 @@
 			</div>
 			<div id="btnCari" class="pull-right" >
 				<button class="btn btn-warning" type="reset">Reset <i class="fa fa-ban"></i> </button>
-				<button  onclick="cari_nik()"  class="btn btn-success" type="button">Cari <i class="fa fa-search"></i> </button>
+				<button  name="clickNama" class="btn btn-success" type="button">Cari <i class="fa fa-search"></i> </button>
 			</div>
 			</form>
 		<div class="social">		

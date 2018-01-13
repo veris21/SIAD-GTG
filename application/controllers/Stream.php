@@ -70,6 +70,24 @@ class Stream extends CI_Controller{
     $this->load->view(UMUM. 'public_stream', $data);
   }
 
+
+
+  /*========================= STREAM DATA TANAH VIEW PUBLIC ======================= */
+  public function cari_data_per_desa($key){
+    $data['results'] = $this->pertanahan_model->cari_data_tanah_desa($key)->result();
+    echo json_encode($data);
+  }
+
+  public function cari_data_per_dusun($key){
+    echo json_encode($data);
+  }
+
+  public function cari_data_per_nama($key){
+    echo json_encode($data);
+  }
+
+  /*===============================================================================*/
+
 }
 
 /* Stream.php || Controller Handler Untuk Modul Stream */ 

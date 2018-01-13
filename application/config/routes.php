@@ -26,8 +26,11 @@ $route['auth']                      = 'auth/validate';
                        PUBLIC ROUTE
  ----------------------------------------------------------------------- */
 
-$route['public']                    = 'stream';
-$route['public/details/(:any)']     = 'stream/details/$1';
+$route['public']                            = 'stream';
+$route['public/details/(:any)']             = 'stream/details/$1';
+$route['api/stream/desa/(:any)']            = 'stream/cari_data_per_desa/$1';
+$route['api/stream/dusun/(:any)']           = 'stream/cari_data_per_dusun/$1';
+$route['api/stream/nama/(:any)']            = 'stream/cari_data_per_nama/$1';
 
 /* -----------------------------------------------------------------------
                        Validasi Check ROUTE

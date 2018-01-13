@@ -585,7 +585,11 @@ class Pertanahan_model extends CI_Model{
 
 /*==========================================*/
 
-
+  /* STREAM DATA */
+  public function cari_data_tanah_desa($key){
+    $this->db->where('desa_id', $key);
+    return $this->db->get('dusun');
+  }
 
 }
 
