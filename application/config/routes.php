@@ -183,6 +183,9 @@ $route['get/rt/(:any)']             = 'datapenduduk/get_rt/$1';
                        ADMINISTRASI PENDUDUK ROUTE
  ----------------------------------------------------------------------- */
 $route['data_penduduk']             = 'datapenduduk/data_penduduk';
+$route['data_mutasi']               = 'datapenduduk/mutasi_penduduk';
+
+
 $route['data_penduduk/input']       = 'datapenduduk/input_penduduk';
 $route['data_penduduk/update']      = 'datapenduduk/update_penduduk';
 $route['data_penduduk/get/(:any)']  = 'datapenduduk/get_penduduk/$1';

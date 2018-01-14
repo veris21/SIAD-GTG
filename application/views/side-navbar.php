@@ -41,6 +41,18 @@
           <span>Cari Arsip Surat</span>
           </a>
         </li>
+        <!-- Data Kependudukan -->
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Data Penduduk</span>
+             <!-- <small class="label pull-right bg-green">new</small> -->
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo base_url().'data_penduduk'; ?>"><i class="fa fa-circle-o"></i> Data Kependudukan</a></li>
+                <li><a href="<?php echo base_url().'data_mutasi'; ?>"><i class="fa fa-circle-o"></i> Mutasi Kependudukan</a></li>
+            </ul>
+          </li>
         <!-- Data Tanah -->
         <li>
           <a href="<?php echo base_url().'pertanahan/data'; ?>">
@@ -105,12 +117,17 @@
           case "LAYANAN":
         ?>
          <!-- DATA KEPENDUDUKAN -->
-         <li>
-          <a href="<?php echo base_url().'data_penduduk'; ?>">
-            <i class="fa fa-th"></i> <span>Data Kependudukan</span> 
-            <!-- <small class="label pull-right bg-green">new</small> -->
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Data Penduduk</span>
+             <!-- <small class="label pull-right bg-green">new</small> -->
+            <i class="fa fa-angle-left pull-right"></i>
           </a>
-        </li>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo base_url().'data_penduduk'; ?>"><i class="fa fa-circle-o"></i> Data Kependudukan</a></li>
+                <li><a href="<?php echo base_url().'data_mutasi'; ?>"><i class="fa fa-circle-o"></i> Mutasi Kependudukan</a></li>
+            </ul>
+          </li>
         <!-- ARSIP -->
         <li>
           <a href="<?php echo base_url().'arsip'; ?>">
@@ -226,12 +243,17 @@
         </li>
         <!-- ===== -->
         <!-- DATA KEPENDUDUKAN -->
-        <li>
-          <a href="<?php echo base_url().'data_penduduk'; ?>">
-            <i class="fa fa-th"></i> <span>Data Kependudukan</span> 
-            <!-- <small class="label pull-right bg-green">new</small> -->
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Data Penduduk</span>
+             <!-- <small class="label pull-right bg-green">new</small> -->
+            <i class="fa fa-angle-left pull-right"></i>
           </a>
-        </li>
+            <ul class="treeview-menu">
+                <li><a href="<?php echo base_url().'data_penduduk'; ?>"><i class="fa fa-circle-o"></i> Data Kependudukan</a></li>
+                <li><a href="<?php echo base_url().'data_mutasi'; ?>"><i class="fa fa-circle-o"></i> Mutasi Kependudukan</a></li>
+            </ul>
+          </li>
         <!-- ARSIP -->
         <li>
           <a href="<?php echo base_url().'arsip'; ?>">
