@@ -20,7 +20,7 @@
     </div>
   </div>
   <center id="loader-icon" style="display:none;">
-    <img width="50%" class="img img-responsive" src="<?php echo BASE_URL.'assets/';?>nyapu.gif" />
+    <img width="50%" class="img img-responsive" src="<?php echo base_url('assets/nyapu.gif');?>" />
   </center>
   <div id="data_kosong" class="alert alert-danger" hidden>
     <h3 class="text-center"><i class="icon fa fa-ban"></i>Data Tidak Ditemukan !!</h3>
