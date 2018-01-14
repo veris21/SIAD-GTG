@@ -132,9 +132,15 @@ class Datapenduduk extends CI_Controller {
         }
         
     }
+
+    public function get_penduduk($nik){
+        $data['results'] = $this->datapenduduk_model->_get_data_nik($nik)->row_array();
+        $data['status'] = TRUE;
+        echo json_encode($data);
+    }
     
-    public function mutasi_data(){
-        // echo json_encode(array("status" => TRUE));
+    public function update_penduduk(){
+        echo json_encode(array("status" => TRUE));
     }
 
     public function cari_nik($nik){
@@ -174,6 +180,7 @@ class Datapenduduk extends CI_Controller {
               }
         }else{
             $data['title']                   =   TITLE.'Import Master Data';
+            $data['kabupaten']               = $this->master_model->_kabupaten_all()->result();
             $data['main_content']            =   PENDUDUK.'data_penduduk';
             $data['data']                    =   $this->datapenduduk_model->_get_data();
             $this->load->view('template', $data);

@@ -360,22 +360,7 @@ function cari_data_skt(){
       }
     }
 
-  /*/ Modul Confirm Input /*/
-  function input_penduduk_baru(){
-    swal({
-            title: 'Apa Anda Menginput Data Penduduk Baru?',
-            text: "Data penduduk Akan digunakan untuk mengaktifkan fitur - fitur SiDesa !",
-            type: 'success',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Iya, Input Data!'              
-          }, function isConfirm(){
-            $('#input_data_penduduk_baru')[0].reset();
-            $('#modal_input_data_penduduk_baru').modal('show');
-          });
-           
-  }
+  /*/ Modul Confirm Input /*/  
 
   function tambah_dusun(){
     dusun_method = 'posting_dusun';
@@ -429,9 +414,7 @@ function cari_data_skt(){
   function balasan_arsip(){
     $('#balas_arsip_form')[0].reset();
     $('#modal_balas_arsip').modal('show');
-  }
-
- 
+  } 
 
   function setujui_balasan_arsip(id){
     swal({
@@ -788,16 +771,83 @@ $('[name="dusun"]').change(function () {
   });
 });
 
+/* ======================= PENDUDUK MASTER CONTROL SYSTEM ========== */
+var penduduk_method = '';
+function edit_penduduk(nama, nik) {
+  swal({
+    title: 'Apa Anda Ingin Mengubah Data ?',
+    text: "Data dengan nik "+nik+" akan dipanggil System, Mungkin butuh beberapa saat!",
+    type: 'success',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Iya, Edit Data!'
+  }, function isConfirm() {
+    $('#input_data_penduduk_baru')[0].reset();
+    $.ajax({
+      url: baseUrl + 'data_penduduk/get/'+nik,
+      type: "GET",
+      dataType: "JSON",
+      success: function (data){
+        var obj = data.results;
+        penduduk_method = 'update_penduduk';
+        console.log(obj);
+        $('[name="alamat"]').val(obj.alamat);
+        $('[name="no_kk"]').val(obj.no_kk);
+        $('[name="no_nik"]').val(obj.no_nik);
+        $('[name="nama"]').val(obj.nama);
+        $('[name="jenis_kelamin"]').val(obj.jenis_kelamin);
+        $('[name="tempat_lahir"]').val(obj.tempat_lahir);
+        $('[name="tanggal_lahir"]').val(obj.tanggal_lahir);
+        $('[name="pekerjaan"]').val(obj.pekerjaan);
+        $('[name="agama"]').val(obj.agama);
+        $('[name="status"]').val(obj.status);
+        $('[name="shdk"]').val(obj.shdk);
+        $('[name="shdrt"]').val(obj.shdrt);
+        $('[name="pddk_akhir"]').val(obj.pddk_akhir);
+        $('[name="nama_ayah"]').val(obj.nama_ayah);
+        $('[name="nama_ibu"]').val(obj.nama_ibu);
+        $('[name="kabupaten"]').val(obj.id_kabupaten);
+        // $('[name="kecamatan"]').val(obj.id_kecamatan);
+        // $('[name="desa"]').val(obj.id_desa);
+        // $('[name="dusun"]').val(obj.id_dusun);
+        // $('[name="rt"]').val(obj.no_rt);
+        $('#modal_input_data_penduduk_baru').modal('show');
+      }
+    });
+  });
+}
 
+function input_penduduk_baru() {
+ swal({
+   title: 'Apa Anda Menginput Ingin Data Penduduk?',
+   text: "Data penduduk Akan digunakan untuk mengaktifkan fitur - fitur SiDesa !",
+   type: 'alert',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: 'Iya, Input Data!'
+ }, function isConfirm() {
+   $('#input_data_penduduk_baru')[0].reset();
+   penduduk_method = 'insert_penduduk';
+   $('#modal_input_data_penduduk_baru').modal('show');
+ });
+}
 
-
-// ==========================
 function save_penduduk_baru(){
+  switch (penduduk_method) {
+    case 'update_penduduk':
+    var url = baseUrl + 'data_penduduk/update';
+      break;
+    case 'insert_penduduk':
+    var url = baseUrl + 'data_penduduk/input';
+      break;  
+  }
   $('#input_data_penduduk_baru').submit(function(evt){
     evt.preventDefault();
     var formData = new FormData($(this)[0]);
     $.ajax({
-      url: baseUrl + 'data_penduduk/input',
+      url: url,
       type: "POST",
       data: formData,
       async: false,
@@ -815,6 +865,12 @@ function save_penduduk_baru(){
     
   });
 }
+/* ==================================================================== */
+/*|                                                                    |*/
+/*|                                                                    |*/
+/*|                                                                    |*/
+/*|                                                                    |*/
+/* ==================================================================== */
 
 function desa_edit(){
 $('#data_desa_form')[0].reset();
