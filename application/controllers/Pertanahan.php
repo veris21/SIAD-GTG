@@ -255,6 +255,7 @@ class Pertanahan extends CI_Controller{
 
 
   public function permohonan_setuju(){
+    $desa_id = $this->session->userdata('desa_id');
     $id = $this->input->post('id');
     $nota_kades = strip_tags($this->input->post('nota_kades'));
     $nama_pemohon = strip_tags($this->input->post('nama_pemohon'));
@@ -272,8 +273,9 @@ class Pertanahan extends CI_Controller{
         break;
     }
     $setujui = array('status_proses'=>2,'type_yang_disetujui'=>$status_persetujuan, 'nota_kades'=>$nota_kades);
-    $kasi_pemerintahan = $this->notifikasi_model->_get_data_kasi_pemerintahan($this->session->userdata('desa_id'))->row_array();
-     // +===============+
+    $kasi_pemerintahan = $this->notifikasi_model->_get_data_kasi_pemerintahan($desa_id)->row_array();
+    $petugas_pertanahan = $this->notifikasi_model->_get_data_petugas_pertanahan($desa_id)->row_array();
+     // +======= PEMBERITAHUAN KE KASI ========+
      $kepada_id = $kasi_pemerintahan['id'];
      $to = $kasi_pemerintahan['hp'];
      $message = "NOTIFIKASI Pertanahan : Persetujuan Permohonan Surat Tanah a/n. ".$nama_pemohon." di ".$persetujuan." oleh Kepala Desa dengan #Memo: ".$nota_kades." (SiDesa Sistem)";
@@ -289,6 +291,24 @@ class Pertanahan extends CI_Controller{
         'type'=> 0
       );
     $this->notifikasi_model->posting_notifikasi($posting);
+
+    /*===== + KEPADA PETUGAS PERTANAHAN + =====*/
+     $kpd_petugas = $petugas_pertanahan['id'];
+     $to2 = $petugas_pertanahan['hp'];
+     $message2 = "NOTIFIKASI Pertanahan : Persetujuan Permohonan Surat Tanah a/n. ".$nama_pemohon." di ".$persetujuan." oleh Kepala Desa dengan #Memo: ".$nota_kades." Silahkan Input Pernyataan dari Pemohon dan menunggu persetujuan BAP Pemeriksan(SiDesa Sistem)";
+     sms_notifikasi($to2, $message2);
+     $link2 = "permohonan/".$time_permohonan;
+     $posting2 = array(
+        'kepada_id'=> $kpd_petugas,
+        'hp'=> $to2,
+        'message'=> $message2,
+        'link'=> $link2,
+        'time'=> time(),
+        'status'=> 0,
+        'type'=> 0
+      );
+    $this->notifikasi_model->posting_notifikasi($posting2);
+
     $check = $this->pertanahan_model->_setujui_permohonan($id, $setujui);
     if($check){
       echo json_encode(array("status" => TRUE));
