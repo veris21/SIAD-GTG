@@ -13,12 +13,7 @@
     <div class="box-header">
     <?php 
         switch ($this->session->userdata('jabatan')) {
-        case 'LAYANAN':
-        ?> 
-        <h3 class="box-title">Apa Anda ingin menginput Data Penduduk Baru ?</h3>       
-        <button class="btn btn-sm btn-flat btn-success" onclick="input_penduduk_baru()" >Iya, Input Data <i class="fa fa-plus"></i></button>
-        <?php
-        break;
+        
         case 'ROOT':
         echo form_open_multipart('', array('id'=>'import'));
     ?>
@@ -36,7 +31,14 @@
       </div>
     <?php 
     echo form_close();
-    break;
+        break;
+    default:
+        ?> 
+    <h3 class="box-title">Apa Anda ingin menginput Data Penduduk Baru ?</h3>       
+    <button class="btn btn-sm btn-flat btn-success" onclick="input_penduduk_baru()" >Iya, Input Data <i class="fa fa-plus"></i></button>
+        <?php
+        break;
+        
     }
     ?>
     </div>
@@ -61,11 +63,13 @@
             echo "<td>".$data->nama."<br>(<i>".$data->shdk."</i>)</td>";
             echo "<td>".$data->alamat."</td>";
             echo "<td>".$data->tempat_lahir.", ".$tgl[1]."-".$tgl[0]."-".$tgl[2]."</td>";
-            echo "<td>"
+            echo "<td align='center' width='120'>"
             .anchor('data_penduduk/details/'.$data->id,'<i class="fa fa-eye"></i>', array('class'=>'btn btn-success btn-xs')).
-            "<button onclick='edit_penduduk(".$data->no_nik.")' class='btn btn-xs btn-warning'><i class='fa fa-edit'></i></button>
-            <button onclick='hapus_penduduk(".$data->id.",".$data->no_nik.")' class='btn btn-xs btn-danger'><i class='fa fa-trash'></i></button>
-            </td>";
+            " <button onclick='edit_penduduk(".$data->id.")' class='btn btn-xs btn-warning'><i class='fa fa-edit'></i></button>";
+            if ($this->session->userdata('jabatan')=='ROOT') {
+            echo "<button onclick='hapus_penduduk(".$data->id.")' class='btn btn-xs btn-danger'><i class='fa fa-trash'></i></button>";
+            }
+            echo "</td>";
             echo "</tr>";
              } ?>
         </tbody>
@@ -282,6 +286,7 @@
                   <textarea name="keterangan" class="form-control" cols="8" rows="4"></textarea>
                </div>
       </div>
+      <input type="hidden" name="id">
       <!--  -->
       </div> 
       <div class="modal-footer">

@@ -133,14 +133,78 @@ class Datapenduduk extends CI_Controller {
         
     }
 
-    public function get_penduduk($nik){
-        $data['results'] = $this->datapenduduk_model->_get_data_nik($nik)->row_array();
+    public function get_penduduk($id){
+        $data['results'] = $this->datapenduduk_model->_get_id_nik($id)->row_array();
         $data['status'] = TRUE;
         echo json_encode($data);
     }
     
     public function update_penduduk(){
-        echo json_encode(array("status" => TRUE));
+                if(isset($_FILES['ktp'])){
+        
+        $id = strip_tags($this->input->post('id'));
+
+        $nama = strip_tags($this->input->post('nama'));
+        $no_kk = strip_tags($this->input->post('no_kk'));
+        $no_nik = strip_tags($this->input->post('no_nik'));
+        $jenis_kelamin = strip_tags($this->input->post('jenis_kelamin'));
+        $tempat_lahir = strip_tags($this->input->post('tempat_lahir'));
+        $tanggal_lahir = strip_tags($this->input->post('tanggal_lahir'));
+        $agama = strip_tags($this->input->post('agama'));
+        $pekerjaan = strip_tags($this->input->post('pekerjaan'));
+        $shdk = strip_tags($this->input->post('shdk'));
+        $status = strip_tags($this->input->post('status'));
+        $shdrt = strip_tags($this->input->post('shdrt'));
+        $pddk_akhir = strip_tags($this->input->post('pddk_akhir'));
+        $nama_ayah = strip_tags($this->input->post('nama_ayah'));
+        $nama_ibu = strip_tags($this->input->post('nama_ibu'));
+        $kabupaten = strip_tags($this->input->post('kabupaten'));
+        $kecamatan = strip_tags($this->input->post('kecamatan'));
+        $desa = strip_tags($this->input->post('desa'));
+        $dusun = strip_tags($this->input->post('dusun'));
+        $rt = strip_tags($this->input->post('rt'));
+        $alamat = strip_tags($this->input->post('alamat'));
+
+        $keterangan = strip_tags($this->input->post('keterangan'));
+
+        $ktp = time()."-".$_FILES['ktp']['name'];
+        $config['upload_path'] = './assets/uploader/ktp/'; //buat folder dengan nama assets di root folder
+        $config['allowed_types'] = 'png|jpg|jpeg';
+        $config['max_size'] = 10000;
+        $config['file_name'] = $ktp;
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+        if(! $this->upload->do_upload('ktp') );
+        $post = array('nik_id'=>$id,'keterangan'=>$keterangan,'scan_ktp_or_kk'=>$ktp,'time'=>time(),'type'=>0,'nik'=>$no_nik,'status'=>1);
+        $this->datapenduduk_model->_post_timeline($post);
+        $no_rt = $this->master_model->get_rt_id($rt)->row_array();
+        $update = array(
+            'nama'=>$nama,
+            'jenis_kelamin'=>$jenis_kelamin,
+            'no_kk'=>$no_kk,
+            'no_nik'=>$no_nik,
+            'tempat_lahir'=>$tempat_lahir,
+            'tanggal_lahir'=>$tanggal_lahir,
+            'pekerjaan'=>$pekerjaan,
+            'shdk'=>$shdk,
+            'shdrt'=>$shdrt,
+            'status'=>$status,
+            'agama'=>$agama,
+            'id_kabupaten'=>$kabupaten,
+            'id_kecamatan'=>$kecamatan,
+            'id_desa'=>$desa,
+            'id_dusun'=>$dusun,
+            'no_rt'=>$no_rt['nama_rt'],
+            'pddk_akhir'=>$pddk_akhir,
+            'alamat'=>$alamat,
+            'nama_ayah'=>$nama_ayah,
+            'nama_ibu'=>$nama_ibu
+        );        
+        $check = $this->datapenduduk_model->update_penduduk($id, $update);
+            if ($check) {
+                echo json_encode(array("status" => TRUE));
+            }
+        }
     }
 
     public function cari_nik($nik){

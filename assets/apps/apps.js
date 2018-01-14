@@ -773,10 +773,11 @@ $('[name="dusun"]').change(function () {
 
 /* ======================= PENDUDUK MASTER CONTROL SYSTEM ========== */
 var penduduk_method = '';
-function edit_penduduk(nama, nik) {
+
+function edit_penduduk(id) {
   swal({
     title: 'Apa Anda Ingin Mengubah Data ?',
-    text: "Data dengan nik "+nik+" akan dipanggil System, Mungkin butuh beberapa saat!",
+    text: "Data akan dipanggil System, Mungkin butuh beberapa saat!",
     type: 'success',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -785,13 +786,14 @@ function edit_penduduk(nama, nik) {
   }, function isConfirm() {
     $('#input_data_penduduk_baru')[0].reset();
     $.ajax({
-      url: baseUrl + 'data_penduduk/get/'+nik,
+      url: baseUrl + 'data_penduduk/get/'+id,
       type: "GET",
       dataType: "JSON",
       success: function (data){
         var obj = data.results;
         penduduk_method = 'update_penduduk';
         console.log(obj);
+        $('[name="id"]').val(obj.id);
         $('[name="alamat"]').val(obj.alamat);
         $('[name="no_kk"]').val(obj.no_kk);
         $('[name="no_nik"]').val(obj.no_nik);
@@ -812,6 +814,7 @@ function edit_penduduk(nama, nik) {
         // $('[name="desa"]').val(obj.id_desa);
         // $('[name="dusun"]').val(obj.id_dusun);
         // $('[name="rt"]').val(obj.no_rt);
+        $('.modal-title').text('Edit Data Penduduk');
         $('#modal_input_data_penduduk_baru').modal('show');
       }
     });
@@ -822,7 +825,7 @@ function input_penduduk_baru() {
  swal({
    title: 'Apa Anda Menginput Ingin Data Penduduk?',
    text: "Data penduduk Akan digunakan untuk mengaktifkan fitur - fitur SiDesa !",
-   type: 'alert',
+   type: 'success',
    showCancelButton: true,
    confirmButtonColor: '#3085d6',
    cancelButtonColor: '#d33',
