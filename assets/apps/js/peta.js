@@ -11,7 +11,7 @@ var dusun = [];
 
 var allTitik = [];
 var allLatLng = [];
-
+var baseIcon = baseUrl + 'assets/';
 var tempMarkerHolder = [];
 // var SQUARE_PIN;
 
@@ -19,7 +19,7 @@ var mapOptions = {
 	zoom: 10,
 	center: new google.maps.LatLng(-2.858830, 107.906900),
 	// disableDefaultUI: true,
-	mapTypeId: 'roadmap',
+	mapTypeId: 'terrain',
 	panControl: false,
 	panControlOptions: {
 		position: google.maps.ControlPosition.BOTTOM_LEFT
@@ -68,15 +68,8 @@ function initialize() {
 								myLatLng = new google.maps.LatLng(lat, lng);
 								allTitik = new google.maps.Marker({
 									position : myLatLng,
-									map: map,
-									icon: {
-											path: SQUARE_PIN,
-											fillColor: '#00CCBB',
-											fillOpacity: 1,
-											strokeColor: '',
-											strokeWeight: 0
-										},
-									map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>',
+									map: map,									
+									icon : baseIcon + 'house-icon.png',
 									html: 
 										'<div class="markerPop">' +
 											'<h1>a/n. ' + markerName[counter] +'</h1>'+
