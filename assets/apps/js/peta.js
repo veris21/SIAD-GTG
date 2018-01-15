@@ -8,12 +8,12 @@ var markerLokasi = [];
 var markerLuas = [];
 var desa = [];
 var dusun = [];
-
+var assetTitik = [];
 var allTitik = [];
 var allLatLng = [];
 var baseIcon = baseUrl + 'assets/';
 var tempMarkerHolder = [];
-// var SQUARE_PIN;
+var tipe = [];
 
 var mapOptions = {
 	zoom: 10,
@@ -52,6 +52,7 @@ function initialize() {
 					markerName.push(val.nama);
 					markerLuas.push(val.luas);
 					markerLokasi.push(val.lokasi);
+					tipe.push(val.tanah_id);
 				});
 				var counter = 0;
 				$.each(markerId, function(k, v){
@@ -61,10 +62,30 @@ function initialize() {
 						dataType: "JSON",
 						success: function (data){
 							for(var key in data){
+								// 
+								var assetLat = -2.972340;
+								var assetLng = 108.165548;
+								var assetKeterangan = 'Balai Dusun';
+								myAssetLatLng = new google.maps.LatLng(assetLat, assetLng);
+								assetTitik = new google.maps.Marker({
+									position: myAssetLatLng,
+									map: map,
+									icon: baseIcon + 'farm-icon.png',
+									html:
+										'<div class="markerPop">' +
+										'<h4>Asset Desa BALAI DUSUN BARU</h4>' +
+										'<p>' + assetKeterangan + '</p>' +										
+										'<div>'
+								});
+								allLatLng.push(myAssetLatLng);
+								tempMarkerHolder.push(assetTitik);
+								// 
+
 								var results = data[key];
 								var lat = parseFloat(results['lat']);
 								var lng = parseFloat(results['lng']);
-								var keterangan = results['keterangan'];
+								var keterangan = results['keterangan']; 
+								var foto_tanah = results['foto_tanah'];
 								myLatLng = new google.maps.LatLng(lat, lng);
 								allTitik = new google.maps.Marker({
 									position : myLatLng,
@@ -72,17 +93,26 @@ function initialize() {
 									icon : baseIcon + 'house-icon.png',
 									html: 
 										'<div class="markerPop">' +
-											'<h1>a/n. ' + markerName[counter] +'</h1>'+
-										'<h3>' + keterangan + '</h3>' +
-											'<p> Luas ' + markerLuas[counter] +' meter<sup>2</sup></p>'+
-											'<p>Lokasi : ' + markerLokasi[counter] + '</p>' +
+										'<h4>a/n. ' + markerName[counter] +'</h4>'+
+										'<center><img width="160" src="' + baseUrl + 'assets/uploader/patok/' + foto_tanah +'"></center>'+
+										'<p> Keterangan : ' + keterangan + '<br>' +
+											'Luas :' + markerLuas[counter] +' meter<sup>2</sup><br>'+
+											'Lokasi : ' + markerLokasi[counter] + '</p>' +
 										'<div>'
 								});
 								allLatLng.push(myLatLng);
 								tempMarkerHolder.push(allTitik);
+
+
+
 								counter++;
 							};
 							google.maps.event.addListener(allTitik, 'click', function () {
+								infowindow.setContent(this.html);
+								infowindow.open(map, this);
+							});
+
+							google.maps.event.addListener(assetTitik, 'click', function () {
 								infowindow.setContent(this.html);
 								infowindow.open(map, this);
 							});
