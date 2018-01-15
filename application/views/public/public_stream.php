@@ -25,8 +25,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().APPS;?>css/style.css">
 	<!--  -->	
 	<link rel="stylesheet" href="<?php echo base_url().THEME; ?>plugins/select2/select2.min.css">
-
-
+	<link rel="stylesheet" href="<?php echo base_url().APPS;?>css/map-icons.css">
+ 
 	<!--[if lt IE 9]>
 		<script src="/js/html5shiv.min.js"></script>
 	<![endif]-->

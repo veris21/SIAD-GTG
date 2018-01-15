@@ -77,5 +77,6 @@
 
 <script src="https://maps.google.com/maps/api/js?key=AIzaSyDbCwhTP2mtDKcb2s8A-bzrwMVKGwK-keY"></script>
 <script> var baseUrl = '<?php echo base_url();?>';</script>
+<script type="text/javascript" src="<?php echo base_url().APPS;?>js/map-icons.js"></script>
 <script type="text/javascript" src="<?php echo base_url().APPS;?>js/peta.js"></script>
 <script type="text/javascript" src="<?php echo base_url().APPS;?>js/search.js"></script>

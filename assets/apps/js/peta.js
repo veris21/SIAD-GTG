@@ -13,7 +13,7 @@ var allTitik = [];
 var allLatLng = [];
 
 var tempMarkerHolder = [];
-
+// var SQUARE_PIN;
 
 var mapOptions = {
 	zoom: 10,
