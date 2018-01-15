@@ -18,8 +18,8 @@ var tempMarkerHolder = [];
 var mapOptions = {
 	zoom: 10,
 	center: new google.maps.LatLng(-2.858830, 107.906900),
-	disableDefaultUI: true,
-	mapTypeId: 'satellite',
+	// disableDefaultUI: true,
+	mapTypeId: 'roadmap',
 	panControl: false,
 	panControlOptions: {
 		position: google.maps.ControlPosition.BOTTOM_LEFT
@@ -76,8 +76,8 @@ function initialize() {
 											strokeColor: '',
 											strokeWeight: 0
 										},
-										map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>',
-										html: 
+									map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>',
+									html: 
 										'<div class="markerPop">' +
 											'<h1>a/n. ' + markerName[counter] +'</h1>'+
 										'<h3>' + keterangan + '</h3>' +
