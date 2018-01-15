@@ -69,13 +69,21 @@ function initialize() {
 								allTitik = new google.maps.Marker({
 									position : myLatLng,
 									map: map,
-									html: 
-									'<div class="markerPop">' +
-										'<h1>a/n. ' + markerName[counter] +'</h1>'+
-									'<h3>' + keterangan + '</h3>' +
-										'<p> Luas ' + markerLuas[counter] +' meter<sup>2</sup></p>'+
-										'<p>Lokasi : ' + markerLokasi[counter] + '</p>' +
-									'<div>'
+									icon: {
+											path: SQUARE_PIN,
+											fillColor: '#00CCBB',
+											fillOpacity: 1,
+											strokeColor: '',
+											strokeWeight: 0
+										},
+										map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>',
+										html: 
+										'<div class="markerPop">' +
+											'<h1>a/n. ' + markerName[counter] +'</h1>'+
+										'<h3>' + keterangan + '</h3>' +
+											'<p> Luas ' + markerLuas[counter] +' meter<sup>2</sup></p>'+
+											'<p>Lokasi : ' + markerLokasi[counter] + '</p>' +
+										'<div>'
 								});
 								allLatLng.push(myLatLng);
 								tempMarkerHolder.push(allTitik);

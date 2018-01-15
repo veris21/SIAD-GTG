@@ -1,5 +1,0 @@
-ERROR - 2018-01-15 00:53:20 --> 404 Page Not Found: Assets/theme
-ERROR - 2018-01-15 00:53:21 --> 404 Page Not Found: Assets/theme
-ERROR - 2018-01-15 01:32:43 --> 404 Page Not Found: Get/kecamatan
-ERROR - 2018-01-15 01:41:25 --> 404 Page Not Found: Get/kecamatan
-ERROR - 2018-01-15 01:44:43 --> 404 Page Not Found: Get/kecamatan
