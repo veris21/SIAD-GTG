@@ -251,6 +251,13 @@ class Datapenduduk extends CI_Controller {
         }           
     }
 
+    public function mutasi_penduduk(){
+            $data['title']                   =   TITLE.'Mutasi Penduduk';
+            $data['main_content']            =   PENDUDUK.'mutasi_penduduk';
+            // $data['data']                    =   $this->datapenduduk_model->_get_data();
+            $this->load->view('template', $data);
+    }
+
 }
 /* End of file DataPenduduk.php */
 
