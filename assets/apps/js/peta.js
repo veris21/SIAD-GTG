@@ -45,43 +45,7 @@ function initialize() {
 	$('[name="clickDesa"]').click( function(){
 		var desa_id = $('[name="desa"]').val();
 
-		/* ============================  ASET DESA  ========================== */
-		$.ajax({
-			url: baseUrl + 'api/stream/marker/asset/' + desa_id,
-			type: "GET",
-			dataType: "JSON",
-			success: function (aset) {
-				for (var key in aset) {
-					var datas = aset[key];
-					var assetLat = parseFloat(datas['lat']);
-					var assetLng = parseFloat(datas['lng']);
-					var assetLuas = datas['luas'];
-					var assetLokasi = datas['lokasi'];
-					var assetKeterangan = datas['keterangan'];
-					var aset_foto_tanah = datas['foto_tanah'];
-					myAssetLatLng = new google.maps.LatLng(assetLat, assetLng);
-					assetTitik = new google.maps.Marker({
-						position: myAssetLatLng,
-						map: map,
-						icon: baseIcon + 'farm-icon.png',
-						html:
-							'<div class="markerPop">' +
-							'<h4>Aset Desa. ' + assetKeterangan + '</h4>' +
-							'<center><img width="160" src="' + baseUrl + 'assets/uploader/patok/' + aset_foto_tanah + '"></center>' +
-							'Luas :' + assetLuas + ' meter<sup>2</sup><br>' +
-							'Lokasi : ' + assetLokasi + '</p>' +
-							'<div>'
-					});
-					// allLatLng.push(myAssetLatLng);
-					// tempMarkerHolder.push(assetTitik);
-				};
-				google.maps.event.addListener(assetTitik, 'click', function () {
-					infowindow.setContent(this.html);
-					infowindow.open(map, this);
-				});
-			}
-		});
-		/* ============================================================= */
+		
 
 		$.ajax({
 			type: "GET",
@@ -103,6 +67,44 @@ function initialize() {
 						type: "GET",
 						dataType: "JSON",
 						success: function (data){
+							/* ============================  ASET DESA  ========================== *
+							$.ajax({
+								url: baseUrl + 'api/stream/marker/asset/' + desa_id,
+								type: "GET",
+								dataType: "JSON",
+								success: function (aset) {
+									for (var key in aset) {
+										var datas = aset[key];
+										var assetLat = parseFloat(datas['lat']);
+										var assetLng = parseFloat(datas['lng']);
+										var assetLuas = datas['luas'];
+										var assetLokasi = datas['lokasi'];
+										var assetKeterangan = datas['keterangan'];
+										var aset_foto_tanah = datas['foto_tanah'];
+										myAssetLatLng = new google.maps.LatLng(assetLat, assetLng);
+										assetTitik = new google.maps.Marker({
+											position: myAssetLatLng,
+											map: map,
+											icon: baseIcon + 'farm-icon.png',
+											html:
+												'<div class="markerPop">' +
+												'<h4>Aset Desa. ' + assetKeterangan + '</h4>' +
+												'<center><img width="160" src="' + baseUrl + 'assets/uploader/patok/' + aset_foto_tanah + '"></center>' +
+												'Luas :' + assetLuas + ' meter<sup>2</sup><br>' +
+												'Lokasi : ' + assetLokasi + '</p>' +
+												'<div>'
+										});
+										allLatLng.push(myAssetLatLng);
+										tempMarkerHolder.push(assetTitik);
+									};
+									google.maps.event.addListener(assetTitik, 'click', function () {
+										infowindow.setContent(this.html);
+										infowindow.open(map, this);
+									});
+								}
+							});
+							/* ============================================================= */
+
 							for(var key in data){
 								var results = data[key];
 								var latitude = parseFloat(results['lat']);
