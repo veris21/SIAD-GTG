@@ -430,7 +430,7 @@ class Pertanahan extends CI_Controller{
       $config['file_name'] = $patok;
       $this->load->library('upload');
       $this->upload->initialize($config);
-      if(! $this->upload->do_upload('patok') );
+      if(! $this->upload->do_upload('patok') ); 
 
       $lat = strip_tags($this->input->post('lat'));
       $lng = strip_tags($this->input->post('lng'));

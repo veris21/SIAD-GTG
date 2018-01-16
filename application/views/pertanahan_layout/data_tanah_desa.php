@@ -78,10 +78,9 @@
       </div>
       <?php echo form_open_multipart('', array('id'=>'aset_desa_form','class'=>'form-horizontal'));?>
       <div class="modal-body form">
-
             <!--  -->
-            <div id="foto_view">
-                <img width="100%" src="" class="img img-rounded" alt="">
+            <div id="foto-patok" class="form-group">
+               <img src="" class=" col-sm-12 img img-rounded img-responsive" alt="FOTO PATOK">
             </div>
             <div id="keterangan">
                   <div class="form-group">
@@ -108,11 +107,13 @@
             <div id="foto" class="form-group">
                   <label  class="control-label col-sm-4" for="">Foto Tempat <br> <small style="font-size:11px;">Format (.jpg/.jpeg) max.4 MB</small></label>
                   <div class="col-sm-8">
-                      <input type="file" name="foto_tanah" class="form-control" id="">                        
+                      <input type="file" name="patok" class="form-control" id="">                        
                   </div>                        
              </div>
             <!--  -->
-            <input type="hidden" name="desa_id" value="<?php echo $this->session->userdata('desa_id');?>">
+            <input type="hidden" name="status" value="1">
+            <input type="hidden" name="tengah_id" value="">
+            <input type="hidden" name="tanah_id" value="<?php echo 'DESA-'.$this->session->userdata('desa_id');?>">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

@@ -138,7 +138,7 @@
                     <div class="well">
                        <h5 class="text-center">Titik Tengah Tanah Belum di Definisikan !!</h5>                    
                     </div>
-                    <button onclick="add_koordinat_tengah()" class="btn btn-success btn-flat btn-block btn-lg">Input Koordinat Titik Tengah Data <i class="fa fa-plus"></i></button>
+                    <button onclick="add_koordinat_tengah()" class="btn btn-success btn-flat btn-block btn-lg">Input Titik Tengah Data <i class="fa fa-plus"></i></button>
                     </div>
                  </div>
                     <?php   
@@ -338,7 +338,7 @@
       <input type="hidden" name="tanah_id" value="<?php echo $data['id'];?>">
       <input type="hidden" name="status" value="1">
       <?php if($titik_tengah!=null || $titik_tengah!='') {?>
-      <input type="hidden" name="data_link_id" value="<?php echo  $titik_tengah['id'];?>">
+      <input type="hidden" name="data_link_id" value="<?php echo $titik_tengah['id'];?>">
       <?php } ?>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

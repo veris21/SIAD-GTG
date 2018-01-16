@@ -369,10 +369,7 @@ function cari_data_skt(){
     }
 
   /*/ Modul Confirm Input /*/  
-  function input_aset(){
-     $('#aset_desa_form')[0].reset();
-     $('#modal_aset_desa').modal('show');
-  }
+ 
 
   function tambah_dusun(){
     dusun_method = 'posting_dusun';
@@ -1727,6 +1724,102 @@ function save_koordinat() {
     });
   });
 
+}
+
+// DATA PATOK ASET 
+var aset_method = '';
+function input_aset() {
+  aset_method = 'input_aset';
+  $('#aset_desa_form')[0].reset();
+  $('#foto-patok').hide();
+  $('#modal_aset_desa').modal('show');
+}
+
+function edit_aset(id){
+  var url = baseUrl + 'get/koordinat/tengah/' + id;
+  $.ajax({
+    url: url,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data){
+      aset_method = 'update_aset';
+      $('#aset_desa_form')[0].reset();
+      $('[name="tengah_id"]').val(data.id);
+      $('[name="lat"]').val(data.lat);
+      $('[name="lng"]').val(data.lng);
+      $('[name="keterangan"]').val(data.keterangan);
+      $('#foto-patok img').attr('src', baseUrl + 'assets/uploader/patok/' + data.foto_tanah);
+      $('#modal_aset_desa').modal('show');
+
+    }
+  });
+}
+
+function input_aset_layer(){
+  aset_method = 'input_layer';
+  $('#aset_desa_form')[0].reset();
+  $('#foto-patok').hide();
+  $('#modal_aset_desa').modal('show');
+}
+
+function edit_aset_layer(id){
+  var url = baseUrl + 'get/koordinat/tanah/' + id;
+  $.ajax({
+    url: url,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data){
+      aset_method = 'update_layer';
+      $('#aset_desa_form')[0].reset();
+      $('[name="id_patok"]').val(data.id);
+      $('[name="utara"]').val(data.utara);
+      $('[name="selatan"]').val(data.selatan);
+      $('[name="timur"]').val(data.timur);
+      $('[name="barat"]').val(data.barat);
+      $('[name="lat"]').val(data.lat);
+      $('[name="lng"]').val(data.lng);
+      $('#foto-patok img').attr('src', baseUrl + 'assets/uploader/patok/' + data.link_dokumentasi);
+      $('#modal_aset_desa').modal('show');
+    }
+  });
+}
+
+function save_aset(){
+  var url;
+  switch (aset_method) {
+    case 'input_aset':
+      url = baseUrl + 'koordinat/tengah';
+      break;
+    case 'update_aset':
+      url = baseUrl + 'update/koordinat/tengah';
+      break;
+    case 'input_layer':
+
+      break;
+    case 'update_layer':
+
+      break;
+  }
+  $('#aset_desa_form').submit(function(evt){
+    evt.preventDefault();
+    var formData = new FormData($(this)[0]);
+    $.ajax({
+      url: url,
+      type: "POST",
+      data: formData,
+      async: false,
+      cache: false,
+      contentType: false,
+      enctype: 'multipart/form-data',
+      processData: false,
+      success: function (data) {
+        swal('Selamat !', 'Berhasil Input Data Aset Tanah Desa Ke Sistem!', 'success');
+        location.reload();
+      }, error: function (jqXHR, textStatus, errorThrown) {
+        swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+      }
+    });
+  });
 }
 
 function aktifasi_download(){
