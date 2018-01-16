@@ -14,6 +14,8 @@ var allLatLng = [];
 var baseIcon = baseUrl + 'assets/';
 var tempMarkerHolder = [];
 var tipe = [];
+var lat;
+var lng;
 
 var mapOptions = {
 	zoom: 10,
@@ -42,11 +44,51 @@ function initialize() {
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	$('[name="clickDesa"]').click( function(){
 		var desa_id = $('[name="desa"]').val();
+
+		/* ============================  ASET DESA  ========================== */
+		$.ajax({
+			url: baseUrl + 'api/stream/marker/asset/' + desa_id,
+			type: "GET",
+			dataType: "JSON",
+			success: function (aset) {
+				for (var key in aset) {
+					var datas = aset[key];
+					var assetLat = parseFloat(datas['lat']);
+					var assetLng = parseFloat(datas['lng']);
+					var assetLuas = datas['luas'];
+					var assetLokasi = datas['lokasi'];
+					var assetKeterangan = datas['keterangan'];
+					var aset_foto_tanah = datas['foto_tanah'];
+					myAssetLatLng = new google.maps.LatLng(assetLat, assetLng);
+					assetTitik = new google.maps.Marker({
+						position: myAssetLatLng,
+						map: map,
+						icon: baseIcon + 'farm-icon.png',
+						html:
+							'<div class="markerPop">' +
+							'<h4>Aset Desa. ' + assetKeterangan + '</h4>' +
+							'<center><img width="160" src="' + baseUrl + 'assets/uploader/patok/' + aset_foto_tanah + '"></center>' +
+							'Luas :' + assetLuas + ' meter<sup>2</sup><br>' +
+							'Lokasi : ' + assetLokasi + '</p>' +
+							'<div>'
+					});
+					// allLatLng.push(myAssetLatLng);
+					// tempMarkerHolder.push(assetTitik);
+				};
+				google.maps.event.addListener(assetTitik, 'click', function () {
+					infowindow.setContent(this.html);
+					infowindow.open(map, this);
+				});
+			}
+		});
+		/* ============================================================= */
+
 		$.ajax({
 			type: "GET",
 			url: baseUrl + 'api/stream/desa/' + desa_id,
 			dataType: "JSON",
 			success: function (data){
+
 				$.each(data.results, function (i, val) {
 					markerId.push(val.id);
 					markerName.push(val.nama);
@@ -55,38 +97,19 @@ function initialize() {
 					tipe.push(val.tanah_id);
 				});
 				var counter = 0;
-				$.each(markerId, function(k, v){
+				$.each(markerId, function(k, v){					
 					$.ajax({
 						url: baseUrl + 'api/stream/marker/one/'+ v,
 						type: "GET",
 						dataType: "JSON",
 						success: function (data){
 							for(var key in data){
-								// 
-								var assetLat = -2.972340;
-								var assetLng = 108.165548;
-								var assetKeterangan = 'Balai Dusun';
-								myAssetLatLng = new google.maps.LatLng(assetLat, assetLng);
-								assetTitik = new google.maps.Marker({
-									position: myAssetLatLng,
-									map: map,
-									icon: baseIcon + 'farm-icon.png',
-									html:
-										'<div class="markerPop">' +
-										'<h4>Asset Desa BALAI DUSUN BARU</h4>' +
-										'<p>' + assetKeterangan + '</p>' +										
-										'<div>'
-								});
-								allLatLng.push(myAssetLatLng);
-								tempMarkerHolder.push(assetTitik);
-								// 
-
 								var results = data[key];
-								var lat = parseFloat(results['lat']);
-								var lng = parseFloat(results['lng']);
+								var latitude = parseFloat(results['lat']);
+								var longitude = parseFloat(results['lng']);
 								var keterangan = results['keterangan']; 
 								var foto_tanah = results['foto_tanah'];
-								myLatLng = new google.maps.LatLng(lat, lng);
+								myLatLng = new google.maps.LatLng(latitude, longitude);
 								allTitik = new google.maps.Marker({
 									position : myLatLng,
 									map: map,									
@@ -102,20 +125,12 @@ function initialize() {
 								});
 								allLatLng.push(myLatLng);
 								tempMarkerHolder.push(allTitik);
-
-
-
 								counter++;
 							};
 							google.maps.event.addListener(allTitik, 'click', function () {
 								infowindow.setContent(this.html);
 								infowindow.open(map, this);
-							});
-
-							google.maps.event.addListener(assetTitik, 'click', function () {
-								infowindow.setContent(this.html);
-								infowindow.open(map, this);
-							});
+							});							
 
 							var bounds = new google.maps.LatLngBounds();
 							for (var i = 0, LtLgLen = allLatLng.length; i < LtLgLen; i++) {

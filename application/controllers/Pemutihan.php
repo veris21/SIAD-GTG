@@ -9,8 +9,22 @@ class Pemutihan extends CI_Controller{
     parent::__construct();
   }
 
-  public function index(){
-      
+  public function list_skt(){
+        
   }
+  
+  public function input_skt(){
+        
+  }
+
+  public function update_skt(){
+        
+  }
+
+  public function cetak_skt(){
+        
+  }
+
+ 
 
 }

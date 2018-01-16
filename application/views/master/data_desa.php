@@ -120,6 +120,52 @@
         </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="box-title">Data Aset Pertanahan &amp; Fasilitas Desa</h3> 
+                </div>
+                <div class="box-body">
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="aset_desa">
+                        <thead>
+                        <tr valign="center" align="center">
+                            <td>Keterangan</td>
+                            <td>Latitude / Longitude</td>
+                            <td>Foto</td>
+                            <td>#</td>
+                        </tr>
+                        </thead>
+                            <?php 
+
+                            foreach ($aset as $aset) {
+                               echo "<tr>";
+                               echo "<td>".$aset->keterangan."</td>";
+                               echo "<td>".$aset->lat.",".$aset->lng."</td>";
+                               echo "<td align='center'>
+                                    <img src='".base_url().PATOK.$aset->foto_tanah."' width='120'>
+                               </td>";
+                               echo "<td align='center'>
+                                    <a href='".base_url('aset/tanah/'.$aset->id)."' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i></a>
+                                    <a href='".base_url('aset/nonaktif/'.$aset->id)."' class='btn btn-sm btn-warning'><i class='fa fa-ban'></i></a>
+                               </td>";
+                               echo "</tr>";
+                            }
+                            ?>
+                        <tbody>
+                        </tbody>
+                        </table>
+
+                </div>
+                <div class="box-footer">
+                    <div class="pull-right">
+                        <button onclick="input_aset()" class="btn btn-primary btn-sm">Input Data Lokasi Aset Tanah <i class="fa fa-map-o"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
 </section>
 

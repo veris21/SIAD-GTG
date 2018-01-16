@@ -221,6 +221,10 @@ $("#list_bap").DataTable({
   responsive: true,
 });
 
+$("#aset_desa").DataTable({
+  responsive: true,
+});
+
 $("#table_klasifikasi_surat").DataTable({
   responsive: true, 
   rowGroup: {

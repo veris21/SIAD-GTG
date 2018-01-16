@@ -603,6 +603,10 @@ class Pertanahan_model extends CI_Model{
      return $this->db->get_where('data_link', array('tanah_id'=>$key));
    }
 
+   public function cari_aset_tanah_desa($key){
+     return $this->db->get_where('data_link', array('tanah_id'=>'DESA-'.$key));
+   }
+
 }
 
 /* ======================================

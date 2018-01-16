@@ -82,6 +82,11 @@ class Stream extends CI_Controller{
     echo json_encode($data);
   }
 
+  public function get_asset_desa($key){
+    $data['results'] = $this->pertanahan_model->cari_aset_tanah_desa($key)->result();
+    echo json_encode($data);
+  }
+
   public function cari_data_per_dusun($key){
     echo json_encode($data);
   }

@@ -232,6 +232,7 @@ class Master extends CI_Controller{
     $data['dusun_id']          =  $this->master_model->_get_dusun()->result();
     $data['administrasi']   =  $this->master_model->_get_administrasi_wilayah()->result();
     $data['data']           = $this->master_model->_get_desa_details($id)->row_array();
+    $data['aset']           = $this->pertanahan_model->cari_aset_tanah_desa($id)->result();
     $this->load->view('template',$data);
   }
 
