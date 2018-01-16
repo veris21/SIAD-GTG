@@ -236,6 +236,10 @@ $("#list_skt").DataTable({
   responsive: true,
 });
 
+$("#list_aset").DataTable({
+  responsive: true,
+});
+
 $("#master_penduduk").DataTable({
   responsive: true, 
   rowGroup: {
@@ -365,6 +369,9 @@ function cari_data_skt(){
     }
 
   /*/ Modul Confirm Input /*/  
+  function input_aset(){
+    
+  }
 
   function tambah_dusun(){
     dusun_method = 'posting_dusun';

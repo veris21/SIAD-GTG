@@ -159,14 +159,13 @@
 
                 </div>
                 <div class="box-footer">
-                    <div class="pull-right">
+                    <!-- <div class="pull-right">
                         <button onclick="input_aset()" class="btn btn-primary btn-sm">Input Data Lokasi Aset Tanah <i class="fa fa-map-o"></i></button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
-    </div>
-    
+    </div>    
 </section>
 
 <!-- Modal Edit Data Desa -->

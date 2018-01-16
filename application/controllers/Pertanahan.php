@@ -708,9 +708,12 @@ class Pertanahan extends CI_Controller{
 
 
   public function tanah_desa_list(){
+    $id = $this->session->userdata('desa_id');
     $data['title'] = TITLE.'Data Aset Pertanahan Desa';
-    $data['titik']  = $this->pertanahan_model->_get_titik_tanah_desa($this->session->userdata('desa_id'))->row_array();
+    // $data['titik']  = $this->pertanahan_model->_get_titik_tanah_desa($this->session->userdata('desa_id'))->row_array();
+    $data['aset']      =  $this->pertanahan_model->cari_aset_tanah_desa($id)->result();
     $data['main_content'] = PERTANAHAN.'data_tanah_desa';
+
     $this->load->view('template', $data);
   }
 

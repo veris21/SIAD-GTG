@@ -17,16 +17,47 @@
         <h3 class="box-title"><i class="fa fa-map"></i> Data Administrasi Desa</h3>
       </div>
       <div class="box-body">
-        <div style="height:520px;" id="map-desa"></div>
+        <div class="row">
+          <div class="col-md-7">
+              <div style="height:520px;" id="map-desa"></div>
+          </div>
+          <div class="col-md-5">
+              <table width="100%" class="table table-striped table-bordered table-hover" id="list_aset">
+                  <thead>
+                    <tr>
+                      <td>Keterangan</td>
+                      <td>Foto</td>
+                      <td>Koordinat</td>
+                      <td>#</td>
+                    </tr>                  
+                  </thead>        
+                  <tbody>
+                    <?php         
+                    foreach ($aset as $aset) {
+                      echo "<tr>";
+                      echo "<td>".$aset->keterangan."</td>";
+                      echo "<td><img class='img img-rounded img-responsive main-img' width='120' src='".base_url().PATOK.$aset->foto_tanah."'></td>";
+                      echo "<td>Latitude : ".$aset->lat.", Longitude : ".$aset->lng." </td>";
+                      echo "<td><a href='".base_url().'detail/aset/'.$aset->id."' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i></a></td>";
+                      echo "</tr>";
+                    }
+                    ?>         
+                  </tbody>        
+                </table>
+          </div>
+        </div>
       </div>
       <div class="box-footer">
-        <?php if($titik!=null){
-              echo "<h3 class='text-center'>Data JSON : ".anchor(GEOJSON.$titik['json'],$titik['json'],array('target'=>'__blank'))."</h3>";
-          }else{ 
-            echo "<h3 class='text-center'>Data Geo JSON Kosong</h3>";
+              <div class="pull-right">
+                  <button onclick="input_aset()" class="btn btn-primary btn-sm">Input Data Lokasi Aset Tanah <i class="fa fa-map-o"></i></button>
+              </div>
+        <?php //if($titik!=null){
+              //echo "<h3 class='text-center'>Data JSON : ".anchor(GEOJSON.$titik['json'],$titik['json'],array('target'=>'__blank'))."</h3>";
+          //}else{ 
+            //echo "<h3 class='text-center'>Data Geo JSON Kosong</h3>";
             ?>
-       <button onclick="add_geo()" class="btn btn-warning btn-block">Upload Data Desa (GeoJSON) <i class="fa fa-globe"></i></button>
-       <?php } ?>
+       <!-- <button onclick="add_geo()" class="btn btn-warning btn-block">Upload Data Desa (GeoJSON) <i class="fa fa-globe"></i></button> -->
+       <?php // } ?>
       </div>
     </div>
   </div>

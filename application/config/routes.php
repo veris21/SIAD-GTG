@@ -145,6 +145,7 @@ $route['pertanahan/data']                 = 'pertanahan/data_view';
 $route['pertanahan/permohonan']           = 'pertanahan/permohonan';
 $route['pertanahan/berita_acara']         = 'pertanahan/berita_acara';
 $route['pertanahan/surat_tanah']          = 'pertanahan/list_skt';
+
 $route['pertanahan/aset_tanah_desa']      = 'pertanahan/tanah_desa_list';
 
 $route['permohonan/setuju']              = 'pertanahan/permohonan_setuju';
