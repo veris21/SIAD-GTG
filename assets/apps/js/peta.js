@@ -40,15 +40,7 @@ infowindow = new google.maps.InfoWindow({
 	content: "holding..."
 });
 
-function autoCenter(){
-	var bounds = new google.maps.LatLngBounds();
-	for (var i = 0, LtLgLen = allLatLng.length; i < LtLgLen; i++) {
-		//  And increase the bounds to take this point
-		bounds.extend(allLatLng[i]);
-	}
-	//  Fit these bounds to the map
-	map.fitBounds(bounds);
-}
+
 
 function initialize() {	
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -83,7 +75,7 @@ function initialize() {
 										success: function (data) {
 											for (var key in data) {
 												var results = data[key];
-												console.log(results);
+												// console.log(results);
 												var latitude = parseFloat(results['lat']);
 												var longitude = parseFloat(results['lng']);
 												var keterangan = results['keterangan'];
@@ -199,6 +191,16 @@ function initialize() {
 		});
 		titik.setMap(map);
 	});
+}
+
+function autoCenter() {
+	var bounds = new google.maps.LatLngBounds();
+	for (var i = 0, LtLgLen = allLatLng.length; i < LtLgLen; i++) {
+		//  And increase the bounds to take this point
+		bounds.extend(allLatLng[i]);
+	}
+	//  Fit these bounds to the map
+	map.fitBounds(bounds);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
