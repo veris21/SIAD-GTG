@@ -9,6 +9,7 @@ var markerLuas = [];
 var desa = [];
 var dusun = [];
 var assetTitik = [];
+var assetId = [];
 var allTitik = [];
 var allLatLng = [];
 var baseIcon = baseUrl + 'assets/';
@@ -39,113 +40,142 @@ infowindow = new google.maps.InfoWindow({
 	content: "holding..."
 });
 
+function autoCenter(){
+	var bounds = new google.maps.LatLngBounds();
+	for (var i = 0, LtLgLen = allLatLng.length; i < LtLgLen; i++) {
+		//  And increase the bounds to take this point
+		bounds.extend(allLatLng[i]);
+	}
+	//  Fit these bounds to the map
+	map.fitBounds(bounds);
+}
 
 function initialize() {	
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	$('[name="clickDesa"]').click( function(){
 		var desa_id = $('[name="desa"]').val();
-
-		
-
 		$.ajax({
 			type: "GET",
-			url: baseUrl + 'api/stream/desa/' + desa_id,
+			url: baseUrl + 'api/stream/marker',
 			dataType: "JSON",
-			success: function (data){
-
+			success: function (data){	
 				$.each(data.results, function (i, val) {
-					markerId.push(val.id);
-					markerName.push(val.nama);
-					markerLuas.push(val.luas);
-					markerLokasi.push(val.lokasi);
 					tipe.push(val.tanah_id);
 				});
-				var counter = 0;
-				$.each(markerId, function(k, v){					
-					$.ajax({
-						url: baseUrl + 'api/stream/marker/one/'+ v,
-						type: "GET",
-						dataType: "JSON",
-						success: function (data){
-							/* ============================  ASET DESA  ========================== *
-							$.ajax({
-								url: baseUrl + 'api/stream/marker/asset/' + desa_id,
-								type: "GET",
-								dataType: "JSON",
-								success: function (aset) {
-									for (var key in aset) {
-										var datas = aset[key];
-										var assetLat = parseFloat(datas['lat']);
-										var assetLng = parseFloat(datas['lng']);
-										var assetLuas = datas['luas'];
-										var assetLokasi = datas['lokasi'];
-										var assetKeterangan = datas['keterangan'];
-										var aset_foto_tanah = datas['foto_tanah'];
-										myAssetLatLng = new google.maps.LatLng(assetLat, assetLng);
-										assetTitik = new google.maps.Marker({
-											position: myAssetLatLng,
-											map: map,
-											icon: baseIcon + 'farm-icon.png',
-											html:
-												'<div class="markerPop">' +
-												'<h4>Aset Desa. ' + assetKeterangan + '</h4>' +
-												'<center><img width="160" src="' + baseUrl + 'assets/uploader/patok/' + aset_foto_tanah + '"></center>' +
-												'Luas :' + assetLuas + ' meter<sup>2</sup><br>' +
-												'Lokasi : ' + assetLokasi + '</p>' +
-												'<div>'
-										});
-										allLatLng.push(myAssetLatLng);
-										tempMarkerHolder.push(assetTitik);
-									};
-									google.maps.event.addListener(assetTitik, 'click', function () {
-										infowindow.setContent(this.html);
-										infowindow.open(map, this);
-									});
-								}
-							});
-							/* ============================================================= */
-
-							for(var key in data){
-								var results = data[key];
-								var latitude = parseFloat(results['lat']);
-								var longitude = parseFloat(results['lng']);
-								var keterangan = results['keterangan']; 
-								var foto_tanah = results['foto_tanah'];
-								myLatLng = new google.maps.LatLng(latitude, longitude);
-								allTitik = new google.maps.Marker({
-									position : myLatLng,
-									map: map,									
-									icon : baseIcon + 'house-icon.png',
-									html: 
-										'<div class="markerPop">' +
-										'<h4>a/n. ' + markerName[counter] +'</h4>'+
-										'<center><img width="160" src="' + baseUrl + 'assets/uploader/patok/' + foto_tanah +'"></center>'+
-										'<p> Keterangan : ' + keterangan + '<br>' +
-											'Luas :' + markerLuas[counter] +' meter<sup>2</sup><br>'+
-											'Lokasi : ' + markerLokasi[counter] + '</p>' +
-										'<div>'
+				$.each(tipe, function(k, v) {
+					var t = v.split('-');
+					console.log('SPLIT '+t);
+					if(t[0]=='DESA'){
+						$.ajax({
+							url: baseUrl +'api/stream/marker/asset/'+desa_id,
+							type:"GET",
+							dataType:"JSON",
+							success: function(data){
+								$.each(data.results, function(a, b){
+									assetId.push(b.id);
 								});
-								allLatLng.push(myLatLng);
-								tempMarkerHolder.push(allTitik);
-								counter++;
-							};
-							google.maps.event.addListener(allTitik, 'click', function () {
-								infowindow.setContent(this.html);
-								infowindow.open(map, this);
-							});							
-
-							var bounds = new google.maps.LatLngBounds();
-							for (var i = 0, LtLgLen = allLatLng.length; i < LtLgLen; i++) {
-								//  And increase the bounds to take this point
-								bounds.extend(allLatLng[i]);
+								var hAset = 0;
+								$.each(assetId, function(x, y){
+									$.ajax({
+										url: baseUrl + 'api/stream/marker/get_one/' + y,
+										type: "GET",
+										dataType: "JSON",
+										success: function (data) {
+											for (var key in data) {
+												var results = data[key];
+												console.log(results);
+												var latitude = parseFloat(results['lat']);
+												var longitude = parseFloat(results['lng']);
+												var keterangan = results['keterangan'];
+												var foto_tanah = results['foto_tanah'];
+												myLatLng = new google.maps.LatLng(latitude, longitude);
+												allTitik = new google.maps.Marker({
+													position: myLatLng,
+													map: map,
+													icon: baseIcon + 'administration.png',
+													html:
+														'<div class="markerPop">' +
+														'<center><img width="160" src="' + baseUrl + 'assets/uploader/patok/' + foto_tanah + '"></center>' +
+														'<p> Keterangan : ' + keterangan + '<br>' +
+														'<div>'
+												});
+												allLatLng.push(myLatLng);
+												tempMarkerHolder.push(allTitik);
+												hAset++;
+											};
+											google.maps.event.addListener(allTitik, 'click', function () {
+												infowindow.setContent(this.html);
+												infowindow.open(map, this);
+											});
+										}
+									});
+								});
+								// 
+								
+								// 
 							}
-							//  Fit these bounds to the map
-							map.fitBounds(bounds);
-						}									
-					});
-				});
-			}				
+						});
+					}else{
+						/* ====== */
+						$.ajax({
+							type: "GET",
+							url: baseUrl + 'api/stream/desa/' + desa_id,
+							dataType: "JSON",
+							success: function (data) {
+								$.each(data.results, function (i, val) {
+									markerId.push(val.id);
+									markerName.push(val.nama);
+									markerLuas.push(val.luas);
+									markerLokasi.push(val.lokasi);
+								});
+								var counter = 0;
+								$.each(markerId, function (k, v) {
+									$.ajax({
+										url: baseUrl + 'api/stream/marker/one/' + v,
+										type: "GET",
+										dataType: "JSON",
+										success: function (data) {
+											for (var key in data) {
+												var results = data[key];
+												var latitude = parseFloat(results['lat']);
+												var longitude = parseFloat(results['lng']);
+												var keterangan = results['keterangan'];
+												var foto_tanah = results['foto_tanah'];
+												myLatLng = new google.maps.LatLng(latitude, longitude);
+												allTitik = new google.maps.Marker({
+													position: myLatLng,
+													map: map,
+													icon: baseIcon + 'house-icon.png',
+													html:
+														'<div class="markerPop">' +
+														'<h4>Tanah a/n. ' + markerName[counter] + '</h4>' +
+														'<center><img width="160" src="' + baseUrl + 'assets/uploader/patok/' + foto_tanah + '"></center>' +
+														'<p> Keterangan : ' + keterangan + '<br>' +
+														'Luas :' + markerLuas[counter] + ' meter<sup>2</sup><br>' +
+														'Lokasi : ' + markerLokasi[counter] + '</p>' +
+														'<a href="'+baseUrl+'tanah/detail/'+markerId[counter]+'" class="btn btn-sm btn-success">Details</a>'+
+														'<div>'
+												});
+												allLatLng.push(myLatLng);
+												tempMarkerHolder.push(allTitik);
+												counter++;
+											};
+											google.maps.event.addListener(allTitik, 'click', function () {
+												infowindow.setContent(this.html);
+												infowindow.open(map, this);
+											});
+										}
+									});
+								});
+							}
+						});
+						/* ==== */
+					}				
+				});		
+			}
+		
 		});
+		autoCenter();
 		return false;
 	});
 
@@ -170,4 +200,5 @@ function initialize() {
 		titik.setMap(map);
 	});
 }
+
 google.maps.event.addDomListener(window, 'load', initialize);
