@@ -370,7 +370,8 @@ function cari_data_skt(){
 
   /*/ Modul Confirm Input /*/  
   function input_aset(){
-    
+     $('#aset_desa_form')[0].reset();
+     $('#modal_aset_desa').modal('show');
   }
 
   function tambah_dusun(){
