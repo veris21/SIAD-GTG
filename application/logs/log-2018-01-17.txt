@@ -1,0 +1,1 @@
+ERROR - 2018-01-17 12:48:18 --> Query error: Column 'sekdes_uid' cannot be null - Invalid query: INSERT INTO `desa` (`uid`, `nama_desa`, `alamat_desa`, `kecamatan_id`, `sekdes_uid`, `kasi_pemerintahan`, `pertanahan_uid`, `status_desa`) VALUES ('1', 'Lintang', 'Jl. Raya Manggar', '7', NULL, '', '', 0)
