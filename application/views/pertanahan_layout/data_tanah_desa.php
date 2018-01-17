@@ -204,7 +204,7 @@ function initialize() {
       html:
         '<div class="markerPop">' +
         '<center><img width="160" src="<?php echo base_url();?>assets/uploader/patok/' + foto_tanah + '"></center>' +
-        '<p> Keterangan : ' + keterangan + '<br>' +
+        '<hr><h5> ' + keterangan + '</h5>' +
         '<div>'
       });
       allTitik.push(marker);

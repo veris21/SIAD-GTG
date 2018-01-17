@@ -56,7 +56,6 @@ function initialize() {
 				});
 				$.each(tipe, function(k, v) {
 					var t = v.split('-');
-					console.log('SPLIT '+t);
 					if(t[0]=='DESA'){
 						$.ajax({
 							url: baseUrl +'api/stream/marker/asset/'+desa_id,
@@ -75,7 +74,6 @@ function initialize() {
 										success: function (data) {
 											for (var key in data) {
 												var results = data[key];
-												// console.log(results);
 												var latitude = parseFloat(results['lat']);
 												var longitude = parseFloat(results['lng']);
 												var keterangan = results['keterangan'];
@@ -88,7 +86,7 @@ function initialize() {
 													html:
 														'<div class="markerPop">' +
 														'<center><img width="160" src="' + baseUrl + 'assets/uploader/patok/' + foto_tanah + '"></center>' +
-														'<p> Keterangan : ' + keterangan + '<br>' +
+														'<hr><h5>' + keterangan + '</h5>' +
 														'<div>'
 												});
 												allLatLng.push(myLatLng);
@@ -156,6 +154,7 @@ function initialize() {
 												infowindow.setContent(this.html);
 												infowindow.open(map, this);
 											});
+											autoCenter();
 										}
 									});
 								});
@@ -164,10 +163,8 @@ function initialize() {
 						/* ==== */
 					}				
 				});		
-			}
-		
+			}		
 		});
-		autoCenter();
 		return false;
 	});
 
