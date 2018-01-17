@@ -385,7 +385,54 @@ function cari_data_skt(){
 
   function button_input_desa(){
     $('#desa_baru')[0].reset();
-    $('#modal_desabaru').modal('show');
+    $('#modal_desa').modal('show');
+  }
+
+  function button_input_kecamatan() {
+    $('#kecamatan_baru')[0].reset();
+    $('#modal_kecamatan').modal('show');
+  }
+
+  function button_input_kabupaten() {
+    $('#kabupaten_baru')[0].reset();
+    $('#modal_kabupaten').modal('show');
+  }
+
+  // POST MASTER WILAYAH KAB & KEC
+  function save_kecamatan_baru(){
+    var url = baseUrl + 'input/kecamatan';
+    $.ajax({
+      url: url,
+      type: "POST",
+      dataType: "JSON",
+      data: $('#kecamatan_baru').serialize(),
+      success: function (data) {
+        swal('Selamat !', 'Berhasil Posting Data Kecamatan !', 'success');
+        location.reload();
+      }
+      , error: function (jqXHR, textStatus, errorThrown) {
+        swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+        location.reload();
+      }
+    });
+  }
+
+  function save_kabupaten_baru() {
+    var url = baseUrl + 'input/kabupaten';
+    $.ajax({
+      url: url,
+      type: "POST",
+      dataType: "JSON",
+      data: $('#kabupaten_baru').serialize(),
+      success: function (data) {
+        swal('Selamat !', 'Berhasil Posting Data Kabupaten !', 'success');
+        location.reload();
+      }
+      , error: function (jqXHR, textStatus, errorThrown) {
+        swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+        location.reload();
+      }
+    });
   }
  
   function buat_disposisi(){

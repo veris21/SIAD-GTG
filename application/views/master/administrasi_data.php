@@ -9,7 +9,6 @@
   </ol>
 </section>
 <section class="content">
-<?php echo form_open();?>
 <div class="row">
   <div class="col-xs-12">
     <div class="box box-info">
@@ -41,7 +40,9 @@
      </div> 
      <div class="box-footer">
         <div class="pull-right">
-            <a class="btn btn-success btn-flat btn-sm" onclick="button_input_desa()" >Input Desa Baru <i class="fa fa-plus"></i></a>
+            <button onclick="button_input_kabupaten()" class="btn btn-primary btn-flat btn-sm">Input Kabupaten Baru <i class="fa fa-plus"></i></button>
+            <button onclick="button_input_kecamatan()" class="btn btn-warning btn-flat btn-sm">Input Kecamatan Baru <i class="fa fa-plus"></i></button>
+            <button onclick="button_input_desa()" class="btn btn-success btn-flat btn-sm">Input Desa Baru <i class="fa fa-plus"></i></button>
         </div>
      </div>
    </div> 
@@ -51,7 +52,7 @@
 
 
 <!-- Bootstrap modal -->
-<div class="modal fade" id="modal_desabaru" role="dialog">
+<div class="modal fade" id="modal_desa" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -59,10 +60,9 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title">Input Desa</h3>
       </div>
-
+       <form action="#" id="desa_baru" class="form-horizontal">
       <div class="modal-body form">
         <!--  -->
-        <form action="#" id="desa_baru" class="form-horizontal">
         <div class="form-body">
             <div class="row form-group">
               <label class="control-label col-sm-3">Kabupaten</label>
@@ -157,16 +157,99 @@
                 </select>
               </div>
             </div>
-         </form>
         <!--  -->
       </div>
 
         <div class="modal-footer">
-        <button type="button" id="btnSave" onclick="save_desa_baru()" class="btn btn-primary btn-sm">Simpan Data</button>
-        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+          <button type="button" id="btnSave" onclick="save_desa_baru()" class="btn btn-primary btn-sm">Simpan Data</button>
+          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
         </div>
 
+         </form>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
   <!-- End Bootstrap modal -->
+
+  <!--  -->
+  <div class="modal fade" id="modal_kabupaten" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Input Kabupaten</h3>
+      </div>
+        <form action="#" id="kabupaten_baru" class="form-horizontal">
+          <div class="modal-body form">
+
+            <div class="row form-group">
+              <label class="control-label col-sm-3">Nama Kabupaten</label>
+              <div class="col-sm-9">
+                <input name="nama_kabupaten" class="form-control" type="text">
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label class="control-label col-sm-3">Alamat</label>
+              <div class="col-sm-9">
+                <textarea name="alamat" class="form-control" cols="8" rows="2"></textarea>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btnSave" onclick="save_kabupaten_baru()" class="btn btn-primary btn-sm">Simpan Data</button>
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+  <!--  -->
+  <div class="modal fade" id="modal_kecamatan" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Input Kecamatan</h3>
+      </div>
+        <form action="#" id="kecamatan_baru" class="form-horizontal">
+          <div class="modal-body form">
+
+          <div class="row form-group">
+              <label class="control-label col-sm-3">Kabupaten</label>
+              <div class="col-sm-9">
+              <select name="kabupaten_id" class="form-control select2" style="width:100%" id="">
+              <?php 
+              foreach ($kabupaten as $kab) {
+                 echo "<option value='".$kab->id."'>".$kab->nama_kabupaten."</option>";
+              }
+              ?>
+              </select>
+              </div>
+            </div>
+
+          <div class="row form-group">
+              <label class="control-label col-sm-3">Nama Kecamatan</label>
+              <div class="col-sm-9">
+                <input name="nama_kecamatan" class="form-control" type="text">
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <label class="control-label col-sm-3">Alamat</label>
+              <div class="col-sm-9">
+                <textarea name="alamat" class="form-control" cols="8" rows="2"></textarea>
+              </div>
+            </div>
+                
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btnSave" onclick="save_kecamatan_baru()" class="btn btn-primary btn-sm">Simpan Data</button>
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->

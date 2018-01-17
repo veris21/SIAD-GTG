@@ -101,6 +101,9 @@ $route['dusun/delete/(:any)']       = 'master/delete_dusun/$1';
 $route['rt/input']                  = 'master/input_rt';
 $route['rt/update']                 = 'master/update_rt';
 $route['rt/delete/(:any)']          = 'master/delete_rt/$1';
+
+$route['input/kabupaten']           = 'master/input_kabupaten';
+$route['input/kecamatan']           = 'master/input_kecamatan';
 /* -----------------------------------------------------------------------
  ----------------------------------------------------------------------- */
 

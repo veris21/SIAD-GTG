@@ -55,7 +55,7 @@
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo base_url().THEME; ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="<?php echo base_url().THEME; ?>plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url().THEME; ?>bootstrap/js/bootstrap.min.js"></script>
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
     <script type="text/javascript" >/*/ Base Setting /*/ var baseUrl = '<?php echo base_url();?>';</script>
     <script type="text/javascript" src="<?php echo base_url().APPS.'auth.js';?>"></script>

@@ -85,7 +85,7 @@ function initialize() {
 													icon: baseIcon + 'administration.png',
 													html:
 														'<div class="markerPop">' +
-														'<center><img width="160" src="' + baseUrl + 'assets/uploader/patok/' + foto_tanah + '"></center>' +
+														'<center><img width="180" src="' + baseUrl + 'assets/uploader/patok/' + foto_tanah + '"></center>' +
 														'<hr><h5>' + keterangan + '</h5>' +
 														'<div>'
 												});
@@ -140,7 +140,7 @@ function initialize() {
 														'<div class="markerPop">' +
 														'<h4>Tanah a/n. ' + markerName[counter] + '</h4>' +
 														'<center><img width="160" src="' + baseUrl + 'assets/uploader/patok/' + foto_tanah + '"></center>' +
-														'<p> Keterangan : ' + keterangan + '<br>' +
+														'<hr><p> Keterangan : ' + keterangan + '<br>' +
 														'Luas :' + markerLuas[counter] + ' meter<sup>2</sup><br>' +
 														'Lokasi : ' + markerLokasi[counter] + '</p>' +
 														'<a href="'+baseUrl+'tanah/detail/'+markerId[counter]+'" class="btn btn-sm btn-success">Details</a>'+

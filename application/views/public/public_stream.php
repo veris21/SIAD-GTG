@@ -41,7 +41,7 @@
 
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
 	<!-- Bootstrap 3.3.5 -->
-	<script src="<?php echo base_url().THEME; ?>bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/theme/bootstrap/js/bootstrap.min.js"></script>
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script> -->
 	<!-- <script src="https://maps.google.com/maps/api/js?key=AIzaSyDbCwhTP2mtDKcb2s8A-bzrwMVKGwK-keY"></script> -->
 	<script> var baseUrl = '<?php echo base_url();?>';</script>	

@@ -148,23 +148,23 @@ class Master extends CI_Controller{
   }
 
   public function desa_input(){
+
     $uid = strip_tags($this->input->post('uid'));
-    $kabupaten_id = strip_tags($this->input->post('kabupaten_id'));
     $kecamatan_id = strip_tags($this->input->post('kecamatan_id'));
     $nama_desa = strip_tags($this->input->post('nama_desa'));
     $alamat_desa = strip_tags($this->input->post('alamat_desa'));
-    $sekdes =  strip_tags($this->input->post('sekdes_uid'));
+    $sekdes_uid =  strip_tags($this->input->post('sekdes_uid'));
     $kasi_pemerintahan =  strip_tags($this->input->post('kasi_pemerintahan'));
     $pertanahan_uid =  strip_tags($this->input->post('pertanahan_uid'));
     
     $post = array('uid'=>$uid, 
     'nama_desa'=>$nama_desa, 
     'alamat_desa'=>$alamat_desa,
-    'kabupaten_id'=>$kabupaten_id,'kecamatan_id'=>$kecamatan_id,
-    'status_desa'=>0,
+    'kecamatan_id'=>$kecamatan_id,
     'sekdes_uid'=>$sekdes_uid,
     'kasi_pemerintahan'=>$kasi_pemerintahan,
-    'pertanahan_uid'=>$pertanahan_uid
+    'pertanahan_uid'=>$pertanahan_uid,
+    'status_desa'=>0
   );
 
   $check = $this->master_model->_post_desa($post);
@@ -251,6 +251,22 @@ class Master extends CI_Controller{
     if($check){
       echo json_encode(array("status" => TRUE));
     }   
+  }
+
+  public function input_kabupaten(){
+    $insert = array('nama_kabupaten' => $this->input->post('nama_kabupaten'), 'alamat_kabupaten'=> $this->input->post('alamat'));
+    $check = $this->master_model->_post_kabupaten($insert);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    } 
+  }
+
+  public function input_kecamatan(){
+    $insert = array('kabupaten_id' => $this->input->post('kabupaten_id'),'nama_kecamatan' => $this->input->post('nama_kecamatan'), 'alamat_kecamatan'=> $this->input->post('alamat'));
+    $check = $this->master_model->_post_kecamatan($insert);
+    if($check){
+      echo json_encode(array("status" => TRUE));
+    } 
   }
 
   public function update_dusun(){

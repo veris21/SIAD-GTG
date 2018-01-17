@@ -352,6 +352,16 @@ class Master_model extends CI_Model{
     return $this->db->get_where('sms_setting', array('status'=>1));
   }
 
+  // Input Data Wilayah Baru
+
+
+  public function _post_kabupaten($insert){
+    return $this->db->insert('kabupaten', $insert);
+  }
+
+  public function _post_kecamatan($insert){
+    return $this->db->insert('kecamatan', $insert);
+  }
 
   // NESTED WiLAyAH SELECT
   public function _kabupaten_all(){
