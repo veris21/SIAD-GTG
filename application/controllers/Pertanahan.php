@@ -48,6 +48,70 @@ class Pertanahan extends CI_Controller{
     $this->load->view('template', $data);
   }
 
+  // EDIT PERMOHONAN 
+  public function get_permohonan($id){
+    $data['status']  = TRUE;
+    $data['results'] = $this->pertanahan_model->_get_details_one($id)->row_array();
+    echo json_encode($data);
+  }
+
+  public function delete_permohonan($id){
+      $check = $this->pertanahan_model->_delete_permohonan($id);
+      if ($check) {
+        echo json_encode(array('status'=>TRUE));
+      }
+  }
+
+  public function update_permohonan(){
+
+    // if(isset($_FILES['ktp'])){
+    // if($_FILES['ktp']['name']!=''){
+    //   $ktp = time()."-".$_FILES['ktp']['name'];
+    //   $config['upload_path'] = './assets/uploader/ktp/'; //buat folder dengan nama assets di root folder
+    //   $config['allowed_types'] = 'png|jpg|jpeg';
+    //   $config['max_size'] = 10000;
+    //   $config['file_name'] = $ktp;
+    //   $this->load->library('upload');
+    //   $this->upload->initialize($config);
+    //   if(! $this->upload->do_upload('ktp') );
+
+    //   }else{
+
+    //   }
+    // }
+    $id = strip_tags($this->input->post('id'));
+    $lokasi = strip_tags($this->input->post('lokasi'));
+    $luas = strip_tags($this->input->post('luas'));
+    $status_tanah = strip_tags($this->input->post('status_tanah'));
+    $peruntukan_tanah = strip_tags($this->input->post('peruntukan_tanah'));
+    $tahun_kelola = strip_tags($this->input->post('tahun_kelola'));
+    $dusun_id = strip_tags($this->input->post('dusun_id'));
+    $hp = strip_tags($this->input->post('hp'));
+    $utara = strip_tags($this->input->post('utara'));
+    $selatan = strip_tags($this->input->post('selatan'));
+    $timur = strip_tags($this->input->post('timur'));
+    $barat = strip_tags($this->input->post('barat'));
+    
+    $update = array(
+        'lokasi'=> $lokasi,
+        'luas'=>$luas,
+        'status_tanah'=>$status_tanah,
+        'peruntukan_tanah'=>$peruntukan_tanah,
+        'utara'=>$utara,
+        'selatan'=>$selatan,
+        'barat'=>$barat,
+        'timur'=>$timur,
+        'dusun_id'=>$dusun_id,
+        'tahun_kelola'=>$tahun_kelola,
+        'hp'=>$hp
+      );
+
+      $check = $this->pertanahan_model->_update_permohonan($id, $update);
+      if ($check) {
+        echo json_encode(array('status'=>TRUE));
+      }
+}
+  
   // DEPRECEATED FUNCTION CAUSE CORS PROBLEM
   /*----------------------------------------*/
 
@@ -193,6 +257,7 @@ class Pertanahan extends CI_Controller{
         echo json_encode(array("status" => TRUE));
       }
   }
+
 
   public function pernyataan_input(){ 
     $saksi1_nama      = strip_tags($this->input->post('saksi1_nama'));

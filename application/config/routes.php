@@ -159,6 +159,12 @@ $route['berita_acara/view/(:any)']        = 'pertanahan/berita_acara_view/$1';
 $route['surat_tanah/details/(:any)']      = 'pertanahan/skt_view_one/$1';
 
 $route['tim_pemeriksa/input']             = 'pertanahan/input_petugas_pemeriksa';
+
+
+$route['permohonan/get/(:any)']           = 'pertanahan/get_permohonan/$1';
+$route['permohonan/delete/(:any)']        = 'pertanahan/delete_permohonan/$1';
+
+$route['permohonan/update']               = 'pertanahan/update_permohonan';
 /* -----------------------------------------------------------------------
                        PRINT / CETAK PDF ROUTE
  ----------------------------------------------------------------------- */

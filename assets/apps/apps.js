@@ -894,6 +894,33 @@ function permohonan_setujui(){
   $('#modal_setuju').modal('show');
 }
 
+function delete_permohonan(id){
+  event.preventDefault();
+  var url = baseUrl + 'permohonan/delete/' + id;
+  swal({
+    title: 'Apa Anda Yakin?',
+    text: "Data Akan dihapus Secara Permanen!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Iya, Hapus Data!'
+  }, function isConfirm() {
+    $.ajax({
+      url: url,
+      type: "POST",
+      dataType: "JSON",
+      success: function (data) {
+        swal('Selamat !', 'Berhasil Menghapus data!', 'success');
+        location.reload();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        swal('Astagapeer', 'Ade Nok Salah Mudel e...!', 'error');
+      }
+    });
+  });
+}
+
 function posting_permohonan(){
 $('#permohonan_form').submit(function(evt){
   evt.preventDefault();

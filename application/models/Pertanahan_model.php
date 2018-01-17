@@ -33,6 +33,16 @@ class Pertanahan_model extends CI_Model{
     return $this->db->get();
   }
 
+  public function _update_permohonan($id, $update){
+    $this->db->where('id', $id);
+    return $this->db->update('permohonan_pertanahan', $update);
+  }
+
+  public function _delete_permohonan($id){
+    $this->db->where('id', $id);
+    return $this->db->delete('permohonan_pertanahan');
+  }
+
   public function _get_pernyataan_one($id){
     $this->db->select('per.*, mohon.type_yang_disetujui, mohon.lokasi, mohon.utara, mohon.selatan, mohon.timur, mohon.barat, mohon.status_tanah, mohon.peruntukan_tanah, mohon.luas, mohon.tahun_kelola, p.no_nik, p.nama, p.alamat, p.agama, p.tempat_lahir, 
     p.tanggal_lahir, p.pekerjaan, p.status, p.jenis_kelamin, dsn.nama_dusun, d.nama_desa, d.alamat_desa, u.fullname, kec.nama_kecamatan, kab.nama_kabupaten');

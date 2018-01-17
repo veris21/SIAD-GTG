@@ -48,9 +48,11 @@
             echo "<td align='center'>".$status."            
             </td>";
             echo "<td width='60' align='center'>
-            <a href='".base_url("permohonan/edit/".$data->id)."' class='btn btn-xs btn-flat btn-primary'><i class='fa fa-edit'></i></a>
-            <a href='".base_url("permohonan/view/".$data->time)."' class='btn btn-xs btn-flat btn-success'><i class='fa fa-eye'></i></a>
-            </td>";
+            <a href='".base_url("permohonan/view/".$data->time)."' class='btn btn-xs btn-flat btn-success'><i class='fa fa-eye'></i></a>";
+            if($data->status_proses==0){
+            echo "<button onclick='delete_permohonan(".$data->id.")' class='btn btn-xs btn-flat btn-danger' ><i class='fa fa-trash'></i></button>";
+            }
+            echo "</td>";
             echo "</tr>";
             }
             ?>
