@@ -42,6 +42,12 @@ class Master_model extends CI_Model{
   // }
 
 
+  // ============= NEW USER DESA KONTRAK ==========
+
+
+
+  // ==============================================
+
   // ============ NEW DATABASE SYSTEM ========
   public function _post_klasifikasi_surat($data){
     return $this->db->insert('klasifikasi_surat', $data);
@@ -352,6 +358,13 @@ class Master_model extends CI_Model{
     return $this->db->get_where('sms_setting', array('status'=>1));
   }
 
+  // Input Data Wilayah Baru
+  public function _post_kabupaten($insert){
+    return $this->db->insert('kabupaten', $insert);
+  }
+  public function _post_kecamatan($insert){
+    return $this->db->insert('kecamatan', $insert);
+  }
 
   // NESTED WiLAyAH SELECT
   public function _kabupaten_all(){
